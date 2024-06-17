@@ -1,19 +1,19 @@
 ﻿using API_PEDIDOS.ModelsDB2;
 using API_PEDIDOS.ModelsDBP;
+using Microsoft.Data.SqlClient;
 using Quartz;
+using System.Data;
 using System.Net.Mail;
 using System.Net;
 using System.Text;
-using Microsoft.Data.SqlClient;
-using System.Data;
 
 namespace API_PEDIDOS.Jobs
 {
-    public class QuartzHostedService25pts : IHostedService
+    public class QuartzHostedServiceMermasBoneless : IHostedService
     {
         private readonly IScheduler _scheduler;
 
-        public QuartzHostedService25pts(IScheduler scheduler)
+        public QuartzHostedServiceMermasBoneless(IScheduler scheduler)
         {
             _scheduler = scheduler;
         }
@@ -30,7 +30,7 @@ namespace API_PEDIDOS.Jobs
     }
 
     [DisallowConcurrentExecution]
-    public class JobEmail25pts : IJob
+    public class JobEmailMermasBoneless : IJob
     {
         protected BD2Context _contextdb2;
         protected DBPContext _dbpContext;
@@ -40,20 +40,20 @@ namespace API_PEDIDOS.Jobs
         public string connectionString = string.Empty;
 
 
-        public JobEmail25pts(ILogger<JobEmail> logger, BD2Context db2c, DBPContext dbpc, IConfiguration configuration)
+        public JobEmailMermasBoneless(ILogger<JobEmail> logger, BD2Context db2c, DBPContext dbpc, IConfiguration configuration)
         {
             _logger = logger;
             _dbpContext = dbpc;
             _contextdb2 = db2c;
             _configuration = configuration;
-            connectionString = _configuration.GetConnectionString("DBREBELWINGS");
+            connectionString = _configuration.GetConnectionString("DB2");
         }
 
         public async Task Execute(IJobExecutionContext context)
         {
 
             // Define el nombre del procedimiento almacenado
-            string storedProcedureName = "EMAIL_25PTS";
+            string storedProcedureName = "JOBEMAIL_MERMAS_BONELESS";
 
             // Crear la conexión a la base de datos
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -74,9 +74,33 @@ namespace API_PEDIDOS.Jobs
                             // Procesar los resultados
                             while (reader.Read())
                             {
+
+                                // Obtiene la fecha actual
+                                DateTime fechaActual = DateTime.Now;
+
+                                // Obtiene el día actual
+                                int diaActual = fechaActual.Day;
+
+                                string nombreMes = "";
+                                // Valida si el día actual es 1
+                                if (diaActual == 1)
+                                {
+                                    // Obtiene el mes anterior
+                                    DateTime mesAnterior = fechaActual.AddMonths(-1);
+
+                                    // Formatea el nombre del mes anterior
+                                    nombreMes = mesAnterior.ToString("MMMM");
+                                }
+                                else
+                                {
+                                    nombreMes = fechaActual.ToString("MMMM");
+                                }
+                                nombreMes = nombreMes.ToUpper();
                                 // Asumiendo que la columna BODYEMAIL es la primera columna en el resultado
                                 string bodyEmail = reader["BODYEMAIL"].ToString();
-                                EnviarCorreo(bodyEmail);
+
+                                bodyEmail = bodyEmail.Replace("--mes", nombreMes);
+                                EnviarCorreo(bodyEmail, nombreMes);
                             }
                         }
                     }
@@ -89,7 +113,7 @@ namespace API_PEDIDOS.Jobs
             }
         }
 
-        static void EnviarCorreo(string bodymail)
+        static void EnviarCorreo(string bodymail, string nombremes)
         {
             //// Configurar la información de la cuenta de Gmail
             string correoRemitente = "gilberto.r@operamx.com";
@@ -100,8 +124,9 @@ namespace API_PEDIDOS.Jobs
             //string contraseña = "M@5TERKEY";
 
             // Configurar la información del destinatario
-            string correoDestinatario = "enrique.j@operamx.com";
-            string asunto = "🚦IT: REPORTE 25 PTS";
+             string correoDestinatario = "enrique.j@operamx.com";
+           // string correoDestinatario = "arturo.m@operamx.com";
+            string asunto = "❌ IT: MERMAS BONELESS " + nombremes;
 
             // Configurar el cliente SMTP de Gmail
             SmtpClient clienteSmtp = new SmtpClient("smtp.gmail.com")
@@ -126,7 +151,6 @@ namespace API_PEDIDOS.Jobs
             mensaje.To.Add("carlos.c@operamx.com");
             mensaje.To.Add("adrian.c@operamx.com");
             mensaje.To.Add("jorge.j@operamx.com");
-            mensaje.To.Add("ricardo.s@operamx.com");
 
 
             try
