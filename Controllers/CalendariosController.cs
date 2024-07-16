@@ -193,7 +193,7 @@ namespace API_PEDIDOS.Controllers
         {
             try
             {
-                var diasespeciales = await _context.DiasEspeciales.ToListAsync();
+                var diasespeciales = await _context.DiasEspeciales.OrderBy(x => x.Fecha).ToListAsync();
                 return StatusCode(StatusCodes.Status200OK, diasespeciales);
 
             }
@@ -276,14 +276,39 @@ namespace API_PEDIDOS.Controllers
         {
             try
             {
-                var diasespeciales = await _context.DiasEspeciales.Where(d => d.Fecha == model.fecha).ToListAsync();
-                if (diasespeciales.Count > 0)
-                {  
-                    return StatusCode(StatusCodes.Status200OK, new { consumo = model.consumo * diasespeciales[0].FactorConsumo, factor = diasespeciales[0].FactorConsumo, descripcion = diasespeciales[0].Descripcion } );
+                var diaespecialsuc = await _context.DiasEspecialesSucursals.Where(d => d.Fecha == model.fecha && d.Sucursal == model.idsucursal).FirstOrDefaultAsync(); 
+                var diasespeciales = await _context.DiasEspeciales.Where(d => d.Fecha == model.fecha).FirstOrDefaultAsync();
+                if (diasespeciales == null && diaespecialsuc == null)
+                {
+                    return StatusCode(StatusCodes.Status200OK, new { consumo = model.consumo, factor = 0, prioridadsuc = 0});
                 }
                 else 
                 {
-                    return StatusCode(StatusCodes.Status200OK, new { consumo = model.consumo, factor = 0 });
+                    if (diaespecialsuc == null) 
+                    {
+                        return StatusCode(StatusCodes.Status200OK, new { consumo = model.consumo * diasespeciales.FactorConsumo, factor = diasespeciales.FactorConsumo, descripcion = diasespeciales.Descripcion, prioridadsuc = 0});
+                    }
+                    else 
+                    {
+                        int[] articulosdiesp = JsonConvert.DeserializeObject<int[]>(diaespecialsuc.Articulos);
+                        if (articulosdiesp.Contains(model.idart))
+                        {
+                            return StatusCode(StatusCodes.Status200OK, new { consumo = model.consumo * diaespecialsuc.FactorConsumo, factor = diaespecialsuc.FactorConsumo, descripcion = diaespecialsuc.Descripcion, prioridadsuc = 1 });
+                        }
+                        else 
+                        {
+                            if (diasespeciales == null)
+                            {
+                                return StatusCode(StatusCodes.Status200OK, new { consumo = model.consumo, factor = 0, prioridadsuc = 0 });
+                            }
+                            else 
+                            {
+                                return StatusCode(StatusCodes.Status200OK, new { consumo = model.consumo * diasespeciales.FactorConsumo, factor = diasespeciales.FactorConsumo, descripcion = diasespeciales.Descripcion, prioridadsuc = 0 });
+                            }
+                        }
+                        
+                    }
+                    
                 }
                
 
@@ -301,6 +326,8 @@ namespace API_PEDIDOS.Controllers
     {
         public DateTime fecha { get; set; }
         public double consumo { get; set;}
+        public int idsucursal { get; set;}
+        public int idart {  get; set;}
     }
 
     public class calendarioModel 

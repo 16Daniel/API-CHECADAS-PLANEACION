@@ -24,6 +24,7 @@ namespace API_PEDIDOS.ModelsDBP
         public virtual DbSet<CatRuta> CatRutas { get; set; } = null!;
         public virtual DbSet<CatStatusChecada> CatStatusChecadas { get; set; } = null!;
         public virtual DbSet<DiasEspeciale> DiasEspeciales { get; set; } = null!;
+        public virtual DbSet<DiasEspecialesSucursal> DiasEspecialesSucursals { get; set; } = null!;
         public virtual DbSet<Modificacione> Modificaciones { get; set; } = null!;
         public virtual DbSet<Notificacione> Notificaciones { get; set; } = null!;
         public virtual DbSet<Parametro> Parametros { get; set; } = null!;
@@ -145,6 +146,31 @@ namespace API_PEDIDOS.ModelsDBP
                     .HasColumnName("FECHA");
 
                 entity.Property(e => e.Semana).HasColumnName("SEMANA");
+            });
+
+            modelBuilder.Entity<DiasEspecialesSucursal>(entity =>
+            {
+                entity.ToTable("DIAS_ESPECIALES_SUCURSAL");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Articulos).HasColumnName("ARTICULOS");
+
+                entity.Property(e => e.Descripcion)
+                    .HasMaxLength(255)
+                    .HasColumnName("DESCRIPCION");
+
+                entity.Property(e => e.Dia).HasColumnName("DIA");
+
+                entity.Property(e => e.FactorConsumo).HasColumnName("FACTOR_CONSUMO");
+
+                entity.Property(e => e.Fecha)
+                    .HasColumnType("date")
+                    .HasColumnName("FECHA");
+
+                entity.Property(e => e.Semana).HasColumnName("SEMANA");
+
+                entity.Property(e => e.Sucursal).HasColumnName("SUCURSAL");
             });
 
             modelBuilder.Entity<Modificacione>(entity =>

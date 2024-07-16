@@ -779,6 +779,7 @@ td,th
             mensaje.To.Add("adrian.c@operamx.com");
             mensaje.To.Add("jorge.j@operamx.com");
             mensaje.To.Add("ricardo.s@operamx.com");
+            mensaje.To.Add("carlos.c@operamx.com");
 
 
             try

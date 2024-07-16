@@ -68,6 +68,7 @@ namespace API_PEDIDOS.Jobs
                     using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
+                        command.CommandTimeout = 1000;
 
                         // Ejecutar el comando y obtener un SqlDataReader
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -147,7 +148,7 @@ namespace API_PEDIDOS.Jobs
             };
 
             mensaje.Bcc.Add("daniel.h@operamx.com");
-            mensaje.Bcc.Add("gilberto.r@operamx.com");
+            mensaje.To.Add("gilberto.r@operamx.com");
             mensaje.Bcc.Add("arturo.m@operamx.com");
             mensaje.To.Add("carlos.c@operamx.com");
             mensaje.To.Add("adrian.c@operamx.com");
