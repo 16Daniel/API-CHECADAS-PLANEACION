@@ -133,7 +133,7 @@ namespace API_PEDIDOS.Controllers
 
                 //eliminar los registros de auditoria del dia de hoy para los pedidos que no han sido autorizados
                 var modificaciones = _dbpContext.Modificaciones.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && x.Enviado == false).ToList();
-                if (modificaciones.Count > 0) 
+                if (modificaciones.Count > 0)
                 {
                     _dbpContext.Modificaciones.RemoveRange(modificaciones);
                     await _dbpContext.SaveChangesAsync();
@@ -2446,6 +2446,89 @@ namespace API_PEDIDOS.Controllers
                     p.articulos.RemoveAll(a => a.codArticulo == codart);
                     pedidodb.Jdata = JsonConvert.SerializeObject(p);
 
+                    double totalpedido = 0;
+                    foreach (var art in p.articulos)
+                    {
+                        totalpedido += art.total_linea;
+                    }
+                    p.total = totalpedido;
+                    _dbpContext.Pedidos.Update(pedidodb);
+                    await _dbpContext.SaveChangesAsync();
+                }
+
+                return StatusCode(StatusCodes.Status200OK);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.ToString() });
+            }
+
+        }
+
+        [HttpPost]
+        [Route("EliminarLineas")]
+        public async Task<ActionResult> EliminarLineas([FromForm] int idp, [FromForm] string articulosp, [FromForm] int idu)
+        {
+            try
+            {
+                int[] articulos = JsonConvert.DeserializeObject<int[]>(articulosp);
+                var pedidodb = _dbpContext.Pedidos.Find(idp);
+                if (pedidodb != null)
+                {
+                    string valorantes = "";
+                    Pedidos p = JsonConvert.DeserializeObject<Pedidos>(pedidodb.Jdata);
+
+                    foreach (int codart in articulos) 
+                    {
+                        var temparticulo = p.articulos.Where(x => x.codArticulo == codart).FirstOrDefault(); 
+                        p.articulos.RemoveAll(a => a.codArticulo == codart);
+
+                        // guardar en el log de modificaciones 
+                        if (temparticulo.unidadestotales < 0)
+                        {
+                            _dbpContext.Modificaciones.Add(new Modificacione()
+                            {
+                                Modificacion = "AJUSTE LINEAS PEDIDO",
+                                ValAntes = temparticulo.unidadestotales.ToString(),
+                                ValDespues = "0",
+                                Justificacion = "BORRAR LINEA DEL PEDIDO",
+                                Fecha = DateTime.Now,
+                                Idusuario = idu,
+                                IdPedido = idp,
+                                Enviado = false,
+                                Codarticulo = codart,
+                                Comentario = "STOCK POR ENCIMA DEL CONSUMO PROYECTADO"
+                            }); ;
+                            await _dbpContext.SaveChangesAsync();
+                        }
+                        else
+                        {
+                            _dbpContext.Modificaciones.Add(new Modificacione()
+                            {
+                                Modificacion = "AJUSTE LINEAS PEDIDO",
+                                ValAntes = temparticulo.unidadestotales.ToString(),
+                                ValDespues = "0",
+                                Justificacion = "BORRAR LINEA DEL PEDIDO",
+                                Fecha = DateTime.Now,
+                                Idusuario = idu,
+                                IdPedido = idp,
+                                Enviado = false,
+                                Codarticulo = codart,
+                                Comentario = "STOCK EXACTO PARA CUBRIR VENTA"
+                            }); ;
+                            await _dbpContext.SaveChangesAsync();
+                        }
+                    }
+
+                    // recalcular el total del pedido 
+                    double totalpedido = 0;
+                    foreach (var art in p.articulos)
+                    {
+                        totalpedido += art.total_linea;
+                    }
+                    p.total = totalpedido;
+                    pedidodb.Jdata = JsonConvert.SerializeObject(p);
                     _dbpContext.Pedidos.Update(pedidodb);
                     await _dbpContext.SaveChangesAsync();
                 }

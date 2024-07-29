@@ -152,6 +152,15 @@ namespace API_PEDIDOS.Controllers
             }
         }
 
+
+        [HttpGet]
+        [Route("TestCon")]
+        public async Task<ActionResult> testCon()
+        {
+            var usuario = _dbpContext.Usuarios.FirstOrDefault();
+            return StatusCode(200);
+        }
+
     }
 
     public class LoginModel 
