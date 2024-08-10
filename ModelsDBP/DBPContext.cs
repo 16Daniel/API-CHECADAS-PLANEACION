@@ -18,6 +18,7 @@ namespace API_PEDIDOS.ModelsDBP
 
         public virtual DbSet<AccesosRuta> AccesosRutas { get; set; } = null!;
         public virtual DbSet<ArticulosProveedor> ArticulosProveedors { get; set; } = null!;
+        public virtual DbSet<AsignacionProv> AsignacionProvs { get; set; } = null!;
         public virtual DbSet<Calendario> Calendarios { get; set; } = null!;
         public virtual DbSet<CalendariosChecada> CalendariosChecadas { get; set; } = null!;
         public virtual DbSet<CatRole> CatRoles { get; set; } = null!;
@@ -30,6 +31,7 @@ namespace API_PEDIDOS.ModelsDBP
         public virtual DbSet<Parametro> Parametros { get; set; } = null!;
         public virtual DbSet<Pedido> Pedidos { get; set; } = null!;
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
+        public virtual DbSet<ValidacionPedido> ValidacionPedidos { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -64,6 +66,19 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Codprov).HasColumnName("CODPROV");
 
                 entity.Property(e => e.Codsucursal).HasColumnName("CODSUCURSAL");
+            });
+
+            modelBuilder.Entity<AsignacionProv>(entity =>
+            {
+                entity.ToTable("ASIGNACION_PROV");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Idprov).HasColumnName("IDPROV");
+
+                entity.Property(e => e.Idsuc).HasColumnName("IDSUC");
+
+                entity.Property(e => e.Idu).HasColumnName("IDU");
             });
 
             modelBuilder.Entity<Calendario>(entity =>
@@ -290,6 +305,15 @@ namespace API_PEDIDOS.ModelsDBP
                     .HasColumnName("NOMBRE");
 
                 entity.Property(e => e.Pass).HasColumnName("PASS");
+            });
+
+            modelBuilder.Entity<ValidacionPedido>(entity =>
+            {
+                entity.ToTable("VALIDACION_PEDIDOS");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Status).HasColumnName("STATUS");
             });
 
             OnModelCreatingPartial(modelBuilder);

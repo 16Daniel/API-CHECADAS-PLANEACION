@@ -119,6 +119,7 @@ namespace API_PEDIDOS.Jobs
 
                 foreach (var item in empleados)
                 {
+                   
                     fechaHoy = DateTime.Now;
                     fechaHoy = fechaHoy.AddDays(-7);
                     fecha2 = fechaHoy;
@@ -352,16 +353,17 @@ namespace API_PEDIDOS.Jobs
             TimeSpan horaInicio = new TimeSpan(hi.Hour,hi.Minute,hi.Second); 
             TimeSpan horaFin = new TimeSpan(hf.Hour,hf.Minute,hf.Second);
 
-            if (hf.Day > hi.Day)
+            if (hf.Date > hi.Date)
             {
                 TimeSpan diferencia = horaFin - horaInicio;
                 return 24+diferencia.TotalHours;
             }
             else 
             {
-                // Calcular la diferencia de horas
-                TimeSpan diferencia = horaFin - horaInicio;
-                return diferencia.TotalHours;
+                    // Calcular la diferencia de horas
+                    TimeSpan diferencia = horaFin - horaInicio;
+                    return diferencia.TotalHours;             
+                
             }
 
             

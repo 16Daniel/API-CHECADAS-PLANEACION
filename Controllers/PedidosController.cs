@@ -128,6 +128,8 @@ namespace API_PEDIDOS.Controllers
         {
             try
             {
+                //_dbpContext.ValidacionPedidos.Add(new ValidacionPedido() { Status = true });
+                //await _dbpContext.SaveChangesAsync();
                 var parametros = _dbpContext.Parametros.FirstOrDefault();
                 dynamic obj = JsonConvert.DeserializeObject<dynamic>(parametros.Jdata);
 
@@ -198,12 +200,13 @@ namespace API_PEDIDOS.Controllers
                     fechas[i] = tempdt;
                     tempdt = tempdt.AddDays(1);
                 }
+               // fechas[0] = fechas[0].AddDays(7); 
 
                 foreach (var item in calendarioshoy)
                 {
                     Boolean articulosdiferentes = false;
                     var haypedido = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && x.Proveedor == item.Codproveedor && x.Sucursal == item.Codsucursal.ToString()).ToList();
-                    if (haypedido.Count > 0) 
+                    if (haypedido.Count > 0)
                     {
                         var articulosdb = _dbpContext.ArticulosProveedors.Where(x => x.Codsucursal == item.Codsucursal && x.Codprov == item.Codproveedor).ToList();
 
@@ -221,7 +224,7 @@ namespace API_PEDIDOS.Controllers
                         // Verificar si hay códigos en arr2 que no están en arr1
                         if (codigos2.Except(codigos1).Any())
                         {
-                            articulosdiferentes = true; 
+                            articulosdiferentes = true;
                         }
 
 
@@ -422,7 +425,7 @@ namespace API_PEDIDOS.Controllers
                                                     }
                                                     else 
                                                     {
-                                                        if (diaespecial != null) 
+                                                        if (diaespecial != null)
                                                         {
                                                             diasespeciales[j] = new DiasEspecialesSucursal()
                                                             {
@@ -435,6 +438,10 @@ namespace API_PEDIDOS.Controllers
                                                                 Sucursal = 0
                                                             };
                                                             consumopedido += (consumos[j].consumo * diaespecial.FactorConsumo);
+                                                        }
+                                                        else 
+                                                        {
+                                                            consumopedido += consumos[j].consumo;
                                                         }
                                                     }
                                                   
@@ -564,7 +571,7 @@ namespace API_PEDIDOS.Controllers
                             rfc = rfcprov,
                         });
 
-                        string tempjdata = JsonConvert.SerializeObject(pedidos.Last()); 
+                        string tempjdata = JsonConvert.SerializeObject(pedidos.Last());
                         var temppedido = _dbpContext.Pedidos.Where(p => p.Sucursal == item.Codsucursal.ToString() && p.Proveedor == item.Codproveedor && p.Jdata == tempjdata && p.Fecha.Value.Date == DateTime.Now.Date).FirstOrDefault();
                         if (temppedido == null)
                         {
@@ -579,15 +586,22 @@ namespace API_PEDIDOS.Controllers
                             });
                             await _dbpContext.SaveChangesAsync();
                         }
-                        else 
+                        else
                         {
-                            pedidos.RemoveAt(pedidos.Count-1); 
+                            pedidos.RemoveAt(pedidos.Count - 1);
                         }
-                       
+
                     }
-                   
+
                 }
-               
+
+                var estatuspedidos = _dbpContext.ValidacionPedidos.ToList();
+                foreach (var item in estatuspedidos) 
+                {
+                    _dbpContext.ValidacionPedidos.Remove(item); 
+                    await _dbpContext.SaveChangesAsync();
+                }
+
                 return StatusCode(200, pedidos);
             }
             catch (Exception ex)
@@ -1175,15 +1189,20 @@ namespace API_PEDIDOS.Controllers
         {
             try
             {
+               // var asignaciones = _dbpContext.AsignacionProvs.Where(x =>x.Idu == idu).ToList();
                 List<Pedidos> pedidos = new List<Pedidos>();
                 //var pedidosdb = _dbpContext.Pedidos.ToList();
                 var pedidosdb = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && (x.Estatus.Equals("POR ACEPTAR") || x.Estatus.Equals("INCOMPLETO"))).ToList();
 
                 foreach (var item in pedidosdb)
                 {
-                    Pedidos p = JsonConvert.DeserializeObject<Pedidos>(item.Jdata);
-                    p.id = item.Id;
-                    pedidos.Add(p);
+                    //if (asignaciones.Any(x => x.Idprov == item.Proveedor && x.Idsuc == int.Parse(item.Sucursal)))
+                    if(true){
+                        Pedidos p = JsonConvert.DeserializeObject<Pedidos>(item.Jdata);
+                        p.id = item.Id;
+                        pedidos.Add(p);
+                    }
+
                 }
 
                 return StatusCode(200, pedidos);
@@ -1206,15 +1225,20 @@ namespace API_PEDIDOS.Controllers
         {
             try
             {
+                var asignaciones = _dbpContext.AsignacionProvs.Where(x => x.Idu == idu).ToList();
                 List<Pedidos> pedidos = new List<Pedidos>();
                 //var pedidosdb = _dbpContext.Pedidos.ToList();
                 var pedidosdb = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == fecha.Date && (x.Estatus.Equals("POR ACEPTAR") || x.Estatus.Equals("INCOMPLETO"))).ToList();
 
                 foreach (var item in pedidosdb)
                 {
-                    Pedidos p = JsonConvert.DeserializeObject<Pedidos>(item.Jdata);
-                    p.id = item.Id;
-                    pedidos.Add(p);
+                    //if (asignaciones.Any(x => x.Idprov == item.Proveedor && x.Idsuc == int.Parse(item.Sucursal)))
+                    if(true)
+                    {
+                        Pedidos p = JsonConvert.DeserializeObject<Pedidos>(item.Jdata);
+                        p.id = item.Id;
+                        pedidos.Add(p);
+                    }
                 }
 
                 return StatusCode(200, pedidos);
@@ -2542,6 +2566,42 @@ namespace API_PEDIDOS.Controllers
             }
 
         }
+
+
+
+        [HttpGet]
+        [Route("StatusPedidos")]
+        public async Task<ActionResult> statusPedidos()
+        {
+            try
+            {
+                var estatus = _dbpContext.ValidacionPedidos.ToList();
+                var pedidoshoy = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date).ToList();
+                int est = 0; 
+                if (estatus.Count == 0 && pedidoshoy.Count == 0)
+                {
+                    est = 1; 
+                }
+
+                if (estatus.Count > 0) 
+                {
+                    est = 2; 
+                }
+
+                if (estatus.Count == 0 && pedidoshoy.Count > 0) 
+                {
+                    est = 3;
+                }
+
+                return StatusCode(StatusCodes.Status200OK, new { status = est });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.ToString() });
+            }
+
+        }
+
 
 
     }

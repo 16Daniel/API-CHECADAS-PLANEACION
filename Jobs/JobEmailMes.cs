@@ -430,7 +430,7 @@ namespace API_PEDIDOS.Jobs
             TimeSpan horaInicio = new TimeSpan(hi.Hour,hi.Minute,hi.Second); 
             TimeSpan horaFin = new TimeSpan(hf.Hour,hf.Minute,hf.Second);
 
-            if (hf.Day > hi.Day)
+            if (hf.Date > hi.Date)
             {
                 TimeSpan diferencia = horaFin - horaInicio;
                 return 24+diferencia.TotalHours;
