@@ -9,5 +9,6 @@ namespace API_PEDIDOS.ModelsDBP
         public int? Codprov { get; set; }
         public int? Codsucursal { get; set; }
         public int? Codarticulo { get; set; }
+        public int? Idcalendario { get; set; }
     }
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace API_PEDIDOS.ModelsDBP
 {
-    public partial class ValidacionPedido
+    public partial class Sesione
     {
         public int Id { get; set; }
-        public bool Status { get; set; }
-        public int? Idu { get; set; }
+        public int Idu { get; set; }
+        public bool Activo { get; set; }
     }
 }

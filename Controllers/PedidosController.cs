@@ -123,27 +123,36 @@ namespace API_PEDIDOS.Controllers
 
 
         [HttpGet]
-        [Route("getPedidosHoy")]
-        public async Task<ActionResult> GetPedidos()
+        [Route("getPedidosHoy/{idu}")]
+        public async Task<ActionResult> GetPedidos(int idu)
         {
             try
             {
-                //_dbpContext.ValidacionPedidos.Add(new ValidacionPedido() { Status = true });
-                //await _dbpContext.SaveChangesAsync();
+                _dbpContext.ValidacionPedidos.Add(new ValidacionPedido() { Status = true, Idu =idu });
+                await _dbpContext.SaveChangesAsync();
+                var asignaciones = _dbpContext.AsignacionProvs.Where(x => x.Idu == idu).ToList();
+              
                 var parametros = _dbpContext.Parametros.FirstOrDefault();
                 dynamic obj = JsonConvert.DeserializeObject<dynamic>(parametros.Jdata);
 
                 //eliminar los registros de auditoria del dia de hoy para los pedidos que no han sido autorizados
-                var modificaciones = _dbpContext.Modificaciones.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && x.Enviado == false).ToList();
+                var modificaciones = _dbpContext.Modificaciones.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && x.Enviado == false && x.Idusuario == idu).ToList();
                 if (modificaciones.Count > 0)
                 {
                     _dbpContext.Modificaciones.RemoveRange(modificaciones);
                     await _dbpContext.SaveChangesAsync();
                 }
 
-
+                List<Pedido> rangopedidosdel = new List<Pedido>();
                 var delpedidos = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && (x.Estatus == "POR ACEPTAR" || x.Estatus == "INCOMPLETO")).ToList();
-                _dbpContext.RemoveRange(delpedidos);
+                foreach (var item in delpedidos) 
+                {
+                    if (asignaciones.Any(x => x.Idprov == item.Proveedor && x.Idsuc == int.Parse(item.Sucursal)))
+                    {
+                        rangopedidosdel.Add(item);
+                    }
+                }    
+                _dbpContext.RemoveRange(rangopedidosdel);
                 await _dbpContext.SaveChangesAsync();
 
                 SqlConnection conn = (SqlConnection)_dbpContext.Database.GetDbConnection();
@@ -188,7 +197,10 @@ namespace API_PEDIDOS.Controllers
                     {
                         if (array[i][numdia] == 1)
                         {
-                            calendarioshoy.Add(item);
+                            if (asignaciones.Any(x => x.Idprov == item.Codproveedor && x.Idsuc == item.Codsucursal)) 
+                            {
+                                calendarioshoy.Add(item);
+                            }
                         }
                     }
                 }
@@ -595,10 +607,10 @@ namespace API_PEDIDOS.Controllers
 
                 }
 
-                var estatuspedidos = _dbpContext.ValidacionPedidos.ToList();
-                foreach (var item in estatuspedidos) 
+                var estatuspedido = _dbpContext.ValidacionPedidos.Where(x => x.Idu == idu).FirstOrDefault(); 
+                 if(estatuspedido != null) 
                 {
-                    _dbpContext.ValidacionPedidos.Remove(item); 
+                    _dbpContext.ValidacionPedidos.Remove(estatuspedido); 
                     await _dbpContext.SaveChangesAsync();
                 }
 
@@ -1184,20 +1196,19 @@ namespace API_PEDIDOS.Controllers
         }
 
         [HttpGet]
-        [Route("getPedidos")]
-        public async Task<ActionResult> GetPedidosBD()
+        [Route("getPedidos/{idu}")]
+        public async Task<ActionResult> GetPedidosBD(int idu)
         {
             try
             {
-               // var asignaciones = _dbpContext.AsignacionProvs.Where(x =>x.Idu == idu).ToList();
+                var asignaciones = _dbpContext.AsignacionProvs.Where(x =>x.Idu == idu).ToList();
                 List<Pedidos> pedidos = new List<Pedidos>();
-                //var pedidosdb = _dbpContext.Pedidos.ToList();
                 var pedidosdb = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && (x.Estatus.Equals("POR ACEPTAR") || x.Estatus.Equals("INCOMPLETO"))).ToList();
 
                 foreach (var item in pedidosdb)
                 {
-                    //if (asignaciones.Any(x => x.Idprov == item.Proveedor && x.Idsuc == int.Parse(item.Sucursal)))
-                    if(true){
+                    if (asignaciones.Any(x => x.Idprov == item.Proveedor && x.Idsuc == int.Parse(item.Sucursal)))
+                    {
                         Pedidos p = JsonConvert.DeserializeObject<Pedidos>(item.Jdata);
                         p.id = item.Id;
                         pedidos.Add(p);
@@ -1221,19 +1232,18 @@ namespace API_PEDIDOS.Controllers
 
         [HttpPost]
         [Route("getPedidosFecha")]
-        public async Task<ActionResult> GetPedidosBDFecha([FromForm] DateTime fecha)
+        public async Task<ActionResult> GetPedidosBDFecha([FromForm] DateTime fecha, [FromForm] int idu)
         {
             try
             {
-                var asignaciones = _dbpContext.AsignacionProvs.Where(x => x.Idu == idu).ToList();
+               var asignaciones = _dbpContext.AsignacionProvs.Where(x => x.Idu == idu).ToList();
                 List<Pedidos> pedidos = new List<Pedidos>();
                 //var pedidosdb = _dbpContext.Pedidos.ToList();
                 var pedidosdb = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == fecha.Date && (x.Estatus.Equals("POR ACEPTAR") || x.Estatus.Equals("INCOMPLETO"))).ToList();
 
                 foreach (var item in pedidosdb)
                 {
-                    //if (asignaciones.Any(x => x.Idprov == item.Proveedor && x.Idsuc == int.Parse(item.Sucursal)))
-                    if(true)
+                    if (asignaciones.Any(x => x.Idprov == item.Proveedor && x.Idsuc == int.Parse(item.Sucursal)))
                     {
                         Pedidos p = JsonConvert.DeserializeObject<Pedidos>(item.Jdata);
                         p.id = item.Id;
@@ -2184,7 +2194,10 @@ namespace API_PEDIDOS.Controllers
 
             try
             {
+                var asignaciones = _dbpContext.AsignacionProvs.Where(x => x.Idu == model.idu).ToList();
+
                 List<Pedido> pedidosdb = new List<Pedido>();
+                List<Pedido> pedidosdbU = new List<Pedido>();
                 //var pedidosdb = _dbpContext.Pedidos.ToList();
 
                 if (model.fecha == null)
@@ -2206,7 +2219,17 @@ namespace API_PEDIDOS.Controllers
                     pedidosdb = pedidosdb.Where(x => x.Sucursal == model.sucursal.ToString()).ToList();
                 }
 
-                SqlConnection connection = (SqlConnection)_dbpContext.Database.GetDbConnection();
+                foreach (var item in pedidosdb) 
+                {
+                    if (asignaciones.Any(x => x.Idprov == item.Proveedor && x.Idsuc == int.Parse(item.Sucursal)))
+                    {
+                        pedidosdbU.Add(item);
+                    }
+                }
+                pedidosdb.Clear();
+                pedidosdb = pedidosdbU; 
+
+                    SqlConnection connection = (SqlConnection)_dbpContext.Database.GetDbConnection();
                 connection.Open();
                 foreach (var pedidodb in pedidosdb)
                 {
@@ -2570,27 +2593,17 @@ namespace API_PEDIDOS.Controllers
 
 
         [HttpGet]
-        [Route("StatusPedidos")]
-        public async Task<ActionResult> statusPedidos()
+        [Route("StatusPedidos/{idu}")]
+        public async Task<ActionResult> statusPedidos(int idu)
         {
             try
             {
-                var estatus = _dbpContext.ValidacionPedidos.ToList();
+                var estatus = _dbpContext.ValidacionPedidos.Where(x => x.Idu == idu).FirstOrDefault(); 
                 var pedidoshoy = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date).ToList();
                 int est = 0; 
-                if (estatus.Count == 0 && pedidoshoy.Count == 0)
+                if (estatus != null)
                 {
                     est = 1; 
-                }
-
-                if (estatus.Count > 0) 
-                {
-                    est = 2; 
-                }
-
-                if (estatus.Count == 0 && pedidoshoy.Count > 0) 
-                {
-                    est = 3;
                 }
 
                 return StatusCode(StatusCodes.Status200OK, new { status = est });
@@ -2610,7 +2623,9 @@ namespace API_PEDIDOS.Controllers
     {
         public int proveedor {  get; set; }
         public int sucursal { get; set; }
+        public int idu { get; set; }
         public DateTime? fecha { get; set; }
+        
     }
     public class InsertCompratotModel
     {

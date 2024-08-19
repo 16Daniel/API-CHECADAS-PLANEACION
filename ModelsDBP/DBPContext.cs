@@ -30,6 +30,7 @@ namespace API_PEDIDOS.ModelsDBP
         public virtual DbSet<Notificacione> Notificaciones { get; set; } = null!;
         public virtual DbSet<Parametro> Parametros { get; set; } = null!;
         public virtual DbSet<Pedido> Pedidos { get; set; } = null!;
+        public virtual DbSet<Sesione> Sesiones { get; set; } = null!;
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
         public virtual DbSet<ValidacionPedido> ValidacionPedidos { get; set; } = null!;
 
@@ -66,6 +67,8 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Codprov).HasColumnName("CODPROV");
 
                 entity.Property(e => e.Codsucursal).HasColumnName("CODSUCURSAL");
+
+                entity.Property(e => e.Idcalendario).HasColumnName("IDCALENDARIO");
             });
 
             modelBuilder.Entity<AsignacionProv>(entity =>
@@ -90,6 +93,8 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
 
                 entity.Property(e => e.Codsucursal).HasColumnName("CODSUCURSAL");
+
+                entity.Property(e => e.Especical).HasColumnName("ESPECICAL");
 
                 entity.Property(e => e.Jdata).HasColumnName("JDATA");
             });
@@ -280,6 +285,17 @@ namespace API_PEDIDOS.ModelsDBP
                     .HasColumnName("SUCURSAL");
             });
 
+            modelBuilder.Entity<Sesione>(entity =>
+            {
+                entity.ToTable("SESIONES");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Activo).HasColumnName("ACTIVO");
+
+                entity.Property(e => e.Idu).HasColumnName("IDU");
+            });
+
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.ToTable("USUARIOS");
@@ -312,6 +328,8 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.ToTable("VALIDACION_PEDIDOS");
 
                 entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Idu).HasColumnName("IDU");
 
                 entity.Property(e => e.Status).HasColumnName("STATUS");
             });

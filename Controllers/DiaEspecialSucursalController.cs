@@ -45,11 +45,76 @@ namespace API_PEDIDOS.Controllers
                             Articulos = model.articulos
                         });
                     }
+                    else 
+                    {
+                        reg.Dia = model.Dia;
+                        reg.Semana = model.Semana;
+                        reg.Fecha = model.Fecha;
+                        reg.Descripcion = model.Descripcion;
+                        reg.FactorConsumo = model.FactorConsumo;
+                        reg.Articulos = model.articulos;
+
+                        _context.DiasEspecialesSucursals.Update(reg);
+                    }
                     
                     
                 }
 
                 ;
+                await _context.SaveChangesAsync();
+
+                return StatusCode(StatusCodes.Status200OK);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.ToString() });
+            }
+        }
+
+        [HttpPost]
+        [Route("CreateDiasEspecialesSucursal")]
+        public async Task<ActionResult> CreateDiasEspecialesM([FromBody] List<DiaEspecialSucursalModel> lista)
+        {
+            try
+            {
+                foreach (DiaEspecialSucursalModel model in lista) 
+                {
+                    int[] sucursales = JsonConvert.DeserializeObject<int[]>(model.sucursales);
+
+                    foreach (var ids in sucursales)
+                    {
+                        var reg = _context.DiasEspecialesSucursals.Where(x => x.Fecha.Value.Date == model.Fecha.Date && x.Descripcion == model.Descripcion && x.Sucursal == ids).FirstOrDefault();
+
+                        if (reg == null)
+                        {
+                            _context.DiasEspecialesSucursals.Add(new DiasEspecialesSucursal()
+                            {
+                                Dia = model.Dia,
+                                Semana = model.Semana,
+                                Fecha = model.Fecha,
+                                Descripcion = model.Descripcion,
+                                FactorConsumo = model.FactorConsumo,
+                                Sucursal = ids,
+                                Articulos = model.articulos
+                            });
+                        }
+                        else
+                        {
+                            reg.Dia = model.Dia;
+                            reg.Semana = model.Semana;
+                            reg.Fecha = model.Fecha;
+                            reg.Descripcion = model.Descripcion;
+                            reg.FactorConsumo = model.FactorConsumo;
+                            reg.Articulos = model.articulos;
+
+                            _context.DiasEspecialesSucursals.Update(reg);
+                        }
+
+
+                    };
+                }
+ 
                 await _context.SaveChangesAsync();
 
                 return StatusCode(StatusCodes.Status200OK);

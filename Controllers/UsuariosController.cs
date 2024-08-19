@@ -136,9 +136,64 @@ namespace API_PEDIDOS.Controllers
                 var usuario = _dbpContext.Usuarios.Where(x=> x.Email == model.email && x.Pass == model.pass).FirstOrDefault();
                 if (usuario != null)
                 {
-                    return StatusCode(200, usuario);
+                    var sesion = _dbpContext.Sesiones.Where(x => x.Idu == usuario.Id).FirstOrDefault();
+                    if (sesion == null)
+                    {
+                        _dbpContext.Sesiones.Add(new Sesione() { Idu = usuario.Id, Activo = true });
+                        await _dbpContext.SaveChangesAsync();
+                        return StatusCode(200, usuario);
+                    }
+                    else 
+                    {
+                        if (sesion.Activo == true)
+                        {
+                            return StatusCode(StatusCodes.Status423Locked);
+                        }
+                        else 
+                        {
+                            sesion.Activo = true;
+                            _dbpContext.Sesiones.Update(sesion); 
+                            await _dbpContext.SaveChangesAsync();
+                            return StatusCode(200, usuario);
+                        }
+                    }
+                   
                 }
                 else { return StatusCode(StatusCodes.Status404NotFound);  }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
+
+
+        [HttpGet]
+        [Route("logout/{idu}")]
+        public async Task<ActionResult> logout(int idu)
+        {
+            try
+            {
+                var sesion = _dbpContext.Sesiones.Where(x=> x.Idu == idu).FirstOrDefault();
+                if (sesion == null)
+                {
+                    return StatusCode(StatusCodes.Status200OK);
+                }
+                else 
+                {
+                    sesion.Activo = false;
+
+                    _dbpContext.Sesiones.Update(sesion); 
+                    await _dbpContext.SaveChangesAsync();
+                    return StatusCode(StatusCodes.Status200OK); 
+                }
+               
             }
             catch (Exception ex)
             {
