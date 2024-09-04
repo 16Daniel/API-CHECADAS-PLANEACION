@@ -30,6 +30,7 @@ namespace API_PEDIDOS.ModelsDBP
         public virtual DbSet<Notificacione> Notificaciones { get; set; } = null!;
         public virtual DbSet<Parametro> Parametros { get; set; } = null!;
         public virtual DbSet<Pedido> Pedidos { get; set; } = null!;
+        public virtual DbSet<Retornable> Retornables { get; set; } = null!;
         public virtual DbSet<Sesione> Sesiones { get; set; } = null!;
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
         public virtual DbSet<ValidacionPedido> ValidacionPedidos { get; set; } = null!;
@@ -94,7 +95,7 @@ namespace API_PEDIDOS.ModelsDBP
 
                 entity.Property(e => e.Codsucursal).HasColumnName("CODSUCURSAL");
 
-                entity.Property(e => e.Especical).HasColumnName("ESPECICAL");
+                entity.Property(e => e.Especial).HasColumnName("ESPECIAL");
 
                 entity.Property(e => e.Jdata).HasColumnName("JDATA");
             });
@@ -283,6 +284,17 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Sucursal)
                     .HasMaxLength(50)
                     .HasColumnName("SUCURSAL");
+            });
+
+            modelBuilder.Entity<Retornable>(entity =>
+            {
+                entity.ToTable("RETORNABLES");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Codart).HasColumnName("CODART");
+
+                entity.Property(e => e.Codprov).HasColumnName("CODPROV");
             });
 
             modelBuilder.Entity<Sesione>(entity =>

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using API_PEDIDOS.ModelsDBP;
 using Newtonsoft.Json;
 using API_PEDIDOS.ModelsDB2;
+using Microsoft.CodeAnalysis.Operations;
 
 namespace API_PEDIDOS.Controllers
 {
@@ -59,33 +60,51 @@ namespace API_PEDIDOS.Controllers
 
         // PUT: api/Calendarios/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCalendario(int id, Calendario calendario)
+        [HttpPut("updateCalendar")]
+        public async Task<IActionResult> PutCalendario([FromBody] calendarioModel calendario)
         {
-            if (id != calendario.Id)
+            var dbcalendario = _context.Calendarios.Where(c => c.Id == calendario.Id).FirstOrDefault();
+
+            if (dbcalendario == null)
             {
-                return BadRequest();
+                return StatusCode(200); 
             }
 
-            _context.Entry(calendario).State = EntityState.Modified;
+            List<ItemModel> itemList = JsonConvert.DeserializeObject<List<ItemModel>>(calendario.articulos);
+            var articulos = _context.ArticulosProveedors.Where(x => x.Idcalendario == calendario.Id).ToList();
+
+            foreach (var articulo in articulos)
+            {
+                _context.ArticulosProveedors.Remove(articulo);
+                await _context.SaveChangesAsync();
+            }
+
+            dbcalendario.Jdata = calendario.Jdata;
+            dbcalendario.Especial = calendario.especial; 
+            _context.Calendarios.Update(dbcalendario); 
 
             try
             {
                 await _context.SaveChangesAsync();
+
+                foreach (var item in itemList)
+                {
+                    _context.ArticulosProveedors.Add(new ArticulosProveedor()
+                    {
+                        Codarticulo = item.cod,
+                        Codprov = calendario.Codproveedor,
+                        Codsucursal = calendario.Codsucursal,
+                        Idcalendario = dbcalendario.Id
+                    });
+                    await _context.SaveChangesAsync();
+                }
+
+                return StatusCode(200); 
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CalendarioExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return StatusCode(500); 
             }
-
-            return NoContent();
         }
 
         // POST: api/Calendarios
@@ -97,31 +116,17 @@ namespace API_PEDIDOS.Controllers
             try
             {
                 List<ItemModel> itemList = JsonConvert.DeserializeObject<List<ItemModel>>(calendario.articulos);
-                var articulos = _context.ArticulosProveedors.Where(x =>x.Codprov == calendario.Codproveedor && x.Codsucursal == calendario.Codsucursal).ToList();
 
-                foreach (var articulo in articulos)
-                {
-                    _context.ArticulosProveedors.Remove(articulo);
-                    await _context.SaveChangesAsync();
-                }
-
-                var dbcalendario = _context.Calendarios.Where(c => c.Codproveedor == calendario.Codproveedor & c.Codsucursal == calendario.Codsucursal).FirstOrDefault();
-                if (dbcalendario == null)
-                {
-                    _context.Calendarios.Add(new Calendario() 
+                    var dbcalendario = new Calendario()
                     {
-                        Codproveedor = calendario.Codproveedor, 
-                        Codsucursal = calendario.Codsucursal,   
-                        Jdata = calendario.Jdata
-                    });
+                        Codproveedor = calendario.Codproveedor,
+                        Codsucursal = calendario.Codsucursal,
+                        Jdata = calendario.Jdata,
+                        Especial = calendario.especial
+                    }; 
+                    _context.Calendarios.Add(dbcalendario);
                     await _context.SaveChangesAsync();
-                }
-                else
-                {
-                    dbcalendario.Jdata = calendario.Jdata;
-                    _context.Entry(dbcalendario).State = EntityState.Modified;
-                    await _context.SaveChangesAsync();
-                }
+               
 
                 foreach (var item in itemList) 
                 {
@@ -130,6 +135,7 @@ namespace API_PEDIDOS.Controllers
                         Codarticulo = item.cod,
                         Codprov = calendario.Codproveedor,
                         Codsucursal = calendario.Codsucursal,
+                        Idcalendario = dbcalendario.Id
                     });
                     await _context.SaveChangesAsync();
                 }
@@ -164,7 +170,7 @@ namespace API_PEDIDOS.Controllers
                 _context.Calendarios.Remove(calendario);
                 await _context.SaveChangesAsync();
 
-                var articulos = _context.ArticulosProveedors.Where(x => x.Codprov == calendario.Codproveedor && x.Codsucursal == calendario.Codsucursal).ToList();
+                var articulos = _context.ArticulosProveedors.Where(x => x.Idcalendario == calendario.Id).ToList();
 
                 foreach (var articulo in articulos)
                 {
@@ -317,7 +323,39 @@ namespace API_PEDIDOS.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.ToString() });
             }
-        } 
+        }
+
+
+
+        [HttpGet("validararticulos")]
+        public async Task<ActionResult> validararticulos()
+        {
+            try
+            {
+                var calendarios = _context.Calendarios.ToList(); 
+
+                foreach (var calendar in calendarios) 
+                {
+                    var articulos = _context.ArticulosProveedors.Where(x => x.Codsucursal == calendar.Codsucursal && x.Codprov == calendar.Codproveedor).ToList();
+
+                    foreach (var articulo in articulos) 
+                    {
+                        articulo.Idcalendario = calendar.Id;
+                        _context.ArticulosProveedors.Update(articulo); 
+                        await _context.SaveChangesAsync();  
+                    }
+
+                }
+
+                return StatusCode(StatusCodes.Status200OK);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.ToString() });
+            }
+        }
+
 
     }
 
@@ -337,6 +375,7 @@ namespace API_PEDIDOS.Controllers
         public int Codproveedor { get; set; }
         public string Jdata { get; set; } = null!;
         public string articulos { get; set; }   
+        public Boolean especial { get; set; }
     }
 
     public class ItemModel 

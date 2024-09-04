@@ -9,6 +9,6 @@ namespace API_PEDIDOS.ModelsDBP
         public int Codsucursal { get; set; }
         public int Codproveedor { get; set; }
         public string Jdata { get; set; } = null!;
-        public bool Especical { get; set; }
+        public bool Especial { get; set; }
     }
 }

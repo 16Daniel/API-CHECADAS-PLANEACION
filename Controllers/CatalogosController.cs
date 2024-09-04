@@ -52,7 +52,7 @@ namespace API_PEDIDOS.Controllers
                         {
                             codproveedor = prov.Codproveedor,
                             nombre = prov.Nomproveedor,
-                            rfc = prov.Cif
+                            rfc = prov.Nif20
                         };
 
                 return StatusCode(200,query.ToList());
@@ -194,12 +194,12 @@ WHERE (ALM.NOTAS LIKE N'RW') AND (RCF.CAJAFRONT = 1)";
         }
 
         [HttpGet]
-        [Route("getItemsCal/{idprov}/{ids}")]
-        public async Task<ActionResult> GetItemsCal(int idprov, int ids)
+        [Route("getItemsCal/{idc}")]
+        public async Task<ActionResult> GetItemsCal(int idc)
         {
             try
             {
-                var articulosdb = _dbpContext.ArticulosProveedors.Where(x => x.Codsucursal == ids && x.Codprov == idprov).ToList();
+                var articulosdb = _dbpContext.ArticulosProveedors.Where(x => x.Idcalendario == idc).ToList();
                 List<Object> articulos = new List<Object>();  
                 foreach (var item in articulosdb) 
                 {
