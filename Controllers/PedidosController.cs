@@ -244,7 +244,7 @@ namespace API_PEDIDOS.Controllers
 
                     if (haypedido.Count == 0 || articulosdiferentes == true) 
                     {
-
+                        Boolean requierecartones = false; 
                         double totalpedido = 0;
                         string nombresucursal = "";
                         string nombreproveedor = "";
@@ -320,6 +320,13 @@ namespace API_PEDIDOS.Controllers
                         int numlinea = 0;
                         foreach (var art in articulos)
                         {
+                            Boolean esretornable = false;
+                            if (_dbpContext.Retornables.Where(x => x.Codart == art.cod).ToList().Count() > 0)
+                            {
+                                esretornable = true;
+                                requierecartones = true; 
+                            }
+
                             fechaentrega = DateTime.Now;
                             numlinea++;
                             List<ConsumoModel> consumos = new List<ConsumoModel>();
@@ -519,6 +526,7 @@ namespace API_PEDIDOS.Controllers
                                 }
                             }
 
+
                             double inventario = 0;
                             Boolean hayinventario = false;
                             if (inventarios.Count > 0) { inventario = inventarios[0].unidades; hayinventario = true; } else { status = 2; }
@@ -596,11 +604,55 @@ namespace API_PEDIDOS.Controllers
                                 arraycalendario = arraycal,
                                 diasespeciales = diasespeciales,
                                 calendarioespecial = tieneudspendientes,
-                                unidadesextra = unidadespendientes
+                                unidadesextra = unidadespendientes,
+                                esretornable = esretornable
                             });
                         }
 
-                        
+                        // validar si requiere cartones 
+                        double cartones = 0;
+                        Boolean cartonescapturados = false; 
+                        if (requierecartones) 
+                        {
+                            List<PinventarioModel> invcartones = new List<PinventarioModel>(); 
+                            using (SqlCommand command = new SqlCommand("SP_GET_INVENTARIO", conn))
+                            {
+                                command.CommandType = CommandType.StoredProcedure;
+                                string codalm = "";
+                                if (item.Codsucursal < 10)
+                                {
+                                    codalm = "0" + item.Codsucursal;
+                                }
+                                else { codalm = item.Codsucursal.ToString(); }
+                                // Añadir parámetros al comando
+                                command.Parameters.Add("@sucursal", SqlDbType.NVarChar, 5).Value = codalm;
+                                command.Parameters.Add("@articulo", SqlDbType.Int).Value = 10296;
+                                command.Parameters.Add("@FI", SqlDbType.NVarChar, 255).Value = DateTime.Now.ToString("yyyy-MM-dd");
+                                command.Parameters.Add("@FF", SqlDbType.NVarChar, 255).Value = DateTime.Now.ToString("yyyy-MM-dd");
+
+                                // Ejecutar el comando y leer los resultados
+                                using (SqlDataReader reader = command.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        DateTime fecha = (DateTime)reader["FECHA"];
+                                        double unidades = reader.GetDouble(1);
+
+                                        invcartones.Add(new PinventarioModel()
+                                        {
+                                            fecha = fecha,
+                                            unidades = unidades,
+                                        });
+                                    }
+                                }
+                            }
+
+                            if (invcartones.Count > 0) 
+                            {
+                                cartonescapturados = true;
+                                cartones = invcartones[0].unidades; 
+                            }
+                        }
 
                         pedidos.Add(new Pedidos()
                         {
@@ -614,6 +666,9 @@ namespace API_PEDIDOS.Controllers
                             nombresucursal = nombresucursal,
                             status = status,
                             rfc = rfcprov,
+                            cartones= cartones,
+                            tieneretornables = requierecartones,
+                            capturacartones = cartonescapturados
                         });
 
                         string tempjdata = JsonConvert.SerializeObject(pedidos.Last());
@@ -1144,7 +1199,8 @@ namespace API_PEDIDOS.Controllers
                              Fecha = DateTime.Now,
                              Idusuario = model.idusuario,
                              IdPedido = pedidodb.Id,
-                             Codarticulo = model.codarticulo
+                             Codarticulo = model.codarticulo,
+                             Enviado = false
                          }
                            );
                         await _dbpContext.SaveChangesAsync();
@@ -2252,6 +2308,51 @@ namespace API_PEDIDOS.Controllers
         }
 
 
+        [HttpPost]
+        [Route("UpdateCartonesPedido")]
+        public async Task<ActionResult> UpdateCartonesPedidos([FromForm]int idp, [FromForm] double cartones, [FromForm] string justificacion, [FromForm] int idu)
+        {
+            try
+            {
+                var pedidodb = _dbpContext.Pedidos.Find(idp);
+                if (pedidodb != null)
+                {
+                    string valorantes = "";
+                    Pedidos p = JsonConvert.DeserializeObject<Pedidos>(pedidodb.Jdata);
+
+                    // valor antes de los cartones 
+                    _dbpContext.Modificaciones.Add(
+                        new Modificacione()
+                        {
+                            Modificacion = "CARTONES",
+                            ValAntes = p.cartones.ToString(),
+                            ValDespues = cartones.ToString(),
+                            Justificacion = justificacion,
+                            Fecha = DateTime.Now,
+                            Idusuario = idu,
+                            IdPedido = pedidodb.Id,
+                            Codarticulo = 10277,
+                            Enviado = false
+                        }
+                          );
+                    await _dbpContext.SaveChangesAsync();
+
+                    var pedido = JsonConvert.DeserializeObject<Pedidos>(pedidodb.Jdata);
+                    pedido.cartones = cartones;
+                    pedido.capturacartones = true; 
+                    pedidodb.Jdata = JsonConvert.SerializeObject(pedido);
+
+                    _dbpContext.Pedidos.Update(pedidodb);
+                    await _dbpContext.SaveChangesAsync();
+                }
+                return StatusCode(StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.ToString() });
+            }
+
+        }
 
     }
 
@@ -2374,6 +2475,9 @@ namespace API_PEDIDOS.Controllers
         public string rfc { get; set; }
         public List<ArticuloPedido> articulos { get; set; }
 
+        public Boolean tieneretornables { get; set; }
+        public double cartones { get; set; }
+        public Boolean capturacartones { get; set; }
     }
 
 
@@ -2429,6 +2533,8 @@ namespace API_PEDIDOS.Controllers
 
         public Boolean calendarioespecial { get; set; }
         public double unidadesextra { get; set; }
+
+        public Boolean esretornable { get; set; }
     }
 
     public class articuloModel 
