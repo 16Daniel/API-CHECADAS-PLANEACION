@@ -135,25 +135,26 @@ namespace API_PEDIDOS.Controllers
                 var parametros = _dbpContext.Parametros.FirstOrDefault();
                 dynamic obj = JsonConvert.DeserializeObject<dynamic>(parametros.Jdata);
 
-                //eliminar los registros de auditoria del dia de hoy para los pedidos que no han sido autorizados
-                var modificaciones = _dbpContext.Modificaciones.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && x.Enviado == false && x.Idusuario == idu).ToList();
-                if (modificaciones.Count > 0)
-                {
-                    _dbpContext.Modificaciones.RemoveRange(modificaciones);
-                    await _dbpContext.SaveChangesAsync();
-                }
-
                 List<Pedido> rangopedidosdel = new List<Pedido>();
-                var delpedidos = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && (x.Estatus == "POR ACEPTAR" || x.Estatus == "INCOMPLETO")).ToList();
-                foreach (var item in delpedidos) 
+                var delpedidos = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && (x.Estatus == "POR ACEPTAR" || x.Estatus == "INCOMPLETO") && x.Temporal != true).ToList();
+                foreach (var item in delpedidos)
                 {
                     if (asignaciones.Any(x => x.Idprov == item.Proveedor && x.Idsuc == int.Parse(item.Sucursal)))
                     {
                         rangopedidosdel.Add(item);
                     }
-                }    
-                _dbpContext.RemoveRange(rangopedidosdel);
-                await _dbpContext.SaveChangesAsync();
+                }
+
+                foreach (var item in rangopedidosdel)
+                {
+                    var modificaciones = _dbpContext.Modificaciones.Where(x => x.IdPedido == item.Id).ToList();
+                    if (modificaciones.Count > 0)
+                    {
+                        _dbpContext.Modificaciones.RemoveRange(modificaciones);
+                        await _dbpContext.SaveChangesAsync();
+                    }
+
+                }
 
                 SqlConnection conn = (SqlConnection)_dbpContext.Database.GetDbConnection();
                 conn.Open();
@@ -189,7 +190,7 @@ namespace API_PEDIDOS.Controllers
                     default:
                         break;
                 }
-                var calendarios = _dbpContext.Calendarios.ToList();
+                var calendarios = _dbpContext.Calendarios.Where(x => x.Temporal != true).ToList();
                 foreach (var item in calendarios)
                 {
                     int[][] array = JsonConvert.DeserializeObject<int[][]>(item.Jdata);
@@ -217,32 +218,20 @@ namespace API_PEDIDOS.Controllers
                 foreach (var item in calendarioshoy)
                 {
                     Boolean articulosdiferentes = false;
-                    var haypedido = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && x.Proveedor == item.Codproveedor && x.Sucursal == item.Codsucursal.ToString()).ToList();
-                    //if (haypedido.Count > 0)
-                    //{
-                    //    var articulosdb = _dbpContext.ArticulosProveedors.Where(x => x.Idcalendario == item.Id).ToList();
+                    var haypedido = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && x.Proveedor == item.Codproveedor && x.Sucursal == item.Codsucursal.ToString() && x.Temporal != true).ToList();
+             
 
-                    //    Pedidos p = JsonConvert.DeserializeObject<Pedidos>(haypedido[0].Jdata);
+                    Boolean generarpedido = true;
 
-                    //    HashSet<int> codigos1 = new HashSet<int>(articulosdb.Select(a => a.Codarticulo ?? 0));
-                    //    HashSet<int> codigos2 = new HashSet<int>(p.articulos.Select(a => a.codArticulo));
+                    foreach (var itemp in haypedido)
+                    {
+                        if (itemp.Idcal == item.Id)
+                        {
+                            generarpedido = false;
+                        }
+                    }
 
-                    //    //// Verificar si hay códigos en arr1 que no están en arr2
-                    //    //if (codigos1.Except(codigos2).Any())
-                    //    //{
-                    //    //    articulosdiferentes = true;
-                    //    //}
-
-                    //    //// Verificar si hay códigos en arr2 que no están en arr1
-                    //    //if (codigos2.Except(codigos1).Any())
-                    //    //{
-                    //    //    articulosdiferentes = true;
-                    //    //}
-
-
-                    //}
-
-                    if (haypedido.Count == 0) 
+                    if (haypedido.Count == 0 || generarpedido) 
                     {
                         Boolean requierecartones = false; 
                         double totalpedido = 0;
@@ -668,7 +657,8 @@ namespace API_PEDIDOS.Controllers
                             rfc = rfcprov,
                             cartones= cartones,
                             tieneretornables = requierecartones,
-                            capturacartones = cartonescapturados
+                            capturacartones = cartonescapturados,
+                            
                         });
 
                         string tempjdata = JsonConvert.SerializeObject(pedidos.Last());
@@ -682,7 +672,9 @@ namespace API_PEDIDOS.Controllers
                                 Jdata = tempjdata,
                                 Estatus = status == 1 ? "POR ACEPTAR" : "INCOMPLETO",
                                 Fecha = DateTime.Now,
-                                Numpedido = ""
+                                Numpedido = "",
+                                Idcal = item.Id,
+                                Temporal = false
                             });
                             await _dbpContext.SaveChangesAsync();
                         }
@@ -888,7 +880,7 @@ namespace API_PEDIDOS.Controllers
             {
                 var asignaciones = _dbpContext.AsignacionProvs.Where(x =>x.Idu == idu).ToList();
                 List<Pedidos> pedidos = new List<Pedidos>();
-                var pedidosdb = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && (x.Estatus.Equals("POR ACEPTAR") || x.Estatus.Equals("INCOMPLETO"))).ToList();
+                var pedidosdb = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && (x.Estatus.Equals("POR ACEPTAR") || x.Estatus.Equals("INCOMPLETO")) && x.Temporal != true).ToList();
 
                 foreach (var item in pedidosdb)
                 {
@@ -924,7 +916,7 @@ namespace API_PEDIDOS.Controllers
                var asignaciones = _dbpContext.AsignacionProvs.Where(x => x.Idu == idu).ToList();
                 List<Pedidos> pedidos = new List<Pedidos>();
                 //var pedidosdb = _dbpContext.Pedidos.ToList();
-                var pedidosdb = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == fecha.Date && (x.Estatus.Equals("POR ACEPTAR") || x.Estatus.Equals("INCOMPLETO"))).ToList();
+                var pedidosdb = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == fecha.Date && (x.Estatus.Equals("POR ACEPTAR") || x.Estatus.Equals("INCOMPLETO")) && x.Temporal != true).ToList();
 
                 foreach (var item in pedidosdb)
                 {
@@ -1894,11 +1886,11 @@ namespace API_PEDIDOS.Controllers
 
                 if (model.fecha == null)
                 {
-                    pedidosdb = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && (x.Estatus.Equals("POR ACEPTAR"))).ToList();
+                    pedidosdb = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && (x.Estatus.Equals("POR ACEPTAR")) && x.Temporal != true).ToList();
                 }
                 else 
                 {
-                    pedidosdb = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == model.fecha.Value.Date && (x.Estatus.Equals("POR ACEPTAR"))).ToList();
+                    pedidosdb = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == model.fecha.Value.Date && (x.Estatus.Equals("POR ACEPTAR")) && x.Temporal != true).ToList();
                 }
 
                 if (model.proveedor > -1) 
@@ -2388,7 +2380,7 @@ namespace API_PEDIDOS.Controllers
 
 
                 List<Pedido> rangopedidosdel = new List<Pedido>();
-                var delpedidos = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && (x.Estatus == "POR ACEPTAR" || x.Estatus == "INCOMPLETO")).ToList();
+                var delpedidos = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && (x.Estatus == "POR ACEPTAR" || x.Estatus == "INCOMPLETO") && x.Temporal != true).ToList();
                 foreach (var item in delpedidos)
                 {
                     if (asignaciones.Any(x => x.Idprov == item.Proveedor && x.Idsuc == int.Parse(item.Sucursal)))
@@ -2453,7 +2445,7 @@ namespace API_PEDIDOS.Controllers
                     default:
                         break;
                 }
-                var calendarios = _dbpContext.Calendarios.ToList();
+                var calendarios = _dbpContext.Calendarios.Where(x=> x.Temporal != true).ToList();
                 foreach (var item in calendarios)
                 {
                     int[][] array = JsonConvert.DeserializeObject<int[][]>(item.Jdata);
@@ -2491,9 +2483,19 @@ namespace API_PEDIDOS.Controllers
                 foreach (var item in calendarioshoy)
                 {
                     Boolean articulosdiferentes = false;
-                    var haypedido = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && x.Proveedor == item.Codproveedor && x.Sucursal == item.Codsucursal.ToString()).ToList();
+                    var haypedido = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && x.Proveedor == item.Codproveedor && x.Sucursal == item.Codsucursal.ToString() && x.Temporal != true).ToList();
 
-                    if (haypedido.Count == 0)
+                    Boolean generarpedido = true; 
+
+                    foreach(var itemp in haypedido) 
+                    {
+                        if (itemp.Idcal == item.Id) 
+                        {
+                            generarpedido = false; 
+                        }
+                    }
+
+                    if (haypedido.Count == 0 || generarpedido)
                     {
                         Boolean requierecartones = false;
                         double totalpedido = 0;
@@ -2933,7 +2935,9 @@ namespace API_PEDIDOS.Controllers
                                 Jdata = tempjdata,
                                 Estatus = status == 1 ? "POR ACEPTAR" : "INCOMPLETO",
                                 Fecha = DateTime.Now,
-                                Numpedido = ""
+                                Numpedido = "",
+                                Idcal = item.Id,
+                                Temporal = false
                             });
                             await _dbpContext.SaveChangesAsync();
                         }

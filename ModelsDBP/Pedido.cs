@@ -13,5 +13,7 @@ namespace API_PEDIDOS.ModelsDBP
         public string? Datam { get; set; }
         public DateTime? Fecha { get; set; }
         public string? Numpedido { get; set; }
+        public int? Idcal { get; set; }
+        public bool? Temporal { get; set; }
     }
 }

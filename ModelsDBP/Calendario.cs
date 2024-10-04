@@ -10,5 +10,6 @@ namespace API_PEDIDOS.ModelsDBP
         public int Codproveedor { get; set; }
         public string Jdata { get; set; } = null!;
         public bool Especial { get; set; }
+        public bool? Temporal { get; set; }
     }
 }

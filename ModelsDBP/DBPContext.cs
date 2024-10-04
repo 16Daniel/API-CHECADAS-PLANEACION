@@ -98,6 +98,8 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Especial).HasColumnName("ESPECIAL");
 
                 entity.Property(e => e.Jdata).HasColumnName("JDATA");
+
+                entity.Property(e => e.Temporal).HasColumnName("TEMPORAL");
             });
 
             modelBuilder.Entity<CalendariosChecada>(entity =>
@@ -273,6 +275,8 @@ namespace API_PEDIDOS.ModelsDBP
                     .HasColumnType("datetime")
                     .HasColumnName("FECHA");
 
+                entity.Property(e => e.Idcal).HasColumnName("IDCAL");
+
                 entity.Property(e => e.Jdata).HasColumnName("JDATA");
 
                 entity.Property(e => e.Numpedido)
@@ -284,6 +288,8 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Sucursal)
                     .HasMaxLength(50)
                     .HasColumnName("SUCURSAL");
+
+                entity.Property(e => e.Temporal).HasColumnName("TEMPORAL");
             });
 
             modelBuilder.Entity<Retornable>(entity =>

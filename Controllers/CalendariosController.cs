@@ -17,10 +17,12 @@ namespace API_PEDIDOS.Controllers
     public class CalendariosController : ControllerBase
     {
         private readonly DBPContext _context;
+        protected BD2Context _contextdb2;
 
-        public CalendariosController(DBPContext context)
+        public CalendariosController(DBPContext context, BD2Context bD2)
         {
             _context = context;
+            _contextdb2 = bD2;
         }
 
         // GET: api/Calendarios
@@ -32,6 +34,43 @@ namespace API_PEDIDOS.Controllers
                 var dbcalendarios = _context.Calendarios.Where(c => c.Codproveedor == idprov).ToList();
 
                 return StatusCode(StatusCodes.Status200OK, dbcalendarios);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.ToString() });
+            }
+        }
+
+        // GET: api/Calendarios
+        [HttpGet("getCalendariosTemporales")]
+        public async Task<ActionResult<IEnumerable<Calendario>>> GetCalendariosTemporales()
+        {
+            try
+            {
+                List<object> data = new List<object>(); 
+                var dbcalendarios = _context.Calendarios.Where(c => c.Temporal == true).ToList();
+
+                foreach (var dbc in dbcalendarios) 
+                {
+                    string proveedor = "", sucursal = "";
+
+                    var dbprov = _contextdb2.Proveedores.Where(c => c.Codproveedor == dbc.Codproveedor).FirstOrDefault();
+                    if (dbprov != null) 
+                    {
+                        proveedor = dbprov.Nomproveedor; 
+                    }
+
+                    var dbsuc = _contextdb2.RemFronts.Where(c => c.Idfront == dbc.Codsucursal).FirstOrDefault();
+                    if (dbsuc != null)
+                    {
+                        sucursal = dbsuc.Titulo; 
+                    }
+                    data.Add(new { id = dbc.Id, nomprov = proveedor, nomsuc = sucursal, codprov = dbc.Codproveedor, codsuc = dbc.Codsucursal });
+                }
+
+
+                return StatusCode(StatusCodes.Status200OK, data);
 
             }
             catch (Exception ex)
@@ -81,6 +120,7 @@ namespace API_PEDIDOS.Controllers
 
             dbcalendario.Jdata = calendario.Jdata;
             dbcalendario.Especial = calendario.especial; 
+            dbcalendario.Temporal = calendario.temporal;    
             _context.Calendarios.Update(dbcalendario); 
 
             try
@@ -94,7 +134,7 @@ namespace API_PEDIDOS.Controllers
                         Codarticulo = item.cod,
                         Codprov = calendario.Codproveedor,
                         Codsucursal = calendario.Codsucursal,
-                        Idcalendario = dbcalendario.Id
+                        Idcalendario = dbcalendario.Id,
                     });
                     await _context.SaveChangesAsync();
                 }
@@ -122,7 +162,8 @@ namespace API_PEDIDOS.Controllers
                         Codproveedor = calendario.Codproveedor,
                         Codsucursal = calendario.Codsucursal,
                         Jdata = calendario.Jdata,
-                        Especial = calendario.especial
+                        Especial = calendario.especial,
+                        Temporal = calendario.temporal,
                     }; 
                     _context.Calendarios.Add(dbcalendario);
                     await _context.SaveChangesAsync();
@@ -186,6 +227,36 @@ namespace API_PEDIDOS.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.ToString() });
             }
 
+        }
+
+        [HttpDelete]
+        [Route("deleteCalendariostemporales/{jdata}")]
+        public async Task<ActionResult> deleteAsignacion(string jdata)
+        {
+            try
+            {
+                int[] calendarios = JsonConvert.DeserializeObject<int[]>(jdata);
+                foreach (var item in calendarios)
+                {
+                    var obj = _context.Calendarios.Where(x => x.Id == item).FirstOrDefault();
+                    if (obj != null)
+                    {
+                        _context.Calendarios.Remove(obj);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+
+                return StatusCode(StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
         }
 
         private bool CalendarioExists(int id)
@@ -376,6 +447,7 @@ namespace API_PEDIDOS.Controllers
         public string Jdata { get; set; } = null!;
         public string articulos { get; set; }   
         public Boolean especial { get; set; }
+        public Boolean temporal { get; set; }
     }
 
     public class ItemModel 
