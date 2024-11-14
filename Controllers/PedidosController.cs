@@ -156,6 +156,9 @@ namespace API_PEDIDOS.Controllers
 
                 }
 
+                _dbpContext.RemoveRange(rangopedidosdel);
+                await _dbpContext.SaveChangesAsync();
+
                 SqlConnection conn = (SqlConnection)_dbpContext.Database.GetDbConnection();
                 conn.Open();
                 List<Pedidos> pedidos = new List<Pedidos>();
@@ -566,11 +569,39 @@ namespace API_PEDIDOS.Controllers
                                 double resultado = proyeccion / unidadescaja;
                                 cajas = (int)Math.Floor(resultado) + 1;
                             }
+
                             double unidades_totales = cajas * unidadescaja;
                             double total_linea = (double)(unidades_totales * art.precio);
                             totalpedido += total_linea;
                             var itemimpuesto = _contextdb2.Impuestos.Where(p => p.Tipoiva == art.tipoimpuesto).FirstOrDefault();
                             double ivaArt = (double)(itemimpuesto.Iva == null ? 16 : itemimpuesto.Iva);
+
+
+                            var regalmacenaje = _dbpContext.Almacenajes.Where(x => x.Idsucursal == item.Codsucursal && x.Codarticulo == art.cod).FirstOrDefault();
+                            Boolean tienelimitealmacen = false;
+                            double capacidadalm = 0;
+                            double unidadesentrega = 0;
+                            if (regalmacenaje != null)
+                            {
+                                capacidadalm = regalmacenaje.Capacidad;
+                                string fechastr = DateTime.Now.ToString("yyyy-MM-dd");
+                                var pedidosentrega = _dbpContext.Pedidos.Where(x => x.Proveedor == item.Codproveedor && x.Sucursal == item.Codsucursal.ToString()
+                                && x.Jdata.Contains("\"fechaEntrega\":\"" + fechastr) && x.Estatus == "AUTORIZADO").ToList();
+
+                                foreach (var pe in pedidosentrega)
+                                {
+                                    Pedidos p = JsonConvert.DeserializeObject<Pedidos>(pe.Jdata);
+                                    var temp = p.articulos.Where(x => x.codArticulo == art.cod).FirstOrDefault();
+                                    if (temp != null)
+                                    {
+                                        unidadesentrega = unidadesentrega + temp.unidadestotales;
+                                    }
+                                }
+
+                                tienelimitealmacen = true;
+
+                            }
+
                             articulospedido.Add(new ArticuloPedido()
                             {
                                 codArticulo = art.cod,
@@ -594,7 +625,9 @@ namespace API_PEDIDOS.Controllers
                                 diasespeciales = diasespeciales,
                                 calendarioespecial = tieneudspendientes,
                                 unidadesextra = unidadespendientes,
-                                esretornable = esretornable
+                                esretornable = esretornable,
+                                tienelimitealmacen = tienelimitealmacen,
+                                capacidadalmfinal = (capacidadalm - unidadesentrega)
                             });
                         }
 
@@ -643,6 +676,11 @@ namespace API_PEDIDOS.Controllers
                             }
                         }
 
+                        Boolean tienedescuento = false;
+                        var regdesc = _dbpContext.Descuentos.Where(x => x.Codprov == item.Codproveedor).FirstOrDefault();
+
+                        if (regdesc != null) { tienedescuento = true; }
+
                         pedidos.Add(new Pedidos()
                         {
                             idSucursal = item.Codsucursal.ToString()
@@ -658,7 +696,8 @@ namespace API_PEDIDOS.Controllers
                             cartones= cartones,
                             tieneretornables = requierecartones,
                             capturacartones = cartonescapturados,
-                            
+                            tienedescuento = tienedescuento,
+                            cantidaddescuento = 0
                         });
 
                         string tempjdata = JsonConvert.SerializeObject(pedidos.Last());
@@ -1171,6 +1210,7 @@ namespace API_PEDIDOS.Controllers
                         totalpedido += art.total_linea;
                         if (art.hayinventario == false) { status = 2;  }
                     }
+
                     pedido.total = totalpedido; 
                     pedido.status = status;
                     pedidodb.Jdata = JsonConvert.SerializeObject(pedido);
@@ -1401,10 +1441,43 @@ namespace API_PEDIDOS.Controllers
                                 item.Enviado = true;
                                 _dbpContext.Modificaciones.Update(item);
                                 await _dbpContext.SaveChangesAsync();
-                            }  
+                            }
+
+                        if (pedido.tienedescuento)
+                        {
+                            var pedidocab = _contextdb2.Pedcompracabs.Where(x => x.Numserie == numserie && x.Numpedido == numpedido).FirstOrDefault();
+                            if (pedidocab != null)
+                            {
+                                if (pedido.cantidaddescuento > 0)
+                                {
+                                    pedidocab.Totneto = pedido.total - pedido.cantidaddescuento;
+                                    pedidocab.Totdtocomercial = pedido.cantidaddescuento;
+
+                                    double porcentajedescuento = (pedido.cantidaddescuento / pedidocab.Totbruto.Value) * 100.00;
+                                    pedidocab.Dtocomercial = porcentajedescuento;
+
+                                    _contextdb2.Pedcompracabs.Update(pedidocab);
+                                    await _contextdb2.SaveChangesAsync();
+
+                                    var pedcompratot = _contextdb2.Pedcompratots.Where(x => x.Serie == numserie && x.Numero == numpedido).FirstOrDefault();
+                                    if (pedcompratot != null)
+                                    {
+                                        pedcompratot.Totdtocomerc = pedido.cantidaddescuento;
+                                        _contextdb2.Pedcompratots.Update(pedcompratot);
+                                        await _contextdb2.SaveChangesAsync();
+                                    }
+                                }
+
+
+                            }
                         }
 
+
+                    }
+
                     connection.Close();
+
+                   
                     return StatusCode(StatusCodes.Status200OK);
                     }
                     catch (Exception err) 
@@ -1586,6 +1659,7 @@ namespace API_PEDIDOS.Controllers
                         art.cajas = model.cajas;
                         art.unidadestotales = model.unidades;
                         art.total_linea = (double)(art.precio * model.unidades);
+
                     }
                 }
 
@@ -1650,6 +1724,19 @@ namespace API_PEDIDOS.Controllers
                         art.cajas = cajas;
                         art.unidadestotales = double.Parse(registro.ValAntes);
                         art.total_linea = (double)(art.precio * double.Parse(registro.ValAntes));
+
+                        //var regalmacenaje = _dbpContext.Almacenajes.Where(x => x.Idsucursal == int.Parse(pedido.idSucursal) && x.Codarticulo == art.codArticulo).FirstOrDefault();
+                        //Boolean tienelimitealmacen = false;
+                        //double porcentajeAlmacen = 0;
+
+                        //if (regalmacenaje != null)
+                        //{
+                        //    tienelimitealmacen = true;
+                        //    porcentajeAlmacen = (art.unidadestotales / regalmacenaje.Capacidad) * 100.00;
+                        //}
+
+                        //art.tienelimitealmacen = tienelimitealmacen;
+                        //art.porcentajeCapacidad = porcentajeAlmacen;
                     }
                 }
 
@@ -1920,7 +2007,7 @@ namespace API_PEDIDOS.Controllers
                     var pedido = JsonConvert.DeserializeObject<Pedidos>(pedidodb.Jdata);
 
                    // if (pedido.total <= 0 || LineasEnNegativas(pedido.articulos) == true)
-                        if (pedido.total<=0 || Funciones.LineasNegativas(pedido.articulos) == true)
+                        if (pedido.total<=0 || Funciones.LineasRojas(pedido.articulos, pedido.tieneretornables, pedido.cartones) == true)
                     {
                     }
                     else
@@ -2083,8 +2170,37 @@ namespace API_PEDIDOS.Controllers
                                     _dbpContext.Modificaciones.Update(item);
                                     await _dbpContext.SaveChangesAsync();
                                 }
-                               
+
+                            if (pedido.tienedescuento)
+                            {
+                                var pedidocab = _contextdb2.Pedcompracabs.Where(x => x.Numserie == numserie && x.Numpedido == numpedido).FirstOrDefault();
+                                if (pedidocab != null)
+                                {
+                                    if (pedido.cantidaddescuento > 0)
+                                    {
+                                        pedidocab.Totneto = pedido.total - pedido.cantidaddescuento;
+                                        pedidocab.Totdtocomercial = pedido.cantidaddescuento;
+
+                                        double porcentajedescuento = (pedido.cantidaddescuento / pedidocab.Totbruto.Value) * 100.00;
+                                        pedidocab.Dtocomercial = porcentajedescuento;
+
+                                        _contextdb2.Pedcompracabs.Update(pedidocab);
+                                        await _contextdb2.SaveChangesAsync();
+
+                                        var pedcompratot = _contextdb2.Pedcompratots.Where(x => x.Serie == numserie && x.Numero == numpedido).FirstOrDefault();
+                                        if (pedcompratot != null)
+                                        {
+                                            pedcompratot.Totdtocomerc = pedido.cantidaddescuento;
+                                            _contextdb2.Pedcompratots.Update(pedcompratot);
+                                            await _contextdb2.SaveChangesAsync();
+                                        }
+                                    }
+
+
+                                }
                             }
+
+                        }
                             catch (Exception err)
                             {
                                 await transaction.RollbackAsync(); 
@@ -2835,6 +2951,33 @@ namespace API_PEDIDOS.Controllers
                             totalpedido += total_linea;
                             var itemimpuesto = _contextdb2.Impuestos.Where(p => p.Tipoiva == art.tipoimpuesto).FirstOrDefault();
                             double ivaArt = (double)(itemimpuesto.Iva == null ? 16 : itemimpuesto.Iva);
+
+
+                            var regalmacenaje = _dbpContext.Almacenajes.Where(x => x.Idsucursal == item.Codsucursal && x.Codarticulo == art.cod).FirstOrDefault();
+                            Boolean tienelimitealmacen = false;
+                            double unidadesentrega = 0;
+                            double capacidadalm = 0; 
+                            if (regalmacenaje != null)
+                            {
+                                capacidadalm = regalmacenaje.Capacidad;
+                                string fechastr = DateTime.Now.ToString("yyyy-MM-dd");
+                                var pedidosentrega = _dbpContext.Pedidos.Where(x => x.Proveedor == item.Codproveedor && x.Sucursal == item.Codsucursal.ToString()
+                                && x.Jdata.Contains("\"fechaEntrega\":\"" + fechastr) && x.Estatus == "AUTORIZADO").ToList();
+
+                                foreach (var pe in pedidosentrega)
+                                {
+                                    Pedidos p = JsonConvert.DeserializeObject<Pedidos>(pe.Jdata);
+                                    var temp = p.articulos.Where(x => x.codArticulo == art.cod).FirstOrDefault();
+                                    if (temp != null)
+                                    {
+                                        unidadesentrega = unidadesentrega + temp.unidadestotales;
+                                    }
+                                }
+
+                                tienelimitealmacen = true;
+
+                            }
+
                             articulospedido.Add(new ArticuloPedido()
                             {
                                 codArticulo = art.cod,
@@ -2858,7 +3001,9 @@ namespace API_PEDIDOS.Controllers
                                 diasespeciales = diasespeciales,
                                 calendarioespecial = tieneudspendientes,
                                 unidadesextra = unidadespendientes,
-                                esretornable = esretornable
+                                esretornable = esretornable,
+                                tienelimitealmacen = tienelimitealmacen,
+                                capacidadalmfinal = (capacidadalm - unidadesentrega)
                             });
                         }
 
@@ -2907,6 +3052,10 @@ namespace API_PEDIDOS.Controllers
                             }
                         }
 
+                        Boolean tienedescuento = false;
+                        var regdesc = _dbpContext.Descuentos.Where(x => x.Codprov == item.Codproveedor).FirstOrDefault();
+                        if (regdesc != null) { tienedescuento = true; }
+
                         pedidos.Add(new Pedidos()
                         {
                             idSucursal = item.Codsucursal.ToString()
@@ -2921,7 +3070,9 @@ namespace API_PEDIDOS.Controllers
                             rfc = rfcprov,
                             cartones = cartones,
                             tieneretornables = requierecartones,
-                            capturacartones = cartonescapturados
+                            capturacartones = cartonescapturados,
+                            tienedescuento = tienedescuento,
+                            cantidaddescuento = 0
                         });
 
                         string tempjdata = JsonConvert.SerializeObject(pedidos.Last());
@@ -3096,6 +3247,9 @@ namespace API_PEDIDOS.Controllers
         public Boolean tieneretornables { get; set; }
         public double cartones { get; set; }
         public Boolean capturacartones { get; set; }
+
+        public Boolean tienedescuento { get; set; }
+        public double cantidaddescuento { get; set; }
     }
 
 
@@ -3153,6 +3307,10 @@ namespace API_PEDIDOS.Controllers
         public double unidadesextra { get; set; }
 
         public Boolean esretornable { get; set; }
+
+        public Boolean tienelimitealmacen { get; set; }
+        public double capacidadalmfinal { get; set; }
+
     }
 
     public class articuloModel 

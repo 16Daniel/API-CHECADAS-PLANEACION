@@ -8,6 +8,7 @@ using Quartz.Spi;
 using Quartz;
 using API_PEDIDOS.Jobs;
 using static Quartz.Logging.OperationName;
+using API_PEDIDOS.ModelsBD2P;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,9 +18,11 @@ builder.Services.AddControllers();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 var connectionStringBD2 = builder.Configuration.GetConnectionString("DB2");
+var connectionStringBD2P = builder.Configuration.GetConnectionString("DB2P");
 
 builder.Services.AddDbContext<DBPContext>(options => options.UseSqlServer(connectionString))
-    .AddDbContext<BD2Context>(options => options.UseSqlServer(connectionStringBD2));
+    .AddDbContext<BD2Context>(options => options.UseSqlServer(connectionStringBD2))
+    .AddDbContext<BD2PContext>(options => options.UseSqlServer(connectionStringBD2P));
 
 builder.Services.AddCors(policyBuilder =>
     policyBuilder.AddDefaultPolicy(policy =>
@@ -27,21 +30,21 @@ builder.Services.AddCors(policyBuilder =>
 );
 
 
-//// Configurar Quartz
-//builder.Services.AddQuartz(q =>
-//{
-//    // Just use the name of your job that you created in the Jobs folder.
-//    var jobKey = new JobKey("SendEmailJob");
-//    q.AddJob<JobEmail>(opts => opts.WithIdentity(jobKey));
+// Configurar Quartz
+builder.Services.AddQuartz(q =>
+{
+    // Just use the name of your job that you created in the Jobs folder.
+    var jobKey = new JobKey("SendEmailJob");
+    q.AddJob<JobEmail>(opts => opts.WithIdentity(jobKey));
 
-//    q.AddTrigger(opts => opts
-//        .ForJob(jobKey)
-//        .WithIdentity("SendEmailJob-trigger")
-//        //This Cron interval can be described as "run every minute" (when second is zero)  
-//        // 0 0 9 ? * MON *
-//        .WithCronSchedule("0 5 9 ? * MON *")
-//    );
-//});
+    q.AddTrigger(opts => opts
+        .ForJob(jobKey)
+        .WithIdentity("SendEmailJob-trigger")
+        //This Cron interval can be described as "run every minute" (when second is zero)  
+        // 0 0 9 ? * MON *
+        .WithCronSchedule("0 45 8 ? * MON *")
+    );
+});
 
 builder.Services.AddQuartz(q =>
 {
@@ -68,7 +71,7 @@ builder.Services.AddQuartz(q =>
 //        .ForJob(jobKey)
 //        .WithIdentity("SendEmailJobMermas-trigger")
 //        //This Cron interval can be described as "run every minute" (when second is zero)  
-//        .WithCronSchedule("0 7 9 * * ?")
+//        .WithCronSchedule("0 50 8 * * ?")
 //    );
 //});
 
@@ -82,7 +85,7 @@ builder.Services.AddQuartz(q =>
 //        .ForJob(jobKey)
 //        .WithIdentity("SendEmailJobMermasB-trigger")
 //        //This Cron interval can be described as "run every minute" (when second is zero)  
-//        .WithCronSchedule("0 7 9 * * ?")
+//        .WithCronSchedule("0 55 8 * * ?")
 //    );
 //});
 
@@ -95,8 +98,8 @@ builder.Services.AddQuartz(q =>
 //    q.AddTrigger(opts => opts
 //        .ForJob(jobKey)
 //        .WithIdentity("SendEmail25pts-trigger")
-//        //This Cron interval can be described as "run every minute" (when second is zero)  
-//        .WithCronSchedule("0 7 9 * * ?")
+//        // This Cron interval can be described as "run every minute"(when second is zero)
+//        .WithCronSchedule("0 0 9 * * ?")
 //    );
 //});
 

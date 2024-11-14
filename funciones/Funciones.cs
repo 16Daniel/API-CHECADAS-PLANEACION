@@ -4,17 +4,41 @@ namespace API_PEDIDOS.funciones
 {
     public static class Funciones
     {
-        public static Boolean LineasNegativas(List<ArticuloPedido> articulos)
+        public static Boolean LineasRojas(List<ArticuloPedido> articulos,Boolean tieneretornables, double cartones)
         {
-            Boolean lineasnegativas = false;
+            Boolean lineasrojas = false;
+
+            double cartonesplaneacion = 0;
+            double diferenciacartones = 0;
+
+            if (tieneretornables)
+            {
+                foreach (var itemp in articulos)
+                {
+                    if (itemp.esretornable)
+                    {
+                        cartonesplaneacion = cartonesplaneacion + itemp.cajas;
+                    }
+                }
+                diferenciacartones = cartones - cartonesplaneacion;
+            }
+
+            if (diferenciacartones < 0)
+            {
+                lineasrojas = true;
+            }
+
             foreach (var item in articulos)
             {
-                if (item.total_linea < 0)
+
+                if (item.total_linea <= 0)
                 {
-                    lineasnegativas = true;
+                    lineasrojas = true;
                 }
             }
-            return lineasnegativas;
+
+
+            return lineasrojas;
         }
     }
 }
