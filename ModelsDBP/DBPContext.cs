@@ -28,9 +28,11 @@ namespace API_PEDIDOS.ModelsDBP
         public virtual DbSet<Descuento> Descuentos { get; set; } = null!;
         public virtual DbSet<DiasEspeciale> DiasEspeciales { get; set; } = null!;
         public virtual DbSet<DiasEspecialesSucursal> DiasEspecialesSucursals { get; set; } = null!;
+        public virtual DbSet<InvTeoricoProveedore> InvTeoricoProveedores { get; set; } = null!;
         public virtual DbSet<InventarioTeorico> InventarioTeoricos { get; set; } = null!;
         public virtual DbSet<LogDiferencia> LogDiferencias { get; set; } = null!;
         public virtual DbSet<Modificacione> Modificaciones { get; set; } = null!;
+        public virtual DbSet<ModificacionesPedSuc> ModificacionesPedSucs { get; set; } = null!;
         public virtual DbSet<Notificacione> Notificaciones { get; set; } = null!;
         public virtual DbSet<Parametro> Parametros { get; set; } = null!;
         public virtual DbSet<PedSucArticulo> PedSucArticulos { get; set; } = null!;
@@ -226,6 +228,17 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Sucursal).HasColumnName("SUCURSAL");
             });
 
+            modelBuilder.Entity<InvTeoricoProveedore>(entity =>
+            {
+                entity.ToTable("INV_TEORICO_PROVEEDORES");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Codprov).HasColumnName("CODPROV");
+
+                entity.Property(e => e.Idfront).HasColumnName("IDFRONT");
+            });
+
             modelBuilder.Entity<InventarioTeorico>(entity =>
             {
                 entity.ToTable("INVENTARIO_TEORICO");
@@ -305,6 +318,41 @@ namespace API_PEDIDOS.ModelsDBP
                     .HasColumnName("VAL_DESPUES");
             });
 
+            modelBuilder.Entity<ModificacionesPedSuc>(entity =>
+            {
+                entity.ToTable("MODIFICACIONES_PED_SUC");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Codart).HasColumnName("CODART");
+
+                entity.Property(e => e.Comentario).HasColumnName("COMENTARIO");
+
+                entity.Property(e => e.Enviado).HasColumnName("ENVIADO");
+
+                entity.Property(e => e.Fecha)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA");
+
+                entity.Property(e => e.Idpedido).HasColumnName("IDPEDIDO");
+
+                entity.Property(e => e.Idusuario).HasColumnName("IDUSUARIO");
+
+                entity.Property(e => e.Justificacion).HasColumnName("JUSTIFICACION");
+
+                entity.Property(e => e.Modificacion)
+                    .HasMaxLength(255)
+                    .HasColumnName("MODIFICACION");
+
+                entity.Property(e => e.ValAntes)
+                    .HasMaxLength(255)
+                    .HasColumnName("VAL_ANTES");
+
+                entity.Property(e => e.ValDespues)
+                    .HasMaxLength(255)
+                    .HasColumnName("VAL_DESPUES");
+            });
+
             modelBuilder.Entity<Notificacione>(entity =>
             {
                 entity.ToTable("NOTIFICACIONES");
@@ -345,6 +393,8 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
+
+                entity.Property(e => e.Codsucursal).HasColumnName("CODSUCURSAL");
             });
 
             modelBuilder.Entity<Pedido>(entity =>

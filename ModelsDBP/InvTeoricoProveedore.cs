@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace API_PEDIDOS.ModelsDBP
 {
-    public partial class PedSucProveedore
+    public partial class InvTeoricoProveedore
     {
         public int Id { get; set; }
-        public int Codproveedor { get; set; }
-        public int? Codsucursal { get; set; }
+        public int Codprov { get; set; }
+        public int Idfront { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using API_PEDIDOS.ModelsBD2P;
+﻿
 using API_PEDIDOS.ModelsDB2;
 using API_PEDIDOS.ModelsDBP;
 using Microsoft.AspNetCore.Http;
@@ -7,6 +7,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Data;
+using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 
 namespace API_PEDIDOS.Controllers
@@ -20,6 +21,7 @@ namespace API_PEDIDOS.Controllers
         protected DBPContext _dbpContext;
         private readonly IConfiguration _configuration;
         public string connectionStringBD2 = string.Empty;
+        public string connectionStringBD2p = string.Empty;
 
         public PedidosSucursalController(ILogger<CatalogosController> logger, BD2Context db2c, DBPContext dbpc, IConfiguration configuration)
         {
@@ -28,6 +30,7 @@ namespace API_PEDIDOS.Controllers
             _dbpContext = dbpc;
             _configuration = configuration;
             connectionStringBD2 = _configuration.GetConnectionString("DB2");
+            connectionStringBD2p = _configuration.GetConnectionString("DB2P");
         }
 
         [HttpGet]
@@ -100,7 +103,12 @@ namespace API_PEDIDOS.Controllers
         {
             try
             { List<Object> data = new List<Object>();
-                var proveedoresdb = _dbpContext.PedSucProveedores.ToList();
+                //var proveedoresdb = _dbpContext.PedSucProveedores.ToList();
+
+                var proveedoresdb = _dbpContext.PedSucProveedores
+    .GroupBy(p => p.Codproveedor)
+    .Select(g => g.FirstOrDefault()) // Puedes obtener el primer registro de cada grupo.
+    .ToList();
 
                 foreach (var prov in proveedoresdb)
                 {
@@ -139,6 +147,7 @@ namespace API_PEDIDOS.Controllers
             {
                 List<Object> data = new List<Object>();
                 var articulosdb = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == idprov).ToList();
+                var prov = _contextdb2.Proveedores.Where(x => x.Codproveedor == idprov).FirstOrDefault();
 
                 foreach (var art in articulosdb)
                 {
@@ -153,7 +162,46 @@ namespace API_PEDIDOS.Controllers
                         ).FirstOrDefault();
                     if (articulo != null)
                     {
-                        data.Add(articulo);
+                        var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == prov.Nif20 && p.Codarticulo == art.Codart).FirstOrDefault();
+                        Boolean tienemultiplo = itprod == null ? false : true;
+                        data.Add(new
+                        {
+                            cod = articulo.cod,
+                            descripcion = articulo.descripcion,
+                            referencia = articulo.referencia,
+                            tudm = tienemultiplo
+                        });
+                    }
+                }
+
+                return StatusCode(200, data);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
+
+        [HttpGet]
+        [Route("getSucursalesProvPedSuc/{idprov}")]
+        public async Task<ActionResult> GetSucursalesProvPedSuc(int idprov)
+        {
+            try
+            {
+                List<Object> data = new List<Object>();
+                var list = _dbpContext.PedSucProveedores.Where(x => x.Codproveedor == idprov).ToList(); 
+                foreach(var item in list) 
+                {
+                    var sucursaL = _contextdb2.RemFronts.Where(x => x.Idfront == item.Codsucursal).FirstOrDefault();
+                    if (sucursaL != null) 
+                    {
+                        data.Add(new{ cod= sucursaL.Idfront,name= sucursaL.Titulo });
                     }
                 }
 
@@ -173,21 +221,30 @@ namespace API_PEDIDOS.Controllers
 
         [HttpPost]
         [Route("agregarProveedor")]
-        public async Task<ActionResult> addProv([FromForm] int idprov)
+        public async Task<ActionResult> addProv([FromForm] int idprov,[FromForm] string jdata)
         {
             try
             {
+                int[] idsucs = JsonConvert.DeserializeObject<int[]>(jdata);
+               
                 var list = _dbpContext.PedSucProveedores.Where(x => x.Codproveedor == idprov).ToList();
 
-                if (list.Count == 0)
+                if (list.Count > 0)
+                {
+                    _dbpContext.PedSucProveedores.RemoveRange(list); 
+                    await _dbpContext.SaveChangesAsync();
+                }
+
+                foreach (int ids in idsucs) 
                 {
                     _dbpContext.PedSucProveedores.Add(new PedSucProveedore()
                     {
                         Codproveedor = idprov,
+                        Codsucursal = ids
                     });
                     await _dbpContext.SaveChangesAsync();
                 }
-
+              
                 return StatusCode(StatusCodes.Status200OK);
 
             }
@@ -205,11 +262,17 @@ namespace API_PEDIDOS.Controllers
 
             try
             {
-                var prov = _dbpContext.PedSucProveedores.Where(x => x.Codproveedor == id).FirstOrDefault();
-
-                if (prov != null)
+                var articulosprov = _dbpContext.ArticulosProveedors.Where(x => x.Codprov == id).ToList();
+                if (articulosprov.Count > 0) 
                 {
-                    _dbpContext.PedSucProveedores.Remove(prov);
+                    _dbpContext.ArticulosProveedors.RemoveRange(articulosprov);
+                    await _dbpContext.SaveChangesAsync();
+                }
+                var prov = _dbpContext.PedSucProveedores.Where(x => x.Codproveedor == id).ToList(); 
+
+                if (prov.Count> 0)
+                {
+                    _dbpContext.PedSucProveedores.RemoveRange(prov);
                     await _dbpContext.SaveChangesAsync();
                 }
 
@@ -308,6 +371,13 @@ namespace API_PEDIDOS.Controllers
                     int iva = 0;
                     var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == prov.Nif20 && p.Codarticulo == codart).FirstOrDefault();
                     Boolean tienemultiplo = itprod == null ? false : true;
+                    string udm = "";
+
+                    if (itprod != null) 
+                    {
+                        udm = itprod.Umedida; 
+                    }
+
                     double unidadescaja = itprod == null ? 1 : (double)itprod.Uds;
                     int cajas = 0;
                     double unidades_totales = cajas * unidadescaja;
@@ -329,6 +399,7 @@ namespace API_PEDIDOS.Controllers
                         total_linea = total_linea,
                         codigoAlmacen = model.idsuc.ToString(),
                         tienemultiplo = tienemultiplo,
+                        udm = udm
                     });
 
                     numlinea++; 
@@ -517,11 +588,12 @@ namespace API_PEDIDOS.Controllers
         }
 
         [HttpDelete]
-        [Route("eliminarItem/{idp}/{codart}")]
-        public async Task<ActionResult> eliminaritem(int idp, int codart)
+        [Route("eliminarItem/{idp}/{codart}/{idu}")]
+        public async Task<ActionResult> eliminaritem(int idp, int codart,int idu)
         {
             try
             {
+                string valantes = ""; 
                 var pedidodb = _dbpContext.PedidosSucursales.Where(p => p.Id == idp).FirstOrDefault();
                 if (pedidodb != null)
                 {
@@ -536,6 +608,22 @@ namespace API_PEDIDOS.Controllers
                     pedidodb.Jdata = JsonConvert.SerializeObject(pedido);
                     _dbpContext.PedidosSucursales.Update(pedidodb);
                     await _dbpContext.SaveChangesAsync();
+
+                    _dbpContext.ModificacionesPedSucs.Add(new ModificacionesPedSuc() 
+                    {
+                        Modificacion = "ELIMINAR LÍNEA",
+                        ValAntes = valantes,
+                        ValDespues = "",
+                        Justificacion = "LÍNEA INNECESARIA",
+                        Fecha = DateTime.Now,
+                        Idusuario = idu,
+                        Idpedido = idp,
+                        Codart = codart,
+                        Enviado = false,
+                        Comentario = ""
+                    });
+
+                    await _dbpContext.SaveChangesAsync();   
                 }
                 return StatusCode(StatusCodes.Status200OK);
 
@@ -551,10 +639,11 @@ namespace API_PEDIDOS.Controllers
 
         [HttpPost]
         [Route("updateitemPedSuc")]
-        public async Task<ActionResult> updateitempedsuc([FromForm] int idp,[FromForm] int codart, [FromForm] int cajas,[FromForm] double unidades)
+        public async Task<ActionResult> updateitempedsuc([FromForm] int idp,[FromForm] int codart, [FromForm] int cajas,[FromForm] double unidades,[FromForm]int idu, [FromForm] string justificacion, [FromForm] string comentario)
         {
             try
             {
+                string valantes = ""; 
                 var pedidodb = _dbpContext.PedidosSucursales.Where(p => p.Id == idp).FirstOrDefault();
                 if (pedidodb != null)
                 {
@@ -563,6 +652,7 @@ namespace API_PEDIDOS.Controllers
                     var art = pedido.articulos.Where(x => x.codArticulo == codart).FirstOrDefault();
                     if (art != null) 
                     {
+                        valantes = art.unidadestotales.ToString(); 
                         art.cajas = cajas; 
                         art.unidadestotales = unidades;
                         art.total_linea = (art.unidadestotales * art.precio); 
@@ -576,6 +666,22 @@ namespace API_PEDIDOS.Controllers
                     pedido.total = total; 
                     pedidodb.Jdata = JsonConvert.SerializeObject(pedido);
                     _dbpContext.PedidosSucursales.Update(pedidodb);
+                    await _dbpContext.SaveChangesAsync();
+
+                    _dbpContext.ModificacionesPedSucs.Add(new ModificacionesPedSuc()
+                    {
+                        Modificacion = "EDITAR LÍNEA",
+                        ValAntes = valantes,
+                        ValDespues = unidades.ToString(),
+                        Justificacion = justificacion,
+                        Fecha = DateTime.Now,
+                        Idusuario = idu,
+                        Idpedido = idp,
+                        Codart = codart,
+                        Enviado = false,
+                        Comentario = comentario
+                    });
+
                     await _dbpContext.SaveChangesAsync();
                 }
                 return StatusCode(StatusCodes.Status200OK);
@@ -602,6 +708,8 @@ namespace API_PEDIDOS.Controllers
 
                 SqlTransaction transaccion = connection.BeginTransaction();
 
+                var remfront = _contextdb2.RemFronts.Where(x => x.Idfront == pedidodb.Sucursal).FirstOrDefault(); 
+
                 var pedido = JsonConvert.DeserializeObject<PedidoSuc>(pedidodb.Jdata);
                 var cajafront = _contextdb2.RemCajasfronts.Where(x => x.Cajafront == 1 && x.Idfront == int.Parse(pedido.idSucursal)).FirstOrDefault();
                 var transporte = _contextdb2.Transportes.Where(x => x.Fax == pedidodb.Sucursal.ToString()).FirstOrDefault();
@@ -626,9 +734,9 @@ namespace API_PEDIDOS.Controllers
                         }
                         else
                         {
-                           
-                            //string querynumped = "SELECT ISNULL(MAX(NUMPEDIDO), 0) AS numero_mayor FROM [BD2_PRUEBA].dbo.PEDCOMPRACAB WHERE NUMSERIE ='" + numserie + "'";
-                            string querynumped = "SELECT ISNULL(MAX(NUMPEDIDO), 0) AS numero_mayor FROM [BD2].dbo.PEDCOMPRACAB WHERE NUMSERIE ='" + numserie + "'";
+                            
+                            string querynumped = "SELECT ISNULL(MAX(NUMPEDIDO), 0) AS numero_mayor FROM [BD2_PRUEBA].dbo.PEDCOMPRACAB WHERE NUMSERIE ='" + numserie + "'";
+                            //string querynumped = "SELECT ISNULL(MAX(NUMPEDIDO), 0) AS numero_mayor FROM [BD2].dbo.PEDCOMPRACAB WHERE NUMSERIE ='" + numserie + "'";
                             SqlCommand command = new SqlCommand(querynumped, connection, transaccion);
 
                             object result = command.ExecuteScalar();
@@ -643,7 +751,7 @@ namespace API_PEDIDOS.Controllers
                             }
 
                             // insertar pedcompracab
-                            command = new SqlCommand("SP_INSERT_PEDIDO", connection, transaccion);
+                            command = new SqlCommand("SP_INSERT_PEDIDO2", connection, transaccion);
                             command.CommandType = CommandType.StoredProcedure;
                             // Parámetros del procedimiento almacenado
                             command.Parameters.AddWithValue("@PEDCAB_NUMSERIE", numserie);
@@ -665,7 +773,7 @@ namespace API_PEDIDOS.Controllers
                                 numlinea++;
                                 var articulodb = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
                                 string referencia = articulodb.Refproveedor;
-                                command = new SqlCommand("SP_INSERT_PEDIDOLIN", connection, transaccion);
+                                command = new SqlCommand("SP_INSERT_PEDIDOLIN2", connection, transaccion);
                                 command.CommandType = CommandType.StoredProcedure;
                                 // Agregar parámetros
                                 command.Parameters.AddWithValue("@PEDLIN_NUMSERIE", numserie);
@@ -703,7 +811,7 @@ namespace API_PEDIDOS.Controllers
                                     iva = item.iva;
                                 }
 
-                                command = new SqlCommand("SP_INSERT_COMPRATOT", connection, transaccion);
+                                command = new SqlCommand("SP_INSERT_COMPRATOT2", connection, transaccion);
                                 command.CommandType = CommandType.StoredProcedure;
                                 // Agregar parámetros al procedimiento almacenado
                                 command.Parameters.AddWithValue("@PEDTOT_NUMSERIE", numserie);
@@ -724,7 +832,7 @@ namespace API_PEDIDOS.Controllers
 
                             var prov = _contextdb2.Proveedores.Where(x => x.Codproveedor == pedido.codProveedor).FirstOrDefault();
                             var fpagoprov = _contextdb2.Fpagoproveedors.Where(x => x.Codproveedor == pedido.codProveedor).FirstOrDefault();
-                            command = new SqlCommand("SP_INSERT_TESORERIA", connection, transaccion);
+                            command = new SqlCommand("SP_INSERT_TESORERIA2", connection, transaccion);
                             command.CommandType = CommandType.StoredProcedure;
 
                             // Agregar parámetros al procedimiento almacenado
@@ -739,7 +847,7 @@ namespace API_PEDIDOS.Controllers
 
                             // update seriesdoc
 
-                            command = new SqlCommand("SP_UPDATE_SERIESDOC", connection, transaccion);
+                            command = new SqlCommand("SP_UPDATE_SERIESDOC2", connection, transaccion);
                             command.CommandType = CommandType.StoredProcedure;
 
                             // Agregar parámetros al procedimiento almacenado
@@ -750,11 +858,60 @@ namespace API_PEDIDOS.Controllers
                             command.Parameters.AddWithValue("@SERIE", numserie);
                             // Ejecutar el procedimiento almacenado
                             command.ExecuteNonQuery();
-                        
-                            await transaccion.CommitAsync();
 
-                   
-                            pedido.status = 3;
+
+
+                        command = new SqlCommand("SP_INSERT_INCIDENCIA", connection, transaccion);
+                        
+                            command.CommandType = CommandType.StoredProcedure;
+
+                            // Agregar los parámetros
+                            command.Parameters.AddWithValue("@FECHA", DateTime.Now);
+                            command.Parameters.AddWithValue("@CODCLIENTE", 1);
+                            command.Parameters.AddWithValue("@SERIE", numserie);
+                            command.Parameters.AddWithValue("@NUMPEDIDO",numpedido);
+                            command.Parameters.AddWithValue("@FECHAENTREGA", pedido.fechaEntrega);
+                            command.Parameters.AddWithValue("@CSUPEDIDO", supedido);
+                            command.Parameters.AddWithValue("@CODPROV", pedido.codProveedor);
+                            command.Parameters.AddWithValue("@COMENTARIOLIBRE", "");
+                            command.Parameters.AddWithValue("@TOTALSINIVA", pedido.total);
+                            command.Parameters.AddWithValue("@TOTALCONIVA", pedido.total + totalimpuestos);
+                            command.Parameters.AddWithValue("@IDF", pedido.idSucursal);
+
+                           command.ExecuteNonQuery();
+
+                        command = new SqlCommand("[dbo].[GET_IDINCIDENCIA]", connection, transaccion);
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        object result2 = command.ExecuteScalar();
+                        int idincidencia = Convert.ToInt32(result2);
+
+                        numlinea = 0; 
+                        foreach (var art in pedido.articulos)
+                        {
+                            numlinea++;
+                            var articulodb = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
+                            command = new SqlCommand("SP_INSERT_INCIDENCIA_LIN", connection, transaccion);
+
+                            command.CommandType = CommandType.StoredProcedure;
+
+                            // Agregar los parámetros
+                            command.Parameters.AddWithValue("@IDINCIDENCIA", idincidencia);
+                            command.Parameters.AddWithValue("@NUMLINEA", numlinea);
+                            command.Parameters.AddWithValue("@CODART", art.codArticulo);
+                            command.Parameters.AddWithValue("@UNIDADES", art.cajas);
+                            command.Parameters.AddWithValue("@UNIDADES2", art.unidadescaja);
+                            command.Parameters.AddWithValue("@TOTALLINEA", art.total_linea);
+                            command.Parameters.AddWithValue("@DESCRIPCIONART", articulodb.Descripcion);
+                            command.Parameters.AddWithValue("@CODBARRAS", "");
+
+                            command.ExecuteNonQuery();
+                        }
+
+                        await transaccion.CommitAsync();
+
+
+                        pedido.status = 3;
                             pedidodb.Jdata = JsonConvert.SerializeObject(pedido);
                             pedidodb.Estatus = "AUTORIZADO";
                             pedidodb.Numpedido = supedido;
@@ -807,6 +964,13 @@ namespace API_PEDIDOS.Controllers
 
                     connection.Close();
 
+                    var modificaciones = _dbpContext.ModificacionesPedSucs.Where(x => x.Idpedido == idp).ToList();
+                    foreach(var item in modificaciones) 
+                    {
+                        item.Enviado = true;
+                        _dbpContext.ModificacionesPedSucs.Update(item);
+                        await _contextdb2.SaveChangesAsync();
+                    }
                    
                     return StatusCode(StatusCodes.Status200OK);
                     }
@@ -823,6 +987,177 @@ namespace API_PEDIDOS.Controllers
 
         }
 
+
+        [HttpGet]
+        [Route("getItemsDisponibles/{idp}")]
+        public async Task<ActionResult> itemsdisponibelsped(int idp)
+        {
+            try
+            {
+                List<ArticuloPedSuc> articulos = new List<ArticuloPedSuc>();
+                var pedidodb = _dbpContext.PedidosSucursales.Where(x => x.Id == idp).FirstOrDefault();
+                var pedido = JsonConvert.DeserializeObject<PedidoSuc>(pedidodb.Jdata);
+                List<ItemModelPS> itemsdisponibles = new List<ItemModelPS>();
+                if (pedidodb != null) 
+                {
+                    List<ItemModelPS> data = new List<ItemModelPS>();
+                    var articulosdb = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == pedido.codProveedor).ToList();
+                    var prov = _contextdb2.Proveedores.Where(x => x.Codproveedor == pedido.codProveedor).FirstOrDefault();
+
+                    foreach (var art in articulosdb)
+                    {
+                        var articulo = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.Codart).Select
+                            (s =>
+                                new
+                                {
+                                    cod = s.Codarticulo,
+                                    descripcion = s.Descripcion,
+                                    referencia = s.Refproveedor,
+                                }
+                            ).FirstOrDefault();
+                        if (articulo != null)
+                        {
+                            var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == prov.Nif20 && p.Codarticulo == art.Codart).FirstOrDefault();
+                            Boolean tienemultiplo = itprod == null ? false : true;
+                            data.Add(new ItemModelPS()
+                            {
+                                cod = articulo.cod,
+                                descripcion = articulo.descripcion,
+                                referencia = articulo.referencia,
+                            });
+                        }
+                    }
+
+                    foreach (var item in data) 
+                    {
+                        if(pedido.articulos.Any(x => x.codArticulo == item.cod) == false) 
+                        {
+                            itemsdisponibles.Add(new ItemModelPS()
+                            {
+                                cod = item.cod,
+                                descripcion = item.descripcion,
+                                referencia = item.referencia
+                            });
+                        }
+                    }
+                    int numlinea = 1;
+                    foreach (var item in itemsdisponibles)
+                    {
+                        var art = _contextdb2.Articulos1.Where(x => x.Codarticulo == item.cod).FirstOrDefault();
+                        var preciocompra = _contextdb2.Precioscompras.Where(x => x.Codarticulo == item.cod && x.Codproveedor == pedido.codProveedor).FirstOrDefault();
+                        int iva = 0;
+                        var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == prov.Nif20 && p.Codarticulo == item.cod).FirstOrDefault();
+                        Boolean tienemultiplo = itprod == null ? false : true;
+                        string udm = "";
+
+                        if (itprod != null)
+                        {
+                            udm = itprod.Umedida;
+                        }
+
+                        double unidadescaja = itprod == null ? 1 : (double)itprod.Uds;
+                        int cajas = 0;
+                        double unidades_totales = cajas * unidadescaja;
+                        double total_linea = (double)(unidades_totales * preciocompra.Pbruto);
+                        var itemimpuesto = _contextdb2.Impuestos.Where(p => p.Tipoiva == art.Impuestocompra).FirstOrDefault();
+                        double ivaArt = (double)(itemimpuesto.Iva == null ? 16 : itemimpuesto.Iva);
+
+                        articulos.Add(new ArticuloPedSuc()
+                        {
+                            codArticulo = item.cod,
+                            nombre = art.Descripcion,
+                            precio = (double)preciocompra.Pbruto,
+                            numlinea = numlinea,
+                            cajas = cajas,
+                            unidadescaja = unidadescaja,
+                            unidadestotales = unidades_totales,
+                            tipoImpuesto = (int)art.Impuestocompra,
+                            iva = ivaArt,
+                            total_linea = total_linea,
+                            codigoAlmacen = pedidodb.Sucursal.ToString(),
+                            tienemultiplo = tienemultiplo,
+                            udm = udm
+                        });
+
+                        numlinea++;
+                    }
+
+                }   
+                
+
+                return StatusCode(StatusCodes.Status200OK,articulos);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.ToString() });
+            }
+
+
+        }
+
+
+        [HttpPost]
+        [Route("addItemPed")]
+        public async Task<ActionResult> addItemPed([FromForm] int idp,[FromForm] string items, [FromForm] int idu)
+        {
+            try
+            {
+                List<ArticuloPedSuc> listitems = JsonConvert.DeserializeObject<List<ArticuloPedSuc>>(items);
+                var pedidodb = _dbpContext.PedidosSucursales.Where(p => p.Id == idp).FirstOrDefault();
+                if (pedidodb != null)
+                {
+                    var pedido = JsonConvert.DeserializeObject<PedidoSuc>(pedidodb.Jdata);
+
+                    foreach(var item in listitems) 
+                    {
+                        item.unidadestotales = item.cajas * item.unidadescaja;
+                        item.total_linea = (item.unidadestotales * item.precio);
+                        pedido.articulos.Add(item);
+
+                        _dbpContext.ModificacionesPedSucs.Add(new ModificacionesPedSuc()
+                        {
+                            Modificacion = "AGREGAR LÍNEA",
+                            ValAntes = "",
+                            ValDespues = item.unidadestotales.ToString(),
+                            Justificacion = "",
+                            Fecha = DateTime.Now,
+                            Idusuario = idu,
+                            Idpedido = idp,
+                            Codart = item.codArticulo,
+                            Enviado = false,
+                            Comentario = ""
+                        });
+
+                        await _dbpContext.SaveChangesAsync();
+                    }
+                       
+                    double total = 0;
+                    foreach (var articulo in pedido.articulos)
+                    {
+                        total = total + articulo.total_linea;
+                    }
+
+                    pedido.total = total;
+                    pedidodb.Jdata = JsonConvert.SerializeObject(pedido);
+                    _dbpContext.PedidosSucursales.Update(pedidodb);
+                    await _dbpContext.SaveChangesAsync();
+
+                   
+                }
+
+                return StatusCode(StatusCodes.Status200OK);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.ToString() });
+            }
+
+
+        }
+
+
     }
 
     public class previewpedModel
@@ -831,6 +1166,13 @@ namespace API_PEDIDOS.Controllers
         public int idsuc { get; set; }
         public string nombresuc { get; set;}
         public string jdataart { get; set; }
+    }
+
+    public class ItemModelPS
+    {
+        public int cod { get; set; }
+        public string descripcion { get; set; }
+        public string referencia { get; set; }
     }
 
     public class GuardarpedModel
@@ -860,6 +1202,7 @@ namespace API_PEDIDOS.Controllers
         public string codigoAlmacen { get; set; }
 
         public Boolean tienemultiplo { get; set; }
+        public string udm {  get; set; }    
     }
 
     public class PedidoSuc

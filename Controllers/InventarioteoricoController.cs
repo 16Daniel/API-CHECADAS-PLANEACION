@@ -2,6 +2,8 @@
 using API_PEDIDOS.ModelsDBP;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace API_PEDIDOS.Controllers
 {
@@ -56,13 +58,69 @@ namespace API_PEDIDOS.Controllers
             }
         }
 
-
         [HttpGet]
-        [Route("addSuc/{idf}")]
-        public async Task<ActionResult> addsuc(int idf)
+        [Route("getProvsSuc/{ids}")]
+        public async Task<ActionResult> GetprovSucinvteorico(int ids)
         {
             try
             {
+                List<Object> list = new List<Object>();
+                var datadb = _dbpContext.InvTeoricoProveedores.Where(x => x.Idfront == ids).ToList();
+
+                foreach (var item in datadb)
+                {
+                    var prov = _contextdb2.Proveedores.Where(x =>x.Codproveedor == item.Codprov).FirstOrDefault();
+                    if (prov != null)
+                    {
+                        list.Add(new
+                        {
+                            codproveedor = prov.Codproveedor,
+                            nombre = prov.Nomproveedor,
+                            rfc = prov.Nif20
+                        });
+                    }
+                }
+
+                return StatusCode(200, list);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
+
+
+        [HttpGet]
+        [Route("addSuc/{idf}/{jdata}")]
+        public async Task<ActionResult> addsuc(int idf, string jdata)
+        {
+            try
+            {
+                var proveedores = _dbpContext.InvTeoricoProveedores.Where(x => x.Idfront == idf).ToList();
+                if (proveedores.Count > 0)
+                {
+                    _dbpContext.InvTeoricoProveedores.RemoveRange(proveedores);
+                    await _dbpContext.SaveChangesAsync();
+                }
+
+                int[] provs = JsonConvert.DeserializeObject<int[]>(jdata);
+
+                foreach (int idp in provs) 
+                {
+                    _dbpContext.InvTeoricoProveedores.Add(new InvTeoricoProveedore() 
+                    {
+                        Idfront = idf,
+                        Codprov = idp
+                    });
+                    await _dbpContext.SaveChangesAsync();
+                }
+
                 var reg = _dbpContext.InventarioTeoricos.Where(x => x.Idfront == idf).FirstOrDefault();
                 if (reg == null) 
                 {
@@ -89,6 +147,12 @@ namespace API_PEDIDOS.Controllers
         {
             try
             {
+                var proveedores = _dbpContext.InvTeoricoProveedores.Where(x => x.Idfront == idf).ToList();
+                if (proveedores.Count > 0) 
+                {
+                    _dbpContext.InvTeoricoProveedores.RemoveRange(proveedores); 
+                    await _dbpContext.SaveChangesAsync();   
+                }
                 var reg = _dbpContext.InventarioTeoricos.Where(x => x.Idfront == idf).FirstOrDefault();
                 if (reg != null) 
                 {

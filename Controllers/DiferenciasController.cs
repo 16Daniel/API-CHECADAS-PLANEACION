@@ -1,4 +1,4 @@
-﻿using API_PEDIDOS.ModelsBD2P;
+﻿
 using API_PEDIDOS.ModelsDB2;
 using API_PEDIDOS.ModelsDBP;
 using Microsoft.AspNetCore.Http;
@@ -21,14 +21,12 @@ namespace API_PEDIDOS.Controllers
         public string connectionStringDBREBEL = string.Empty;
         public string connectionStringBd2 = string.Empty;
         protected DBPContext _dbpContext;
-        protected BD2PContext _bd2pcontext; 
 
 
-        public DiferenciasController(BD2Context bD2Context, IConfiguration configuration, DBPContext dBPContext, BD2PContext bD2PContext)
+        public DiferenciasController(BD2Context bD2Context, IConfiguration configuration, DBPContext dBPContext)
         {
             _db2Context = bD2Context;
             _dbpContext = dBPContext;
-            _bd2pcontext = bD2PContext;
             _configuration = configuration;
             connectionString = _configuration.GetConnectionString("DefaultConnection");
             connectionStringBd2 = _configuration.GetConnectionString("DB2");
