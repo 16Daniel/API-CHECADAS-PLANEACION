@@ -8,5 +8,6 @@ namespace API_PEDIDOS.ModelsDBP
         public int Id { get; set; }
         public int Codproveedor { get; set; }
         public int Codart { get; set; }
+        public bool? Fiscal { get; set; }
     }
 }

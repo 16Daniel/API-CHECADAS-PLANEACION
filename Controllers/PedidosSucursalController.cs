@@ -1,4 +1,4 @@
-﻿
+
 using API_PEDIDOS.ModelsDB2;
 using API_PEDIDOS.ModelsDBP;
 using Microsoft.AspNetCore.Http;
@@ -79,10 +79,28 @@ namespace API_PEDIDOS.Controllers
                             {
                                 cod = art.Codarticulo,
                                 descripcion = art.Descripcion,
-                                referencia = art.Refproveedor
+                                referencia = art.Refproveedor,
                             };
 
-                return StatusCode(200, query.ToList());
+        var articulos = query.ToList();
+
+        List<Object> data = new List<Object>();
+
+        foreach (var item in articulos)
+        {
+          var artdb = _dbpContext.PedSucArticulos.Where(x => x.Codart == item.cod && x.Codproveedor == idprov).FirstOrDefault();
+          data.Add(
+            new
+            {
+              cod = item.cod,
+              descripcion = item.descripcion,
+              referencia = item.referencia,
+              fiscal = artdb == null ? false : artdb.Fiscal,
+            }
+            );
+
+        }
+        return StatusCode(200,data);
             }
             catch (Exception ex)
             {
@@ -163,13 +181,16 @@ namespace API_PEDIDOS.Controllers
                     if (articulo != null)
                     {
                         var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == prov.Nif20 && p.Codarticulo == art.Codart).FirstOrDefault();
-                        Boolean tienemultiplo = itprod == null ? false : true;
+                         var artdb = _dbpContext.PedSucArticulos.Where(x => x.Codart == articulo.cod && x.Codproveedor == idprov).FirstOrDefault();
+
+            Boolean tienemultiplo = itprod == null ? false : true;
                         data.Add(new
                         {
                             cod = articulo.cod,
                             descripcion = articulo.descripcion,
                             referencia = articulo.referencia,
-                            tudm = tienemultiplo
+                            tudm = tienemultiplo,
+                            fiscal = artdb.Fiscal 
                         });
                     }
                 }
@@ -262,10 +283,10 @@ namespace API_PEDIDOS.Controllers
 
             try
             {
-                var articulosprov = _dbpContext.ArticulosProveedors.Where(x => x.Codprov == id).ToList();
+                var articulosprov = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == id).ToList();
                 if (articulosprov.Count > 0) 
                 {
-                    _dbpContext.ArticulosProveedors.RemoveRange(articulosprov);
+                    _dbpContext.PedSucArticulos.RemoveRange(articulosprov);
                     await _dbpContext.SaveChangesAsync();
                 }
                 var prov = _dbpContext.PedSucProveedores.Where(x => x.Codproveedor == id).ToList(); 
@@ -291,19 +312,20 @@ namespace API_PEDIDOS.Controllers
         {
             try
             {
-                int[] articulos = JsonConvert.DeserializeObject<int[]>(jdata);
+                List<itempProvSuc> articulos = JsonConvert.DeserializeObject<List<itempProvSuc>>(jdata);
 
                 var items = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == idprov).ToList();
 
                 _dbpContext.PedSucArticulos.RemoveRange(items);
                 await _dbpContext.SaveChangesAsync();
 
-                foreach (int codart in articulos)
+                foreach (var art in articulos)
                 {
                     _dbpContext.PedSucArticulos.Add(new PedSucArticulo()
                     {
                         Codproveedor = idprov,
-                        Codart = codart
+                        Codart = art.id,
+                        Fiscal = art.fiscal == null ? false : art.fiscal,  
                     });
                 }
                 await _dbpContext.SaveChangesAsync();
@@ -712,6 +734,7 @@ namespace API_PEDIDOS.Controllers
 
                 var pedido = JsonConvert.DeserializeObject<PedidoSuc>(pedidodb.Jdata);
                 var cajafront = _contextdb2.RemCajasfronts.Where(x => x.Cajafront == 1 && x.Idfront == int.Parse(pedido.idSucursal)).FirstOrDefault();
+                var codcliente = remfront.Codcliente; 
                 var transporte = _contextdb2.Transportes.Where(x => x.Fax == pedidodb.Sucursal.ToString()).FirstOrDefault();
                 int idtransporte = 0;
                 if (transporte != null) { idtransporte = transporte.Codigo; }
@@ -735,15 +758,16 @@ namespace API_PEDIDOS.Controllers
                         else
                         {
                             
-                            string querynumped = "SELECT ISNULL(MAX(NUMPEDIDO), 0) AS numero_mayor FROM [BD2_PRUEBA].dbo.PEDCOMPRACAB WHERE NUMSERIE ='" + numserie + "'";
-                            //string querynumped = "SELECT ISNULL(MAX(NUMPEDIDO), 0) AS numero_mayor FROM [BD2].dbo.PEDCOMPRACAB WHERE NUMSERIE ='" + numserie + "'";
+                            //string querynumped = "SELECT ISNULL(MAX(NUMPEDIDO), 0) AS numero_mayor FROM [BD2_PRUEBA].dbo.PEDCOMPRACAB WHERE NUMSERIE ='" + numserie + "'";
+                            string querynumped = "SELECT ISNULL(MAX(NUMPEDIDO), 0) AS numero_mayor FROM [BD2].dbo.PEDCOMPRACAB WHERE NUMSERIE ='" + numserie + "'";
                             SqlCommand command = new SqlCommand(querynumped, connection, transaccion);
 
                             object result = command.ExecuteScalar();
                             int numpedido = Convert.ToInt32(result);
                             numpedido++;
                             string supedido = "-" + numserie + "-" + numpedido;
-                            double totalimpuestos = 0;
+                            string csupedido = numserie + "-" + numpedido;
+                        double totalimpuestos = 0;
 
                             foreach (var item in pedido.articulos)
                             {
@@ -751,7 +775,7 @@ namespace API_PEDIDOS.Controllers
                             }
 
                             // insertar pedcompracab
-                            command = new SqlCommand("SP_INSERT_PEDIDO2", connection, transaccion);
+                            command = new SqlCommand("SP_INSERT_PEDIDO", connection, transaccion);
                             command.CommandType = CommandType.StoredProcedure;
                             // Parámetros del procedimiento almacenado
                             command.Parameters.AddWithValue("@PEDCAB_NUMSERIE", numserie);
@@ -773,7 +797,7 @@ namespace API_PEDIDOS.Controllers
                                 numlinea++;
                                 var articulodb = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
                                 string referencia = articulodb.Refproveedor;
-                                command = new SqlCommand("SP_INSERT_PEDIDOLIN2", connection, transaccion);
+                                command = new SqlCommand("SP_INSERT_PEDIDOLIN", connection, transaccion);
                                 command.CommandType = CommandType.StoredProcedure;
                                 // Agregar parámetros
                                 command.Parameters.AddWithValue("@PEDLIN_NUMSERIE", numserie);
@@ -811,7 +835,7 @@ namespace API_PEDIDOS.Controllers
                                     iva = item.iva;
                                 }
 
-                                command = new SqlCommand("SP_INSERT_COMPRATOT2", connection, transaccion);
+                                command = new SqlCommand("SP_INSERT_COMPRATOT", connection, transaccion);
                                 command.CommandType = CommandType.StoredProcedure;
                                 // Agregar parámetros al procedimiento almacenado
                                 command.Parameters.AddWithValue("@PEDTOT_NUMSERIE", numserie);
@@ -832,7 +856,7 @@ namespace API_PEDIDOS.Controllers
 
                             var prov = _contextdb2.Proveedores.Where(x => x.Codproveedor == pedido.codProveedor).FirstOrDefault();
                             var fpagoprov = _contextdb2.Fpagoproveedors.Where(x => x.Codproveedor == pedido.codProveedor).FirstOrDefault();
-                            command = new SqlCommand("SP_INSERT_TESORERIA2", connection, transaccion);
+                            command = new SqlCommand("SP_INSERT_TESORERIA", connection, transaccion);
                             command.CommandType = CommandType.StoredProcedure;
 
                             // Agregar parámetros al procedimiento almacenado
@@ -847,7 +871,7 @@ namespace API_PEDIDOS.Controllers
 
                             // update seriesdoc
 
-                            command = new SqlCommand("SP_UPDATE_SERIESDOC2", connection, transaccion);
+                            command = new SqlCommand("SP_UPDATE_SERIESDOC", connection, transaccion);
                             command.CommandType = CommandType.StoredProcedure;
 
                             // Agregar parámetros al procedimiento almacenado
@@ -860,53 +884,55 @@ namespace API_PEDIDOS.Controllers
                             command.ExecuteNonQuery();
 
 
+            if (prov.Codproveedor == 5 || prov.Codproveedor == 1)
+            {
+              command = new SqlCommand("SP_INSERT_INCIDENCIA", connection, transaccion);
 
-                        command = new SqlCommand("SP_INSERT_INCIDENCIA", connection, transaccion);
-                        
-                            command.CommandType = CommandType.StoredProcedure;
+              command.CommandType = CommandType.StoredProcedure;
 
-                            // Agregar los parámetros
-                            command.Parameters.AddWithValue("@FECHA", DateTime.Now);
-                            command.Parameters.AddWithValue("@CODCLIENTE", 1);
-                            command.Parameters.AddWithValue("@SERIE", numserie);
-                            command.Parameters.AddWithValue("@NUMPEDIDO",numpedido);
-                            command.Parameters.AddWithValue("@FECHAENTREGA", pedido.fechaEntrega);
-                            command.Parameters.AddWithValue("@CSUPEDIDO", supedido);
-                            command.Parameters.AddWithValue("@CODPROV", pedido.codProveedor);
-                            command.Parameters.AddWithValue("@COMENTARIOLIBRE", "");
-                            command.Parameters.AddWithValue("@TOTALSINIVA", pedido.total);
-                            command.Parameters.AddWithValue("@TOTALCONIVA", pedido.total + totalimpuestos);
-                            command.Parameters.AddWithValue("@IDF", pedido.idSucursal);
+              // Agregar los parámetros
+              command.Parameters.AddWithValue("@FECHA", DateTime.Now.Date);
+              command.Parameters.AddWithValue("@CODCLIENTE", codcliente);
+              command.Parameters.AddWithValue("@SERIE", numserie);
+              command.Parameters.AddWithValue("@NUMPEDIDO", numpedido);
+              command.Parameters.AddWithValue("@FECHAENTREGA", pedido.fechaEntrega.Date);
+              command.Parameters.AddWithValue("@CSUPEDIDO", csupedido);
+              command.Parameters.AddWithValue("@CODPROV", pedido.codProveedor);
+              command.Parameters.AddWithValue("@COMENTARIOLIBRE", "");
+              command.Parameters.AddWithValue("@TOTALSINIVA", pedido.total);
+              command.Parameters.AddWithValue("@TOTALCONIVA", pedido.total + totalimpuestos);
+              command.Parameters.AddWithValue("@IDF", pedido.idSucursal);
 
-                           command.ExecuteNonQuery();
+              command.ExecuteNonQuery();
 
-                        command = new SqlCommand("[dbo].[GET_IDINCIDENCIA]", connection, transaccion);
-                        command.CommandType = CommandType.StoredProcedure;
+              command = new SqlCommand("[dbo].[GET_IDINCIDENCIA]", connection, transaccion);
+              command.CommandType = CommandType.StoredProcedure;
 
-                        object result2 = command.ExecuteScalar();
-                        int idincidencia = Convert.ToInt32(result2);
+              object result2 = command.ExecuteScalar();
+              int idincidencia = Convert.ToInt32(result2);
 
-                        numlinea = 0; 
-                        foreach (var art in pedido.articulos)
-                        {
-                            numlinea++;
-                            var articulodb = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
-                            command = new SqlCommand("SP_INSERT_INCIDENCIA_LIN", connection, transaccion);
+              numlinea = 0;
+              foreach (var art in pedido.articulos)
+              {
+                numlinea++;
+                var articulodb = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
+                command = new SqlCommand("SP_INSERT_INCIDENCIA_LIN", connection, transaccion);
 
-                            command.CommandType = CommandType.StoredProcedure;
+                command.CommandType = CommandType.StoredProcedure;
 
-                            // Agregar los parámetros
-                            command.Parameters.AddWithValue("@IDINCIDENCIA", idincidencia);
-                            command.Parameters.AddWithValue("@NUMLINEA", numlinea);
-                            command.Parameters.AddWithValue("@CODART", art.codArticulo);
-                            command.Parameters.AddWithValue("@UNIDADES", art.cajas);
-                            command.Parameters.AddWithValue("@UNIDADES2", art.unidadescaja);
-                            command.Parameters.AddWithValue("@TOTALLINEA", art.total_linea);
-                            command.Parameters.AddWithValue("@DESCRIPCIONART", articulodb.Descripcion);
-                            command.Parameters.AddWithValue("@CODBARRAS", "");
+                // Agregar los parámetros
+                command.Parameters.AddWithValue("@IDINCIDENCIA", idincidencia);
+                command.Parameters.AddWithValue("@NUMLINEA", numlinea);
+                command.Parameters.AddWithValue("@CODART", art.codArticulo);
+                command.Parameters.AddWithValue("@UNIDADES", art.cajas);
+                command.Parameters.AddWithValue("@UNIDADES2", art.unidadescaja);
+                command.Parameters.AddWithValue("@TOTALLINEA", art.total_linea);
+                command.Parameters.AddWithValue("@DESCRIPCIONART", articulodb.Descripcion);
+                command.Parameters.AddWithValue("@CODBARRAS", "");
 
-                            command.ExecuteNonQuery();
-                        }
+                command.ExecuteNonQuery();
+              }
+            }
 
                         await transaccion.CommitAsync();
 
@@ -1160,6 +1186,12 @@ namespace API_PEDIDOS.Controllers
 
     }
 
+  public class itempProvSuc
+  {
+    public int id { get; set; }
+    public Boolean? fiscal { get; set; }
+
+  }
     public class previewpedModel
     {
         public int idprov { get; set; }

@@ -1,4 +1,4 @@
-﻿using API_PEDIDOS.funciones;
+using API_PEDIDOS.funciones;
 using API_PEDIDOS.ModelsDB2;
 using API_PEDIDOS.ModelsDBP;
 using Microsoft.AspNetCore.Http;
@@ -310,7 +310,7 @@ namespace API_PEDIDOS.Controllers
                             int[] arraycal = new int[array[0].Length];
                             DiasEspecialesSucursal[] diasespeciales = { null, null, null, null, null, null, null };
 
-
+                            double consumoentrega = 0; 
                             for (int i = 0; i < array.Length; i++)
                             {
                                 if (array[i][numdia] == 1)
@@ -320,6 +320,10 @@ namespace API_PEDIDOS.Controllers
 
                                         if (array[i][j] == 1 || array[i][j] == 2 || array[i][j] == 3)
                                         {
+                                            if (array[i][j] == 3)
+                                            {
+                                                consumoentrega = consumos[j].consumo;
+                                            }
                                             arraycal = array[i];
                                             var diaespecialsuc = _dbpContext.DiasEspecialesSucursals.ToList().Where(d => d.Fecha.Value.ToString("yyyy-MM-dd") == fechas[j].ToString("yyyy-MM-dd") && d.Sucursal == item.Codsucursal).FirstOrDefault();
                                             var diaespecial = _dbpContext.DiasEspeciales.ToList().Where(d => d.Fecha.ToString("yyyy-MM-dd") == fechas[j].ToString("yyyy-MM-dd")).FirstOrDefault();
@@ -348,9 +352,35 @@ namespace API_PEDIDOS.Controllers
                                                     int[] articulosdiesp = JsonConvert.DeserializeObject<int[]>(diaespecialsuc.Articulos);
                                                     if (articulosdiesp.Contains(art.cod))
                                                     {
-                                                        diasespeciales[j] = diaespecialsuc;
-                                                        double factor = (diaespecialsuc.FactorConsumo ?? 1.5);
-                                                        consumopedido += (consumos[j].consumo * factor);
+                                                        if (diaespecial != null)
+                                                        {
+                                                            if (diaespecial.FactorConsumo > diaespecialsuc.FactorConsumo)
+                                                            {
+                                                                diasespeciales[j] = new DiasEspecialesSucursal()
+                                                                {
+                                                                    Id = diaespecial.Id,
+                                                                    Dia = diaespecial.Dia,
+                                                                    Semana = diaespecial.Semana,
+                                                                    Fecha = diaespecial.Fecha,
+                                                                    Descripcion = diaespecial.Descripcion,
+                                                                    FactorConsumo = diaespecial.FactorConsumo,
+                                                                    Sucursal = 0
+                                                                };
+                                                                consumopedido += (consumos[j].consumo * diaespecial.FactorConsumo);
+                                                            }
+                                                            else
+                                                            {
+                                                                diasespeciales[j] = diaespecialsuc;
+                                                                double factor = (diaespecialsuc.FactorConsumo ?? 1.5);
+                                                                consumopedido += (consumos[j].consumo * factor);
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            diasespeciales[j] = diaespecialsuc;
+                                                            double factor = (diaespecialsuc.FactorConsumo ?? 1.5);
+                                                            consumopedido += (consumos[j].consumo * factor);
+                                                        }
                                                     }
                                                     else
                                                     {
@@ -404,7 +434,7 @@ namespace API_PEDIDOS.Controllers
                             List<PinventarioModel> inventarios = new List<PinventarioModel>();
                             inventarios.Clear();
 
-                            if (inventarioteorico && DateTime.Now.Date != new DateTime(2024, 12, 26).Date && DateTime.Now.Date != new DateTime(2025, 1, 2).Date)
+                            if (inventarioteorico)
                             {
                                 using (SqlCommand command = new SqlCommand("SPS_GET_DIFERENCIA_LIN", conn))
                                 {
@@ -581,7 +611,7 @@ namespace API_PEDIDOS.Controllers
                                 unidadesextra = unidadespendientes,
                                 esretornable = esretornable,
                                 tienelimitealmacen = tienelimitealmacen,
-                                capacidadalmfinal = (capacidadalm - unidadesentrega),
+                                capacidadalmfinal = (capacidadalm - unidadesentrega + (consumoentrega / 2)),
                                 invformulado = inventarioteorico
                             });
                         }
@@ -589,51 +619,96 @@ namespace API_PEDIDOS.Controllers
                         // validar si requiere cartones 
                         double cartones = 0;
                         Boolean cartonescapturados = false;
-                        if (requierecartones)
-                        {
-                            List<PinventarioModel> invcartones = new List<PinventarioModel>();
-                            using (SqlCommand command = new SqlCommand("SP_GET_INVENTARIO", conn))
-                            {
-                                command.CommandType = CommandType.StoredProcedure;
-                                string codalm = "";
-                                if (item.Codsucursal < 10)
-                                {
-                                    codalm = "0" + item.Codsucursal;
-                                }
-                                else { codalm = item.Codsucursal.ToString(); }
-                                // Añadir parámetros al comando
-                                command.Parameters.Add("@sucursal", SqlDbType.NVarChar, 5).Value = codalm;
-                                command.Parameters.Add("@articulo", SqlDbType.Int).Value = 10277;
-                                command.Parameters.Add("@FI", SqlDbType.NVarChar, 255).Value = DateTime.Now.ToString("yyyy-MM-dd");
-                                command.Parameters.Add("@FF", SqlDbType.NVarChar, 255).Value = DateTime.Now.ToString("yyyy-MM-dd");
+            if (requierecartones)
+            {
+              List<PinventarioModel> invcartones = new List<PinventarioModel>();
 
-                                // Ejecutar el comando y leer los resultados
-                                using (SqlDataReader reader = command.ExecuteReader())
-                                {
-                                    while (reader.Read())
-                                    {
-                                        DateTime fecha = (DateTime)reader["FECHA"];
-                                        double unidades = reader.GetDouble(1);
+              if (inventarioteorico)
+              {
+                using (SqlCommand command = new SqlCommand("SPS_GET_DIFERENCIA_LIN", conn))
+                {
+                  command.CommandType = CommandType.StoredProcedure;
+                  string codalm = "";
+                  if (item.Codsucursal < 10)
+                  {
+                    codalm = "0" + item.Codsucursal;
+                  }
+                  else { codalm = item.Codsucursal.ToString(); }
+                  // Añadir parámetros al comando
+                  command.Parameters.Add("@FECHA", System.Data.SqlDbType.VarChar, 10).Value = DateTime.Now.ToString("dd/MM/yyyy");
+                  command.Parameters.Add("@CODALM", System.Data.SqlDbType.NVarChar, 10).Value = codalm;
+                  command.Parameters.Add("@CODART", System.Data.SqlDbType.Int).Value = 10277;
+                  command.CommandTimeout = 120;
 
-                                        invcartones.Add(new PinventarioModel()
-                                        {
-                                            fecha = fecha,
-                                            unidades = unidades,
-                                        });
-                                    }
-                                }
-                            }
+                  // Ejecutar el comando y leer los resultados
+                  using (SqlDataReader reader = command.ExecuteReader())
+                  {
+                    while (reader.Read())
+                    {
+                      DateTime fecha = DateTime.Now;
+                      double unidades = (double)reader["INVFORMULA"];
+                      invcartones.Add(new PinventarioModel()
+                      {
+                        fecha = fecha,
+                        unidades = unidades,
+                      });
+                    }
+                  }
+                }
+              }
+              else
+              {
 
-                            if (invcartones.Count > 0)
-                            {
-                                cartonescapturados = true;
-                                cartones = invcartones[0].unidades;
-                            }
-                        }
+                using (SqlCommand command = new SqlCommand("SP_GET_INVENTARIO", conn))
+                {
+                  command.CommandType = CommandType.StoredProcedure;
+                  string codalm = "";
+                  if (item.Codsucursal < 10)
+                  {
+                    codalm = "0" + item.Codsucursal;
+                  }
+                  else { codalm = item.Codsucursal.ToString(); }
+                  // Añadir parámetros al comando
+                  command.Parameters.Add("@sucursal", SqlDbType.NVarChar, 5).Value = codalm;
+                  command.Parameters.Add("@articulo", SqlDbType.Int).Value = 10277;
+                  command.Parameters.Add("@FI", SqlDbType.NVarChar, 255).Value = DateTime.Now.ToString("yyyy-MM-dd");
+                  command.Parameters.Add("@FF", SqlDbType.NVarChar, 255).Value = DateTime.Now.ToString("yyyy-MM-dd");
 
-                        Boolean tienedescuento = false;
+                  // Ejecutar el comando y leer los resultados
+                  using (SqlDataReader reader = command.ExecuteReader())
+                  {
+                    while (reader.Read())
+                    {
+                      DateTime fecha = (DateTime)reader["FECHA"];
+                      double unidades = reader.GetDouble(1);
+
+                      invcartones.Add(new PinventarioModel()
+                      {
+                        fecha = fecha,
+                        unidades = unidades,
+                      });
+                    }
+                  }
+                }
+
+              }
+
+              if (invcartones.Count > 0)
+              {
+                cartonescapturados = true;
+                cartones = invcartones[0].unidades;
+              }
+            }
+
+            Boolean tienedescuento = false;
                         var regdesc = _dbpContext.Descuentos.Where(x => x.Codprov == item.Codproveedor).FirstOrDefault();
                         if (regdesc != null) { tienedescuento = true; }
+
+                        double totalimpuestos = 0;
+                        foreach (var itemart in articulospedido)
+                        {
+                            totalimpuestos += (itemart.total_linea * itemart.iva) / 100;
+                        }
 
                         pedidos.Add(new Pedidos()
                         {
@@ -651,7 +726,8 @@ namespace API_PEDIDOS.Controllers
                             tieneretornables = requierecartones,
                             capturacartones = cartonescapturados,
                             tienedescuento = tienedescuento,
-                            cantidaddescuento = 0
+                            cantidaddescuento = 0,
+                            totiva = totalimpuestos
                         });
 
                         string tempjdata = JsonConvert.SerializeObject(pedidos.Last());
@@ -997,7 +1073,7 @@ namespace API_PEDIDOS.Controllers
                             int[] arraycal = new int[array[0].Length];
                             DiasEspecialesSucursal[] diasespeciales = { null, null, null, null, null, null, null };
 
-
+                            double consumoentrega = 0; 
                             for (int i = 0; i < array.Length; i++)
                             {
                                 if (array[i][numdia] == 1)
@@ -1007,6 +1083,10 @@ namespace API_PEDIDOS.Controllers
 
                                         if (array[i][j] == 1 || array[i][j] == 2 || array[i][j] == 3)
                                         {
+                                            if (array[i][j] == 3)
+                                            {
+                                                consumoentrega = consumos[j].consumo;
+                                            }
                                             arraycal = array[i];
                                             var diaespecialsuc = _dbpContext.DiasEspecialesSucursals.ToList().Where(d => d.Fecha.Value.ToString("yyyy-MM-dd") == fechas[j].ToString("yyyy-MM-dd") && d.Sucursal == item.Codsucursal).FirstOrDefault();
                                             var diaespecial = _dbpContext.DiasEspeciales.ToList().Where(d => d.Fecha.ToString("yyyy-MM-dd") == fechas[j].ToString("yyyy-MM-dd")).FirstOrDefault();
@@ -1035,9 +1115,35 @@ namespace API_PEDIDOS.Controllers
                                                     int[] articulosdiesp = JsonConvert.DeserializeObject<int[]>(diaespecialsuc.Articulos);
                                                     if (articulosdiesp.Contains(art.cod))
                                                     {
-                                                        diasespeciales[j] = diaespecialsuc;
-                                                        double factor = (diaespecialsuc.FactorConsumo ?? 1.5);
-                                                        consumopedido += (consumos[j].consumo * factor);
+                                                        if (diaespecial != null)
+                                                        {
+                                                            if (diaespecial.FactorConsumo > diaespecialsuc.FactorConsumo)
+                                                            {
+                                                                diasespeciales[j] = new DiasEspecialesSucursal()
+                                                                {
+                                                                    Id = diaespecial.Id,
+                                                                    Dia = diaespecial.Dia,
+                                                                    Semana = diaespecial.Semana,
+                                                                    Fecha = diaespecial.Fecha,
+                                                                    Descripcion = diaespecial.Descripcion,
+                                                                    FactorConsumo = diaespecial.FactorConsumo,
+                                                                    Sucursal = 0
+                                                                };
+                                                                consumopedido += (consumos[j].consumo * diaespecial.FactorConsumo);
+                                                            }
+                                                            else
+                                                            {
+                                                                diasespeciales[j] = diaespecialsuc;
+                                                                double factor = (diaespecialsuc.FactorConsumo ?? 1.5);
+                                                                consumopedido += (consumos[j].consumo * factor);
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            diasespeciales[j] = diaespecialsuc;
+                                                            double factor = (diaespecialsuc.FactorConsumo ?? 1.5);
+                                                            consumopedido += (consumos[j].consumo * factor);
+                                                        }
                                                     }
                                                     else
                                                     {
@@ -1091,7 +1197,7 @@ namespace API_PEDIDOS.Controllers
                             List<PinventarioModel> inventarios = new List<PinventarioModel>();
                             inventarios.Clear();
 
-                            if (inventarioteorico && DateTime.Now.Date != new DateTime(2024, 12, 26).Date && DateTime.Now.Date != new DateTime(2025, 1, 2).Date)
+                            if (inventarioteorico)
                             {
                                 using (SqlCommand command = new SqlCommand("SPS_GET_DIFERENCIA_LIN", conn))
                                 {
@@ -1270,7 +1376,7 @@ namespace API_PEDIDOS.Controllers
                                 unidadesextra = unidadespendientes,
                                 esretornable = esretornable,
                                 tienelimitealmacen = tienelimitealmacen,
-                                capacidadalmfinal = (capacidadalm - unidadesentrega),
+                                capacidadalmfinal = (capacidadalm - unidadesentrega + (consumoentrega / 2)),
                                 invformulado = inventarioteorico
                             });
                         }
@@ -1278,51 +1384,95 @@ namespace API_PEDIDOS.Controllers
                         // validar si requiere cartones 
                         double cartones = 0;
                         Boolean cartonescapturados = false;
-                        if (requierecartones)
-                        {
-                            List<PinventarioModel> invcartones = new List<PinventarioModel>();
-                            using (SqlCommand command = new SqlCommand("SP_GET_INVENTARIO", conn))
-                            {
-                                command.CommandType = CommandType.StoredProcedure;
-                                string codalm = "";
-                                if (item.Codsucursal < 10)
-                                {
-                                    codalm = "0" + item.Codsucursal;
-                                }
-                                else { codalm = item.Codsucursal.ToString(); }
-                                // Añadir parámetros al comando
-                                command.Parameters.Add("@sucursal", SqlDbType.NVarChar, 5).Value = codalm;
-                                command.Parameters.Add("@articulo", SqlDbType.Int).Value = 10277;
-                                command.Parameters.Add("@FI", SqlDbType.NVarChar, 255).Value = DateTime.Now.ToString("yyyy-MM-dd");
-                                command.Parameters.Add("@FF", SqlDbType.NVarChar, 255).Value = DateTime.Now.ToString("yyyy-MM-dd");
+            if (requierecartones)
+            {
+              List<PinventarioModel> invcartones = new List<PinventarioModel>();
 
-                                // Ejecutar el comando y leer los resultados
-                                using (SqlDataReader reader = command.ExecuteReader())
-                                {
-                                    while (reader.Read())
-                                    {
-                                        DateTime fecha = (DateTime)reader["FECHA"];
-                                        double unidades = reader.GetDouble(1);
+              if (inventarioteorico)
+              {
+                using (SqlCommand command = new SqlCommand("SPS_GET_DIFERENCIA_LIN", conn))
+                {
+                  command.CommandType = CommandType.StoredProcedure;
+                  string codalm = "";
+                  if (item.Codsucursal < 10)
+                  {
+                    codalm = "0" + item.Codsucursal;
+                  }
+                  else { codalm = item.Codsucursal.ToString(); }
+                  // Añadir parámetros al comando
+                  command.Parameters.Add("@FECHA", System.Data.SqlDbType.VarChar, 10).Value = DateTime.Now.ToString("dd/MM/yyyy");
+                  command.Parameters.Add("@CODALM", System.Data.SqlDbType.NVarChar, 10).Value = codalm;
+                  command.Parameters.Add("@CODART", System.Data.SqlDbType.Int).Value = 10277;
+                  command.CommandTimeout = 120;
 
-                                        invcartones.Add(new PinventarioModel()
-                                        {
-                                            fecha = fecha,
-                                            unidades = unidades,
-                                        });
-                                    }
-                                }
-                            }
+                  // Ejecutar el comando y leer los resultados
+                  using (SqlDataReader reader = command.ExecuteReader())
+                  {
+                    while (reader.Read())
+                    {
+                      DateTime fecha = DateTime.Now;
+                      double unidades = (double)reader["INVFORMULA"];
+                      invcartones.Add(new PinventarioModel()
+                      {
+                        fecha = fecha,
+                        unidades = unidades,
+                      });
+                    }
+                  }
+                }
+              }
+              else
+              {
 
-                            if (invcartones.Count > 0)
-                            {
-                                cartonescapturados = true;
-                                cartones = invcartones[0].unidades;
-                            }
-                        }
+                using (SqlCommand command = new SqlCommand("SP_GET_INVENTARIO", conn))
+                {
+                  command.CommandType = CommandType.StoredProcedure;
+                  string codalm = "";
+                  if (item.Codsucursal < 10)
+                  {
+                    codalm = "0" + item.Codsucursal;
+                  }
+                  else { codalm = item.Codsucursal.ToString(); }
+                  // Añadir parámetros al comando
+                  command.Parameters.Add("@sucursal", SqlDbType.NVarChar, 5).Value = codalm;
+                  command.Parameters.Add("@articulo", SqlDbType.Int).Value = 10277;
+                  command.Parameters.Add("@FI", SqlDbType.NVarChar, 255).Value = DateTime.Now.ToString("yyyy-MM-dd");
+                  command.Parameters.Add("@FF", SqlDbType.NVarChar, 255).Value = DateTime.Now.ToString("yyyy-MM-dd");
 
-                        Boolean tienedescuento = false;
+                  // Ejecutar el comando y leer los resultados
+                  using (SqlDataReader reader = command.ExecuteReader())
+                  {
+                    while (reader.Read())
+                    {
+                      DateTime fecha = (DateTime)reader["FECHA"];
+                      double unidades = reader.GetDouble(1);
+
+                      invcartones.Add(new PinventarioModel()
+                      {
+                        fecha = fecha,
+                        unidades = unidades,
+                      });
+                    }
+                  }
+                }
+
+              }
+
+              if (invcartones.Count > 0)
+              {
+                cartonescapturados = true;
+                cartones = invcartones[0].unidades;
+              }
+            }
+            Boolean tienedescuento = false;
                         var regdesc = _dbpContext.Descuentos.Where(x => x.Codprov == item.Codproveedor).FirstOrDefault();
                         if (regdesc != null) { tienedescuento = true; }
+
+                        double totalimpuestos = 0;
+                        foreach (var itemart in articulospedido)
+                        {
+                            totalimpuestos += (itemart.total_linea * itemart.iva) / 100;
+                        }
 
                         pedidos.Add(new Pedidos()
                         {
@@ -1340,7 +1490,8 @@ namespace API_PEDIDOS.Controllers
                             tieneretornables = requierecartones,
                             capturacartones = cartonescapturados,
                             tienedescuento = tienedescuento,
-                            cantidaddescuento = 0
+                            cantidaddescuento = 0,
+                            totiva = totalimpuestos
                         });
 
                         string tempjdata = JsonConvert.SerializeObject(pedidos.Last());
@@ -1480,8 +1631,16 @@ namespace API_PEDIDOS.Controllers
                             command.Parameters.AddWithValue("@PEDCAB_FECHA_PEDIDO", DateTime.Now);
                             command.Parameters.AddWithValue("@PEDCAB_FECHA_ENTREGA", pedido.fechaEntrega);
                             command.Parameters.AddWithValue("@PEDCAB_TOTBRUTO", pedido.total);
-                            command.Parameters.AddWithValue("@PEDCAB_TOTIMPUESTOS", totalimpuestos);
-                            command.Parameters.AddWithValue("@PEDCAB_TOTNETO", pedido.total + totalimpuestos);
+                            if (pedido.tienedescuento)
+                            {
+                                command.Parameters.AddWithValue("@PEDCAB_TOTIMPUESTOS", (pedido.total - pedido.cantidaddescuento) * 0.16);
+                                command.Parameters.AddWithValue("@PEDCAB_TOTNETO", (pedido.total - pedido.cantidaddescuento) * 1.16);
+                            }
+                            else
+                            {
+                                command.Parameters.AddWithValue("@PEDCAB_TOTIMPUESTOS", totalimpuestos);
+                                command.Parameters.AddWithValue("@PEDCAB_TOTNETO", pedido.total + totalimpuestos);
+                            };
                             command.Parameters.AddWithValue("@PEDCAB_SUPEDIDO", supedido);
                             command.Parameters.AddWithValue("@TRANSPORTE", idtransporte);
                             command.ExecuteNonQuery();
@@ -1617,7 +1776,10 @@ namespace API_PEDIDOS.Controllers
                                         if (pedcompratot != null)
                                         {
                                             pedcompratot.Totdtocomerc = pedido.cantidaddescuento;
-                                            
+                                            pedcompratot.Dtocomerc = porcentajedescuento;
+                                            pedcompratot.Baseimponible = pedcompratot.Bruto - pedido.cantidaddescuento;
+                                            pedcompratot.Totiva = pedcompratot.Baseimponible * .16;
+                                            pedcompratot.Total = pedcompratot.Baseimponible + pedcompratot.Totiva;
                                             _contextdb2.Pedcompratots.Update(pedcompratot);
                                             await _contextdb2.SaveChangesAsync();
                                         }

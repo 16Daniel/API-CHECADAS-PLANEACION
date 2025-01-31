@@ -38,6 +38,7 @@ namespace API_PEDIDOS.ModelsDBP
         public virtual DbSet<PedSucArticulo> PedSucArticulos { get; set; } = null!;
         public virtual DbSet<PedSucProveedore> PedSucProveedores { get; set; } = null!;
         public virtual DbSet<Pedido> Pedidos { get; set; } = null!;
+        public virtual DbSet<PedidosPrueba> PedidosPruebas { get; set; } = null!;
         public virtual DbSet<PedidosSucursale> PedidosSucursales { get; set; } = null!;
         public virtual DbSet<Retornable> Retornables { get; set; } = null!;
         public virtual DbSet<Sesione> Sesiones { get; set; } = null!;
@@ -384,6 +385,8 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Codart).HasColumnName("CODART");
 
                 entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
+
+                entity.Property(e => e.Fiscal).HasColumnName("FISCAL");
             });
 
             modelBuilder.Entity<PedSucProveedore>(entity =>
@@ -400,6 +403,37 @@ namespace API_PEDIDOS.ModelsDBP
             modelBuilder.Entity<Pedido>(entity =>
             {
                 entity.ToTable("PEDIDOS");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Datam).HasColumnName("DATAM");
+
+                entity.Property(e => e.Estatus).HasColumnName("ESTATUS");
+
+                entity.Property(e => e.Fecha)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA");
+
+                entity.Property(e => e.Idcal).HasColumnName("IDCAL");
+
+                entity.Property(e => e.Jdata).HasColumnName("JDATA");
+
+                entity.Property(e => e.Numpedido)
+                    .HasMaxLength(50)
+                    .HasColumnName("NUMPEDIDO");
+
+                entity.Property(e => e.Proveedor).HasColumnName("PROVEEDOR");
+
+                entity.Property(e => e.Sucursal)
+                    .HasMaxLength(50)
+                    .HasColumnName("SUCURSAL");
+
+                entity.Property(e => e.Temporal).HasColumnName("TEMPORAL");
+            });
+
+            modelBuilder.Entity<PedidosPrueba>(entity =>
+            {
+                entity.ToTable("PEDIDOS_PRUEBAS");
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
