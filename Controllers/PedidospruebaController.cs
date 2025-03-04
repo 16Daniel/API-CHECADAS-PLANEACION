@@ -737,10 +737,6 @@ namespace API_PEDIDOS.Controllers
               }
             }
 
-            Boolean tienedescuento = false;
-            var regdesc = _dbpContext.Descuentos.Where(x => x.Codprov == item.Codproveedor).FirstOrDefault();
-            if (regdesc != null) { tienedescuento = true; }
-
             double totalimpuestos = 0;
             foreach (var itemart in articulospedido)
             {
@@ -762,7 +758,6 @@ namespace API_PEDIDOS.Controllers
               cartones = cartones,
               tieneretornables = requierecartones,
               capturacartones = cartonescapturados,
-              tienedescuento = tienedescuento,
               cantidaddescuento = 0,
               totiva = totalimpuestos
             });

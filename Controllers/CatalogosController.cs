@@ -1,4 +1,4 @@
-﻿using API_PEDIDOS.ModelsDB2;
+using API_PEDIDOS.ModelsDB2;
 using API_PEDIDOS.ModelsDBP;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;

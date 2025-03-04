@@ -1,4 +1,4 @@
-﻿using API_PEDIDOS.ModelsDB2;
+using API_PEDIDOS.ModelsDB2;
 using API_PEDIDOS.ModelsDBP;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -136,27 +136,26 @@ namespace API_PEDIDOS.Controllers
                 var usuario = _dbpContext.Usuarios.Where(x=> x.Email == model.email && x.Pass == model.pass).FirstOrDefault();
                 if (usuario != null)
                 {
-                    var sesion = _dbpContext.Sesiones.Where(x => x.Idu == usuario.Id).FirstOrDefault();
+                       string token = Guid.NewGuid().ToString();
+                      var sesion = _dbpContext.Sesiones.Where(x => x.Idu == usuario.Id).FirstOrDefault();
                     if (sesion == null)
                     {
-                        _dbpContext.Sesiones.Add(new Sesione() { Idu = usuario.Id, Activo = true });
+                        _dbpContext.Sesiones.Add(new Sesione() { Idu = usuario.Id, Activo = true, Token = token });
                         await _dbpContext.SaveChangesAsync();
-                        return StatusCode(200, usuario);
+                        return StatusCode(200, new { usuario = usuario, token = token });
                     }
                     else 
                     {
-                        if (sesion.Activo == true)
-                        {
-                            return StatusCode(StatusCodes.Status423Locked);
-                        }
-                        else 
-                        {
-                            sesion.Activo = true;
-                            _dbpContext.Sesiones.Update(sesion); 
-                            await _dbpContext.SaveChangesAsync();
-                            return StatusCode(200, usuario);
-                        }
-                    }
+                      while (sesion.Token == token)
+                      {
+                          token = Guid.NewGuid().ToString();
+                      }
+                      sesion.Activo = true;
+                      sesion.Token = token;
+                      _dbpContext.Sesiones.Update(sesion);
+                      await _dbpContext.SaveChangesAsync();
+                      return StatusCode(200, new { usuario = usuario, token = token });
+          }
                    
                 }
                 else { return StatusCode(StatusCodes.Status404NotFound);  }
@@ -188,7 +187,7 @@ namespace API_PEDIDOS.Controllers
                 else 
                 {
                     sesion.Activo = false;
-
+                     sesion.Token = ""; 
                     _dbpContext.Sesiones.Update(sesion); 
                     await _dbpContext.SaveChangesAsync();
                     return StatusCode(StatusCodes.Status200OK); 
@@ -216,7 +215,23 @@ namespace API_PEDIDOS.Controllers
             return StatusCode(200);
         }
 
+    [HttpGet]
+    [Route("ValidarToken/{idu}/{token}")]
+    public async Task<ActionResult> validartoken(int idu,string token)
+    {
+      Boolean activo = false;
+      var sesion = _dbpContext.Sesiones.Where(x => x.Idu == idu).FirstOrDefault();
+      if (sesion != null)
+      {
+        if (sesion.Token == token)
+        {
+          activo = true;
+        }
+      }
+      return StatusCode(200,activo);
     }
+
+  }
 
     public class LoginModel 
     {

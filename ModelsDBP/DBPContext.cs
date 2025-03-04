@@ -505,6 +505,8 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Activo).HasColumnName("ACTIVO");
 
                 entity.Property(e => e.Idu).HasColumnName("IDU");
+
+                entity.Property(e => e.Token).HasColumnName("TOKEN");
             });
 
             modelBuilder.Entity<Usuario>(entity =>

@@ -386,112 +386,104 @@ namespace API_PEDIDOS.Controllers
                             int[] arraycal = new int[array[0].Length];
                             DiasEspecialesSucursal[] diasespeciales = { null, null, null, null, null, null, null };
 
-                            double consumoentrega = 0; 
-                            for (int i = 0; i < array.Length; i++)
+                            double consumoentrega = 0;
+              for (int i = 0; i < array.Length; i++)
+              {
+                if (array[i][numdia] == 1)
+                {
+                  for (int j = 0; j < array[i].Length; j++)
+                  {
+
+                    if (array[i][j] == 1 || array[i][j] == 2 || array[i][j] == 3)
+                    {
+                      if (array[i][j] == 3)
+                      {
+                        consumoentrega = consumos[j].consumo;
+                      }
+                      arraycal = array[i];
+                      DiasEspecialesSucursal diaespecialsuc = null;
+
+                      DateTime fechabusqueda = fechas[j];
+                      if (j < numdia)
+                      {
+                        fechabusqueda = fechabusqueda.AddDays(7);
+                      }
+
+                      var diaespecialessuc = _dbpContext.DiasEspecialesSucursals.ToList().Where(d => d.Fecha.Value.ToString("yyyy-MM-dd") == fechabusqueda.ToString("yyyy-MM-dd") && d.Sucursal == item.Codsucursal).ToList();
+
+                      foreach (var ides in diaespecialessuc)
+                      {
+                        int[] articulosdiesp = JsonConvert.DeserializeObject<int[]>(ides.Articulos);
+                        if (articulosdiesp.Contains(art.cod))
+                        {
+                          diaespecialsuc = ides;
+                        }
+                      }
+
+                      var diaespecial = _dbpContext.DiasEspeciales.ToList().Where(d => d.Fecha.ToString("yyyy-MM-dd") == fechabusqueda.ToString("yyyy-MM-dd")).FirstOrDefault();
+                      if (diaespecial == null && diaespecialsuc == null)
+                      {
+                        consumopedido += consumos[j].consumo;
+                      }
+                      else
+                      {
+                        if (diaespecialsuc == null)
+                        {
+                          diasespeciales[j] = new DiasEspecialesSucursal()
+                          {
+                            Id = diaespecial.Id,
+                            Dia = diaespecial.Dia,
+                            Semana = diaespecial.Semana,
+                            Fecha = diaespecial.Fecha,
+                            Descripcion = diaespecial.Descripcion,
+                            FactorConsumo = diaespecial.FactorConsumo,
+                            Sucursal = 0
+                          };
+                          consumopedido += (consumos[j].consumo * diaespecial.FactorConsumo);
+                        }
+                        else
+                        {
+                          if (diaespecial != null)
+                          {
+                            if (diaespecial.FactorConsumo > diaespecialsuc.FactorConsumo)
                             {
-                                if (array[i][numdia] == 1)
-                                {
-                                    for (int j = 0; j < array[i].Length; j++)
-                                    {
-
-                                        if (array[i][j] == 1 || array[i][j] == 2 || array[i][j] == 3)
-                                        {
-                                            if (array[i][j] == 3) 
-                                            {
-                                                consumoentrega = consumos[j].consumo;
-                                            }
-                                            arraycal = array[i];
-                                            var diaespecialsuc = _dbpContext.DiasEspecialesSucursals.ToList().Where(d => d.Fecha.Value.ToString("yyyy-MM-dd") == fechas[j].ToString("yyyy-MM-dd") && d.Sucursal == item.Codsucursal).FirstOrDefault();
-                                            var diaespecial = _dbpContext.DiasEspeciales.ToList().Where(d => d.Fecha.ToString("yyyy-MM-dd") == fechas[j].ToString("yyyy-MM-dd")).FirstOrDefault();
-                                            if (diaespecial == null && diaespecialsuc == null)
-                                            {
-                                                consumopedido += consumos[j].consumo;
-                                            }
-                                            else
-                                            {
-                                                if (diaespecialsuc == null)
-                                                {
-                                                    diasespeciales[j] = new DiasEspecialesSucursal()
-                                                    {
-                                                        Id = diaespecial.Id,
-                                                        Dia = diaespecial.Dia,
-                                                        Semana = diaespecial.Semana,
-                                                        Fecha = diaespecial.Fecha,
-                                                        Descripcion = diaespecial.Descripcion,
-                                                        FactorConsumo = diaespecial.FactorConsumo,
-                                                        Sucursal = 0
-                                                    };
-                                                    consumopedido += (consumos[j].consumo * diaespecial.FactorConsumo);
-                                                }
-                                                else
-                                                {
-                                                    int[] articulosdiesp = JsonConvert.DeserializeObject<int[]>(diaespecialsuc.Articulos);
-                                                    if (articulosdiesp.Contains(art.cod))
-                                                    {
-                                                        if (diaespecial != null)
-                                                        {
-                                                            if (diaespecial.FactorConsumo > diaespecialsuc.FactorConsumo)
-                                                            {
-                                                                diasespeciales[j] = new DiasEspecialesSucursal()
-                                                                {
-                                                                    Id = diaespecial.Id,
-                                                                    Dia = diaespecial.Dia,
-                                                                    Semana = diaespecial.Semana,
-                                                                    Fecha = diaespecial.Fecha,
-                                                                    Descripcion = diaespecial.Descripcion,
-                                                                    FactorConsumo = diaespecial.FactorConsumo,
-                                                                    Sucursal = 0
-                                                                };
-                                                                consumopedido += (consumos[j].consumo * diaespecial.FactorConsumo);
-                                                            }
-                                                            else 
-                                                            {
-                                                                diasespeciales[j] = diaespecialsuc;
-                                                                double factor = (diaespecialsuc.FactorConsumo ?? 1.5);
-                                                                consumopedido += (consumos[j].consumo * factor);
-                                                            }
-                                                        }
-                                                        else 
-                                                        {
-                                                            diasespeciales[j] = diaespecialsuc;
-                                                            double factor = (diaespecialsuc.FactorConsumo ?? 1.5);
-                                                            consumopedido += (consumos[j].consumo * factor);
-                                                        }
-                                                       
-                                                    }
-                                                    else 
-                                                    {
-                                                        if (diaespecial != null)
-                                                        {
-                                                            diasespeciales[j] = new DiasEspecialesSucursal()
-                                                            {
-                                                                Id = diaespecial.Id,
-                                                                Dia = diaespecial.Dia,
-                                                                Semana = diaespecial.Semana,
-                                                                Fecha = diaespecial.Fecha,
-                                                                Descripcion = diaespecial.Descripcion,
-                                                                FactorConsumo = diaespecial.FactorConsumo,
-                                                                Sucursal = 0
-                                                            };
-                                                            consumopedido += (consumos[j].consumo * diaespecial.FactorConsumo);
-                                                        }
-                                                        else 
-                                                        {
-                                                            consumopedido += consumos[j].consumo;
-                                                        }
-                                                    }
-                                                  
-                                                }
-                                                
-                                            }
-
-                                        }
-                                    }
-                                }
-
+                              diasespeciales[j] = new DiasEspecialesSucursal()
+                              {
+                                Id = diaespecial.Id,
+                                Dia = diaespecial.Dia,
+                                Semana = diaespecial.Semana,
+                                Fecha = diaespecial.Fecha,
+                                Descripcion = diaespecial.Descripcion,
+                                FactorConsumo = diaespecial.FactorConsumo,
+                                Sucursal = 0
+                              };
+                              consumopedido += (consumos[j].consumo * diaespecial.FactorConsumo);
                             }
+                            else
+                            {
+                              diasespeciales[j] = diaespecialsuc;
+                              double factor = (diaespecialsuc.FactorConsumo ?? 1.5);
+                              consumopedido += (consumos[j].consumo * factor);
+                            }
+                          }
+                          else
+                          {
+                            diasespeciales[j] = diaespecialsuc;
+                            double factor = (diaespecialsuc.FactorConsumo ?? 1.5);
+                            consumopedido += (consumos[j].consumo * factor);
+                          }
 
-                            int countday = numdia;
+                        }
+
+                      }
+
+                    }
+                  }
+                }
+
+              }
+
+              int countday = numdia;
                             for (int i = 0; i < 7; i++)
                             {
                                 countday++;
@@ -778,11 +770,6 @@ namespace API_PEDIDOS.Controllers
                             }
                         }
 
-                        Boolean tienedescuento = false;
-                        var regdesc = _dbpContext.Descuentos.Where(x => x.Codprov == item.Codproveedor).FirstOrDefault();
-
-                        if (regdesc != null) { tienedescuento = true; }
-
                         double totalimpuestos = 0;
                         foreach (var itemart in articulospedido)
                         {
@@ -804,7 +791,6 @@ namespace API_PEDIDOS.Controllers
                             cartones= cartones,
                             tieneretornables = requierecartones,
                             capturacartones = cartonescapturados,
-                            tienedescuento = tienedescuento,
                             cantidaddescuento = 0,
                             totiva = totalimpuestos
                         });
@@ -863,16 +849,21 @@ namespace API_PEDIDOS.Controllers
         {
             try
             {
-                await _contextdb2.ItProductos.AddAsync(new ModelsDB2.ItProducto()
-                {
-                    Rfc = model.rfc,
-                    Codarticulo = model.codarticulo,
-                    Umedida = model.umedida,
-                    Uds = model.uds,
-                    NoIdentificacion = model.rfc + "-" + model.codarticulo + "-0"
+        var umedida = _contextdb2.ItProductos.Where(x => x.Rfc == model.rfc && x.Codarticulo == model.codarticulo).FirstOrDefault();
 
-                });
-                await _contextdb2.SaveChangesAsync();
+        if (umedida == null)
+        {
+          await _contextdb2.ItProductos.AddAsync(new ModelsDB2.ItProducto()
+          {
+            Rfc = model.rfc,
+            Codarticulo = model.codarticulo,
+            Umedida = model.umedida,
+            Uds = model.uds,
+            NoIdentificacion = model.rfc + "-" + model.codarticulo + "-0"
+
+          });
+          await _contextdb2.SaveChangesAsync();
+        }
                 return StatusCode(StatusCodes.Status200OK);
 
             }
@@ -960,7 +951,60 @@ namespace API_PEDIDOS.Controllers
         }
 
 
-        [HttpGet]
+    [HttpGet]
+    [Route("GetMedidasUdsSucursales")]
+    public async Task<ActionResult> getumedidasSucursales()
+    {
+      try
+      {
+
+        var proveedores = _dbpContext.PedSucProveedores
+    .GroupBy(p => p.Codproveedor)
+    .Select(g => g.FirstOrDefault()) // Puedes obtener el primer registro de cada grupo.
+    .ToList();
+
+        List<umedidaModel> medidas = new List<umedidaModel>();
+
+        foreach (var prov in proveedores)
+        {
+          var provdb = _contextdb2.Proveedores.Where(x => x.Codproveedor == prov.Codproveedor).FirstOrDefault();
+          var articulos = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == prov.Codproveedor).ToList(); 
+
+          foreach (var articulo in articulos)
+          {
+            var artdb = _contextdb2.Articulos1.Where(x => x.Codarticulo == articulo.Codart).FirstOrDefault();  
+            var umedidaart = _contextdb2.ItProductos.Where(x => x.Rfc == provdb.Nif20 && x.Codarticulo == articulo.Codart).FirstOrDefault();
+
+            if (umedidaart != null)
+            {
+              medidas.Add(new umedidaModel()
+              {
+                rfc = umedidaart.Rfc,
+                noIdentificacion = umedidaart.NoIdentificacion,
+                codarticulo = umedidaart.Codarticulo,
+                umedida = umedidaart.Umedida,
+                uds = umedidaart.Uds,
+                nomarticulo = artdb.Descripcion,
+                nomprov = provdb.Nomproveedor
+              });
+            }
+
+          }
+
+        }
+        return StatusCode(StatusCodes.Status200OK, medidas);
+
+      }
+      catch (Exception ex)
+      {
+        return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.ToString() });
+      }
+
+
+    }
+
+
+    [HttpGet]
         [Route("GetMedidaUds/{proveedor}/{codarticulo}")]
         public async Task<ActionResult> getumedida(string proveedor, int codarticulo)
         {
@@ -1380,7 +1424,9 @@ namespace API_PEDIDOS.Controllers
                 SqlTransaction transaccion = connection.BeginTransaction();
 
                 var pedido = JsonConvert.DeserializeObject<Pedidos>(pedidodb.Jdata);
+                var remfront = _contextdb2.RemFronts.Where(x => x.Idfront == int.Parse(pedido.idSucursal)).FirstOrDefault();
                 var cajafront = _contextdb2.RemCajasfronts.Where(x => x.Cajafront == 1 && x.Idfront == int.Parse(pedido.idSucursal)).FirstOrDefault();
+                var codcliente = remfront.Codcliente;
                 var transporte = _contextdb2.Transportes.Where(x => x.Fax == pedidodb.Sucursal).FirstOrDefault();
                 int idtransporte = 0;
                 if (transporte != null) { idtransporte = transporte.Codigo; }
@@ -1412,6 +1458,7 @@ namespace API_PEDIDOS.Controllers
                             int numpedido = Convert.ToInt32(result);
                             numpedido++;
                             string supedido = "-" + numserie + "-" + numpedido;
+                            string csupedido = numserie + "-" + numpedido;
                             double totalimpuestos = 0;
 
                             foreach (var item in pedido.articulos)
@@ -1429,19 +1476,8 @@ namespace API_PEDIDOS.Controllers
                             command.Parameters.AddWithValue("@PEDCAB_FECHA_PEDIDO", DateTime.Now);
                             command.Parameters.AddWithValue("@PEDCAB_FECHA_ENTREGA", pedido.fechaEntrega);
                             command.Parameters.AddWithValue("@PEDCAB_TOTBRUTO", pedido.total);
-
-                        if (pedido.tienedescuento)
-                        {
-                            command.Parameters.AddWithValue("@PEDCAB_TOTIMPUESTOS", (pedido.total - pedido.cantidaddescuento)*0.16);
-                            command.Parameters.AddWithValue("@PEDCAB_TOTNETO", (pedido.total - pedido.cantidaddescuento) * 1.16);
-                        }
-                        else 
-                        {
                             command.Parameters.AddWithValue("@PEDCAB_TOTIMPUESTOS", totalimpuestos);
                             command.Parameters.AddWithValue("@PEDCAB_TOTNETO", pedido.total + totalimpuestos);
-                        }
-                            //command.Parameters.AddWithValue("@PEDCAB_TOTIMPUESTOS", totalimpuestos);
-                            //command.Parameters.AddWithValue("@PEDCAB_TOTNETO", pedido.total + totalimpuestos);
                             command.Parameters.AddWithValue("@PEDCAB_SUPEDIDO", supedido);
                             command.Parameters.AddWithValue("@TRANSPORTE", idtransporte);
                             command.ExecuteNonQuery();
@@ -1523,7 +1559,8 @@ namespace API_PEDIDOS.Controllers
                             command.Parameters.AddWithValue("@TES_IMPORTE", pedido.total + totalimpuestos);
                             command.Parameters.AddWithValue("@TES_FORMAPAGO", fpagoprov.Codformapago);
                             command.Parameters.AddWithValue("@TES_FECHAVENCIMIENTO", DateTime.Now);
-                            command.ExecuteNonQuery();
+                             command.CommandTimeout = 120;
+                             command.ExecuteNonQuery();
 
                             // update seriesdoc
 
@@ -1538,8 +1575,60 @@ namespace API_PEDIDOS.Controllers
                             command.Parameters.AddWithValue("@SERIE", numserie);
                             // Ejecutar el procedimiento almacenado
                             command.ExecuteNonQuery();
-                        
-                            await transaccion.CommitAsync();
+
+
+                        if (prov.Codproveedor == 5 || prov.Codproveedor == 1)
+                        {
+                            command = new SqlCommand("SP_INSERT_INCIDENCIA", connection, transaccion);
+
+                            command.CommandType = CommandType.StoredProcedure;
+
+                            // Agregar los parámetros
+                            command.Parameters.AddWithValue("@FECHA", DateTime.Now.Date);
+                            command.Parameters.AddWithValue("@CODCLIENTE", codcliente);
+                            command.Parameters.AddWithValue("@SERIE", numserie);
+                            command.Parameters.AddWithValue("@NUMPEDIDO", numpedido);
+                            command.Parameters.AddWithValue("@FECHAENTREGA", pedido.fechaEntrega.Date);
+                            command.Parameters.AddWithValue("@CSUPEDIDO", csupedido);
+                            command.Parameters.AddWithValue("@CODPROV", pedido.codProveedor);
+                            command.Parameters.AddWithValue("@COMENTARIOLIBRE", "");
+                            command.Parameters.AddWithValue("@TOTALSINIVA", pedido.total);
+                            command.Parameters.AddWithValue("@TOTALCONIVA", pedido.total + totalimpuestos);
+                            command.Parameters.AddWithValue("@IDF", pedido.idSucursal);
+
+                            command.ExecuteNonQuery();
+
+                            command = new SqlCommand("[dbo].[GET_IDINCIDENCIA]", connection, transaccion);
+                            command.CommandType = CommandType.StoredProcedure;
+
+                            object result2 = command.ExecuteScalar();
+                            int idincidencia = Convert.ToInt32(result2);
+
+                            numlinea = 0;
+                            foreach (var art in pedido.articulos)
+                            {
+                                numlinea++;
+                                var articulodb = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
+                                command = new SqlCommand("SP_INSERT_INCIDENCIA_LIN", connection, transaccion);
+
+                                command.CommandType = CommandType.StoredProcedure;
+
+                                // Agregar los parámetros
+                                command.Parameters.AddWithValue("@IDINCIDENCIA", idincidencia);
+                                command.Parameters.AddWithValue("@NUMLINEA", numlinea);
+                                command.Parameters.AddWithValue("@CODART", art.codArticulo);
+                                command.Parameters.AddWithValue("@UNIDADES", art.cajas);
+                                command.Parameters.AddWithValue("@UNIDADES2", art.unidadescaja);
+                                command.Parameters.AddWithValue("@TOTALLINEA", art.total_linea);
+                                command.Parameters.AddWithValue("@DESCRIPCIONART", articulodb.Descripcion);
+                                command.Parameters.AddWithValue("@CODBARRAS", "");
+
+                                command.ExecuteNonQuery();
+                            }
+                        }
+
+
+                        await transaccion.CommitAsync();
 
                        
 
@@ -1562,39 +1651,6 @@ namespace API_PEDIDOS.Controllers
                                 _dbpContext.Modificaciones.Update(item);
                                 await _dbpContext.SaveChangesAsync();
                             }
-
-                        if (pedido.tienedescuento)
-                        {
-                            var pedidocab = _contextdb2.Pedcompracabs.Where(x => x.Numserie == numserie && x.Numpedido == numpedido).FirstOrDefault();
-                            if (pedidocab != null)
-                            {
-                                if (pedido.cantidaddescuento > 0)
-                                {
-                                    pedidocab.Totneto = pedido.total - pedido.cantidaddescuento;
-                                    pedidocab.Totdtocomercial = pedido.cantidaddescuento;
-
-                                    double porcentajedescuento = (pedido.cantidaddescuento / pedidocab.Totbruto.Value) * 100.00;
-                                    pedidocab.Dtocomercial = porcentajedescuento;
-
-                                    _contextdb2.Pedcompracabs.Update(pedidocab);
-                                    await _contextdb2.SaveChangesAsync();
-
-                                    var pedcompratot = _contextdb2.Pedcompratots.Where(x => x.Serie == numserie && x.Numero == numpedido).FirstOrDefault();
-                                    if (pedcompratot != null)
-                                    {
-                                        pedcompratot.Totdtocomerc = pedido.cantidaddescuento;
-                                        pedcompratot.Dtocomerc = porcentajedescuento;
-                                        pedcompratot.Baseimponible = pedcompratot.Bruto - pedido.cantidaddescuento;
-                                        pedcompratot.Totiva = pedcompratot.Baseimponible * .16;
-                                        pedcompratot.Total = pedcompratot.Baseimponible + pedcompratot.Totiva; 
-                                        _contextdb2.Pedcompratots.Update(pedcompratot);
-                                        await _contextdb2.SaveChangesAsync();
-                                    }
-                                }
-
-
-                            }
-                        }
 
 
                     }
@@ -2139,7 +2195,9 @@ namespace API_PEDIDOS.Controllers
                         SqlTransaction transaction = connection.BeginTransaction();
                             try
                             {
+                                var remfront = _contextdb2.RemFronts.Where(x => x.Idfront == int.Parse(pedido.idSucursal)).FirstOrDefault();
                                 var cajafront = _contextdb2.RemCajasfronts.Where(x => x.Cajafront == 1 && x.Idfront == int.Parse(pedido.idSucursal)).FirstOrDefault();
+                                var codcliente = remfront.Codcliente;
                                 var transporte = _contextdb2.Transportes.Where(x => x.Fax == pedidodb.Sucursal).FirstOrDefault();
                                 int idtransporte = 0;
                                 if (transporte != null) { idtransporte = transporte.Codigo; }
@@ -2161,7 +2219,8 @@ namespace API_PEDIDOS.Controllers
                                 int numpedido = Convert.ToInt32(result);
                                 numpedido++;
                                 string supedido = "-" + numserie + "-" + numpedido;
-                                double totalimpuestos = 0;
+                                string csupedido = numserie + "-" + numpedido;
+                            double totalimpuestos = 0;
 
                                 foreach (var item in pedido.articulos)
                                 {
@@ -2178,16 +2237,8 @@ namespace API_PEDIDOS.Controllers
                                 command.Parameters.AddWithValue("@PEDCAB_FECHA_PEDIDO", DateTime.Now);
                                 command.Parameters.AddWithValue("@PEDCAB_FECHA_ENTREGA", pedido.fechaEntrega);
                                 command.Parameters.AddWithValue("@PEDCAB_TOTBRUTO", pedido.total);
-                            if (pedido.tienedescuento)
-                            {
-                                command.Parameters.AddWithValue("@PEDCAB_TOTIMPUESTOS", (pedido.total - pedido.cantidaddescuento) * 0.16);
-                                command.Parameters.AddWithValue("@PEDCAB_TOTNETO", (pedido.total - pedido.cantidaddescuento) * 1.16);
-                            }
-                            else
-                            {
                                 command.Parameters.AddWithValue("@PEDCAB_TOTIMPUESTOS", totalimpuestos);
                                 command.Parameters.AddWithValue("@PEDCAB_TOTNETO", pedido.total + totalimpuestos);
-                            }
                             command.Parameters.AddWithValue("@PEDCAB_SUPEDIDO", supedido);
                                 command.Parameters.AddWithValue("@TRANSPORTE", idtransporte);
                                 command.ExecuteNonQuery();
@@ -2269,7 +2320,8 @@ namespace API_PEDIDOS.Controllers
                                 command.Parameters.AddWithValue("@TES_IMPORTE", pedido.total + totalimpuestos);
                                 command.Parameters.AddWithValue("@TES_FORMAPAGO", fpagoprov.Codformapago);
                                 command.Parameters.AddWithValue("@TES_FECHAVENCIMIENTO", DateTime.Now);
-                                command.ExecuteNonQuery();
+              command.CommandTimeout = 120;
+              command.ExecuteNonQuery();
 
                                 // update seriesdoc
 
@@ -2281,6 +2333,58 @@ namespace API_PEDIDOS.Controllers
                                 //command.Parameters.AddWithValue("@SERIE", "asrtdenjic87cui");
                             // Ejecutar el procedimiento almacenado
                             command.ExecuteNonQuery();
+
+
+                            if (prov.Codproveedor == 5 || prov.Codproveedor == 1)
+                            {
+                                command = new SqlCommand("SP_INSERT_INCIDENCIA", connection, transaction);
+
+                                command.CommandType = CommandType.StoredProcedure;
+
+                                // Agregar los parámetros
+                                command.Parameters.AddWithValue("@FECHA", DateTime.Now.Date);
+                                command.Parameters.AddWithValue("@CODCLIENTE", codcliente);
+                                command.Parameters.AddWithValue("@SERIE", numserie);
+                                command.Parameters.AddWithValue("@NUMPEDIDO", numpedido);
+                                command.Parameters.AddWithValue("@FECHAENTREGA", pedido.fechaEntrega.Date);
+                                command.Parameters.AddWithValue("@CSUPEDIDO", csupedido);
+                                command.Parameters.AddWithValue("@CODPROV", pedido.codProveedor);
+                                command.Parameters.AddWithValue("@COMENTARIOLIBRE", "");
+                                command.Parameters.AddWithValue("@TOTALSINIVA", pedido.total);
+                                command.Parameters.AddWithValue("@TOTALCONIVA", pedido.total + totalimpuestos);
+                                command.Parameters.AddWithValue("@IDF", pedido.idSucursal);
+
+                                command.ExecuteNonQuery();
+
+                                command = new SqlCommand("[dbo].[GET_IDINCIDENCIA]", connection, transaction);
+                                command.CommandType = CommandType.StoredProcedure;
+
+                                object result2 = command.ExecuteScalar();
+                                int idincidencia = Convert.ToInt32(result2);
+
+                                numlinea = 0;
+                                foreach (var art in pedido.articulos)
+                                {
+                                    numlinea++;
+                                    var articulodb = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
+                                    command = new SqlCommand("SP_INSERT_INCIDENCIA_LIN", connection, transaction);
+
+                                    command.CommandType = CommandType.StoredProcedure;
+
+                                    // Agregar los parámetros
+                                    command.Parameters.AddWithValue("@IDINCIDENCIA", idincidencia);
+                                    command.Parameters.AddWithValue("@NUMLINEA", numlinea);
+                                    command.Parameters.AddWithValue("@CODART", art.codArticulo);
+                                    command.Parameters.AddWithValue("@UNIDADES", art.cajas);
+                                    command.Parameters.AddWithValue("@UNIDADES2", art.unidadescaja);
+                                    command.Parameters.AddWithValue("@TOTALLINEA", art.total_linea);
+                                    command.Parameters.AddWithValue("@DESCRIPCIONART", articulodb.Descripcion);
+                                    command.Parameters.AddWithValue("@CODBARRAS", "");
+
+                                    command.ExecuteNonQuery();
+                                }
+                            }
+
 
                             await transaction.CommitAsync(); 
                                 pedido.status = 3;
@@ -2303,38 +2407,38 @@ namespace API_PEDIDOS.Controllers
                                     await _dbpContext.SaveChangesAsync();
                                 }
 
-                            if (pedido.tienedescuento)
-                            {
-                                var pedidocab = _contextdb2.Pedcompracabs.Where(x => x.Numserie == numserie && x.Numpedido == numpedido).FirstOrDefault();
-                                if (pedidocab != null)
-                                {
-                                    if (pedido.cantidaddescuento > 0)
-                                    {
-                                        pedidocab.Totneto = pedido.total - pedido.cantidaddescuento;
-                                        pedidocab.Totdtocomercial = pedido.cantidaddescuento;
+                            //if (pedido.tienedescuento)
+                            //{
+                            //    var pedidocab = _contextdb2.Pedcompracabs.Where(x => x.Numserie == numserie && x.Numpedido == numpedido).FirstOrDefault();
+                            //    if (pedidocab != null)
+                            //    {
+                            //        if (pedido.cantidaddescuento > 0)
+                            //        {
+                            //            pedidocab.Totneto = pedido.total - pedido.cantidaddescuento;
+                            //            pedidocab.Totdtocomercial = pedido.cantidaddescuento;
 
-                                        double porcentajedescuento = (pedido.cantidaddescuento / pedidocab.Totbruto.Value) * 100.00;
-                                        pedidocab.Dtocomercial = porcentajedescuento;
+                            //            double porcentajedescuento = (pedido.cantidaddescuento / pedidocab.Totbruto.Value) * 100.00;
+                            //            pedidocab.Dtocomercial = porcentajedescuento;
 
-                                        _contextdb2.Pedcompracabs.Update(pedidocab);
-                                        await _contextdb2.SaveChangesAsync();
+                            //            _contextdb2.Pedcompracabs.Update(pedidocab);
+                            //            await _contextdb2.SaveChangesAsync();
 
-                                        var pedcompratot = _contextdb2.Pedcompratots.Where(x => x.Serie == numserie && x.Numero == numpedido).FirstOrDefault();
-                                        if (pedcompratot != null)
-                                        {
-                                            pedcompratot.Totdtocomerc = pedido.cantidaddescuento;
-                                            pedcompratot.Dtocomerc = porcentajedescuento;
-                                            pedcompratot.Baseimponible = pedcompratot.Bruto - pedido.cantidaddescuento;
-                                            pedcompratot.Totiva = pedcompratot.Baseimponible * .16;
-                                            pedcompratot.Total = pedcompratot.Baseimponible + pedcompratot.Totiva;
-                                            _contextdb2.Pedcompratots.Update(pedcompratot);
-                                            await _contextdb2.SaveChangesAsync();
-                                        }
-                                    }
+                            //            var pedcompratot = _contextdb2.Pedcompratots.Where(x => x.Serie == numserie && x.Numero == numpedido).FirstOrDefault();
+                            //            if (pedcompratot != null)
+                            //            {
+                            //                pedcompratot.Totdtocomerc = pedido.cantidaddescuento;
+                            //                pedcompratot.Dtocomerc = porcentajedescuento;
+                            //                pedcompratot.Baseimponible = pedcompratot.Bruto - pedido.cantidaddescuento;
+                            //                pedcompratot.Totiva = pedcompratot.Baseimponible * .16;
+                            //                pedcompratot.Total = pedcompratot.Baseimponible + pedcompratot.Totiva;
+                            //                _contextdb2.Pedcompratots.Update(pedcompratot);
+                            //                await _contextdb2.SaveChangesAsync();
+                            //            }
+                            //        }
 
 
-                                }
-                            }
+                            //    }
+                            //}
 
                         }
                             catch (Exception err)
@@ -2918,110 +3022,103 @@ namespace API_PEDIDOS.Controllers
                             DiasEspecialesSucursal[] diasespeciales = { null, null, null, null, null, null, null };
 
                             double consumoentrega = 0;
-                            for (int i = 0; i < array.Length; i++)
+              for (int i = 0; i < array.Length; i++)
+              {
+                if (array[i][numdia] == 1)
+                {
+                  for (int j = 0; j < array[i].Length; j++)
+                  {
+
+                    if (array[i][j] == 1 || array[i][j] == 2 || array[i][j] == 3)
+                    {
+                      if (array[i][j] == 3)
+                      {
+                        consumoentrega = consumos[j].consumo;
+                      }
+                      arraycal = array[i];
+                      DiasEspecialesSucursal diaespecialsuc = null;
+
+                      DateTime fechabusqueda = fechas[j];
+                      if (j < numdia)
+                      {
+                        fechabusqueda = fechabusqueda.AddDays(7);
+                      }
+
+                      var diaespecialessuc = _dbpContext.DiasEspecialesSucursals.ToList().Where(d => d.Fecha.Value.ToString("yyyy-MM-dd") == fechabusqueda.ToString("yyyy-MM-dd") && d.Sucursal == item.Codsucursal).ToList();
+
+                      foreach (var ides in diaespecialessuc)
+                      {
+                        int[] articulosdiesp = JsonConvert.DeserializeObject<int[]>(ides.Articulos);
+                        if (articulosdiesp.Contains(art.cod))
+                        {
+                          diaespecialsuc = ides;
+                        }
+                      }
+
+                      var diaespecial = _dbpContext.DiasEspeciales.ToList().Where(d => d.Fecha.ToString("yyyy-MM-dd") == fechabusqueda.ToString("yyyy-MM-dd")).FirstOrDefault();
+                      if (diaespecial == null && diaespecialsuc == null)
+                      {
+                        consumopedido += consumos[j].consumo;
+                      }
+                      else
+                      {
+                        if (diaespecialsuc == null)
+                        {
+                          diasespeciales[j] = new DiasEspecialesSucursal()
+                          {
+                            Id = diaespecial.Id,
+                            Dia = diaespecial.Dia,
+                            Semana = diaespecial.Semana,
+                            Fecha = diaespecial.Fecha,
+                            Descripcion = diaespecial.Descripcion,
+                            FactorConsumo = diaespecial.FactorConsumo,
+                            Sucursal = 0
+                          };
+                          consumopedido += (consumos[j].consumo * diaespecial.FactorConsumo);
+                        }
+                        else
+                        {
+                          if (diaespecial != null)
+                          {
+                            if (diaespecial.FactorConsumo > diaespecialsuc.FactorConsumo)
                             {
-                                if (array[i][numdia] == 1)
-                                {
-                                    for (int j = 0; j < array[i].Length; j++)
-                                    {
-
-                                        if (array[i][j] == 1 || array[i][j] == 2 || array[i][j] == 3)
-                                        {
-                                            if (array[i][j] == 3)
-                                            {
-                                                consumoentrega = consumos[j].consumo;
-                                            }
-                                            arraycal = array[i];
-                                            var diaespecialsuc = _dbpContext.DiasEspecialesSucursals.ToList().Where(d => d.Fecha.Value.ToString("yyyy-MM-dd") == fechas[j].ToString("yyyy-MM-dd") && d.Sucursal == item.Codsucursal).FirstOrDefault();
-                                            var diaespecial = _dbpContext.DiasEspeciales.ToList().Where(d => d.Fecha.ToString("yyyy-MM-dd") == fechas[j].ToString("yyyy-MM-dd")).FirstOrDefault();
-                                            if (diaespecial == null && diaespecialsuc == null)
-                                            {
-                                                consumopedido += consumos[j].consumo;
-                                            }
-                                            else
-                                            {
-                                                if (diaespecialsuc == null)
-                                                {
-                                                    diasespeciales[j] = new DiasEspecialesSucursal()
-                                                    {
-                                                        Id = diaespecial.Id,
-                                                        Dia = diaespecial.Dia,
-                                                        Semana = diaespecial.Semana,
-                                                        Fecha = diaespecial.Fecha,
-                                                        Descripcion = diaespecial.Descripcion,
-                                                        FactorConsumo = diaespecial.FactorConsumo,
-                                                        Sucursal = 0
-                                                    };
-                                                    consumopedido += (consumos[j].consumo * diaespecial.FactorConsumo);
-                                                }
-                                                else
-                                                {
-                                                    int[] articulosdiesp = JsonConvert.DeserializeObject<int[]>(diaespecialsuc.Articulos);
-                                                    if (articulosdiesp.Contains(art.cod))
-                                                    {
-                                                        if (diaespecial != null)
-                                                        {
-                                                            if (diaespecial.FactorConsumo > diaespecialsuc.FactorConsumo)
-                                                            {
-                                                                diasespeciales[j] = new DiasEspecialesSucursal()
-                                                                {
-                                                                    Id = diaespecial.Id,
-                                                                    Dia = diaespecial.Dia,
-                                                                    Semana = diaespecial.Semana,
-                                                                    Fecha = diaespecial.Fecha,
-                                                                    Descripcion = diaespecial.Descripcion,
-                                                                    FactorConsumo = diaespecial.FactorConsumo,
-                                                                    Sucursal = 0
-                                                                };
-                                                                consumopedido += (consumos[j].consumo * diaespecial.FactorConsumo);
-                                                            }
-                                                            else
-                                                            {
-                                                                diasespeciales[j] = diaespecialsuc;
-                                                                double factor = (diaespecialsuc.FactorConsumo ?? 1.5);
-                                                                consumopedido += (consumos[j].consumo * factor);
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-                                                            diasespeciales[j] = diaespecialsuc;
-                                                            double factor = (diaespecialsuc.FactorConsumo ?? 1.5);
-                                                            consumopedido += (consumos[j].consumo * factor);
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        if (diaespecial != null)
-                                                        {
-                                                            diasespeciales[j] = new DiasEspecialesSucursal()
-                                                            {
-                                                                Id = diaespecial.Id,
-                                                                Dia = diaespecial.Dia,
-                                                                Semana = diaespecial.Semana,
-                                                                Fecha = diaespecial.Fecha,
-                                                                Descripcion = diaespecial.Descripcion,
-                                                                FactorConsumo = diaespecial.FactorConsumo,
-                                                                Sucursal = 0
-                                                            };
-                                                            consumopedido += (consumos[j].consumo * diaespecial.FactorConsumo);
-                                                        }
-                                                        else
-                                                        {
-                                                            consumopedido += consumos[j].consumo;
-                                                        }
-                                                    }
-
-                                                }
-
-                                            }
-
-                                        }
-                                    }
-                                }
-
+                              diasespeciales[j] = new DiasEspecialesSucursal()
+                              {
+                                Id = diaespecial.Id,
+                                Dia = diaespecial.Dia,
+                                Semana = diaespecial.Semana,
+                                Fecha = diaespecial.Fecha,
+                                Descripcion = diaespecial.Descripcion,
+                                FactorConsumo = diaespecial.FactorConsumo,
+                                Sucursal = 0
+                              };
+                              consumopedido += (consumos[j].consumo * diaespecial.FactorConsumo);
                             }
+                            else
+                            {
+                              diasespeciales[j] = diaespecialsuc;
+                              double factor = (diaespecialsuc.FactorConsumo ?? 1.5);
+                              consumopedido += (consumos[j].consumo * factor);
+                            }
+                          }
+                          else
+                          {
+                            diasespeciales[j] = diaespecialsuc;
+                            double factor = (diaespecialsuc.FactorConsumo ?? 1.5);
+                            consumopedido += (consumos[j].consumo * factor);
+                          }
 
-                            int countday = numdia;
+                        }
+
+                      }
+
+                    }
+                  }
+                }
+
+              }
+
+              int countday = numdia;
                             for (int i = 0; i < 7; i++)
                             {
                                 countday++;
@@ -3307,10 +3404,7 @@ namespace API_PEDIDOS.Controllers
               }
             }
 
-            Boolean tienedescuento = false;
-                        var regdesc = _dbpContext.Descuentos.Where(x => x.Codprov == item.Codproveedor).FirstOrDefault();
-                        if (regdesc != null) { tienedescuento = true; }
-
+           
                         double totalimpuestos = 0;
                         foreach (var itemart in articulospedido)
                         {
@@ -3332,7 +3426,6 @@ namespace API_PEDIDOS.Controllers
                             cartones = cartones,
                             tieneretornables = requierecartones,
                             capturacartones = cartonescapturados,
-                            tienedescuento = tienedescuento,
                             cantidaddescuento = 0,
                             totiva = totalimpuestos
                         });
@@ -3509,8 +3602,6 @@ namespace API_PEDIDOS.Controllers
         public Boolean tieneretornables { get; set; }
         public double cartones { get; set; }
         public Boolean capturacartones { get; set; }
-
-        public Boolean tienedescuento { get; set; }
         public double cantidaddescuento { get; set; }
         public double totiva { get; set;}
     }

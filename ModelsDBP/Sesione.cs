@@ -8,5 +8,6 @@ namespace API_PEDIDOS.ModelsDBP
         public int Id { get; set; }
         public int Idu { get; set; }
         public bool Activo { get; set; }
+        public string? Token { get; set; }
     }
 }
