@@ -36,7 +36,10 @@ namespace API_PEDIDOS.ModelsDBP
         public virtual DbSet<Notificacione> Notificaciones { get; set; } = null!;
         public virtual DbSet<Parametro> Parametros { get; set; } = null!;
         public virtual DbSet<PedSucArticulo> PedSucArticulos { get; set; } = null!;
+        public virtual DbSet<PedSucAsignacione> PedSucAsignaciones { get; set; } = null!;
+        public virtual DbSet<PedSucPerfilesConfig> PedSucPerfilesConfigs { get; set; } = null!;
         public virtual DbSet<PedSucProveedore> PedSucProveedores { get; set; } = null!;
+        public virtual DbSet<PedSucUsuariosPerfilConfig> PedSucUsuariosPerfilConfigs { get; set; } = null!;
         public virtual DbSet<Pedido> Pedidos { get; set; } = null!;
         public virtual DbSet<PedidosPrueba> PedidosPruebas { get; set; } = null!;
         public virtual DbSet<PedidosSucursale> PedidosSucursales { get; set; } = null!;
@@ -387,6 +390,30 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
 
                 entity.Property(e => e.Fiscal).HasColumnName("FISCAL");
+
+                entity.Property(e => e.Idperfil).HasColumnName("IDPERFIL");
+            });
+
+            modelBuilder.Entity<PedSucAsignacione>(entity =>
+            {
+                entity.ToTable("PED_SUC_ASIGNACIONES");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Idprov).HasColumnName("IDPROV");
+
+                entity.Property(e => e.Ids).HasColumnName("IDS");
+
+                entity.Property(e => e.Idu).HasColumnName("IDU");
+            });
+
+            modelBuilder.Entity<PedSucPerfilesConfig>(entity =>
+            {
+                entity.ToTable("PED_SUC_PERFILES_CONFIG");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Nombre).HasColumnName("NOMBRE");
             });
 
             modelBuilder.Entity<PedSucProveedore>(entity =>
@@ -398,6 +425,19 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
 
                 entity.Property(e => e.Codsucursal).HasColumnName("CODSUCURSAL");
+
+                entity.Property(e => e.Idperfil).HasColumnName("IDPERFIL");
+            });
+
+            modelBuilder.Entity<PedSucUsuariosPerfilConfig>(entity =>
+            {
+                entity.ToTable("PED_SUC_USUARIOS_PERFIL_CONFIG");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Idperfilconfig).HasColumnName("IDPERFILCONFIG");
+
+                entity.Property(e => e.Idusuario).HasColumnName("IDUSUARIO");
             });
 
             modelBuilder.Entity<Pedido>(entity =>

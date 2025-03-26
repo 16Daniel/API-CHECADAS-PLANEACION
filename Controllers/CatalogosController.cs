@@ -70,6 +70,49 @@ namespace API_PEDIDOS.Controllers
         }
 
         [HttpGet]
+        [Route("getProveedoresPedSuc")]
+        public async Task<ActionResult> GetProveedoresPedSuc()
+        {
+            try
+            {
+                List<Object> data = new List<Object>();
+                //var proveedoresdb = _dbpContext.PedSucProveedores.ToList();
+
+                    var proveedoresdb = _dbpContext.PedSucProveedores
+                        .GroupBy(p => p.Codproveedor)
+                        .Select(g => g.FirstOrDefault()) // Puedes obtener el primer registro de cada grupo.
+                        .ToList();
+
+                    foreach (var prov in proveedoresdb)
+                    {
+                        var reg = _contextdb2.Proveedores.Where(p => p.Codproveedor == prov.Codproveedor).Select(s => new
+                        {
+                            codproveedor = s.Codproveedor,
+                            nombre = s.Nomproveedor,
+                            rfc = s.Nif20
+                        }).FirstOrDefault();
+
+                        if (reg != null)
+                        {
+                            data.Add(reg);
+                        }
+                    }
+
+                return StatusCode(200, data);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
+
+        [HttpGet]
         [Route("getSucursales")]
         public async Task<ActionResult> GetSucursales()
         {

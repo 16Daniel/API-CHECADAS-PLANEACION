@@ -96,6 +96,7 @@ namespace API_PEDIDOS.Controllers
               descripcion = item.descripcion,
               referencia = item.referencia,
               fiscal = artdb == null ? false : artdb.Fiscal,
+              tieneTarifa = false
             }
             );
 
@@ -116,82 +117,78 @@ namespace API_PEDIDOS.Controllers
 
 
         [HttpGet]
-        [Route("getProveedoresPedSuc")]
-        public async Task<ActionResult> GetProveedoresPedSuc()
+        [Route("getProveedoresPedSuc/{idperfil}/{idsuc}")]
+        public async Task<ActionResult> GetProveedoresPedSuc(int idperfil,int idsuc)
         {
             try
             { List<Object> data = new List<Object>();
                 //var proveedoresdb = _dbpContext.PedSucProveedores.ToList();
 
-                var proveedoresdb = _dbpContext.PedSucProveedores
-    .GroupBy(p => p.Codproveedor)
-    .Select(g => g.FirstOrDefault()) // Puedes obtener el primer registro de cada grupo.
-    .ToList();
-
-                foreach (var prov in proveedoresdb)
+                if (idperfil>-1) 
                 {
-                    var reg = _contextdb2.Proveedores.Where(p => p.Codproveedor == prov.Codproveedor).Select(s => new
+                    var proveedoresdb = _dbpContext.PedSucProveedores.Where(x=>x.Idperfil == idperfil)
+                        .GroupBy(p => p.Codproveedor)
+                        .Select(g => g.FirstOrDefault()) // Puedes obtener el primer registro de cada grupo.
+                        .ToList();
+
+                    foreach (var prov in proveedoresdb)
                     {
-                        codproveedor = s.Codproveedor,
-                        nombre = s.Nomproveedor,
-                        rfc = s.Nif20
-                    }).FirstOrDefault();
-
-                    if (reg != null)
-                    {
-                        data.Add(reg);
-                    }
-                }
-
-                return StatusCode(200, data);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message);
-
-                return StatusCode(500, new
-                {
-                    Success = false,
-                    Message = ex.ToString(),
-                });
-            }
-        }
-
-        [HttpGet]
-        [Route("getItemsprovPedSuc/{idprov}")]
-        public async Task<ActionResult> GetItemsprovPedSuc(int idprov)
-        {
-            try
-            {
-                List<Object> data = new List<Object>();
-                var articulosdb = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == idprov).ToList();
-                var prov = _contextdb2.Proveedores.Where(x => x.Codproveedor == idprov).FirstOrDefault();
-
-                foreach (var art in articulosdb)
-                {
-                    var articulo = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.Codart).Select
-                        (s =>
-                            new
-                            {
-                                cod = s.Codarticulo,
-                                descripcion = s.Descripcion,
-                                referencia = s.Refproveedor,
-                            }
-                        ).FirstOrDefault();
-                    if (articulo != null)
-                    {
-                        var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == prov.Nif20 && p.Codarticulo == art.Codart).FirstOrDefault();
-                         var artdb = _dbpContext.PedSucArticulos.Where(x => x.Codart == articulo.cod && x.Codproveedor == idprov).FirstOrDefault();
-
-            Boolean tienemultiplo = itprod == null ? false : true;
-                        data.Add(new
+                        var reg = _contextdb2.Proveedores.Where(p => p.Codproveedor == prov.Codproveedor).Select(s => new
                         {
-                            cod = articulo.cod,
-                            descripcion = articulo.descripcion,
-                            referencia = articulo.referencia,
-                            tudm = tienemultiplo,
-                            fiscal = artdb.Fiscal 
-                        });
+                            codproveedor = s.Codproveedor,
+                            nombre = s.Nomproveedor,
+                            rfc = s.Nif20
+                        }).FirstOrDefault();
+
+                        if (reg != null)
+                        {
+                            data.Add(reg);
+                        }
+                    }
+                }
+                if(idperfil == -1)
+                {
+                    var proveedoresdb = _dbpContext.PedSucProveedores.Where(x=>x.Codsucursal == idsuc)
+                      .GroupBy(p => p.Codproveedor)
+                      .Select(g => g.FirstOrDefault()) // Puedes obtener el primer registro de cada grupo.
+                      .ToList();
+
+                    foreach (var prov in proveedoresdb)
+                    {
+                        var reg = _contextdb2.Proveedores.Where(p => p.Codproveedor == prov.Codproveedor).Select(s => new
+                        {
+                            codproveedor = s.Codproveedor,
+                            nombre = s.Nomproveedor,
+                            rfc = s.Nif20
+                        }).FirstOrDefault();
+
+                        if (reg != null)
+                        {
+                            data.Add(reg);
+                        }
+                    }
+                }
+
+                if (idperfil == -2)
+                {
+                    var proveedoresdb = _dbpContext.PedSucProveedores
+                      .GroupBy(p => p.Codproveedor)
+                      .Select(g => g.FirstOrDefault()) // Puedes obtener el primer registro de cada grupo.
+                      .ToList();
+
+                    foreach (var prov in proveedoresdb)
+                    {
+                        var reg = _contextdb2.Proveedores.Where(p => p.Codproveedor == prov.Codproveedor).Select(s => new
+                        {
+                            codproveedor = s.Codproveedor,
+                            nombre = s.Nomproveedor,
+                            rfc = s.Nif20
+                        }).FirstOrDefault();
+
+                        if (reg != null)
+                        {
+                            data.Add(reg);
+                        }
                     }
                 }
 
@@ -210,22 +207,120 @@ namespace API_PEDIDOS.Controllers
         }
 
         [HttpGet]
-        [Route("getSucursalesProvPedSuc/{idprov}")]
-        public async Task<ActionResult> GetSucursalesProvPedSuc(int idprov)
+        [Route("getItemsprovPedSuc/{idprov}/{idperfil}")]
+        public async Task<ActionResult> GetItemsprovPedSuc(int idprov,int idperfil)
         {
             try
             {
                 List<Object> data = new List<Object>();
-                var list = _dbpContext.PedSucProveedores.Where(x => x.Codproveedor == idprov).ToList(); 
-                foreach(var item in list) 
+                if (idperfil>-1)
                 {
-                    var sucursaL = _contextdb2.RemFronts.Where(x => x.Idfront == item.Codsucursal).FirstOrDefault();
-                    if (sucursaL != null) 
+                    var articulosdb = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == idprov && x.Idperfil == idperfil).ToList();
+                    var prov = _contextdb2.Proveedores.Where(x => x.Codproveedor == idprov).FirstOrDefault();
+
+                    foreach (var art in articulosdb)
                     {
-                        data.Add(new{ cod= sucursaL.Idfront,name= sucursaL.Titulo });
+                        var articulo = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.Codart).Select
+                            (s =>
+                                new
+                                {
+                                    cod = s.Codarticulo,
+                                    descripcion = s.Descripcion,
+                                    referencia = s.Refproveedor,
+                                }
+                            ).FirstOrDefault();
+                        if (articulo != null)
+                        {
+                            var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == prov.Nif20 && p.Codarticulo == art.Codart).FirstOrDefault();
+                            var artdb = _dbpContext.PedSucArticulos.Where(x => x.Codart == articulo.cod && x.Codproveedor == idprov).FirstOrDefault();
+                            var preciocompra = _contextdb2.Precioscompras.Where(x => x.Codarticulo == articulo.cod && x.Codproveedor == idprov).FirstOrDefault();
+                            Boolean tienemultiplo = itprod == null ? false : true;
+                            Boolean tienetarifa = preciocompra == null ? false : true;    
+                            data.Add(new
+                            {
+                                cod = articulo.cod,
+                                descripcion = articulo.descripcion,
+                                referencia = articulo.referencia,
+                                tudm = tienemultiplo,
+                                fiscal = artdb.Fiscal,
+                                tieneTarifa = tienetarifa
+                            });
+                        }
                     }
                 }
 
+                if (idperfil == -1)
+                {
+                    var articulosdb = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == idprov).ToList();
+                    var prov = _contextdb2.Proveedores.Where(x => x.Codproveedor == idprov).FirstOrDefault();
+
+                    foreach (var art in articulosdb)
+                    {
+                        var articulo = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.Codart).Select
+                            (s =>
+                                new
+                                {
+                                    cod = s.Codarticulo,
+                                    descripcion = s.Descripcion,
+                                    referencia = s.Refproveedor,
+                                }
+                            ).FirstOrDefault();
+                        if (articulo != null)
+                        {
+                            var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == prov.Nif20 && p.Codarticulo == art.Codart).FirstOrDefault();
+                            var artdb = _dbpContext.PedSucArticulos.Where(x => x.Codart == articulo.cod && x.Codproveedor == idprov).FirstOrDefault();
+                            var preciocompra = _contextdb2.Precioscompras.Where(x => x.Codarticulo == articulo.cod && x.Codproveedor == idprov).FirstOrDefault();
+
+                            Boolean tienemultiplo = itprod == null ? false : true;
+                            Boolean tienetarifa = preciocompra == null ? false : true;
+                            data.Add(new
+                            {
+                                cod = articulo.cod,
+                                descripcion = articulo.descripcion,
+                                referencia = articulo.referencia,
+                                tudm = tienemultiplo,
+                                fiscal = artdb.Fiscal,
+                                tieneTarifa = tienetarifa
+                            });
+                        }
+                    }
+                }
+              
+                return StatusCode(200, data);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
+
+        [HttpGet]
+        [Route("getSucursalesProvPedSuc/{idprov}/{idperfil}")]
+        public async Task<ActionResult> GetSucursalesProvPedSuc(int idprov, int idperfil)
+        {
+            try
+            {
+                List<Object> data = new List<Object>();
+                
+                if (idperfil>-1) 
+                {
+                    var list = _dbpContext.PedSucProveedores.Where(x => x.Codproveedor == idprov && x.Idperfil == idperfil).ToList();
+                    foreach (var item in list)
+                    {
+                        var sucursaL = _contextdb2.RemFronts.Where(x => x.Idfront == item.Codsucursal).FirstOrDefault();
+                        if (sucursaL != null)
+                        {
+                            data.Add(new { cod = sucursaL.Idfront, name = sucursaL.Titulo });
+                        }
+                    }
+                }
+               
                 return StatusCode(200, data);
             }
             catch (Exception ex)
@@ -242,29 +337,34 @@ namespace API_PEDIDOS.Controllers
 
         [HttpPost]
         [Route("agregarProveedor")]
-        public async Task<ActionResult> addProv([FromForm] int idprov,[FromForm] string jdata)
+        public async Task<ActionResult> addProv([FromForm] int idprov,[FromForm] string jdata, [FromForm] int idperfil)
         {
             try
             {
                 int[] idsucs = JsonConvert.DeserializeObject<int[]>(jdata);
-               
-                var list = _dbpContext.PedSucProveedores.Where(x => x.Codproveedor == idprov).ToList();
 
-                if (list.Count > 0)
+                if (idperfil>-1) 
                 {
-                    _dbpContext.PedSucProveedores.RemoveRange(list); 
-                    await _dbpContext.SaveChangesAsync();
-                }
+                    var list = _dbpContext.PedSucProveedores.Where(x => x.Codproveedor == idprov && x.Idperfil == idperfil).ToList();
 
-                foreach (int ids in idsucs) 
-                {
-                    _dbpContext.PedSucProveedores.Add(new PedSucProveedore()
+                    if (list.Count > 0)
                     {
-                        Codproveedor = idprov,
-                        Codsucursal = ids
-                    });
-                    await _dbpContext.SaveChangesAsync();
+                        _dbpContext.PedSucProveedores.RemoveRange(list);
+                        await _dbpContext.SaveChangesAsync();
+                    }
+
+                    foreach (int ids in idsucs)
+                    {
+                        _dbpContext.PedSucProveedores.Add(new PedSucProveedore()
+                        {
+                            Codproveedor = idprov,
+                            Codsucursal = ids,
+                            Idperfil = idperfil,
+                        });
+                        await _dbpContext.SaveChangesAsync();
+                    }
                 }
+               
               
                 return StatusCode(StatusCodes.Status200OK);
 
@@ -277,26 +377,28 @@ namespace API_PEDIDOS.Controllers
 
         }
 
-        [HttpDelete("deleteProvPedSuc/{id}")]
-        public async Task<IActionResult> DeleteProvPedSuc(int id)
+        [HttpDelete("deleteProvPedSuc/{id}/{idperfil}")]
+        public async Task<IActionResult> DeleteProvPedSuc(int id, int idperfil)
         {
 
             try
             {
-                var articulosprov = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == id).ToList();
-                if (articulosprov.Count > 0) 
+                if (idperfil>-1) 
                 {
-                    _dbpContext.PedSucArticulos.RemoveRange(articulosprov);
-                    await _dbpContext.SaveChangesAsync();
-                }
-                var prov = _dbpContext.PedSucProveedores.Where(x => x.Codproveedor == id).ToList(); 
+                    var articulosprov = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == id && x.Idperfil == idperfil).ToList();
+                    if (articulosprov.Count > 0)
+                    {
+                        _dbpContext.PedSucArticulos.RemoveRange(articulosprov);
+                        await _dbpContext.SaveChangesAsync();
+                    }
+                    var prov = _dbpContext.PedSucProveedores.Where(x => x.Codproveedor == id && x.Idperfil == idperfil).ToList();
 
-                if (prov.Count> 0)
-                {
-                    _dbpContext.PedSucProveedores.RemoveRange(prov);
-                    await _dbpContext.SaveChangesAsync();
+                    if (prov.Count > 0)
+                    {
+                        _dbpContext.PedSucProveedores.RemoveRange(prov);
+                        await _dbpContext.SaveChangesAsync();
+                    }
                 }
-
                 return StatusCode(StatusCodes.Status200OK);
             }
             catch (Exception ex)
@@ -308,28 +410,51 @@ namespace API_PEDIDOS.Controllers
 
         [HttpPost]
         [Route("agregarItems")]
-        public async Task<ActionResult> addProvitems([FromForm] int idprov, [FromForm] string jdata)
+        public async Task<ActionResult> addProvitems([FromForm] int idprov, [FromForm] string jdata, [FromForm] int idperfil, [FromForm]string sucursales)
         {
             try
             {
-                List<itempProvSuc> articulos = JsonConvert.DeserializeObject<List<itempProvSuc>>(jdata);
+                int[] idsucs = JsonConvert.DeserializeObject<int[]>(sucursales);
+                var list = _dbpContext.PedSucProveedores.Where(x => x.Codproveedor == idprov && x.Idperfil == idperfil).ToList();
 
-                var items = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == idprov).ToList();
-
-                _dbpContext.PedSucArticulos.RemoveRange(items);
-                await _dbpContext.SaveChangesAsync();
-
-                foreach (var art in articulos)
+                if (list.Count > 0)
                 {
-                    _dbpContext.PedSucArticulos.Add(new PedSucArticulo()
+                    _dbpContext.PedSucProveedores.RemoveRange(list);
+                    await _dbpContext.SaveChangesAsync();
+                }
+
+                foreach (int ids in idsucs)
+                {
+                    _dbpContext.PedSucProveedores.Add(new PedSucProveedore()
                     {
                         Codproveedor = idprov,
-                        Codart = art.id,
-                        Fiscal = art.fiscal == null ? false : art.fiscal,  
+                        Codsucursal = ids,
+                        Idperfil = idperfil,
                     });
+                    await _dbpContext.SaveChangesAsync();
                 }
-                await _dbpContext.SaveChangesAsync();
 
+
+                List<itempProvSuc> articulos = JsonConvert.DeserializeObject<List<itempProvSuc>>(jdata);
+                if (idperfil>-1) 
+                {
+                    var items = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == idprov && x.Idperfil == idperfil).ToList();
+
+                    _dbpContext.PedSucArticulos.RemoveRange(items);
+                    await _dbpContext.SaveChangesAsync();
+
+                    foreach (var art in articulos)
+                    {
+                        _dbpContext.PedSucArticulos.Add(new PedSucArticulo()
+                        {
+                            Codproveedor = idprov,
+                            Codart = art.id,
+                            Fiscal = art.fiscal == null ? false : art.fiscal,
+                            Idperfil = idperfil,
+                        });
+                    }
+                    await _dbpContext.SaveChangesAsync();
+                }
                 return StatusCode(StatusCodes.Status200OK);
 
             }
@@ -497,8 +622,8 @@ namespace API_PEDIDOS.Controllers
         }
 
         [HttpGet]
-        [Route("getPedidos/{idsuc}")]
-        public async Task<ActionResult> GetPedidosBD(int idsuc)
+        [Route("getPedidos/{idsuc}/{idu}")]
+        public async Task<ActionResult> GetPedidosBD(int idsuc, int idu)
         {
             try
             {
@@ -508,7 +633,9 @@ namespace API_PEDIDOS.Controllers
 
                 if (idsuc == -1)
                 {
+                    var asignaciones = _dbpContext.PedSucAsignaciones.Where(x => x.Idu == idu).ToList(); 
                      pedidosdb = _dbpContext.PedidosSucursales.Where(x => (x.Fecha.Date >= DateTime.Now.Date) && x.Estatus.Equals("POR ACEPTAR")).ToList();
+                    pedidosdb = pedidosdb.Where(x => asignaciones.Any(y => y.Idprov == x.Proveedor && y.Ids == x.Sucursal)).ToList();   
                 }
                 else 
                 {
@@ -539,7 +666,7 @@ namespace API_PEDIDOS.Controllers
 
     [HttpPost]
     [Route("getPedidosFecha")]
-    public async Task<ActionResult> GetPedidosBDFecha([FromForm] DateTime fecha, [FromForm] int ids)
+    public async Task<ActionResult> GetPedidosBDFecha([FromForm] DateTime fecha, [FromForm] int ids, [FromForm] int idu)
     {
       try
       {
@@ -549,7 +676,9 @@ namespace API_PEDIDOS.Controllers
 
         if (ids == -1)
         {
-          pedidosdb = _dbpContext.PedidosSucursales.Where(x => x.Fecha.Date == fecha.Date && x.Estatus.Equals("POR ACEPTAR")).ToList();
+                    var asignaciones = _dbpContext.PedSucAsignaciones.Where(x => x.Idu == idu).ToList();
+                    pedidosdb = _dbpContext.PedidosSucursales.Where(x => x.Fecha.Date == fecha.Date && x.Estatus.Equals("POR ACEPTAR")).ToList();
+                    pedidosdb = pedidosdb.Where(x => asignaciones.Any(y => y.Idprov == x.Proveedor && y.Ids == x.Sucursal)).ToList();
         }
         else
         {
@@ -923,7 +1052,7 @@ namespace API_PEDIDOS.Controllers
               command.ExecuteNonQuery();
 
 
-              if (prov.Codproveedor == 5 || prov.Codproveedor == 1)
+              if (prov.Codproveedor == 5 || prov.Codproveedor == 1 || prov.Codproveedor == 10)
               {
                 command = new SqlCommand("SP_INSERT_INCIDENCIA", connection, transaccion);
 
@@ -973,26 +1102,26 @@ namespace API_PEDIDOS.Controllers
                 }
               }
 
-              await transaccion.CommitAsync();
+                            await transaccion.CommitAsync();
 
 
-              pedido.status = 3;
-              pedidodb.Jdata = JsonConvert.SerializeObject(pedido);
-              pedidodb.Estatus = "AUTORIZADO";
-              pedidodb.Numpedido = supedido;
-              pedidodb.Datam = DateTime.Now.ToString("o");
-              _dbpContext.PedidosSucursales.Update(pedidodb);
-              await _dbpContext.SaveChangesAsync();
+                            pedido.status = 3;
+                            pedidodb.Jdata = JsonConvert.SerializeObject(pedido);
+                            pedidodb.Estatus = "AUTORIZADO";
+                            pedidodb.Numpedido = supedido;
+                            pedidodb.Datam = DateTime.Now.ToString("o");
+                            _dbpContext.PedidosSucursales.Update(pedidodb);
+                            await _dbpContext.SaveChangesAsync();
 
-              var modificaciones = _dbpContext.ModificacionesPedSucs.Where(x => x.Idpedido == idp).ToList();
-              foreach (var item in modificaciones)
-              {
-                item.Enviado = true;
-                _dbpContext.ModificacionesPedSucs.Update(item);
-                await _contextdb2.SaveChangesAsync();
-              }
+                            var modificaciones = _dbpContext.ModificacionesPedSucs.Where(x => x.Idpedido == idp).ToList();
+                            foreach (var item in modificaciones)
+                            {
+                                item.Enviado = true;
+                                _dbpContext.ModificacionesPedSucs.Update(item);
+                                await _contextdb2.SaveChangesAsync();
+                            }
 
-            }
+                        }
 
           }
 
@@ -1188,6 +1317,124 @@ namespace API_PEDIDOS.Controllers
         }
 
 
+        [HttpGet]
+        [Route("AignarpedidosUsuarios")]
+        public async Task<ActionResult> AignarpedidosUsuarios()
+        {
+            try
+            {
+
+
+                string query = @"
+      SELECT RF.IDFRONT AS cod, RF.TITULO AS name,SC.REGION
+FROM ALMACEN ALM WITH(NOLOCK)
+INNER JOIN REM_CAJASFRONT RCF WITH(NOLOCK) ON ALM.CODALMACEN COLLATE Latin1_General_CS_AI = RCF.CODALMVENTAS
+INNER JOIN SERIESCAMPOSLIBRES SCL WITH(NOLOCK) ON RCF.SERIETIQUETS COLLATE Latin1_General_CS_AI = SCL.SERIE
+INNER JOIN REM_FRONTS RF ON RF.IDFRONT = RCF.IDFRONT 
+INNER JOIN BD2.dbo.SERIESCAMPOSLIBRES SC WITH(NOLOCK) ON RCF.SERIETIQUETS COLLATE Modern_Spanish_CI_AS = SC.SERIE
+WHERE (ALM.NOTAS LIKE N'RW') AND (RCF.CAJAFRONT = 1)";
+
+                List<SucursalRegion> sucursales = new List<SucursalRegion>();
+
+                using (SqlConnection connection = new SqlConnection(connectionStringBD2))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Abrir la conexión
+                    connection.Open();
+
+                    // Ejecutar el comando y obtener los datos
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Crear una tabla para almacenar los datos
+                        DataTable dataTable = new DataTable();
+                        dataTable.Load(reader);
+
+                        // Imprimir los datos (para prueba)
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            sucursales.Add(new SucursalRegion(){ id = int.Parse(row[0].ToString()), name = row[1].ToString(), region = row[2].ToString() });
+                        }
+                    }
+
+                }
+
+
+
+                List<Object> data = new List<Object>();
+                //var proveedoresdb = _dbpContext.PedSucProveedores.ToList();
+
+
+                    var proveedoresdb = _dbpContext.PedSucProveedores
+                        .GroupBy(p => p.Codproveedor)
+                        .Select(g => g.FirstOrDefault()) // Puedes obtener el primer registro de cada grupo.
+                        .ToList();
+
+                    foreach (var prov in proveedoresdb)
+                    {
+                        foreach(var suc in sucursales) 
+                        {
+                            if (suc.region == "QRO") 
+                            {
+                                var reg = _dbpContext.PedSucAsignaciones.Where(x => x.Idprov == prov.Codproveedor && x.Ids == suc.id && x.Idu == 9).FirstOrDefault();
+                                if (reg == null)
+                                {
+                                    _dbpContext.PedSucAsignaciones.Add(new PedSucAsignacione()
+                                    {
+                                        Idprov = prov.Codproveedor,
+                                        Idu = 9,
+                                        Ids = suc.id,
+                                    });
+                                    await _dbpContext.SaveChangesAsync();
+                                }
+                            }
+                            if (suc.region == "DF")
+                            {
+                                var reg = _dbpContext.PedSucAsignaciones.Where(x => x.Idprov == prov.Codproveedor && x.Ids == suc.id && x.Idu == 8).FirstOrDefault();
+                                if (reg == null)
+                                {
+                                    _dbpContext.PedSucAsignaciones.Add(new PedSucAsignacione()
+                                    {
+                                        Idprov = prov.Codproveedor,
+                                        Idu = 8,
+                                        Ids = suc.id,
+                                    });
+                                    await _dbpContext.SaveChangesAsync();
+                                }
+                            }
+                            if (suc.region == "SLP")
+                            {
+                                var reg = _dbpContext.PedSucAsignaciones.Where(x => x.Idprov == prov.Codproveedor && x.Ids == suc.id && x.Idu == 108).FirstOrDefault();
+                                if (reg == null)
+                                {
+                                    _dbpContext.PedSucAsignaciones.Add(new PedSucAsignacione()
+                                    {
+                                        Idprov = prov.Codproveedor,
+                                        Idu = 108,
+                                        Ids = suc.id,
+                                    });
+                                    await _dbpContext.SaveChangesAsync();
+                                }
+                            }
+                        }
+                    }
+    
+
+                return StatusCode(200, data);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
+
+
     }
 
   public class itempProvSuc
@@ -1196,6 +1443,16 @@ namespace API_PEDIDOS.Controllers
     public Boolean? fiscal { get; set; }
 
   }
+
+    public class SucursalRegion
+    {
+        public int id { get; set; }
+        public String name { get; set; }
+
+        public String region { get; set; }
+
+    }
+
     public class previewpedModel
     {
         public int idprov { get; set; }

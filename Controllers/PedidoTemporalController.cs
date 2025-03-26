@@ -1708,7 +1708,7 @@ namespace API_PEDIDOS.Controllers
                             // Ejecutar el procedimiento almacenado
                             command.ExecuteNonQuery();
 
-                            if (prov.Codproveedor == 5 || prov.Codproveedor == 1)
+                            if (prov.Codproveedor == 5 || prov.Codproveedor == 1 || prov.Codproveedor == 10)
                             {
                                 command = new SqlCommand("SP_INSERT_INCIDENCIA", connection, transaction);
 
