@@ -30,10 +30,10 @@ namespace API_PEDIDOS.Controllers
 
                 foreach (var ids in sucursales) 
                 {
-                    var reg = _context.DiasEspecialesSucursals.Where(x => x.Fecha.Value.Date == model.Fecha.Date && x.Descripcion == model.Descripcion && x.Sucursal == ids).FirstOrDefault();
+                    //var reg = _context.DiasEspecialesSucursals.Where(x => x.Fecha.Value.Date == model.Fecha.Date && x.Descripcion == model.Descripcion && x.Sucursal == ids).FirstOrDefault();
 
-                    if (reg == null)
-                    {
+                    //if (reg == null)
+                    //{
                         _context.DiasEspecialesSucursals.Add(new DiasEspecialesSucursal()
                         {
                             Dia = model.Dia,
@@ -44,18 +44,18 @@ namespace API_PEDIDOS.Controllers
                             Sucursal = ids,
                             Articulos = model.articulos
                         });
-                    }
-                    else 
-                    {
-                        reg.Dia = model.Dia;
-                        reg.Semana = model.Semana;
-                        reg.Fecha = model.Fecha;
-                        reg.Descripcion = model.Descripcion;
-                        reg.FactorConsumo = model.FactorConsumo;
-                        reg.Articulos = model.articulos;
+                    //}
+                    //else 
+                    //{
+                    //    reg.Dia = model.Dia;
+                    //    reg.Semana = model.Semana;
+                    //    reg.Fecha = model.Fecha;
+                    //    reg.Descripcion = model.Descripcion;
+                    //    reg.FactorConsumo = model.FactorConsumo;
+                    //    reg.Articulos = model.articulos;
 
-                        _context.DiasEspecialesSucursals.Update(reg);
-                    }
+                    //    _context.DiasEspecialesSucursals.Update(reg);
+                    //}
                     
                     
                 }
@@ -84,10 +84,10 @@ namespace API_PEDIDOS.Controllers
 
                     foreach (var ids in sucursales)
                     {
-                        var reg = _context.DiasEspecialesSucursals.Where(x => x.Fecha.Value.Date == model.Fecha.Date && x.Descripcion == model.Descripcion && x.Sucursal == ids).FirstOrDefault();
+                        //var reg = _context.DiasEspecialesSucursals.Where(x => x.Fecha.Value.Date == model.Fecha.Date && x.Descripcion == model.Descripcion && x.Sucursal == ids).FirstOrDefault();
 
-                        if (reg == null)
-                        {
+                        //if (true)
+                        //{
                             _context.DiasEspecialesSucursals.Add(new DiasEspecialesSucursal()
                             {
                                 Dia = model.Dia,
@@ -98,18 +98,18 @@ namespace API_PEDIDOS.Controllers
                                 Sucursal = ids,
                                 Articulos = model.articulos
                             });
-                        }
-                        else
-                        {
-                            reg.Dia = model.Dia;
-                            reg.Semana = model.Semana;
-                            reg.Fecha = model.Fecha;
-                            reg.Descripcion = model.Descripcion;
-                            reg.FactorConsumo = model.FactorConsumo;
-                            reg.Articulos = model.articulos;
+                        //}
+                        //else
+                        //{
+                        //    reg.Dia = model.Dia;
+                        //    reg.Semana = model.Semana;
+                        //    reg.Fecha = model.Fecha;
+                        //    reg.Descripcion = model.Descripcion;
+                        //    reg.FactorConsumo = model.FactorConsumo;
+                        //    reg.Articulos = model.articulos;
 
-                            _context.DiasEspecialesSucursals.Update(reg);
-                        }
+                        //    _context.DiasEspecialesSucursals.Update(reg);
+                        //}
 
 
                     };
@@ -171,7 +171,7 @@ namespace API_PEDIDOS.Controllers
         {
             try
             {
-                var diasespeciales = await _context.DiasEspecialesSucursals.OrderBy(x => x.Fecha).ToListAsync();
+                var diasespeciales = await _context.DiasEspecialesSucursals.Where(x=> x.Fecha.Value.Date >= DateTime.Now.Date.AddDays(-30).Date).OrderBy(x => x.Fecha).ToListAsync();
                 return StatusCode(StatusCodes.Status200OK, diasespeciales);
 
             }

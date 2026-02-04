@@ -20,12 +20,14 @@ namespace API_PEDIDOS.Controllers
         private readonly ILogger<CatalogosController> _logger;
         protected BD2Context _contextdb2;
         protected DBPContext _dbpContext;
+        public FuncionesPedidos _fp; 
 
-        public PedidosController(ILogger<CatalogosController> logger, BD2Context db2c, DBPContext dbpc)
+        public PedidosController(ILogger<CatalogosController> logger, BD2Context db2c, DBPContext dbpc, FuncionesPedidos fp)
         {
             _logger = logger;
             _contextdb2 = db2c;
             _dbpContext = dbpc;
+            _fp = fp;
         }
 
         [HttpGet]
@@ -796,9 +798,6 @@ namespace API_PEDIDOS.Controllers
                         });
 
                         string tempjdata = JsonConvert.SerializeObject(pedidos.Last());
-                        var temppedido = _dbpContext.Pedidos.Where(p => p.Sucursal == item.Codsucursal.ToString() && p.Proveedor == item.Codproveedor && p.Jdata == tempjdata && p.Fecha.Value.Date == DateTime.Now.Date).FirstOrDefault();
-                        if (temppedido == null)
-                        {
                             await _dbpContext.Pedidos.AddAsync(new Pedido()
                             {
                                 Sucursal = item.Codsucursal.ToString(),
@@ -811,11 +810,6 @@ namespace API_PEDIDOS.Controllers
                                 Temporal = false
                             });
                             await _dbpContext.SaveChangesAsync();
-                        }
-                        else
-                        {
-                            pedidos.RemoveAt(pedidos.Count - 1);
-                        }
 
                     }
 
@@ -827,6 +821,8 @@ namespace API_PEDIDOS.Controllers
                     _dbpContext.ValidacionPedidos.Remove(estatuspedido); 
                     await _dbpContext.SaveChangesAsync();
                 }
+
+                _fp.eliminarPedidosDuplicados(); 
 
                 return StatusCode(200, pedidos);
             }
@@ -968,12 +964,17 @@ namespace API_PEDIDOS.Controllers
         foreach (var prov in proveedores)
         {
           var provdb = _contextdb2.Proveedores.Where(x => x.Codproveedor == prov.Codproveedor).FirstOrDefault();
-          var articulos = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == prov.Codproveedor).ToList(); 
+          //var articulos = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == prov.Codproveedor).ToList();
+                    var articulos = _dbpContext.PedSucArticulos
+    .Where(x => x.Codproveedor == prov.Codproveedor)
+    .Select(x => x.Codart) // Asegúrate de seleccionar solo el campo necesario
+    .Distinct() // Esto solo obtiene los artículos distintos basados en el Codarticulo
+    .ToList();
 
-          foreach (var articulo in articulos)
+                    foreach (var articulo in articulos)
           {
-            var artdb = _contextdb2.Articulos1.Where(x => x.Codarticulo == articulo.Codart).FirstOrDefault();  
-            var umedidaart = _contextdb2.ItProductos.Where(x => x.Rfc == provdb.Nif20 && x.Codarticulo == articulo.Codart).FirstOrDefault();
+            var artdb = _contextdb2.Articulos1.Where(x => x.Codarticulo == articulo).FirstOrDefault();  
+            var umedidaart = _contextdb2.ItProductos.Where(x => x.Rfc == provdb.Nif20 && x.Codarticulo == articulo).FirstOrDefault();
 
             if (umedidaart != null)
             {
@@ -1817,16 +1818,16 @@ namespace API_PEDIDOS.Controllers
                         Numpedido = 0,
                         Codarticulo = model.codarticulo,
                         Comentario = model.comentario
-                        
+
                     });
 
-                    await _dbpContext.SaveChangesAsync();  
+                    await _dbpContext.SaveChangesAsync();
 
                 }
-                else 
+                else
                 {
-                    registro.ValDespues = model.cajas.ToString(); 
-                    registro.Justificacion = model.justificacion;   
+                    registro.ValDespues = model.cajas.ToString();
+                    registro.Justificacion = model.justificacion;
                     registro.Fecha = DateTime.Now;
                     _dbpContext.Modificaciones.Update(registro);
                     await _dbpContext.SaveChangesAsync();
@@ -2731,8 +2732,8 @@ namespace API_PEDIDOS.Controllers
                 await _dbpContext.SaveChangesAsync();
                 var asignaciones = _dbpContext.AsignacionProvs.Where(x => x.Idu == idu).ToList();
 
-                var parametros = _dbpContext.Parametros.FirstOrDefault();
-                dynamic obj = JsonConvert.DeserializeObject<dynamic>(parametros.Jdata);
+                  var parametros = _dbpContext.Parametros.FirstOrDefault();
+                  dynamic obj = JsonConvert.DeserializeObject<dynamic>(parametros.Jdata);
 
 
                 List<Pedido> rangopedidosdel = new List<Pedido>();
@@ -2756,13 +2757,13 @@ namespace API_PEDIDOS.Controllers
                     rangopedidosdel = rangopedidosdel.Where(x => x.Sucursal == filtrosucursal.ToString()).ToList();
                 }
 
-                foreach (var item in rangopedidosdel) 
+                foreach (var item in rangopedidosdel)
                 {
                     var modificaciones = _dbpContext.Modificaciones.Where(x => x.IdPedido == item.Id).ToList();
                     if (modificaciones.Count > 0) ;
                     _dbpContext.Modificaciones.RemoveRange(modificaciones);
                     await _dbpContext.SaveChangesAsync();
-                }  
+                }
 
                 _dbpContext.RemoveRange(rangopedidosdel);
                 await _dbpContext.SaveChangesAsync();
@@ -3477,8 +3478,256 @@ namespace API_PEDIDOS.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("liberarproceso/{idu}")]
+        public async Task<ActionResult> liberarproceso(int idu)
+        {
+            try
+            {
+                var reg = _dbpContext.ValidacionPedidos.Where(X => X.Idu == idu).FirstOrDefault();
+                if (reg != null) 
+                {
+
+                }
+
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.ToString() });
+            }
+
+
+        }
+
+
+        [HttpGet]
+        [Route("eliminarPedidosDuplicados")]
+        public async Task<ActionResult> elimninarpedidosduplicados()
+        {
+            try
+            {
+                _fp.eliminarPedidosDuplicados(); 
+                return Ok(); 
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
+
+        [HttpGet]
+        [Route("getTotalLineasPedidos")]
+        public async Task<ActionResult> Gettotallineaspedidos()
+        {
+            try
+            {
+                DateTime fechaInicio = new DateTime(2025, 4, 1);
+                DateTime fechaFin = new DateTime(2025, 4, 30);
+
+                List<Pedidos> pedidos = new List<Pedidos>();
+                //var pedidosdb = _dbpContext.Pedidos.ToList();
+                var pedidosdb = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date >= fechaInicio.Date && x.Fecha.Value.Date <= fechaFin.Date && x.Estatus.Equals("AUTORIZADO") ).ToList();
+
+                int lineastotales = 0;
+
+                List<lineaArticulo> totalesarticulos = new List<lineaArticulo>(); 
+ 
+                foreach (var item in pedidosdb)
+                {
+                    Pedidos p = JsonConvert.DeserializeObject<Pedidos>(item.Jdata);
+                    lineastotales = lineastotales + p.articulos.Count;
+
+                    foreach (ArticuloPedido artped in p.articulos) 
+                    {
+                        var itemtotart = totalesarticulos.Where(x => x.codarticulo == artped.codArticulo).FirstOrDefault(); 
+                        if (itemtotart == null)
+                        {
+                            totalesarticulos.Add(new lineaArticulo()
+                            {
+                                codarticulo = artped.codArticulo,
+                                descripcion = artped.nombre,
+                                lineastotales = 1
+                            }); 
+                        }
+                        else 
+                        {
+                            itemtotart.lineastotales++; 
+                        }
+                    }
+
+                }
+
+                return StatusCode(200, new { lineas = lineastotales, pedidos = pedidosdb.Count, totalesart = totalesarticulos });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
+
+        [HttpGet]
+        [Route("getReporteModificaciones")]
+        public async Task<ActionResult> GetReporteModificaciones()
+        {
+            try
+            {
+                DateTime fechaInicio = new DateTime(2025, 4, 1);
+                //DateTime fechaFin = new DateTime(2025, 3, 31);
+
+                var modificaciones = _dbpContext.Modificaciones.Where(x => x.Fecha.Value.Date >= fechaInicio.Date && x.Enviado == true && x.Modificacion == "AJUSTE COMPRAS").ToList();
+
+                List<Object> data = new List<object>(); 
+                foreach (var mod in modificaciones) 
+                {
+                    var pedidodb = _dbpContext.Pedidos.Where(x => x.Id == mod.IdPedido).FirstOrDefault(); 
+                    if (pedidodb != null) 
+                    {
+                       
+                        Pedidos p = JsonConvert.DeserializeObject<Pedidos>(pedidodb.Jdata);
+                        var art = p.articulos.Where(x => x.codArticulo == mod.Codarticulo).FirstOrDefault();
+                        if (art != null) 
+                        {
+                            mod.ValDespues = art.unidadestotales.ToString();
+                            var usuario = _dbpContext.Usuarios.Where(x => x.Id == mod.Idusuario).FirstOrDefault();
+                            string nombredeusuario = "";
+                            if (usuario != null) { nombredeusuario = usuario.Nombre + " " + usuario.ApellidoP; }
+                            data.Add(new ReporteModificacion()
+                            {
+                                sucursal = p.nombresucursal,
+                                fecha = mod.Fecha.Value,
+                                modificacion = mod.Modificacion,
+                                codarticulo = (int)mod.Codarticulo,
+                                articulo = art.nombre,
+                                pedido = double.Parse(mod.ValAntes).ToString("F2"),
+                                ajuste = double.Parse(mod.ValDespues).ToString("F2"),
+                                diferencia = double.Parse(mod.ValAntes) - double.Parse(mod.ValDespues),
+                                comentario = mod.Comentario,
+                                justificacion = mod.Justificacion,
+                                pedidoSerie = mod.PedidoSerie,
+                                numpedido = (int)mod.Numpedido,
+                                usuario = nombredeusuario
+                            }); 
+                        }
+                    }
+                    
+                }
+
+                Color colorcelda = ColorTranslator.FromHtml("#00000000");
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                string filePath = Path.Combine(Directory.GetCurrentDirectory(), "reportemodificaciones.xlsx");
+
+                // Crear un nuevo archivo de Excel
+                using (var package = new ExcelPackage())
+                {
+                    // Agregar una hoja al libro de trabajo
+                    var worksheet = package.Workbook.Worksheets.Add("Hoja 1");
+
+                    worksheet.Cells[1, 1].Value = "SUCURSAL";
+                    worksheet.Cells[1, 2].Value = "FECHA";
+                    worksheet.Cells[1, 3].Value = "MODIFICACION";
+                    worksheet.Cells[1, 4].Value = "CODARTICULO";
+                    worksheet.Cells[1, 5].Value = "ARTICULO";
+                    worksheet.Cells[1, 6].Value = "PEDIDO";
+                    worksheet.Cells[1, 7].Value = "AJUSTE";
+                    worksheet.Cells[1, 8].Value = "DIFERENCIA";
+                    worksheet.Cells[1, 9].Value = "COMENTARIO";
+                    worksheet.Cells[1, 10].Value = "JUSTIFICACION";
+                    worksheet.Cells[1, 11].Value = "PEDIDO_SERIE";
+                    worksheet.Cells[1, 12].Value = "NUMPEDIDO";
+                    worksheet.Cells[1, 13].Value = "USUARIO";
+
+
+                    using (var range = worksheet.Cells["A1:M1"])
+                    {
+                        Color colorFondo = ColorTranslator.FromHtml("#00000000");
+                        range.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        range.Style.Fill.BackgroundColor.SetColor(colorFondo);
+                        range.Style.Font.Color.SetColor(System.Drawing.Color.White);
+                        range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        range.AutoFitColumns();
+                    }
+                    int contador = 2;
+
+                    foreach (ReporteModificacion modd in data)
+                    {
+
+                        worksheet.Cells[contador, 1].Value = modd.sucursal;
+                        worksheet.Cells[contador, 2].Value = modd.fecha.Date;
+                        worksheet.Cells[contador, 2].Style.Numberformat.Format = "yyyy-mm-dd";
+                        worksheet.Cells[contador, 3].Value = modd.modificacion;
+                        worksheet.Cells[contador, 4].Value = modd.codarticulo;
+                        worksheet.Cells[contador, 5].Value = modd.articulo;
+                        worksheet.Cells[contador, 6].Value = modd.pedido;
+                        worksheet.Cells[contador, 7].Value = modd.ajuste;
+                        worksheet.Cells[contador, 8].Value = modd.diferencia;
+                        worksheet.Cells[contador, 9].Value = modd.comentario;
+                        worksheet.Cells[contador, 10].Value = modd.justificacion;
+                        worksheet.Cells[contador, 11].Value = modd.pedidoSerie;
+                        worksheet.Cells[contador, 12].Value = modd.numpedido;
+                        worksheet.Cells[contador, 13].Value = modd.usuario;
+
+                        contador++;
+                    }
+
+                    using (var range = worksheet.Cells)
+                    {
+                        range.AutoFitColumns();
+                    }
+
+                    System.IO.File.WriteAllBytes(filePath, package.GetAsByteArray());
+                }
+                    return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
 
     }
+
+    public class lineaArticulo 
+    {
+        public int codarticulo { get; set; }
+        public string descripcion { get; set; }
+        public int lineastotales { get; set; }
+    }
+    public class ReporteModificacion 
+    {
+       public string sucursal { get; set;  }
+       public DateTime fecha { get; set; }
+       public string modificacion  { get; set;  }
+       public int codarticulo { get; set; }
+       public string articulo { get; set; }
+       public string pedido  { get; set;  }
+       public string ajuste { get; set; }
+       public double diferencia { get; set; }
+       public string comentario { get; set; }
+       public string justificacion { get; set; }
+       public string pedidoSerie { get; set; }
+       public int numpedido { get; set; }
+       public string usuario { get; set; }
+    }
+
 
     public class AceptarTodoModel 
     {

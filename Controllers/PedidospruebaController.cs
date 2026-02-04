@@ -1,5 +1,6 @@
 using API_PEDIDOS.ModelsDB2;
 using API_PEDIDOS.ModelsDBP;
+using API_PEDIDOS.ModelsBD2Prueba; 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -15,12 +16,13 @@ namespace API_PEDIDOS.Controllers
     private readonly ILogger<CatalogosController> _logger;
     protected BD2Context _contextdb2;
     protected DBPContext _dbpContext;
-
-    public PedidospruebaController(ILogger<CatalogosController> logger, BD2Context db2c, DBPContext dbpc)
+    protected BD2ContextPrueba _BD2PRUEBA; 
+    public PedidospruebaController(ILogger<CatalogosController> logger, BD2Context db2c, DBPContext dbpc, BD2ContextPrueba bd2prueba)
     {
       _logger = logger;
       _contextdb2 = db2c;
       _dbpContext = dbpc;
+      _BD2PRUEBA = bd2prueba; 
     }
 
     [HttpGet]
@@ -98,7 +100,7 @@ namespace API_PEDIDOS.Controllers
         //  await _dbpContext.SaveChangesAsync();
         //}
 
-        _dbpContext.RemoveRange(rangopedidosdel);
+        _dbpContext.PedidosPruebas.RemoveRange(rangopedidosdel);
         await _dbpContext.SaveChangesAsync();
 
         SqlConnection conn = (SqlConnection)_dbpContext.Database.GetDbConnection();
@@ -577,7 +579,7 @@ namespace API_PEDIDOS.Controllers
                 proyeccion = (consumopedido + stockSeguridad - inventario);
               }
               int iva = 0;
-              var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == rfcprov && p.Codarticulo == art.cod).FirstOrDefault();
+              var itprod = _BD2PRUEBA.ItProductos.Where(p => p.Rfc == rfcprov && p.Codarticulo == art.cod).FirstOrDefault();
               Boolean tienemultiplo = itprod == null ? false : true;
               if (!tienemultiplo) { status = 2; }
               double unidadescaja = itprod == null ? 1 : (double)itprod.Uds;
@@ -808,5 +810,262 @@ namespace API_PEDIDOS.Controllers
         });
       }
     }
-  }
+
+
+        [HttpGet]
+        [Route("ConfirmarPedido/{idp}")]
+        public async Task<ActionResult> confirmarPedido(int idp)
+        {
+            try
+            {
+
+                var pedidodb = _dbpContext.PedidosPruebas.Find(idp);
+                SqlConnection connection = (SqlConnection)_dbpContext.Database.GetDbConnection();
+                connection.Open();
+
+                SqlTransaction transaccion = connection.BeginTransaction();
+
+                var pedido = JsonConvert.DeserializeObject<Pedidos>(pedidodb.Jdata);
+                var remfront = _contextdb2.RemFronts.Where(x => x.Idfront == int.Parse(pedido.idSucursal)).FirstOrDefault();
+                var cajafront = _contextdb2.RemCajasfronts.Where(x => x.Cajafront == 1 && x.Idfront == int.Parse(pedido.idSucursal)).FirstOrDefault();
+                var codcliente = remfront.Codcliente;
+                var transporte = _contextdb2.Transportes.Where(x => x.Fax == pedidodb.Sucursal).FirstOrDefault();
+                int idtransporte = 0;
+                if (transporte != null) { idtransporte = transporte.Codigo; }
+                string numserie = cajafront.Cajamanager + "X";
+
+                string codalmacen = "";
+
+                if (int.Parse(pedido.idSucursal) < 10)
+                {
+                    codalmacen = "0" + pedido.idSucursal;
+                }
+                else { codalmacen = pedido.idSucursal; }
+
+                try
+                {
+                    if (pedidodb == null)
+                    {
+                        connection.Close();
+                        return StatusCode(StatusCodes.Status404NotFound);
+                    }
+                    else
+                    {
+
+                        string querynumped = "SELECT ISNULL(MAX(NUMPEDIDO), 0) AS numero_mayor FROM [BD2_PRUEBA].dbo.PEDCOMPRACAB WHERE NUMSERIE ='" + numserie + "'";
+                        //string querynumped = "SELECT ISNULL(MAX(NUMPEDIDO), 0) AS numero_mayor FROM [BD2].dbo.PEDCOMPRACAB WHERE NUMSERIE ='" + numserie + "'";
+                        SqlCommand command = new SqlCommand(querynumped, connection, transaccion);
+
+                        object result = command.ExecuteScalar();
+                        int numpedido = Convert.ToInt32(result);
+                        numpedido++;
+                        string supedido = "-" + numserie + "-" + numpedido;
+                        string csupedido = numserie + "-" + numpedido;
+                        double totalimpuestos = 0;
+
+                        foreach (var item in pedido.articulos)
+                        {
+                            totalimpuestos += (item.total_linea * item.iva) / 100;
+                        }
+
+                        // insertar pedcompracab
+                        command = new SqlCommand("SP_INSERT_PEDIDO2", connection, transaccion);
+                        command.CommandType = CommandType.StoredProcedure;
+                        // Parámetros del procedimiento almacenado
+                        command.Parameters.AddWithValue("@PEDCAB_NUMSERIE", numserie);
+                        command.Parameters.AddWithValue("@PEDCAB_NUMPEDIDO", numpedido);
+                        command.Parameters.AddWithValue("@PEDCAB_CODPROVEEDOR", pedido.codProveedor);
+                        command.Parameters.AddWithValue("@PEDCAB_FECHA_PEDIDO", DateTime.Now);
+                        command.Parameters.AddWithValue("@PEDCAB_FECHA_ENTREGA", pedido.fechaEntrega);
+                        command.Parameters.AddWithValue("@PEDCAB_TOTBRUTO", pedido.total);
+                        command.Parameters.AddWithValue("@PEDCAB_TOTIMPUESTOS", totalimpuestos);
+                        command.Parameters.AddWithValue("@PEDCAB_TOTNETO", pedido.total + totalimpuestos);
+                        command.Parameters.AddWithValue("@PEDCAB_SUPEDIDO", supedido);
+                        command.Parameters.AddWithValue("@TRANSPORTE", idtransporte);
+                        command.ExecuteNonQuery();
+
+                        // insertar pedcompralin
+                        int numlinea = 0;
+                        foreach (var art in pedido.articulos)
+                        {
+                            numlinea++;
+                            var articulodb = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
+                            string referencia = articulodb.Refproveedor;
+                            command = new SqlCommand("SP_INSERT_PEDIDOLIN2", connection, transaccion);
+                            command.CommandType = CommandType.StoredProcedure;
+                            // Agregar parámetros
+                            command.Parameters.AddWithValue("@PEDLIN_NUMSERIE", numserie);
+                            command.Parameters.AddWithValue("@PEDLIN_NUMPEDIDO", numpedido);
+                            command.Parameters.AddWithValue("@PEDLIN_NUMLINEA", numlinea);
+                            command.Parameters.AddWithValue("@PEDLIN_CODARTICULO", art.codArticulo);
+                            command.Parameters.AddWithValue("@PEDLIN_REFERENCIA", referencia);
+                            command.Parameters.AddWithValue("@PEDLIN_DESCRIPCION", articulodb.Descripcion);
+                            command.Parameters.AddWithValue("@PEDLIN_CAJAS", art.cajas);
+                            command.Parameters.AddWithValue("@PEDLIN_UNIDADES", art.unidadescaja);
+                            command.Parameters.AddWithValue("@PEDLIN_UDSTOTALES", art.unidadestotales);
+                            command.Parameters.AddWithValue("@PEDLIN_PRECIO", art.precio);
+                            command.Parameters.AddWithValue("@PEDLIN_TIPOIMPUESTO", art.tipoImpuesto);
+                            command.Parameters.AddWithValue("@PEDLIN_IVA", art.iva);
+                            command.Parameters.AddWithValue("@PEDLIN_IEPS", 0);
+                            command.Parameters.AddWithValue("@PEDLIN_TOTAL", art.total_linea);
+                            command.Parameters.AddWithValue("@PEDLIN_CODALMACEN", codalmacen);
+                            command.Parameters.AddWithValue("@PEDLIN_SUPEDIDO", supedido);
+                            command.Parameters.AddWithValue("@PEDLIN_FECHAENTREGA", pedido.fechaEntrega);
+                            command.ExecuteNonQuery();
+                        }
+
+                        // insertar pedcompratot
+                        int numlineatot = 0;
+                        var impuestos = pedido.articulos.Select(articulo => articulo.tipoImpuesto).Distinct();
+                        foreach (var impuesto in impuestos)
+                        {
+                            numlineatot++;
+                            double totalbruto = 0;
+                            var articulosimp = pedido.articulos.Where(x => x.tipoImpuesto == impuesto);
+                            double iva = 0;
+                            foreach (var item in articulosimp)
+                            {
+                                totalbruto += item.total_linea;
+                                iva = item.iva;
+                            }
+
+                            command = new SqlCommand("SP_INSERT_COMPRATOT2", connection, transaccion);
+                            command.CommandType = CommandType.StoredProcedure;
+                            // Agregar parámetros al procedimiento almacenado
+                            command.Parameters.AddWithValue("@PEDTOT_NUMSERIE", numserie);
+                            command.Parameters.AddWithValue("@PEDTOT_NUMPEDIDO", numpedido);
+                            command.Parameters.AddWithValue("@PEDTOT_NUMLINEA", numlineatot);
+                            command.Parameters.AddWithValue("@PEDTOT_BRUTO", totalbruto);
+                            command.Parameters.AddWithValue("@PEDTOT_IVA", iva);
+                            command.Parameters.AddWithValue("@PEDTOT_TOTIVA", (totalbruto * iva) / 100);
+                            command.Parameters.AddWithValue("@PEDTOT_IEPS", 0);
+                            command.Parameters.AddWithValue("@PEDTOT_TOTREQ", 0);
+                            command.Parameters.AddWithValue("@PEDTOT_TOTAL", totalbruto + ((totalbruto * iva) / 100));
+                            // Ejecutar el procedimiento almacenado
+                            command.ExecuteNonQuery();
+
+                        }
+
+                        // insertar tesoreria
+
+                        var prov = _contextdb2.Proveedores.Where(x => x.Codproveedor == pedido.codProveedor).FirstOrDefault();
+                        var fpagoprov = _contextdb2.Fpagoproveedors.Where(x => x.Codproveedor == pedido.codProveedor).FirstOrDefault();
+                        command = new SqlCommand("SP_INSERT_TESORERIA2", connection, transaccion);
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        // Agregar parámetros al procedimiento almacenado
+                        command.Parameters.AddWithValue("@TES_NUMSERIE", numserie);
+                        command.Parameters.AddWithValue("@TES_NUMPEDIDO", numpedido);
+                        command.Parameters.AddWithValue("@TES_CUENTA", prov.Codcontable);
+                        command.Parameters.AddWithValue("@TES_CODPROV", prov.Codproveedor);
+                        command.Parameters.AddWithValue("@TES_IMPORTE", pedido.total + totalimpuestos);
+                        command.Parameters.AddWithValue("@TES_FORMAPAGO", fpagoprov.Codformapago);
+                        command.Parameters.AddWithValue("@TES_FECHAVENCIMIENTO", DateTime.Now);
+                        command.CommandTimeout = 120;
+                        command.ExecuteNonQuery();
+
+                        // update seriesdoc
+
+                        command = new SqlCommand("SP_UPDATE_SERIESDOC2", connection, transaccion);
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        // Agregar parámetros al procedimiento almacenado
+
+                        ///--------------- PRUEBAS -------------------
+                        ///
+                        //command.Parameters.AddWithValue("@SERIE", "IOGFYTJDFGHJK");
+                        command.Parameters.AddWithValue("@SERIE", numserie);
+                        // Ejecutar el procedimiento almacenado
+                        command.ExecuteNonQuery();
+
+                        await transaccion.CommitAsync();
+
+
+                        pedido.status = 3;
+                        pedidodb.Jdata = JsonConvert.SerializeObject(pedido);
+                        pedidodb.Estatus = "AUTORIZADO";
+                        pedidodb.Numpedido = supedido;
+                        pedidodb.Datam = DateTime.Now.ToString("o");
+                        _dbpContext.PedidosPruebas.Update(pedidodb);
+                        await _dbpContext.SaveChangesAsync();
+
+                        // revisar auditorias  
+                        //var modificaciones = _dbpContext.Modificaciones.Where(x => x.IdPedido == idp).ToList();
+
+                        //foreach (var item in modificaciones)
+                        //{
+                        //    item.PedidoSerie = numserie.ToString();
+                        //    item.Numpedido = numpedido;
+                        //    item.Enviado = true;
+                        //    _dbpContext.Modificaciones.Update(item);
+                        //    await _dbpContext.SaveChangesAsync();
+                        //}
+
+
+                    }
+
+                    connection.Close();
+
+
+                    return StatusCode(StatusCodes.Status200OK);
+                }
+                catch (Exception err)
+                {
+                    await transaccion.RollbackAsync();
+                    return StatusCode(StatusCodes.Status500InternalServerError, new { message = err.ToString() });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.ToString() });
+            }
+
+        }
+
+
+        [HttpPost]
+        [Route("AjusteCompras")]
+        public async Task<ActionResult> ajustecompras([FromBody] AjusteComprasModel model)
+        {
+            try
+            {
+                var pedidodb = _dbpContext.PedidosPruebas.Where(p => p.Id == model.id).FirstOrDefault();
+                var pedido = JsonConvert.DeserializeObject<Pedidos>(pedidodb.Jdata);
+                var articulo = pedido.articulos.Where(x => x.codArticulo == model.codarticulo).FirstOrDefault();
+               
+
+                foreach (var art in pedido.articulos)
+                {
+                    if (art.codArticulo == model.codarticulo)
+                    {
+                        art.cajas = model.cajas;
+                        art.unidadestotales = model.unidades;
+                        art.total_linea = (double)(art.precio * model.unidades);
+
+                    }
+                }
+
+                double totalpedido = 0;
+                foreach (var art in pedido.articulos)
+                {
+
+                    totalpedido += art.total_linea;
+                }
+                pedido.total = totalpedido;
+                pedidodb.Jdata = JsonConvert.SerializeObject(pedido);
+                _dbpContext.PedidosPruebas.Update(pedidodb);
+                await _dbpContext.SaveChangesAsync();
+
+                return StatusCode(StatusCodes.Status200OK);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.ToString() });
+            }
+
+
+        }
+
+    }
 }

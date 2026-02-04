@@ -216,6 +216,7 @@ namespace API_PEDIDOS.Controllers
                 if (idperfil>-1)
                 {
                     var articulosdb = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == idprov && x.Idperfil == idperfil).ToList();
+                  
                     var prov = _contextdb2.Proveedores.Where(x => x.Codproveedor == idprov).FirstOrDefault();
 
                     foreach (var art in articulosdb)
@@ -251,12 +252,19 @@ namespace API_PEDIDOS.Controllers
 
                 if (idperfil == -1)
                 {
-                    var articulosdb = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == idprov).ToList();
+                    // var articulosdb = _dbpContext.PedSucArticulos.Where(x => x.Codproveedor == idprov).ToList();
+
+                    var articulosdb = _dbpContext.PedSucArticulos
+                                     .Where(x => x.Codproveedor == idprov)
+                                     .Select(x => x.Codart) // Asegúrate de seleccionar solo el campo necesario
+                                     .Distinct() // Esto solo obtiene los artículos distintos basados en el Codarticulo
+                                     .ToList();
+
                     var prov = _contextdb2.Proveedores.Where(x => x.Codproveedor == idprov).FirstOrDefault();
 
-                    foreach (var art in articulosdb)
+                    foreach (int art in articulosdb)
                     {
-                        var articulo = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.Codart).Select
+                        var articulo = _contextdb2.Articulos1.Where(x => x.Codarticulo == art).Select
                             (s =>
                                 new
                                 {
@@ -267,7 +275,7 @@ namespace API_PEDIDOS.Controllers
                             ).FirstOrDefault();
                         if (articulo != null)
                         {
-                            var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == prov.Nif20 && p.Codarticulo == art.Codart).FirstOrDefault();
+                            var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == prov.Nif20 && p.Codarticulo == art).FirstOrDefault();
                             var artdb = _dbpContext.PedSucArticulos.Where(x => x.Codart == articulo.cod && x.Codproveedor == idprov).FirstOrDefault();
                             var preciocompra = _contextdb2.Precioscompras.Where(x => x.Codarticulo == articulo.cod && x.Codproveedor == idprov).FirstOrDefault();
 

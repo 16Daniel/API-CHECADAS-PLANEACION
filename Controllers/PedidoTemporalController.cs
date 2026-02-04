@@ -17,12 +17,13 @@ namespace API_PEDIDOS.Controllers
         private readonly ILogger<CatalogosController> _logger;
         protected BD2Context _contextdb2;
         protected DBPContext _dbpContext;
-
-        public PedidoTemporalController(ILogger<CatalogosController> logger, BD2Context db2c, DBPContext dbpc)
+        public FuncionesPedidos _fp;
+        public PedidoTemporalController(ILogger<CatalogosController> logger, BD2Context db2c, DBPContext dbpc, FuncionesPedidos fp)
         {
             _logger = logger;
             _contextdb2 = db2c;
             _dbpContext = dbpc;
+            _fp = fp;
         }
 
 
@@ -1497,6 +1498,7 @@ namespace API_PEDIDOS.Controllers
                     _dbpContext.ValidacionPedidos.Remove(estatuspedido);
                     await _dbpContext.SaveChangesAsync();
                 }
+                _fp.eliminarPedidosDuplicados();
 
                 return StatusCode(200, pedidos);
             }
