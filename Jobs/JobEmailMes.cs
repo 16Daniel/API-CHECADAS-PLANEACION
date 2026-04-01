@@ -728,7 +728,7 @@ td,th
 
             //// Configurar la información de la cuenta de Gmail
             string correoRemitente = "gilberto.r@operamx.com";
-            string contraseña = "yrhb lxno riph bdtc";
+            string contraseña = "sjlh rtya uehm pjmk";  
 
             //// Configurar la información de la cuenta de Gmail
             //string correoRemitente = "it_token@operamx.com";

@@ -25,6 +25,7 @@ namespace API_PEDIDOS.ModelsDBP
         public virtual DbSet<CatRole> CatRoles { get; set; } = null!;
         public virtual DbSet<CatRuta> CatRutas { get; set; } = null!;
         public virtual DbSet<CatStatusChecada> CatStatusChecadas { get; set; } = null!;
+        public virtual DbSet<CheckInvSemanal> CheckInvSemanals { get; set; } = null!;
         public virtual DbSet<Descuento> Descuentos { get; set; } = null!;
         public virtual DbSet<DiasEspeciale> DiasEspeciales { get; set; } = null!;
         public virtual DbSet<DiasEspecialesSucursal> DiasEspecialesSucursals { get; set; } = null!;
@@ -54,7 +55,7 @@ namespace API_PEDIDOS.ModelsDBP
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=192.168.31.52;Initial Catalog=DBP;Integrated Security=False;User Id=App2;Password=eVPUh82pWdSP9fPD;MultipleActiveResultSets=True;Connection Timeout=120000");
+                optionsBuilder.UseSqlServer("Data Source=10.128.0.2;Initial Catalog=DBP;Integrated Security=False;User Id=App2;Password=eVPUh82pWdSP9fPD;MultipleActiveResultSets=True;Connection Timeout=120000");
             }
         }
 
@@ -175,6 +176,19 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(255)
                     .HasColumnName("DESCRIPCION");
+            });
+
+            modelBuilder.Entity<CheckInvSemanal>(entity =>
+            {
+                entity.HasKey(e => e.Codarticulo);
+
+                entity.ToTable("CHECK_INV_SEMANAL");
+
+                entity.Property(e => e.Codarticulo)
+                    .ValueGeneratedNever()
+                    .HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.Prioridad).HasColumnName("PRIORIDAD");
             });
 
             modelBuilder.Entity<Descuento>(entity =>

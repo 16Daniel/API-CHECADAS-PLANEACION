@@ -505,79 +505,28 @@ namespace API_PEDIDOS.Controllers
                             List<PinventarioModel> inventarios = new List<PinventarioModel>();
                             inventarios.Clear();
 
-                            if (inventarioteorico)
-                            {
-                                using (SqlCommand command = new SqlCommand("SPS_GET_DIFERENCIA_LIN", conn))
-                                {
-                                    command.CommandType = CommandType.StoredProcedure;
-                                    string codalm = "";
-                                    if (item.Codsucursal < 10)
-                                    {
-                                        codalm = "0" + item.Codsucursal;
-                                    }
-                                    else { codalm = item.Codsucursal.ToString(); }
-                                    // Añadir parámetros al comando
-                                    command.Parameters.Add("@FECHA", System.Data.SqlDbType.VarChar, 10).Value = DateTime.Now.ToString("dd/MM/yyyy");
-                                    command.Parameters.Add("@CODALM", System.Data.SqlDbType.NVarChar, 10).Value = codalm;
-                                    command.Parameters.Add("@CODART", System.Data.SqlDbType.Int).Value = art.cod;
-                                    command.CommandTimeout = 120;
+                            var artinvsem = _dbpContext.CheckInvSemanals.Where(x => x.Codarticulo == art.cod).FirstOrDefault();
+                            double inventario = 0;
+                            Boolean hayinventario = false;
 
-                                    // Ejecutar el comando y leer los resultados
-                                    using (SqlDataReader reader = command.ExecuteReader())
-                                    {
-                                        while (reader.Read())
-                                        {
-                                            DateTime fecha = DateTime.Now;
-                                            double unidades = (double)reader["INVFORMULA"];
-                                            inventarios.Add(new PinventarioModel()
-                                            {
-                                                fecha = fecha,
-                                                unidades = unidades,
-                                            });
-                                        }
-                                    }
+                            if (artinvsem == null)
+                            {
+                                if (inventarioteorico)
+                                {
+                                    inventarios = await _fp.getInventarioTeorico(item.Codsucursal, art.cod);
                                 }
+                                else
+                                {
+                                    inventarios = await _fp.getInventarioTeorico(item.Codsucursal, art.cod);
+                                }
+                                if (inventarios.Count > 0) { inventario = inventarios[0].unidades; hayinventario = true; } else { status = 2; }
                             }
                             else
                             {
-
-                                using (SqlCommand command = new SqlCommand("SP_GET_INVENTARIO", conn))
-                                {
-                                    command.CommandType = CommandType.StoredProcedure;
-                                    string codalm = "";
-                                    if (item.Codsucursal < 10)
-                                    {
-                                        codalm = "0" + item.Codsucursal;
-                                    }
-                                    else { codalm = item.Codsucursal.ToString(); }
-                                    // Añadir parámetros al comando
-                                    command.Parameters.Add("@sucursal", SqlDbType.NVarChar, 5).Value = codalm;
-                                    command.Parameters.Add("@articulo", SqlDbType.Int).Value = art.cod;
-                                    command.Parameters.Add("@FI", SqlDbType.NVarChar, 255).Value = DateTime.Now.ToString("yyyy-MM-dd");
-                                    command.Parameters.Add("@FF", SqlDbType.NVarChar, 255).Value = DateTime.Now.ToString("yyyy-MM-dd");
-
-                                    // Ejecutar el comando y leer los resultados
-                                    using (SqlDataReader reader = command.ExecuteReader())
-                                    {
-                                        while (reader.Read())
-                                        {
-                                            DateTime fecha = (DateTime)reader["FECHA"];
-                                            double unidades = reader.GetDouble(1);
-
-                                            inventarios.Add(new PinventarioModel()
-                                            {
-                                                fecha = fecha,
-                                                unidades = unidades,
-                                            });
-                                        }
-                                    }
-                                }
-
+                                inventario = await _fp.obtenerInvnetarioArtSemanal(item.Codsucursal, art.cod);
+                                if (inventario != -999999){ hayinventario = true; } else { hayinventario = false; status = 2; }
                             }
-
-                            double inventario = 0;
-                            Boolean hayinventario = false;
-                            if (inventarios.Count > 0) { inventario = inventarios[0].unidades; hayinventario = true; } else { status = 2; }
+                         
                             double proyeccion = 0; 
                             bool tieneudspendientes = false;
                             double unidadespendientes = 0; 
@@ -697,72 +646,12 @@ namespace API_PEDIDOS.Controllers
 
                             if (inventarioteorico)
                             {
-                                using (SqlCommand command = new SqlCommand("SPS_GET_DIFERENCIA_LIN", conn))
-                                {
-                                    command.CommandType = CommandType.StoredProcedure;
-                                    string codalm = "";
-                                    if (item.Codsucursal < 10)
-                                    {
-                                        codalm = "0" + item.Codsucursal;
-                                    }
-                                    else { codalm = item.Codsucursal.ToString(); }
-                                    // Añadir parámetros al comando
-                                    command.Parameters.Add("@FECHA", System.Data.SqlDbType.VarChar, 10).Value = DateTime.Now.ToString("dd/MM/yyyy");
-                                    command.Parameters.Add("@CODALM", System.Data.SqlDbType.NVarChar, 10).Value = codalm;
-                                    command.Parameters.Add("@CODART", System.Data.SqlDbType.Int).Value = 10277;
-                                    command.CommandTimeout = 120;
-
-                                    // Ejecutar el comando y leer los resultados
-                                    using (SqlDataReader reader = command.ExecuteReader())
-                                    {
-                                        while (reader.Read())
-                                        {
-                                            DateTime fecha = DateTime.Now;
-                                            double unidades = (double)reader["INVFORMULA"];
-                                            invcartones.Add(new PinventarioModel()
-                                            {
-                                                fecha = fecha,
-                                                unidades = unidades,
-                                            });
-                                        }
-                                    }
-                                }
+                                
+                                invcartones = await _fp.getInventarioTeorico(item.Codsucursal, 10277); 
                             }
                             else
                             {
-
-                                using (SqlCommand command = new SqlCommand("SP_GET_INVENTARIO", conn))
-                                {
-                                    command.CommandType = CommandType.StoredProcedure;
-                                    string codalm = "";
-                                    if (item.Codsucursal < 10)
-                                    {
-                                        codalm = "0" + item.Codsucursal;
-                                    }
-                                    else { codalm = item.Codsucursal.ToString(); }
-                                    // Añadir parámetros al comando
-                                    command.Parameters.Add("@sucursal", SqlDbType.NVarChar, 5).Value = codalm;
-                                    command.Parameters.Add("@articulo", SqlDbType.Int).Value = 10277;
-                                    command.Parameters.Add("@FI", SqlDbType.NVarChar, 255).Value = DateTime.Now.ToString("yyyy-MM-dd");
-                                    command.Parameters.Add("@FF", SqlDbType.NVarChar, 255).Value = DateTime.Now.ToString("yyyy-MM-dd");
-
-                                    // Ejecutar el comando y leer los resultados
-                                    using (SqlDataReader reader = command.ExecuteReader())
-                                    {
-                                        while (reader.Read())
-                                        {
-                                            DateTime fecha = (DateTime)reader["FECHA"];
-                                            double unidades = reader.GetDouble(1);
-
-                                            invcartones.Add(new PinventarioModel()
-                                            {
-                                                fecha = fecha,
-                                                unidades = unidades,
-                                            });
-                                        }
-                                    }
-                                }
-
+                                invcartones = await _fp.getInventario(item.Codsucursal, 10277);
                             }
 
                             if (invcartones.Count > 0) 
@@ -3139,79 +3028,28 @@ namespace API_PEDIDOS.Controllers
                             List<PinventarioModel> inventarios = new List<PinventarioModel>();
                             inventarios.Clear();
 
-                            if (inventarioteorico)
-                            {
-                                using (SqlCommand command = new SqlCommand("SPS_GET_DIFERENCIA_LIN", conn))
-                                {
-                                    command.CommandType = CommandType.StoredProcedure;
-                                    string codalm = "";
-                                    if (item.Codsucursal < 10)
-                                    {
-                                        codalm = "0" + item.Codsucursal;
-                                    }
-                                    else { codalm = item.Codsucursal.ToString(); }
-                                    // Añadir parámetros al comando
-                                    command.Parameters.Add("@FECHA", System.Data.SqlDbType.VarChar, 10).Value = DateTime.Now.ToString("dd/MM/yyyy");
-                                    command.Parameters.Add("@CODALM", System.Data.SqlDbType.NVarChar, 10).Value = codalm;
-                                    command.Parameters.Add("@CODART", System.Data.SqlDbType.Int).Value = art.cod;
-                                    command.CommandTimeout = 120;
+                            var artinvsem = _dbpContext.CheckInvSemanals.Where(x => x.Codarticulo == art.cod).FirstOrDefault();
+                            double inventario = 0;
+                            Boolean hayinventario = false;
 
-                                    // Ejecutar el comando y leer los resultados
-                                    using (SqlDataReader reader = command.ExecuteReader())
-                                    {
-                                        while (reader.Read())
-                                        {
-                                            DateTime fecha = DateTime.Now;
-                                            double unidades = (double)reader["INVFORMULA"];
-                                            inventarios.Add(new PinventarioModel()
-                                            {
-                                                fecha = fecha,
-                                                unidades = unidades,
-                                            });
-                                        }
-                                    }
+                            if (artinvsem == null)
+                            {
+                                if (inventarioteorico)
+                                {
+                                    inventarios = await _fp.getInventarioTeorico(item.Codsucursal, art.cod);
                                 }
+                                else
+                                {
+                                    inventarios = await _fp.getInventarioTeorico(item.Codsucursal, art.cod);
+                                }
+                                if (inventarios.Count > 0) { inventario = inventarios[0].unidades; hayinventario = true; } else { status = 2; }
                             }
                             else
                             {
-
-                                using (SqlCommand command = new SqlCommand("SP_GET_INVENTARIO", conn))
-                                {
-                                    command.CommandType = CommandType.StoredProcedure;
-                                    string codalm = "";
-                                    if (item.Codsucursal < 10)
-                                    {
-                                        codalm = "0" + item.Codsucursal;
-                                    }
-                                    else { codalm = item.Codsucursal.ToString(); }
-                                    // Añadir parámetros al comando
-                                    command.Parameters.Add("@sucursal", SqlDbType.NVarChar, 5).Value = codalm;
-                                    command.Parameters.Add("@articulo", SqlDbType.Int).Value = art.cod;
-                                    command.Parameters.Add("@FI", SqlDbType.NVarChar, 255).Value = DateTime.Now.ToString("yyyy-MM-dd");
-                                    command.Parameters.Add("@FF", SqlDbType.NVarChar, 255).Value = DateTime.Now.ToString("yyyy-MM-dd");
-
-                                    // Ejecutar el comando y leer los resultados
-                                    using (SqlDataReader reader = command.ExecuteReader())
-                                    {
-                                        while (reader.Read())
-                                        {
-                                            DateTime fecha = (DateTime)reader["FECHA"];
-                                            double unidades = reader.GetDouble(1);
-
-                                            inventarios.Add(new PinventarioModel()
-                                            {
-                                                fecha = fecha,
-                                                unidades = unidades,
-                                            });
-                                        }
-                                    }
-                                }
-
+                                inventario = await _fp.obtenerInvnetarioArtSemanal(item.Codsucursal, art.cod);
+                                if (inventario != -999999) { hayinventario = true; } else { hayinventario = false; status = 2; }
                             }
 
-                            double inventario = 0;
-                            Boolean hayinventario = false;
-                            if (inventarios.Count > 0) { inventario = inventarios[0].unidades; hayinventario = true; } else { status = 2; }
                             double proyeccion = 0;
                             bool tieneudspendientes = false;
                             double unidadespendientes = 0;
