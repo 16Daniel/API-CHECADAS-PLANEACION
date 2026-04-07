@@ -3325,7 +3325,8 @@ namespace API_PEDIDOS.Controllers
                 var reg = _dbpContext.ValidacionPedidos.Where(X => X.Idu == idu).FirstOrDefault();
                 if (reg != null) 
                 {
-
+                    _dbpContext.ValidacionPedidos.Remove(reg);
+                    await _dbpContext.SaveChangesAsync(); 
                 }
 
                 return StatusCode(200);

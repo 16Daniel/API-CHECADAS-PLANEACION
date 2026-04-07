@@ -168,6 +168,7 @@ namespace API_PEDIDOS.Jobs
             mensaje.To.Add("adrian.c@operamx.com");
             mensaje.To.Add("jorge.j@operamx.com");
             mensaje.To.Add("ricardo.s@operamx.com");
+            mensaje.To.Add("israel.f@operamx.com");
 
             // Create the attachment from the MemoryStream
             file.Position = 0; // Ensure the stream position is at the beginning

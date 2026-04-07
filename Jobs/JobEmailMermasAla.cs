@@ -154,6 +154,7 @@ namespace API_PEDIDOS.Jobs
             mensaje.To.Add("adrian.c@operamx.com");
             mensaje.To.Add("jorge.j@operamx.com");
             mensaje.Bcc.Add("daniel.h@operamx.com");
+            mensaje.To.Add("israel.f@operamx.com"); 
 
 
             try

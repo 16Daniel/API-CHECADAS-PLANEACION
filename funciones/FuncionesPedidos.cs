@@ -93,6 +93,7 @@ namespace API_PEDIDOS.funciones
 
             using (var conn = new SqlConnection(_connectionString))
             {
+                conn.Open(); 
                 using (SqlCommand command = new SqlCommand("SP_GET_INVENTARIO", conn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
@@ -136,6 +137,7 @@ namespace API_PEDIDOS.funciones
 
             using (var conn = new SqlConnection(_connectionString))
             {
+                conn.Open();
                 using (SqlCommand command = new SqlCommand("SPS_GET_DIFERENCIA_LIN", conn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
