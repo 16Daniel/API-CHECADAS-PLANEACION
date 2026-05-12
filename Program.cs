@@ -1,12 +1,14 @@
 
+using API_PEDIDOS.funciones;
+using API_PEDIDOS.Jobs;
+using API_PEDIDOS.Middlewares;
+using API_PEDIDOS.ModelsBD2Prueba;
 using API_PEDIDOS.ModelsDB2;
 using API_PEDIDOS.ModelsDBP;
-using API_PEDIDOS.ModelsBD2Prueba;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Quartz;
-using API_PEDIDOS.Jobs;
 using static Quartz.Logging.OperationName;
-using API_PEDIDOS.funciones;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,13 +16,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-var connectionStringBD2 = builder.Configuration.GetConnectionString("DB2");
-var connectionStringBD2P = builder.Configuration.GetConnectionString("DB2P");
+var DBPConnection = builder.Configuration.GetConnectionString("DBPConnection");
+var DB2Connection = builder.Configuration.GetConnectionString("DB2Connection");
+var DB2PConnection = builder.Configuration.GetConnectionString("DB2PConnection");
 
-builder.Services.AddDbContext<DBPContext>(options => options.UseSqlServer(connectionString))
-    .AddDbContext<BD2Context>(options => options.UseSqlServer(connectionStringBD2))
-    .AddDbContext<BD2ContextPrueba>(options => options.UseSqlServer(connectionStringBD2P));
+builder.Services.AddDbContext<DBPContext>(options => options.UseSqlServer(DBPConnection))
+    .AddDbContext<BD2Context>(options => options.UseSqlServer(DB2Connection))
+    .AddDbContext<BD2ContextPrueba>(options => options.UseSqlServer(DB2PConnection));
 
 builder.Services.AddCors(policyBuilder =>
     policyBuilder.AddDefaultPolicy(policy =>
@@ -104,34 +106,50 @@ builder.Services.AddQuartz(q =>
 
 builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
 
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-var app = builder.Build();
-app.UseCors();
-
-//// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-//    app.UseSwagger();
-//    app.UseSwaggerUI();
-//}
-app.UseSwagger();
-app.UseSwaggerUI(c =>
+builder.Services.AddSwaggerGen(options =>
 {
-    app.UseSwagger().UseDeveloperExceptionPage();
-#if DEBUG
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API PLANEACION v1");
-#else
-    c.SwaggerEndpoint("/back/api_planeacion/swagger/v1/swagger.json", "API_PEDIDOS v1");
-#endif
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "API PEDIDOS",
+        Version = "v0.0.1",
+        Description = "API para administración de pedidos"
+    });
+
+    options.AddSecurityDefinition("ApiKey", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+    {
+        Description = "API Key requerida en el header: x-api-key",
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Name = "x-api-key",
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey
+    });
+
+    options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+    {
+        {
+            new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+            {
+                Reference = new Microsoft.OpenApi.Models.OpenApiReference
+                {
+                    Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                    Id = "ApiKey"
+                }
+            },
+            new string[] {}
+        }
+    });
 });
 
+var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 app.UseHttpsRedirection();
-
+app.UseCors();
+app.UseMiddleware<ApiKeyMiddleware>();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

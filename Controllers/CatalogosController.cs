@@ -27,7 +27,7 @@ namespace API_PEDIDOS.Controllers
             _contextdb2 = db2c;
             _dbpContext = dbpc;
             _configuration = configuration;
-            connectionStringBD2 = _configuration.GetConnectionString("DB2");
+            connectionStringBD2 = _configuration.GetConnectionString("DB2Connection");
 
         }
 
