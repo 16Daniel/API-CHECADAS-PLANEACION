@@ -28,7 +28,7 @@
             }
 
             var configKey = context.RequestServices
-                .GetRequiredService<IConfiguration>()["DashboardApiKey"];
+                .GetRequiredService<IConfiguration>()["PedidosApiKey"];
 
             if (extractedKey != configKey)
             {
