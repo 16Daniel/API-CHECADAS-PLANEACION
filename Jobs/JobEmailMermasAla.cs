@@ -47,7 +47,7 @@ namespace API_PEDIDOS.Jobs
             _dbpContext = dbpc;
             _contextdb2 = db2c;
             _configuration = configuration;
-            connectionString = _configuration.GetConnectionString("DB2");
+            connectionString = _configuration.GetConnectionString("DB2Connection");
         }
 
         public async Task Execute(IJobExecutionContext context)

@@ -14,9 +14,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-var connectionStringBD2 = builder.Configuration.GetConnectionString("DB2");
-var connectionStringBD2P = builder.Configuration.GetConnectionString("DB2P");
+var connectionString = builder.Configuration.GetConnectionString("DBPConnection");
+var connectionStringBD2 = builder.Configuration.GetConnectionString("DB2Connection");
+var connectionStringBD2P = builder.Configuration.GetConnectionString("DB2PConnection");
 
 builder.Services.AddDbContext<DBPContext>(options => options.UseSqlServer(connectionString))
     .AddDbContext<BD2Context>(options => options.UseSqlServer(connectionStringBD2))

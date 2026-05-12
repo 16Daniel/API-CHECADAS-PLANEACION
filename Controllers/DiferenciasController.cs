@@ -28,8 +28,8 @@ namespace API_PEDIDOS.Controllers
             _db2Context = bD2Context;
             _dbpContext = dBPContext;
             _configuration = configuration;
-            connectionString = _configuration.GetConnectionString("DefaultConnection");
-            connectionStringBd2 = _configuration.GetConnectionString("DB2");
+            connectionString = _configuration.GetConnectionString("DBPConnection");
+            connectionStringBd2 = _configuration.GetConnectionString("DB2Connection");
         }
 
 
