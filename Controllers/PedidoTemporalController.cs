@@ -440,7 +440,7 @@ namespace API_PEDIDOS.Controllers
                                 }
                                 else
                                 {
-                                    inventarios = await _fp.getInventarioTeorico(item.Codsucursal, art.cod);
+                                    inventarios = await _fp.getInventario(item.Codsucursal, art.cod);
                                 }
                                 if (inventarios.Count > 0) { inventario = inventarios[0].unidades; hayinventario = true; } else { status = 2; }
                             }
@@ -829,6 +829,8 @@ namespace API_PEDIDOS.Controllers
 
                 foreach (var item in calendarioshoy)
                 {
+                    string region = await _fp.getRegionSuc(item.Codsucursal);
+                    if (region != "SLP") { region = "OPERA"; }
                     Boolean articulosdiferentes = false;
                     var haypedido = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && x.Proveedor == item.Codproveedor && x.Sucursal == item.Codsucursal.ToString() && x.Temporal == true).ToList();
 
@@ -1141,7 +1143,7 @@ namespace API_PEDIDOS.Controllers
                                 }
                                 else
                                 {
-                                    inventarios = await _fp.getInventarioTeorico(item.Codsucursal, art.cod);
+                                    inventarios = await _fp.getInventario(item.Codsucursal, art.cod);
                                 }
                                 if (inventarios.Count > 0) { inventario = inventarios[0].unidades; hayinventario = true; } else { status = 2; }
                             }
@@ -1184,7 +1186,8 @@ namespace API_PEDIDOS.Controllers
                                 proyeccion = (consumopedido + stockSeguridad - inventario);
                             }
                             int iva = 0;
-                            var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == rfcprov && p.Codarticulo == art.cod).FirstOrDefault();
+                            var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == rfcprov && p.Codarticulo == art.cod && p.Grupo == region).FirstOrDefault();
+                            //var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == rfcprov && p.Codarticulo == art.cod && p.Grupo == region).FirstOrDefault();
                             Boolean tienemultiplo = itprod == null ? false : true;
                             if (!tienemultiplo) { status = 2; }
                             double unidadescaja = itprod == null ? 1 : (double)itprod.Uds;

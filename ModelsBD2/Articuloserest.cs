@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace API_PEDIDOS.ModelsBD2
+{
+    public partial class Articuloserest
+    {
+        public int Codarticulo { get; set; }
+        public int Codidioma { get; set; }
+        public string? Descripcion { get; set; }
+        public string? Ingredientes { get; set; }
+        public byte[]? Version { get; set; }
+        public string? Nombre { get; set; }
+
+        public virtual Articulo CodarticuloNavigation { get; set; } = null!;
+    }
+}

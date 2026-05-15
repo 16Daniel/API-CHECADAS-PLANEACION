@@ -26610,6 +26610,10 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Umedida)
                     .HasMaxLength(50)
                     .HasColumnName("UMEDIDA");
+
+                entity.Property(e => e.Grupo)
+                    .HasMaxLength(50)
+                    .HasColumnName("GRUPO");
             });
 
             modelBuilder.Entity<ItTe>(entity =>

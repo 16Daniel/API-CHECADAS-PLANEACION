@@ -14,14 +14,14 @@ namespace API_PEDIDOS.funciones
         protected BD2Context _contextdb2;
         protected DBPContext _dbpContext;
 
-        public FuncionesPedidos(ILogger<FuncionesPedidos> logger, BD2Context db2c, DBPContext dbpc) 
+        public FuncionesPedidos(ILogger<FuncionesPedidos> logger, BD2Context db2c, DBPContext dbpc)
         {
             _logger = logger;
             _contextdb2 = db2c;
             _dbpContext = dbpc;
         }
 
-        public void eliminarPedidosDuplicados() 
+        public void eliminarPedidosDuplicados()
         {
             // Cadena de conexión a tu base de datos SQL Server
             string connectionString = _dbpContext.Database.GetConnectionString();
@@ -58,7 +58,7 @@ namespace API_PEDIDOS.funciones
             }
         }
 
-        public async Task<double> obtenerInvnetarioArtSemanal(int codsuc, int codart) 
+        public async Task<double> obtenerInvnetarioArtSemanal(int codsuc, int codart)
         {
             string _connectionString = _dbpContext.Database.GetConnectionString();
             string codalm = "";
@@ -85,7 +85,7 @@ namespace API_PEDIDOS.funciones
             }
         }
 
-        public async Task<List<PinventarioModel>> getInventario(int codsuc,int codart) 
+        public async Task<List<PinventarioModel>> getInventario(int codsuc, int codart)
         {
             List<PinventarioModel> inventarios = new List<PinventarioModel>();
 
@@ -93,7 +93,7 @@ namespace API_PEDIDOS.funciones
 
             using (var conn = new SqlConnection(_connectionString))
             {
-                conn.Open(); 
+                conn.Open();
                 using (SqlCommand command = new SqlCommand("SP_GET_INVENTARIO", conn))
                 {
                     command.CommandType = CommandType.StoredProcedure;
@@ -126,7 +126,7 @@ namespace API_PEDIDOS.funciones
                     }
                 }
             }
-            return inventarios; 
+            return inventarios;
         }
 
         public async Task<List<PinventarioModel>> getInventarioTeorico(int codsuc, int codart)
@@ -172,5 +172,35 @@ namespace API_PEDIDOS.funciones
             return inventarios;
         }
 
+        public async Task<string> getRegionSuc(int ids)
+        {
+            string region = "";
+
+            string _connectionString = _dbpContext.Database.GetConnectionString();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                var resultados = conn.Query<RegionSucursal>(
+                    "SP_GET_REGION_SUCURSAL",
+                    new { IDS = ids },
+                    commandType: CommandType.StoredProcedure
+                ).ToList();
+
+                if (resultados.Count > 0)
+                {
+                    region = resultados[0].region;
+                }
+
+                return region;
+            }
+
+        }
+    }
+
+    public class RegionSucursal
+    {
+        public int cod { get; set; }
+        public string name { get; set; }
+        public string region { get; set; }
     }
 }

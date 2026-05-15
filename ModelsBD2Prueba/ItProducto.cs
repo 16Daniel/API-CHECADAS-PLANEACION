@@ -14,5 +14,6 @@ namespace API_PEDIDOS.ModelsBD2Prueba
         public string? Pumedida { get; set; }
         public decimal? Iuds { get; set; }
         public string? Iumedida { get; set; }
+        public string Grupo { get; set; } = null!;
     }
 }

@@ -249,6 +249,7 @@ namespace API_PEDIDOS.ModelsBD2Prueba
         public virtual DbSet<Dtosocupaciontemporadum> Dtosocupaciontemporada { get; set; } = null!;
         public virtual DbSet<Dtostarifa> Dtostarifas { get; set; } = null!;
         public virtual DbSet<Dtostipoartic> Dtostipoartics { get; set; } = null!;
+        public virtual DbSet<E0bd399c50a64b0dbc47a1f242824decvwarticulosfactporfranja> E0bd399c50a64b0dbc47a1f242824decvwarticulosfactporfranjas { get; set; } = null!;
         public virtual DbSet<E637deb0F58a4b279d1aD08034f43ce1> E637deb0F58a4b279d1aD08034f43ce1s { get; set; } = null!;
         public virtual DbSet<EcuaTipoidentificacioncomprador> EcuaTipoidentificacioncompradors { get; set; } = null!;
         public virtual DbSet<EcuaTiposidentificadorsujetoretenido> EcuaTiposidentificadorsujetoretenidos { get; set; } = null!;
@@ -1282,7 +1283,7 @@ namespace API_PEDIDOS.ModelsBD2Prueba
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=192.168.31.52;Initial Catalog=BD2_PRUEBA;Integrated Security=False;User Id=App2;Password=eVPUh82pWdSP9fPD;MultipleActiveResultSets=True;Connection Timeout=120000");
+                optionsBuilder.UseSqlServer("Data Source=operamx.no-ip.net;Initial Catalog=BD2_PRUEBA;Integrated Security=False;User Id=App2;Password=eVPUh82pWdSP9fPD;MultipleActiveResultSets=True;Connection Timeout=120000");
             }
         }
 
@@ -12934,6 +12935,21 @@ namespace API_PEDIDOS.ModelsBD2Prueba
                 entity.Property(e => e.Hasta).HasColumnName("HASTA");
 
                 entity.Property(e => e.Dto).HasColumnName("DTO");
+            });
+
+            modelBuilder.Entity<E0bd399c50a64b0dbc47a1f242824decvwarticulosfactporfranja>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("E0BD399C50A64B0DBC47A1F242824DECVWARTICULOSFACTPORFRANJA");
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
+
+                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
+
+                entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
             modelBuilder.Entity<E637deb0F58a4b279d1aD08034f43ce1>(entity =>
@@ -26581,6 +26597,11 @@ namespace API_PEDIDOS.ModelsBD2Prueba
                 entity.Property(e => e.NoIdentificacion).HasMaxLength(200);
 
                 entity.Property(e => e.Codarticulo).HasColumnName("codarticulo");
+
+                entity.Property(e => e.Grupo)
+                    .HasMaxLength(50)
+                    .HasColumnName("GRUPO")
+                    .HasDefaultValueSql("(N'OPERA')");
 
                 entity.Property(e => e.Iuds)
                     .HasColumnType("decimal(18, 2)")

@@ -1,4 +1,5 @@
 using API_PEDIDOS.funciones;
+using API_PEDIDOS.ModelsBD2Prueba;
 using API_PEDIDOS.ModelsDB2;
 using API_PEDIDOS.ModelsDBP;
 using Microsoft.AspNetCore.Mvc;
@@ -19,15 +20,17 @@ namespace API_PEDIDOS.Controllers
     {
         private readonly ILogger<CatalogosController> _logger;
         protected BD2Context _contextdb2;
+        protected BD2ContextPrueba _contextBD2Prueba; 
         protected DBPContext _dbpContext;
         public FuncionesPedidos _fp; 
 
-        public PedidosController(ILogger<CatalogosController> logger, BD2Context db2c, DBPContext dbpc, FuncionesPedidos fp)
+        public PedidosController(ILogger<CatalogosController> logger, BD2Context db2c, DBPContext dbpc, FuncionesPedidos fp,BD2ContextPrueba bd2cp)
         {
             _logger = logger;
             _contextdb2 = db2c;
             _dbpContext = dbpc;
             _fp = fp;
+            _contextBD2Prueba = bd2cp;
         }
 
         [HttpGet]
@@ -517,7 +520,7 @@ namespace API_PEDIDOS.Controllers
                                 }
                                 else
                                 {
-                                    inventarios = await _fp.getInventarioTeorico(item.Codsucursal, art.cod);
+                                    inventarios = await _fp.getInventario(item.Codsucursal, art.cod);
                                 }
                                 if (inventarios.Count > 0) { inventario = inventarios[0].unidades; hayinventario = true; } else { status = 2; }
                             }
@@ -734,20 +737,21 @@ namespace API_PEDIDOS.Controllers
         {
             try
             {
-        var umedida = _contextdb2.ItProductos.Where(x => x.Rfc == model.rfc && x.Codarticulo == model.codarticulo).FirstOrDefault();
+        var umedida = _contextBD2Prueba.ItProductos.Where(x => x.Rfc == model.rfc && x.Codarticulo == model.codarticulo && x.Grupo == model.grupo).FirstOrDefault();
 
         if (umedida == null)
         {
-          await _contextdb2.ItProductos.AddAsync(new ModelsDB2.ItProducto()
+          await _contextBD2Prueba.ItProductos.AddAsync(new ModelsBD2Prueba.ItProducto()
           {
             Rfc = model.rfc,
             Codarticulo = model.codarticulo,
             Umedida = model.umedida,
             Uds = model.uds,
-            NoIdentificacion = model.rfc + "-" + model.codarticulo + "-0"
-
+              //NoIdentificacion = model.rfc + "-" + model.codarticulo + "-0",
+              NoIdentificacion = model.numIdentificacion,
+              Grupo = model.grupo
           });
-          await _contextdb2.SaveChangesAsync();
+          await _contextBD2Prueba.SaveChangesAsync();
         }
                 return StatusCode(StatusCodes.Status200OK);
 
@@ -805,7 +809,7 @@ namespace API_PEDIDOS.Controllers
 
                     foreach (var articulo in articulos)
                     {
-                        var umedidaart = _contextdb2.ItProductos.Where(x => x.Rfc == prov.rfc && x.Codarticulo == articulo.cod).FirstOrDefault();
+                        var umedidaart = _contextBD2Prueba.ItProductos.Where(x => x.Rfc == prov.rfc && x.Codarticulo == articulo.cod).FirstOrDefault();
 
                         if (umedidaart != null)
                         {
@@ -817,7 +821,8 @@ namespace API_PEDIDOS.Controllers
                                 umedida = umedidaart.Umedida,
                                 uds = umedidaart.Uds,
                                 nomarticulo = articulo.descripcion,
-                                nomprov = prov.nombre
+                                nomprov = prov.nombre,
+                                grupo = umedidaart.Grupo
                             });
                         }
 
@@ -919,11 +924,12 @@ namespace API_PEDIDOS.Controllers
         {
             try
             {
-                var umedida = _contextdb2.ItProductos.Where(x => x.Rfc == model.rfc && x.Codarticulo == model.codarticulo).FirstOrDefault();
+                var umedida = _contextBD2Prueba.ItProductos.Where(x => x.Rfc == model.rfc && x.Codarticulo == model.codarticulo).FirstOrDefault();
                 umedida.Umedida = model.umedida;
                 umedida.Uds = model.uds;
-                _contextdb2.ItProductos.Update(umedida);
-                await _contextdb2.SaveChangesAsync();
+                umedida.Grupo = model.grupo;
+                _contextBD2Prueba.ItProductos.Update(umedida);
+                await _contextBD2Prueba.SaveChangesAsync();
                 return StatusCode(StatusCodes.Status200OK, umedida);
 
             }
@@ -941,9 +947,9 @@ namespace API_PEDIDOS.Controllers
         {
             try
             {
-                var umedida = _contextdb2.ItProductos.Where(x => x.NoIdentificacion == id).FirstOrDefault();
-                _contextdb2.Remove(umedida);
-                await _contextdb2.SaveChangesAsync();
+                var umedida = _contextBD2Prueba.ItProductos.Where(x => x.NoIdentificacion == id).FirstOrDefault();
+                _contextBD2Prueba.Remove(umedida);
+                await _contextBD2Prueba.SaveChangesAsync();
                 return StatusCode(StatusCodes.Status200OK, umedida);
             }
             catch (Exception ex)
@@ -3040,7 +3046,7 @@ namespace API_PEDIDOS.Controllers
                                 }
                                 else
                                 {
-                                    inventarios = await _fp.getInventarioTeorico(item.Codsucursal, art.cod);
+                                    inventarios = await _fp.getInventario(item.Codsucursal, art.cod);
                                 }
                                 if (inventarios.Count > 0) { inventario = inventarios[0].unidades; hayinventario = true; } else { status = 2; }
                             }
@@ -3655,14 +3661,17 @@ namespace API_PEDIDOS.Controllers
         public decimal? uds { get; set; } 
         public string nomprov { get; set; }
         public string nomarticulo { get; set; } 
+        public string grupo { get; set; }
     }
 
     public class itproductoModel
     {
         public string rfc {  get; set; }
         public int codarticulo {  get; set; }
+        public string numIdentificacion { get; set; }
         public string umedida { get; set; }
         public decimal uds {  get; set; }
+        public string grupo { get; set; }
 
     }
 
@@ -3762,7 +3771,7 @@ namespace API_PEDIDOS.Controllers
         public int cod { get; set; }
         public string descripcion { get; set; }
         public double precio { get; set; }
-        public ICollection<Referenciasprov> referencia { get; set; }
+        public ICollection<ModelsDB2.Referenciasprov> referencia { get; set; }
         public int tipoimpuesto { get; set; }
     }
 

@@ -10,5 +10,6 @@ namespace API_PEDIDOS.ModelsDB2
         public int Codarticulo { get; set; }
         public string? Umedida { get; set; }
         public decimal? Uds { get; set; }
+        public string Grupo { get; set; }
     }
 }
