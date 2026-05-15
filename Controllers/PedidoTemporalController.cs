@@ -440,7 +440,7 @@ namespace API_PEDIDOS.Controllers
                                 }
                                 else
                                 {
-                                    inventarios = await _fp.getInventarioTeorico(item.Codsucursal, art.cod);
+                                    inventarios = await _fp.getInventario(item.Codsucursal, art.cod);
                                 }
                                 if (inventarios.Count > 0) { inventario = inventarios[0].unidades; hayinventario = true; } else { status = 2; }
                             }
@@ -1141,7 +1141,7 @@ namespace API_PEDIDOS.Controllers
                                 }
                                 else
                                 {
-                                    inventarios = await _fp.getInventarioTeorico(item.Codsucursal, art.cod);
+                                    inventarios = await _fp.getInventario(item.Codsucursal, art.cod);
                                 }
                                 if (inventarios.Count > 0) { inventario = inventarios[0].unidades; hayinventario = true; } else { status = 2; }
                             }
