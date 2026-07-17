@@ -207,6 +207,8 @@ namespace API_PEDIDOS.Controllers
 
                 foreach (var item in calendarioshoy)
                 {
+                    string region = await _fp.getRegionSuc(item.Codsucursal);
+                    if (region != "SLP") { region = "OPERA"; }
                     Boolean articulosdiferentes = false;
                     var haypedido = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && x.Proveedor == item.Codproveedor && x.Sucursal == item.Codsucursal.ToString() && x.Temporal != true).ToList();
              
@@ -563,7 +565,7 @@ namespace API_PEDIDOS.Controllers
                                 proyeccion = (consumopedido + stockSeguridad - inventario);
                             }
                             int iva = 0;
-                            var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == rfcprov && p.Codarticulo == art.cod).FirstOrDefault();
+                            var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == rfcprov && p.Codarticulo == art.cod && p.Grupo == region).FirstOrDefault();
                             Boolean tienemultiplo = itprod == null ? false : true;
                             if (!tienemultiplo) { status = 2; }
                             double unidadescaja = itprod == null ? 1 : (double)itprod.Uds;
@@ -928,6 +930,7 @@ namespace API_PEDIDOS.Controllers
                 umedida.Umedida = model.umedida;
                 umedida.Uds = model.uds;
                 umedida.Grupo = model.grupo;
+                umedida.NoIdentificacion = model.numIdentificacion; 
                 _contextBD2Prueba.ItProductos.Update(umedida);
                 await _contextBD2Prueba.SaveChangesAsync();
                 return StatusCode(StatusCodes.Status200OK, umedida);
@@ -1229,7 +1232,10 @@ namespace API_PEDIDOS.Controllers
                     }
 
                     int iva = 0;
-                    var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == pedido.rfc && p.Codarticulo == articulopedido.codArticulo).FirstOrDefault();
+                    string region = await _fp.getRegionSuc(int.Parse(pedido.idSucursal));
+                    if (region != "SLP") { region = "OPERA"; }
+
+                    var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == pedido.rfc && p.Codarticulo == articulopedido.codArticulo && p.Grupo == region).FirstOrDefault();
                     Boolean tienemultiplo = itprod == null ? false : true;
                     if (!tienemultiplo) { status = 2; }
                     double unidadescaja = itprod == null ? 1 : (double)itprod.Uds;
@@ -2734,6 +2740,8 @@ namespace API_PEDIDOS.Controllers
 
                 foreach (var item in calendarioshoy)
                 {
+                    string region = await _fp.getRegionSuc(item.Codsucursal);
+                    if (region != "SLP") { region = "OPERA"; }
                     Boolean articulosdiferentes = false;
                     var haypedido = _dbpContext.Pedidos.Where(x => x.Fecha.Value.Date == DateTime.Now.Date && x.Proveedor == item.Codproveedor && x.Sucursal == item.Codsucursal.ToString() && x.Temporal != true).ToList();
 
@@ -3089,7 +3097,7 @@ namespace API_PEDIDOS.Controllers
                                 proyeccion = (consumopedido + stockSeguridad - inventario);
                             }
                             int iva = 0;
-                            var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == rfcprov && p.Codarticulo == art.cod).FirstOrDefault();
+                            var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == rfcprov && p.Codarticulo == art.cod && p.Grupo == region).FirstOrDefault();
                             Boolean tienemultiplo = itprod == null ? false : true;
                             if (!tienemultiplo) { status = 2; }
                             double unidadescaja = itprod == null ? 1 : (double)itprod.Uds;
