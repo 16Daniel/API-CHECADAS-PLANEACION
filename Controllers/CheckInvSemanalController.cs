@@ -1,11 +1,11 @@
-﻿using API_PEDIDOS.ModelsDB2;
+﻿
 using API_PEDIDOS.ModelsDBP;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
+using API_PEDIDOS.ModelsDB2;
+using System.Xml.Linq;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using System.Data;
-using System.Xml.Linq;
 
 namespace API_PEDIDOS.Controllers
 {
@@ -30,7 +30,7 @@ namespace API_PEDIDOS.Controllers
         {
             try
             {
-                var query = _contextdb2.Articulos1
+                var query = _contextdb2.Articulos
                     .GroupJoin(
                         _contextdb2.Articuloscamposlibres,
                         art => art.Codarticulo,
@@ -50,6 +50,106 @@ namespace API_PEDIDOS.Controllers
                 foreach (var articulo in articulos) 
                 {
                     data.Add(new { cod = articulo.Codarticulo, descripcion = articulo.Descripcion, marca = ""}); 
+                }
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
+
+
+        [HttpGet]
+        [Route("geArticulosInvDiario")]
+        public async Task<ActionResult> GetArticulosInvDiario()
+        {
+            try
+            {
+                var query = _contextdb2.Articulos
+                    .GroupJoin(
+                        _contextdb2.Articuloscamposlibres,
+                        art => art.Codarticulo,
+                        artcl => artcl.Codarticulo,
+                        (art, artclGroup) => new { art, artclGroup })
+                    .SelectMany(
+                        x => x.artclGroup.DefaultIfEmpty(),
+                        (x, artcl) => new { x.art, artcl })
+                    .Where(x => x.art.Descatalogado == "F"
+                                && x.artcl != null && x.artcl.RegularizaSemanal == "T")
+                    .Select(x => new { x.art.Codarticulo, x.art.Descripcion });
+
+                //var articulos = _contextdb2.Articulos1.Where(x => x.Descatalogado == "F" && !x.Descripcion.StartsWith("*")).ToList();
+                var articulos = query.ToList();
+                List<object> data = new List<object>();
+                foreach (var articulo in articulos)
+                {
+                    var art = _contextdb2.Articulos.Where(x => x.Codarticulo == articulo.Codarticulo).FirstOrDefault();
+                    var marca = _contextdb2.Marcas.Where(x => x.Codmarca == art.Marca).FirstOrDefault();
+                    string nomseccion = "";
+                    if (marca != null) { nomseccion = marca.Descripcion; }
+                    if (art != null)
+                    {
+                        data.Add(new { cod = art.Codarticulo, descripcion = art.Descripcion, marca = nomseccion, referencia = art.Refproveedor, prioridad = 0, umedida = art.Unidadmedida });
+                    }
+                }
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
+
+
+        [HttpGet]
+        [Route("geArticulosInvMensual")]
+        public async Task<ActionResult> GetArticulosInvMensual()
+        {
+            try
+            {
+                var query = _contextdb2.Articulos
+                    .GroupJoin(
+                        _contextdb2.Articuloscamposlibres,
+                        art => art.Codarticulo,
+                        artcl => artcl.Codarticulo,
+                        (art, artclGroup) => new { art, artclGroup })
+                    .SelectMany(
+                        x => x.artclGroup.DefaultIfEmpty(),
+                        (x, artcl) => new { x.art, artcl })
+                    .Where(x => x.art.Descatalogado == "F"
+                                && x.artcl != null && x.artcl.InvMensual == "T")
+                    .Select(x => new { x.art.Codarticulo, x.art.Descripcion });
+
+                //var articulos = _contextdb2.Articulos1.Where(x => x.Descatalogado == "F" && !x.Descripcion.StartsWith("*")).ToList();
+                var articulos = query.ToList();
+                List<object> data = new List<object>();
+                foreach (var articulo in articulos)
+                {
+                    var art = _contextdb2.Articulos.Where(x => x.Codarticulo == articulo.Codarticulo).FirstOrDefault();
+                    var marca = _contextdb2.Marcas.Where(x => x.Codmarca == art.Marca).FirstOrDefault();
+                    string nomseccion = "";
+                    if (marca != null) { nomseccion = marca.Descripcion; }
+                    if (art != null)
+                    {
+                        data.Add(new { cod = art.Codarticulo, descripcion = art.Descripcion, marca = nomseccion, referencia = art.Refproveedor, prioridad = 0, umedida = art.Unidadmedida });
+                    }
+
+
                 }
 
                 return Ok(data);
@@ -141,7 +241,7 @@ namespace API_PEDIDOS.Controllers
                var data = _dbpContext.CheckInvSemanals.ToList();
                 foreach (var item in data)
                 {
-                    var art = _contextdb2.Articulos1.Where(x => x.Codarticulo == item.Codarticulo).FirstOrDefault();
+                    var art = _contextdb2.Articulos.Where(x => x.Codarticulo == item.Codarticulo).FirstOrDefault();
                     var marca = _contextdb2.Marcas.Where(x => x.Codmarca == art.Marca).FirstOrDefault();
                     string nomseccion = "";
                     if(marca != null) { nomseccion = marca.Descripcion; }

@@ -68,7 +68,7 @@ namespace API_PEDIDOS.ModelsDB2
         public double? Importecargo2dmn { get; set; }
         public int? Cloudid { get; set; }
 
-        public virtual Articulo1 CodarticuloNavigation { get; set; } = null!;
+        public virtual Articulo CodarticuloNavigation { get; set; } = null!;
         public virtual ICollection<CmrcFotosarticuloslin> CmrcFotosarticuloslins { get; set; }
         public virtual ICollection<Costesporalmacen> Costesporalmacens { get; set; }
         public virtual ICollection<Historicocoste> Historicocostes { get; set; }

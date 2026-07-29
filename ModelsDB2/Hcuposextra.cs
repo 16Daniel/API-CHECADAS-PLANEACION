@@ -11,7 +11,7 @@ namespace API_PEDIDOS.ModelsDB2
         public int Posicion { get; set; }
         public byte[]? Version { get; set; }
 
-        public virtual Articulo1 CodarticuloNavigation { get; set; } = null!;
+        public virtual Articulo CodarticuloNavigation { get; set; } = null!;
         public virtual Hcupo IdcupoNavigation { get; set; } = null!;
         public virtual Hotele IdhotelNavigation { get; set; } = null!;
     }

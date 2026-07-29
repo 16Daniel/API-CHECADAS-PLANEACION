@@ -16,7 +16,9 @@ namespace API_PEDIDOS.ModelsDB2
         {
         }
 
-        public virtual DbSet<A0e650f2e93c43a0bda10a026dad7f32vwarticulosfactporfranja> A0e650f2e93c43a0bda10a026dad7f32vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<A1e80f21583342c78684cfd99fce5a30vwarticulosfactporfranja> A1e80f21583342c78684cfd99fce5a30vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<A2b205abf7914aa29fcae67044b26312vwarticulosfactporfranja> A2b205abf7914aa29fcae67044b26312vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<Aca08d1b295c4ae3930af87e2d1ccab9vwarticulosfactporfranja> Aca08d1b295c4ae3930af87e2d1ccab9vwarticulosfactporfranjas { get; set; } = null!;
         public virtual DbSet<Accionespromocion> Accionespromocions { get; set; } = null!;
         public virtual DbSet<Accionespromocionlin> Accionespromocionlins { get; set; } = null!;
         public virtual DbSet<Actividade> Actividades { get; set; } = null!;
@@ -27,6 +29,7 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<AenaVenta> AenaVentas { get; set; } = null!;
         public virtual DbSet<Aenadto> Aenadtos { get; set; } = null!;
         public virtual DbSet<Aeropuerto> Aeropuertos { get; set; } = null!;
+        public virtual DbSet<Afa2c95b1b6c4b7b976985ecfaa173f8vwarticulosfactporfranja> Afa2c95b1b6c4b7b976985ecfaa173f8vwarticulosfactporfranjas { get; set; } = null!;
         public virtual DbSet<Albcompracab> Albcompracabs { get; set; } = null!;
         public virtual DbSet<Albcompracamposlibre> Albcompracamposlibres { get; set; } = null!;
         public virtual DbSet<Albcompradto> Albcompradtos { get; set; } = null!;
@@ -77,7 +80,6 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<Arqueosmodificado> Arqueosmodificados { get; set; } = null!;
         public virtual DbSet<Arreglo> Arreglos { get; set; } = null!;
         public virtual DbSet<Articulo> Articulos { get; set; } = null!;
-        public virtual DbSet<Articulo1> Articulos1 { get; set; } = null!;
         public virtual DbSet<Articuloscamposlibre> Articuloscamposlibres { get; set; } = null!;
         public virtual DbSet<Articuloscomentario> Articuloscomentarios { get; set; } = null!;
         public virtual DbSet<Articuloscomentariosweb> Articuloscomentarioswebs { get; set; } = null!;
@@ -105,14 +107,14 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<Asuntosbloqueo> Asuntosbloqueos { get; set; } = null!;
         public virtual DbSet<Asuntoscamposlibre> Asuntoscamposlibres { get; set; } = null!;
         public virtual DbSet<Asuntoscontador> Asuntoscontadors { get; set; } = null!;
+        public virtual DbSet<Atemparticslin708814> Atemparticslin708814s { get; set; } = null!;
         public virtual DbSet<Atemparticslin8466357> Atemparticslin8466357s { get; set; } = null!;
         public virtual DbSet<Atemparticslin8483108> Atemparticslin8483108s { get; set; } = null!;
         public virtual DbSet<Atemparticslin992584> Atemparticslin992584s { get; set; } = null!;
         public virtual DbSet<Atempil8410662> Atempil8410662s { get; set; } = null!;
         public virtual DbSet<Atempil8442312> Atempil8442312s { get; set; } = null!;
         public virtual DbSet<Atempil9981307> Atempil9981307s { get; set; } = null!;
-        public virtual DbSet<B6b2a59df30c435e9a241a6360f5f17fvwarticulosfactporfranja> B6b2a59df30c435e9a241a6360f5f17fvwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<B7a00c96b0f944c4b1fff3b8c639730fvwarticulosfactporfranja> B7a00c96b0f944c4b1fff3b8c639730fvwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<B4f4b60d5e934e47ba790a3848018a95vwarticulosfactporfranja> B4f4b60d5e934e47ba790a3848018a95vwarticulosfactporfranjas { get; set; } = null!;
         public virtual DbSet<Balanceoscab> Balanceoscabs { get; set; } = null!;
         public virtual DbSet<Balanceoslin> Balanceoslins { get; set; } = null!;
         public virtual DbSet<Balanza> Balanzas { get; set; } = null!;
@@ -125,9 +127,6 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<BloqueosExtractopromocionestarjetum> BloqueosExtractopromocionestarjeta { get; set; } = null!;
         public virtual DbSet<BotonesretailIdioma> BotonesretailIdiomas { get; set; } = null!;
         public virtual DbSet<Buzonesemail> Buzonesemails { get; set; } = null!;
-        public virtual DbSet<C3bca2022e2f4f359214F5c77a8b3077> C3bca2022e2f4f359214F5c77a8b3077s { get; set; } = null!;
-        public virtual DbSet<C88d22d2229b4847B74d6bab21e5b82c> C88d22d2229b4847B74d6bab21e5b82cs { get; set; } = null!;
-        public virtual DbSet<Ca5c74edd6cc4309ae50af64e06cb2e8vwarticulosfactporfranja> Ca5c74edd6cc4309ae50af64e06cb2e8vwarticulosfactporfranjas { get; set; } = null!;
         public virtual DbSet<Cajasasignada> Cajasasignadas { get; set; } = null!;
         public virtual DbSet<Camposlibresconfig> Camposlibresconfigs { get; set; } = null!;
         public virtual DbSet<Camposlibresporsubtipo> Camposlibresporsubtipos { get; set; } = null!;
@@ -227,17 +226,14 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<Costesporalmacen> Costesporalmacens { get; set; } = null!;
         public virtual DbSet<Cotizacione> Cotizaciones { get; set; } = null!;
         public virtual DbSet<Cuentastraspaso> Cuentastraspasos { get; set; } = null!;
-        public virtual DbSet<D41456a4cc5c480393b37f886f7be2d3vwarticulosfactporfranja> D41456a4cc5c480393b37f886f7be2d3vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<D4578086530f40e798c880b127ac47ef> D4578086530f40e798c880b127ac47efs { get; set; } = null!;
-        public virtual DbSet<D6a8452c497e48f49ae0edddd325a93avwarticulosfactporfranja> D6a8452c497e48f49ae0edddd325a93avwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<D7548accEcfb4f10B3239457d74478bd> D7548accEcfb4f10B3239457d74478bds { get; set; } = null!;
-        public virtual DbSet<D7fd2a06651f4bc7a5752e0f50b58060vwarticulosfactporfranja> D7fd2a06651f4bc7a5752e0f50b58060vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<Dadaa9f30ff9425bbdd600d1be2a1fcavwarticulosfactporfranja> Dadaa9f30ff9425bbdd600d1be2a1fcavwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<D3f9f5f755e34ed98e4a00d8301aea2bvwarticulosfactporfranja> D3f9f5f755e34ed98e4a00d8301aea2bvwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<D55a5627a77d4c619fae03754758515cvwarticulosfactporfranja> D55a5627a77d4c619fae03754758515cvwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<D72a7109e5ad4b6284e0a9499843e8ffvwarticulosfactporfranja> D72a7109e5ad4b6284e0a9499843e8ffvwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<D82b36c69d9d413bbf2086afd01b41d6vwarticulosfactporfranja> D82b36c69d9d413bbf2086afd01b41d6vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<Da74c9b2e8014237aa2bae9b2b51f680vwarticulosfactporfranja> Da74c9b2e8014237aa2bae9b2b51f680vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<Da90ecd3f9214876b6ebba35ea992c56vwarticulosfactporfranja> Da90ecd3f9214876b6ebba35ea992c56vwarticulosfactporfranjas { get; set; } = null!;
         public virtual DbSet<Datoscamposlibre> Datoscamposlibres { get; set; } = null!;
         public virtual DbSet<Datosclientelibre> Datosclientelibres { get; set; } = null!;
-        public virtual DbSet<Db6cf521dae140a5b4eb484305b92da5vwarticulosfactporfranja> Db6cf521dae140a5b4eb484305b92da5vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<Db8d364095c147bb8a73324a4595b5e4> Db8d364095c147bb8a73324a4595b5e4s { get; set; } = null!;
-        public virtual DbSet<Dc24613202e244bab4a6f1bb4e27bd49vwarticulosfactporfranja> Dc24613202e244bab4a6f1bb4e27bd49vwarticulosfactporfranjas { get; set; } = null!;
         public virtual DbSet<Declaradoz> Declaradozs { get; set; } = null!;
         public virtual DbSet<Departamento> Departamentos { get; set; } = null!;
         public virtual DbSet<Departamentoidioma> Departamentoidiomas { get; set; } = null!;
@@ -259,9 +255,9 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<Dtosocupaciontemporadum> Dtosocupaciontemporada { get; set; } = null!;
         public virtual DbSet<Dtostarifa> Dtostarifas { get; set; } = null!;
         public virtual DbSet<Dtostipoartic> Dtostipoartics { get; set; } = null!;
-        public virtual DbSet<E09d747311da410a8c7bd35dfb5d8392vwarticulosfactporfranja> E09d747311da410a8c7bd35dfb5d8392vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<E3c0b5d1d71b47b3988631e7de36139avwarticulosfactporfranja> E3c0b5d1d71b47b3988631e7de36139avwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<E637deb0F58a4b279d1aD08034f43ce1> E637deb0F58a4b279d1aD08034f43ce1s { get; set; } = null!;
+        public virtual DbSet<E08261011f3b4c54b6c6865d925778f0vwarticulosfactporfranja> E08261011f3b4c54b6c6865d925778f0vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<E353cb8ed2864c47b6f05697956f22b1vwarticulosfactporfranja> E353cb8ed2864c47b6f05697956f22b1vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<E5aedb8ae0b445b987523f38af154744vwarticulosfactporfranja> E5aedb8ae0b445b987523f38af154744vwarticulosfactporfranjas { get; set; } = null!;
         public virtual DbSet<EcuaTipoidentificacioncomprador> EcuaTipoidentificacioncompradors { get; set; } = null!;
         public virtual DbSet<EcuaTiposidentificadorsujetoretenido> EcuaTiposidentificadorsujetoretenidos { get; set; } = null!;
         public virtual DbSet<EcuaTiposimpuestosespeciale> EcuaTiposimpuestosespeciales { get; set; } = null!;
@@ -281,8 +277,10 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<Etiquetasenviocab> Etiquetasenviocabs { get; set; } = null!;
         public virtual DbSet<Etiquetasenviolin> Etiquetasenviolins { get; set; } = null!;
         public virtual DbSet<Extractopromocionestarjetum> Extractopromocionestarjeta { get; set; } = null!;
-        public virtual DbSet<F2b74ecde7d2461cbbb84ae0a2690f14vwarticulosfactporfranja> F2b74ecde7d2461cbbb84ae0a2690f14vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<F5eb72128856459a814f8b47c478e95fvwarticulosfactporfranja> F5eb72128856459a814f8b47c478e95fvwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<F3bd98d14dc14bfd847df01e4c71c079vwarticulosfactporfranja> F3bd98d14dc14bfd847df01e4c71c079vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<F4d7c0d98ed8480a8ee33e28a7fa0957vwarticulosfactporfranja> F4d7c0d98ed8480a8ee33e28a7fa0957vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<F74b5b05530a4a89b89e1f7a4d89a663vwarticulosfactporfranja> F74b5b05530a4a89b89e1f7a4d89a663vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<F80a32e93576438f855daab26dae2f82vwarticulosfactporfranja> F80a32e93576438f855daab26dae2f82vwarticulosfactporfranjas { get; set; } = null!;
         public virtual DbSet<FactCliente> FactClientes { get; set; } = null!;
         public virtual DbSet<FactConcepto> FactConceptos { get; set; } = null!;
         public virtual DbSet<FactEmpresa> FactEmpresas { get; set; } = null!;
@@ -319,10 +317,8 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<Favoritoslin> Favoritoslins { get; set; } = null!;
         public virtual DbSet<Favoritostiposterminal> Favoritostiposterminals { get; set; } = null!;
         public virtual DbSet<Favoritosturno> Favoritosturnos { get; set; } = null!;
-        public virtual DbSet<Fb0af66955394d2d877838657b8d5257vwarticulosfactporfranja> Fb0af66955394d2d877838657b8d5257vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<Fe06c8881e294072b69bdcc986fe862avwarticulosfactporfranja> Fe06c8881e294072b69bdcc986fe862avwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<Fcdc14841ec44095aee948a7600120fdvwarticulosfactporfranja> Fcdc14841ec44095aee948a7600120fdvwarticulosfactporfranjas { get; set; } = null!;
         public virtual DbSet<Festivoshotel> Festivoshotels { get; set; } = null!;
-        public virtual DbSet<Ff949d36fc1346249cdfdb3efa3be09fvwarticulosfactporfranja> Ff949d36fc1346249cdfdb3efa3be09fvwarticulosfactporfranjas { get; set; } = null!;
         public virtual DbSet<Fianza> Fianzas { get; set; } = null!;
         public virtual DbSet<Fondocaja> Fondocajas { get; set; } = null!;
         public virtual DbSet<Formaspago> Formaspagos { get; set; } = null!;
@@ -618,35 +614,301 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<IcgmailCalculos258> IcgmailCalculos258s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos259> IcgmailCalculos259s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos26> IcgmailCalculos26s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos260> IcgmailCalculos260s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos261> IcgmailCalculos261s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos262> IcgmailCalculos262s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos263> IcgmailCalculos263s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos264> IcgmailCalculos264s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos265> IcgmailCalculos265s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos266> IcgmailCalculos266s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos267> IcgmailCalculos267s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos268> IcgmailCalculos268s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos269> IcgmailCalculos269s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos27> IcgmailCalculos27s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos270> IcgmailCalculos270s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos271> IcgmailCalculos271s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos272> IcgmailCalculos272s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos273> IcgmailCalculos273s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos274> IcgmailCalculos274s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos275> IcgmailCalculos275s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos276> IcgmailCalculos276s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos277> IcgmailCalculos277s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos278> IcgmailCalculos278s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos279> IcgmailCalculos279s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos28> IcgmailCalculos28s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos280> IcgmailCalculos280s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos281> IcgmailCalculos281s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos282> IcgmailCalculos282s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos283> IcgmailCalculos283s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos284> IcgmailCalculos284s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos285> IcgmailCalculos285s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos286> IcgmailCalculos286s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos287> IcgmailCalculos287s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos288> IcgmailCalculos288s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos289> IcgmailCalculos289s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos29> IcgmailCalculos29s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos290> IcgmailCalculos290s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos291> IcgmailCalculos291s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos292> IcgmailCalculos292s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos293> IcgmailCalculos293s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos294> IcgmailCalculos294s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos295> IcgmailCalculos295s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos296> IcgmailCalculos296s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos297> IcgmailCalculos297s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos298> IcgmailCalculos298s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos299> IcgmailCalculos299s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos3> IcgmailCalculos3s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos30> IcgmailCalculos30s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos300> IcgmailCalculos300s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos301> IcgmailCalculos301s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos302> IcgmailCalculos302s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos303> IcgmailCalculos303s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos304> IcgmailCalculos304s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos305> IcgmailCalculos305s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos306> IcgmailCalculos306s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos307> IcgmailCalculos307s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos308> IcgmailCalculos308s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos309> IcgmailCalculos309s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos31> IcgmailCalculos31s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos310> IcgmailCalculos310s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos311> IcgmailCalculos311s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos312> IcgmailCalculos312s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos313> IcgmailCalculos313s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos314> IcgmailCalculos314s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos315> IcgmailCalculos315s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos316> IcgmailCalculos316s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos317> IcgmailCalculos317s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos318> IcgmailCalculos318s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos319> IcgmailCalculos319s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos32> IcgmailCalculos32s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos320> IcgmailCalculos320s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos321> IcgmailCalculos321s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos322> IcgmailCalculos322s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos323> IcgmailCalculos323s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos324> IcgmailCalculos324s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos325> IcgmailCalculos325s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos326> IcgmailCalculos326s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos327> IcgmailCalculos327s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos328> IcgmailCalculos328s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos329> IcgmailCalculos329s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos33> IcgmailCalculos33s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos330> IcgmailCalculos330s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos331> IcgmailCalculos331s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos332> IcgmailCalculos332s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos333> IcgmailCalculos333s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos334> IcgmailCalculos334s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos335> IcgmailCalculos335s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos336> IcgmailCalculos336s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos337> IcgmailCalculos337s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos338> IcgmailCalculos338s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos339> IcgmailCalculos339s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos34> IcgmailCalculos34s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos340> IcgmailCalculos340s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos341> IcgmailCalculos341s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos342> IcgmailCalculos342s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos343> IcgmailCalculos343s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos344> IcgmailCalculos344s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos345> IcgmailCalculos345s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos346> IcgmailCalculos346s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos347> IcgmailCalculos347s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos348> IcgmailCalculos348s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos349> IcgmailCalculos349s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos35> IcgmailCalculos35s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos350> IcgmailCalculos350s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos351> IcgmailCalculos351s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos352> IcgmailCalculos352s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos353> IcgmailCalculos353s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos354> IcgmailCalculos354s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos355> IcgmailCalculos355s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos356> IcgmailCalculos356s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos357> IcgmailCalculos357s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos358> IcgmailCalculos358s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos359> IcgmailCalculos359s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos36> IcgmailCalculos36s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos360> IcgmailCalculos360s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos361> IcgmailCalculos361s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos362> IcgmailCalculos362s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos363> IcgmailCalculos363s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos364> IcgmailCalculos364s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos365> IcgmailCalculos365s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos366> IcgmailCalculos366s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos367> IcgmailCalculos367s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos368> IcgmailCalculos368s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos369> IcgmailCalculos369s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos37> IcgmailCalculos37s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos370> IcgmailCalculos370s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos371> IcgmailCalculos371s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos372> IcgmailCalculos372s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos373> IcgmailCalculos373s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos374> IcgmailCalculos374s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos375> IcgmailCalculos375s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos376> IcgmailCalculos376s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos377> IcgmailCalculos377s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos378> IcgmailCalculos378s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos379> IcgmailCalculos379s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos38> IcgmailCalculos38s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos380> IcgmailCalculos380s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos381> IcgmailCalculos381s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos382> IcgmailCalculos382s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos383> IcgmailCalculos383s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos384> IcgmailCalculos384s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos385> IcgmailCalculos385s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos386> IcgmailCalculos386s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos387> IcgmailCalculos387s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos388> IcgmailCalculos388s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos389> IcgmailCalculos389s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos39> IcgmailCalculos39s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos390> IcgmailCalculos390s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos391> IcgmailCalculos391s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos392> IcgmailCalculos392s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos393> IcgmailCalculos393s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos394> IcgmailCalculos394s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos395> IcgmailCalculos395s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos396> IcgmailCalculos396s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos397> IcgmailCalculos397s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos398> IcgmailCalculos398s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos399> IcgmailCalculos399s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos4> IcgmailCalculos4s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos40> IcgmailCalculos40s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos400> IcgmailCalculos400s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos401> IcgmailCalculos401s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos402> IcgmailCalculos402s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos403> IcgmailCalculos403s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos404> IcgmailCalculos404s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos405> IcgmailCalculos405s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos406> IcgmailCalculos406s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos407> IcgmailCalculos407s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos408> IcgmailCalculos408s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos409> IcgmailCalculos409s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos41> IcgmailCalculos41s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos410> IcgmailCalculos410s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos411> IcgmailCalculos411s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos412> IcgmailCalculos412s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos413> IcgmailCalculos413s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos414> IcgmailCalculos414s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos415> IcgmailCalculos415s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos416> IcgmailCalculos416s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos417> IcgmailCalculos417s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos418> IcgmailCalculos418s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos419> IcgmailCalculos419s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos42> IcgmailCalculos42s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos420> IcgmailCalculos420s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos421> IcgmailCalculos421s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos422> IcgmailCalculos422s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos423> IcgmailCalculos423s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos424> IcgmailCalculos424s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos425> IcgmailCalculos425s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos426> IcgmailCalculos426s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos427> IcgmailCalculos427s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos428> IcgmailCalculos428s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos429> IcgmailCalculos429s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos43> IcgmailCalculos43s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos430> IcgmailCalculos430s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos431> IcgmailCalculos431s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos432> IcgmailCalculos432s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos433> IcgmailCalculos433s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos434> IcgmailCalculos434s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos435> IcgmailCalculos435s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos436> IcgmailCalculos436s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos437> IcgmailCalculos437s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos438> IcgmailCalculos438s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos439> IcgmailCalculos439s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos44> IcgmailCalculos44s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos440> IcgmailCalculos440s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos441> IcgmailCalculos441s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos442> IcgmailCalculos442s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos443> IcgmailCalculos443s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos444> IcgmailCalculos444s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos445> IcgmailCalculos445s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos446> IcgmailCalculos446s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos447> IcgmailCalculos447s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos448> IcgmailCalculos448s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos449> IcgmailCalculos449s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos45> IcgmailCalculos45s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos450> IcgmailCalculos450s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos451> IcgmailCalculos451s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos452> IcgmailCalculos452s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos453> IcgmailCalculos453s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos454> IcgmailCalculos454s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos455> IcgmailCalculos455s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos456> IcgmailCalculos456s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos457> IcgmailCalculos457s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos458> IcgmailCalculos458s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos459> IcgmailCalculos459s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos46> IcgmailCalculos46s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos460> IcgmailCalculos460s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos461> IcgmailCalculos461s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos462> IcgmailCalculos462s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos463> IcgmailCalculos463s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos464> IcgmailCalculos464s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos465> IcgmailCalculos465s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos466> IcgmailCalculos466s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos467> IcgmailCalculos467s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos468> IcgmailCalculos468s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos469> IcgmailCalculos469s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos47> IcgmailCalculos47s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos470> IcgmailCalculos470s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos471> IcgmailCalculos471s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos472> IcgmailCalculos472s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos473> IcgmailCalculos473s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos474> IcgmailCalculos474s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos475> IcgmailCalculos475s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos476> IcgmailCalculos476s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos477> IcgmailCalculos477s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos478> IcgmailCalculos478s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos479> IcgmailCalculos479s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos48> IcgmailCalculos48s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos480> IcgmailCalculos480s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos481> IcgmailCalculos481s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos482> IcgmailCalculos482s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos483> IcgmailCalculos483s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos484> IcgmailCalculos484s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos485> IcgmailCalculos485s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos486> IcgmailCalculos486s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos487> IcgmailCalculos487s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos488> IcgmailCalculos488s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos489> IcgmailCalculos489s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos49> IcgmailCalculos49s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos490> IcgmailCalculos490s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos491> IcgmailCalculos491s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos492> IcgmailCalculos492s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos493> IcgmailCalculos493s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos494> IcgmailCalculos494s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos495> IcgmailCalculos495s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos496> IcgmailCalculos496s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos497> IcgmailCalculos497s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos498> IcgmailCalculos498s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos499> IcgmailCalculos499s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos5> IcgmailCalculos5s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos50> IcgmailCalculos50s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos500> IcgmailCalculos500s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos501> IcgmailCalculos501s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos502> IcgmailCalculos502s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos503> IcgmailCalculos503s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos504> IcgmailCalculos504s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos505> IcgmailCalculos505s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos506> IcgmailCalculos506s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos507> IcgmailCalculos507s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos508> IcgmailCalculos508s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos509> IcgmailCalculos509s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos51> IcgmailCalculos51s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos510> IcgmailCalculos510s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos511> IcgmailCalculos511s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos512> IcgmailCalculos512s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos513> IcgmailCalculos513s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos514> IcgmailCalculos514s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos515> IcgmailCalculos515s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos516> IcgmailCalculos516s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos517> IcgmailCalculos517s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos518> IcgmailCalculos518s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos519> IcgmailCalculos519s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos52> IcgmailCalculos52s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos520> IcgmailCalculos520s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos521> IcgmailCalculos521s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos522> IcgmailCalculos522s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos523> IcgmailCalculos523s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos524> IcgmailCalculos524s { get; set; } = null!;
+        public virtual DbSet<IcgmailCalculos526> IcgmailCalculos526s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos53> IcgmailCalculos53s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos54> IcgmailCalculos54s { get; set; } = null!;
         public virtual DbSet<IcgmailCalculos55> IcgmailCalculos55s { get; set; } = null!;
@@ -738,6 +1000,7 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<Incidenciasconfig> Incidenciasconfigs { get; set; } = null!;
         public virtual DbSet<Incidenciaslin> Incidenciaslins { get; set; } = null!;
         public virtual DbSet<Incidenciasnoautovalidable> Incidenciasnoautovalidables { get; set; } = null!;
+        public virtual DbSet<Indicadore> Indicadores { get; set; } = null!;
         public virtual DbSet<Informe> Informes { get; set; } = null!;
         public virtual DbSet<Informecolumna> Informecolumnas { get; set; } = null!;
         public virtual DbSet<Informefiltro> Informefiltros { get; set; } = null!;
@@ -748,7 +1011,9 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<Inventario> Inventarios { get; set; } = null!;
         public virtual DbSet<Inventarioszona> Inventarioszonas { get; set; } = null!;
         public virtual DbSet<ItAc> ItAcs { get; set; } = null!;
+        public virtual DbSet<ItActivarHoy> ItActivarHoys { get; set; } = null!;
         public virtual DbSet<ItAl> ItAls { get; set; } = null!;
+        public virtual DbSet<ItAlmacen> ItAlmacens { get; set; } = null!;
         public virtual DbSet<ItAq> ItAqs { get; set; } = null!;
         public virtual DbSet<ItAt> ItAts { get; set; } = null!;
         public virtual DbSet<ItAvLog> ItAvLogs { get; set; } = null!;
@@ -757,6 +1022,7 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<ItComprasCustom> ItComprasCustoms { get; set; } = null!;
         public virtual DbSet<ItComprasFactura> ItComprasFacturas { get; set; } = null!;
         public virtual DbSet<ItControl> ItControls { get; set; } = null!;
+        public virtual DbSet<ItDifFecha> ItDifFechas { get; set; } = null!;
         public virtual DbSet<ItDocumentosca> ItDocumentoscas { get; set; } = null!;
         public virtual DbSet<ItExistencia> ItExistencias { get; set; } = null!;
         public virtual DbSet<ItFacDetalle> ItFacDetalles { get; set; } = null!;
@@ -766,9 +1032,25 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<ItLogOp> ItLogOps { get; set; } = null!;
         public virtual DbSet<ItMarca> ItMarcas { get; set; } = null!;
         public virtual DbSet<ItMod> ItMods { get; set; } = null!;
+        public virtual DbSet<ItModConsultarPedido> ItModConsultarPedidos { get; set; } = null!;
+        public virtual DbSet<ItModCuentasUsuario> ItModCuentasUsuarios { get; set; } = null!;
+        public virtual DbSet<ItModIncidencia> ItModIncidencias { get; set; } = null!;
+        public virtual DbSet<ItModPedido> ItModPedidos { get; set; } = null!;
+        public virtual DbSet<ItModPerfile> ItModPerfiles { get; set; } = null!;
+        public virtual DbSet<ItModRecibirPedido> ItModRecibirPedidos { get; set; } = null!;
+        public virtual DbSet<ItModReportePedido> ItModReportePedidos { get; set; } = null!;
+        public virtual DbSet<ItPerfile> ItPerfiles { get; set; } = null!;
         public virtual DbSet<ItProducto> ItProductos { get; set; } = null!;
+        public virtual DbSet<ItRcalLin> ItRcalLins { get; set; } = null!;
+        public virtual DbSet<ItRcedi> ItRcedis { get; set; } = null!;
+        public virtual DbSet<ItRebelAccount> ItRebelAccounts { get; set; } = null!;
+        public virtual DbSet<ItRpedido> ItRpedidos { get; set; } = null!;
+        public virtual DbSet<ItRpedidosLin> ItRpedidosLins { get; set; } = null!;
         public virtual DbSet<ItTe> ItTes { get; set; } = null!;
+        public virtual DbSet<ItTurno> ItTurnos { get; set; } = null!;
         public virtual DbSet<ItUsuario> ItUsuarios { get; set; } = null!;
+        public virtual DbSet<ItrDetalleb> ItrDetallebs { get; set; } = null!;
+        public virtual DbSet<ItrDetaller> ItrDetallers { get; set; } = null!;
         public virtual DbSet<Kit> Kits { get; set; } = null!;
         public virtual DbSet<Kitfase> Kitfases { get; set; } = null!;
         public virtual DbSet<Kpi> Kpis { get; set; } = null!;
@@ -898,7 +1180,6 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<Plugin> Plugins { get; set; } = null!;
         public virtual DbSet<PmSituacione> PmSituaciones { get; set; } = null!;
         public virtual DbSet<PmTerminale> PmTerminales { get; set; } = null!;
-        public virtual DbSet<Preciosc> Precioscs { get; set; } = null!;
         public virtual DbSet<Precioscompra> Precioscompras { get; set; } = null!;
         public virtual DbSet<Precioshabitaciondium> Precioshabitaciondia { get; set; } = null!;
         public virtual DbSet<Precioshotel> Precioshotels { get; set; } = null!;
@@ -953,7 +1234,6 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<Rangohora> Rangohoras { get; set; } = null!;
         public virtual DbSet<Rappelsproveedore> Rappelsproveedores { get; set; } = null!;
         public virtual DbSet<Recursosempresa> Recursosempresas { get; set; } = null!;
-        public virtual DbSet<Referencia> Referencias { get; set; } = null!;
         public virtual DbSet<Referenciasprov> Referenciasprovs { get; set; } = null!;
         public virtual DbSet<Regalospendientestarjetum> Regalospendientestarjeta { get; set; } = null!;
         public virtual DbSet<Regimene> Regimenes { get; set; } = null!;
@@ -1136,8 +1416,10 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<TefsConfig> TefsConfigs { get; set; } = null!;
         public virtual DbSet<TefsParam> TefsParams { get; set; } = null!;
         public virtual DbSet<Teftransaccione> Teftransacciones { get; set; } = null!;
+        public virtual DbSet<TelecomandaVersion> TelecomandaVersions { get; set; } = null!;
         public virtual DbSet<Televentum> Televenta { get; set; } = null!;
         public virtual DbSet<TempInventario12996941598> TempInventario12996941598s { get; set; } = null!;
+        public virtual DbSet<TempInventario708707228826> TempInventario708707228826s { get; set; } = null!;
         public virtual DbSet<Temporada> Temporadas { get; set; } = null!;
         public virtual DbSet<Temporadasdium> Temporadasdia { get; set; } = null!;
         public virtual DbSet<Temporadashotel> Temporadashotels { get; set; } = null!;
@@ -1237,94 +1519,95 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual DbSet<Vocclientesactividade> Vocclientesactividades { get; set; } = null!;
         public virtual DbSet<Vocclientesreserva> Vocclientesreservas { get; set; } = null!;
         public virtual DbSet<Vproduccion> Vproduccions { get; set; } = null!;
+        public virtual DbSet<VwPedcompracab> VwPedcompracabs { get; set; } = null!;
+        public virtual DbSet<VwPedcompracabAjust> VwPedcompracabAjusts { get; set; } = null!;
+        public virtual DbSet<VwPedcompralin> VwPedcompralins { get; set; } = null!;
+        public virtual DbSet<VwPedcompralinAjust> VwPedcompralinAjusts { get; set; } = null!;
+        public virtual DbSet<VwProveedore> VwProveedores { get; set; } = null!;
+        public virtual DbSet<VwRnotificacione> VwRnotificaciones { get; set; } = null!;
         public virtual DbSet<VwTesorerium> VwTesoreria { get; set; } = null!;
         public virtual DbSet<WbCubosAccount> WbCubosAccounts { get; set; } = null!;
         public virtual DbSet<WbcubosReporteTemp> WbcubosReporteTemps { get; set; } = null!;
-        public virtual DbSet<_03b8e179Fb2546dfB84aA67e61553598> _03b8e179Fb2546dfB84aA67e61553598s { get; set; } = null!;
-        public virtual DbSet<_0551e2bf40ab4fd2Ad4eEe5426d20324> _0551e2bf40ab4fd2Ad4eEe5426d20324s { get; set; } = null!;
-        public virtual DbSet<_09e2a246D3c8487cBc7a91b2ae83ec11> _09e2a246D3c8487cBc7a91b2ae83ec11s { get; set; } = null!;
-        public virtual DbSet<_12497a72a9514b67affa34b9374748e8vwarticulosfactporfranja> _12497a72a9514b67affa34b9374748e8vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_127d247a0be44f428b78c25a5885ab9avwarticulosfactporfranja> _127d247a0be44f428b78c25a5885ab9avwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_13151466f2364ff099cddb142ac8233fvwarticulosfactporfranja> _13151466f2364ff099cddb142ac8233fvwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_160cd6d1baf24f5a84d048302c9d7743vwarticulosfactporfranja> _160cd6d1baf24f5a84d048302c9d7743vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_1904e57f02f64c4fbb9618132f52e157vwarticulosfactporfranja> _1904e57f02f64c4fbb9618132f52e157vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_192696bbB9ba464f872bD13c07ceb840> _192696bbB9ba464f872bD13c07ceb840s { get; set; } = null!;
-        public virtual DbSet<_19a0bbfd6aab40ea9d1f8766d57a0838vwarticulosfactporfranja> _19a0bbfd6aab40ea9d1f8766d57a0838vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_1a70b218Cb88441aBb258db47975eea3> _1a70b218Cb88441aBb258db47975eea3s { get; set; } = null!;
-        public virtual DbSet<_1a7dedbdff554869a34dbec049916019vwarticulosfactporfranja> _1a7dedbdff554869a34dbec049916019vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_1dc2bed58f574e82ba391358d8e87964vwarticulosfactporfranja> _1dc2bed58f574e82ba391358d8e87964vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_21c912518029471da2e7ec1cd2a5a7d8vwarticulosfactporfranja> _21c912518029471da2e7ec1cd2a5a7d8vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_247f23f6137c4b99B6a0008d7da298cd> _247f23f6137c4b99B6a0008d7da298cds { get; set; } = null!;
-        public virtual DbSet<_250f5efe5b7f48c48a118712d3194883vwarticulosfactporfranja> _250f5efe5b7f48c48a118712d3194883vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_2df861897877421e81024dfca62a0349> _2df861897877421e81024dfca62a0349s { get; set; } = null!;
-        public virtual DbSet<_2e009aa1C86743e196c8B81fcd819b3f> _2e009aa1C86743e196c8B81fcd819b3fs { get; set; } = null!;
-        public virtual DbSet<_314ecc74ea2544b5a80cf35324ae35davwarticulosfactporfranja> _314ecc74ea2544b5a80cf35324ae35davwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_330bdbb61d2143f29e865c6b3566b4a9vwarticulosfactporfranja> _330bdbb61d2143f29e865c6b3566b4a9vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_330f11ec551146e6a8f65a041b4947e6vwarticulosfactporfranja> _330f11ec551146e6a8f65a041b4947e6vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_34223f1764af4bf68e30f93ac4b265b9vwarticulosfactporfranja> _34223f1764af4bf68e30f93ac4b265b9vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_3977e7dd90774476b74d179fa6627687vwarticulosfactporfranja> _3977e7dd90774476b74d179fa6627687vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_3a6e02e02ef14d02b25a67f101f408c3vwarticulosfactporfranja> _3a6e02e02ef14d02b25a67f101f408c3vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_3b506c6c4420453e8b53fe6cb841dca3vwarticulosfactporfranja> _3b506c6c4420453e8b53fe6cb841dca3vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_3b6e9381ced84cb89377ef724b3a2527vwarticulosfactporfranja> _3b6e9381ced84cb89377ef724b3a2527vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_3faf31c774294fd2A36e9dc5c3091643> _3faf31c774294fd2A36e9dc5c3091643s { get; set; } = null!;
-        public virtual DbSet<_3fb3617bD0394ef38dae6059ea707fd6> _3fb3617bD0394ef38dae6059ea707fd6s { get; set; } = null!;
-        public virtual DbSet<_42a3b05d1be74827a437579b5a61da68vwarticulosfactporfranja> _42a3b05d1be74827a437579b5a61da68vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_4612114dd8da4a78b4fb47887c0fff5cvwarticulosfactporfranja> _4612114dd8da4a78b4fb47887c0fff5cvwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_4741ac3418924419a9362f0ae88c42a3vwarticulosfactporfranja> _4741ac3418924419a9362f0ae88c42a3vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_4815bc27b20e4958b3e75086e29b3ca3vwarticulosfactporfranja> _4815bc27b20e4958b3e75086e29b3ca3vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_4a2befd3f8a04a59856f2f22f0cff013vwarticulosfactporfranja> _4a2befd3f8a04a59856f2f22f0cff013vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_4b6ac3d0C6de4220A8c4F36d8ece7023> _4b6ac3d0C6de4220A8c4F36d8ece7023s { get; set; } = null!;
-        public virtual DbSet<_4bd7a6a97b524cb39f54783699f44e06vwarticulosfactporfranja> _4bd7a6a97b524cb39f54783699f44e06vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_4c87c25a20894eb086d07ed9544640d2> _4c87c25a20894eb086d07ed9544640d2s { get; set; } = null!;
-        public virtual DbSet<_4e38e52f973d4150a0870f2a7428341bvwarticulosfactporfranja> _4e38e52f973d4150a0870f2a7428341bvwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_527874b9a2a24de2922389cb0be82cfcvwarticulosfactporfranja> _527874b9a2a24de2922389cb0be82cfcvwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_5303b1b5d3be4d67855398bfa042535dvwarticulosfactporfranja> _5303b1b5d3be4d67855398bfa042535dvwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_541819b0a03342468b47bdfa5c3f60d1vwarticulosfactporfranja> _541819b0a03342468b47bdfa5c3f60d1vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_5784cfdf429444f691b3751ed05d08f8vwarticulosfactporfranja> _5784cfdf429444f691b3751ed05d08f8vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_58916714ae5a4c75b3c8b3149b1bdf78vwarticulosfactporfranja> _58916714ae5a4c75b3c8b3149b1bdf78vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_62c72319Eb6c4f33B415A6cb2b387d64> _62c72319Eb6c4f33B415A6cb2b387d64s { get; set; } = null!;
-        public virtual DbSet<_64b9d3a644494bde9664Fabeb4631e28> _64b9d3a644494bde9664Fabeb4631e28s { get; set; } = null!;
-        public virtual DbSet<_6a3873ae69474a7f92c60aaaaf6e3fb2> _6a3873ae69474a7f92c60aaaaf6e3fb2s { get; set; } = null!;
-        public virtual DbSet<_6af4e95e29cd47b78dc0e1ee053d1061vwarticulosfactporfranja> _6af4e95e29cd47b78dc0e1ee053d1061vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_6af8693b9a074ca890c9Cc6eb1e11e20> _6af8693b9a074ca890c9Cc6eb1e11e20s { get; set; } = null!;
-        public virtual DbSet<_6b00c74fd34648129f653baa5388258avwarticulosfactporfranja> _6b00c74fd34648129f653baa5388258avwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_6b0f92f3C2d341bfBc72Bc0773af6e6a> _6b0f92f3C2d341bfBc72Bc0773af6e6as { get; set; } = null!;
-        public virtual DbSet<_6c54613410b7479e850b80f1cca48ab2vwarticulosfactporfranja> _6c54613410b7479e850b80f1cca48ab2vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_6dab89bf3771408697fc187662598a54vwarticulosfactporfranja> _6dab89bf3771408697fc187662598a54vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_6ddd884576dd4a6fAb5514af5ca140d0> _6ddd884576dd4a6fAb5514af5ca140d0s { get; set; } = null!;
-        public virtual DbSet<_6fe3e3d4b1e84d86884caf6993d404fevwarticulosfactporfranja> _6fe3e3d4b1e84d86884caf6993d404fevwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_713ca5e0ccd648268aa09a8c54b7f4b7vwarticulosfactporfranja> _713ca5e0ccd648268aa09a8c54b7f4b7vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_73099b2cF0d846e8A9e19ff54714d478> _73099b2cF0d846e8A9e19ff54714d478s { get; set; } = null!;
-        public virtual DbSet<_75b8a23c8d654a9e805578b62ac0a08a> _75b8a23c8d654a9e805578b62ac0a08as { get; set; } = null!;
-        public virtual DbSet<_7e09db9ddb574cc59e03c75b3b07b90avwarticulosfactporfranja> _7e09db9ddb574cc59e03c75b3b07b90avwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_7ecb8e8e4f6a4e2aa304872fc82b66aavwarticulosfactporfranja> _7ecb8e8e4f6a4e2aa304872fc82b66aavwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_8163678f551f4cd78c3507f752c3b2f4vwarticulosfactporfranja> _8163678f551f4cd78c3507f752c3b2f4vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_83096a53b4a14d6d9f8ea4b2d53684c0vwarticulosfactporfranja> _83096a53b4a14d6d9f8ea4b2d53684c0vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_8829650fbd1e4970af52d6125a0ac23evwarticulosfactporfranja> _8829650fbd1e4970af52d6125a0ac23evwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_897fbcf1Db6b4b7f97ba904d4d552d34> _897fbcf1Db6b4b7f97ba904d4d552d34s { get; set; } = null!;
-        public virtual DbSet<_8b1b49b4Fd6e40ba95d4Fca3a047fe0d> _8b1b49b4Fd6e40ba95d4Fca3a047fe0ds { get; set; } = null!;
-        public virtual DbSet<_8e04af1bb43843c083613870e6327f70vwarticulosfactporfranja> _8e04af1bb43843c083613870e6327f70vwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_9415703762af4902b8944056294c9c4dvwarticulosfactporfranja> _9415703762af4902b8944056294c9c4dvwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_946315b2531f4aacAb64F894069b2e1b> _946315b2531f4aacAb64F894069b2e1bs { get; set; } = null!;
-        public virtual DbSet<_978e5ec0356540af8033e1708afc77aevwarticulosfactporfranja> _978e5ec0356540af8033e1708afc77aevwarticulosfactporfranjas { get; set; } = null!;
-        public virtual DbSet<_9d21019f98614e98B79403d7de2acb70> _9d21019f98614e98B79403d7de2acb70s { get; set; } = null!;
+        public virtual DbSet<_04443a11ef174215a6761609a2a41515vwarticulosfactporfranja> _04443a11ef174215a6761609a2a41515vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_04d3c6b2706349f29f59840821a0e74cvwarticulosfactporfranja> _04d3c6b2706349f29f59840821a0e74cvwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_080b973440bf4d95ad52ea6992d373f4vwarticulosfactporfranja> _080b973440bf4d95ad52ea6992d373f4vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_12b52d7e12634c17929d384c4d4ef0dfvwarticulosfactporfranja> _12b52d7e12634c17929d384c4d4ef0dfvwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_12ec8732760c43d0acd9a3fcdd8081b3vwarticulosfactporfranja> _12ec8732760c43d0acd9a3fcdd8081b3vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_1b04911971b84af68d5e904ed7295c90vwarticulosfactporfranja> _1b04911971b84af68d5e904ed7295c90vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_1b92fa397494451dad526a87ba85dbdcvwarticulosfactporfranja> _1b92fa397494451dad526a87ba85dbdcvwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_1e925de4469c427a9a7147023b4e72c1vwarticulosfactporfranja> _1e925de4469c427a9a7147023b4e72c1vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_1f3d8de170d34feab56265be31e517e7vwarticulosfactporfranja> _1f3d8de170d34feab56265be31e517e7vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_276a59c3b0ae436abc5a85627caa3a90vwarticulosfactporfranja> _276a59c3b0ae436abc5a85627caa3a90vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_305b7db61eae401a9044a49e3019c60fvwarticulosfactporfranja> _305b7db61eae401a9044a49e3019c60fvwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_3fc49536e742439abbd952fdebf604d2vwarticulosfactporfranja> _3fc49536e742439abbd952fdebf604d2vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_4126600648e34f89aef3a75afbcf569fvwarticulosfactporfranja> _4126600648e34f89aef3a75afbcf569fvwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_43e44478df1247059487b5bafefbb114vwarticulosfactporfranja> _43e44478df1247059487b5bafefbb114vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_4538b5a6a0c14082bc6859ec3d30c4cbvwarticulosfactporfranja> _4538b5a6a0c14082bc6859ec3d30c4cbvwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_4cdadfa5ae894881b6f8cbe54cc6f821vwarticulosfactporfranja> _4cdadfa5ae894881b6f8cbe54cc6f821vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_4d1e712212d84afabb6f77b49761c9advwarticulosfactporfranja> _4d1e712212d84afabb6f77b49761c9advwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_5090b7f757704a0c98af597322ad84c2vwarticulosfactporfranja> _5090b7f757704a0c98af597322ad84c2vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_6389a53e322a4cc08397d975167f439dvwarticulosfactporfranja> _6389a53e322a4cc08397d975167f439dvwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_65477018692d45a28756a0578f0f1b31vwarticulosfactporfranja> _65477018692d45a28756a0578f0f1b31vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_717fd7d2e8044183a0323c0b24dd522bvwarticulosfactporfranja> _717fd7d2e8044183a0323c0b24dd522bvwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_7b76a926eeeb49888c0c971cc19d1288vwarticulosfactporfranja> _7b76a926eeeb49888c0c971cc19d1288vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_807b5cfb2ff744308c3bf3ebf81e73f3vwarticulosfactporfranja> _807b5cfb2ff744308c3bf3ebf81e73f3vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_88d24e8ea18449d0ba3eb8a7d7fa1831vwarticulosfactporfranja> _88d24e8ea18449d0ba3eb8a7d7fa1831vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_89fc8cc4e83745e3a9455e15532b07c3vwarticulosfactporfranja> _89fc8cc4e83745e3a9455e15532b07c3vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_8cb327f716b14694acf81c6c4abc3195vwarticulosfactporfranja> _8cb327f716b14694acf81c6c4abc3195vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_8d1f89fd5c1145f381c856c25e4fa04cvwarticulosfactporfranja> _8d1f89fd5c1145f381c856c25e4fa04cvwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_90ea488555e4412bb52b56d2c2a3330cvwarticulosfactporfranja> _90ea488555e4412bb52b56d2c2a3330cvwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_91697b24617140d3818371bfd596bd97vwarticulosfactporfranja> _91697b24617140d3818371bfd596bd97vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_95616577704049d2b432fc2df9ec8a10vwarticulosfactporfranja> _95616577704049d2b432fc2df9ec8a10vwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_967897f133094baea98bd587a882aa4evwarticulosfactporfranja> _967897f133094baea98bd587a882aa4evwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_9a8b42ce1f444720963103990d31517cvwarticulosfactporfranja> _9a8b42ce1f444720963103990d31517cvwarticulosfactporfranjas { get; set; } = null!;
+        public virtual DbSet<_9ec532cbe7944a31bdf39a4c279b893dvwarticulosfactporfranja> _9ec532cbe7944a31bdf39a4c279b893dvwarticulosfactporfranjas { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=192.168.31.52;Initial Catalog=BD2;Integrated Security=False;User Id=App2;Password=eVPUh82pWdSP9fPD;MultipleActiveResultSets=True;Connection Timeout=120000");
+                optionsBuilder.UseSqlServer("Data Source=172.16.1.1;Initial Catalog=BD2;Integrated Security=False;User Id=App2;Password=8Z2bpwvZ2pzpXV7Q;MultipleActiveResultSets=True;Connection Timeout=120000");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<A0e650f2e93c43a0bda10a026dad7f32vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<A1e80f21583342c78684cfd99fce5a30vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("A0E650F2E93C43A0BDA10A026DAD7F32VWARTICULOSFACTPORFRANJA");
+                entity.ToView("A1E80F21583342C78684CFD99FCE5A30VWARTICULOSFACTPORFRANJA");
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
+
+                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
+
+                entity.Property(e => e.Minini).HasColumnName("MININI");
+            });
+
+            modelBuilder.Entity<A2b205abf7914aa29fcae67044b26312vwarticulosfactporfranja>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("A2B205ABF7914AA29FCAE67044B26312VWARTICULOSFACTPORFRANJA");
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
+
+                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
+
+                entity.Property(e => e.Minini).HasColumnName("MININI");
+            });
+
+            modelBuilder.Entity<Aca08d1b295c4ae3930af87e2d1ccab9vwarticulosfactporfranja>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("ACA08D1B295C4AE3930AF87E2D1CCAB9VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -1574,6 +1857,21 @@ namespace API_PEDIDOS.ModelsDB2
                     .HasColumnName("UNIONEUROPEA");
             });
 
+            modelBuilder.Entity<Afa2c95b1b6c4b7b976985ecfaa173f8vwarticulosfactporfranja>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("AFA2C95B1B6C4B7B976985ECFAA173F8VWARTICULOSFACTPORFRANJA");
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
+
+                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
+
+                entity.Property(e => e.Minini).HasColumnName("MININI");
+            });
+
             modelBuilder.Entity<Albcompracab>(entity =>
             {
                 entity.HasKey(e => new { e.Numserie, e.Numalbaran, e.N })
@@ -1581,13 +1879,17 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("ALBCOMPRACAB");
 
-                entity.HasIndex(e => new { e.Numserie, e.Numalbaran, e.N }, "ALBCOMPRACAB_DESC");
+                entity.HasIndex(e => new { e.Numserie, e.Numalbaran, e.N }, "ALBCOMPRACAB_DESC")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Fechaalbaran, "ALBCOMPRACAB_FECHA");
+                entity.HasIndex(e => e.Fechaalbaran, "ALBCOMPRACAB_FECHA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Codproveedor, "ALBCOMPRACAB_PROVEEDOR");
+                entity.HasIndex(e => e.Codproveedor, "ALBCOMPRACAB_PROVEEDOR")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Numseriefac, e.Numfac, e.Nfac }, "PORNUMFAC_ALBCOMPRA");
+                entity.HasIndex(e => new { e.Numseriefac, e.Numfac, e.Nfac }, "PORNUMFAC_ALBCOMPRA")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Numserie)
                     .HasMaxLength(4)
@@ -1768,6 +2070,10 @@ namespace API_PEDIDOS.ModelsDB2
                     .HasMaxLength(50)
                     .HasColumnName("SUCURSAL");
 
+                entity.Property(e => e.Uuid)
+                    .HasMaxLength(36)
+                    .HasColumnName("UUID");
+
                 entity.HasOne(d => d.NNavigation)
                     .WithOne(p => p.Albcompracamposlibre)
                     .HasForeignKey<Albcompracamposlibre>(d => new { d.Numserie, d.Numalbaran, d.N })
@@ -1946,13 +2252,17 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("ALBCOMPRALIN");
 
-                entity.HasIndex(e => e.Codarticulo, "ALBCOMPRALINPORCODARTIC");
+                entity.HasIndex(e => e.Codarticulo, "ALBCOMPRALINPORCODARTIC")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color, e.Codalmacen }, "ALBCOMPRALIN_ARTIC_ALMACEN");
+                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color, e.Codalmacen }, "ALBCOMPRALIN_ARTIC_ALMACEN")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Codalmacen, "ALBCOMPRALIN_CODALMACEN");
+                entity.HasIndex(e => e.Codalmacen, "ALBCOMPRALIN_CODALMACEN")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Supedido, "ALBCOMPRALIN_SUPEDIDO");
+                entity.HasIndex(e => e.Supedido, "ALBCOMPRALIN_SUPEDIDO")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Numserie)
                     .HasMaxLength(4)
@@ -2249,31 +2559,44 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("ALBVENTACAB");
 
-                entity.HasIndex(e => e.Codcliente, "ALBVENTACAB_CLIENTE");
+                entity.HasIndex(e => e.Codcliente, "ALBVENTACAB_CLIENTE")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Codvendedor, "ALBVENTACAB_CODVENDEDOR");
+                entity.HasIndex(e => e.Codvendedor, "ALBVENTACAB_CODVENDEDOR")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Numserie, e.Numalbaran, e.N }, "ALBVENTACAB_DESC");
+                entity.HasIndex(e => new { e.Numserie, e.Numalbaran, e.N }, "ALBVENTACAB_DESC")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Descargar, "ALBVENTACAB_DESCARGAR");
+                entity.HasIndex(e => e.Descargar, "ALBVENTACAB_DESCARGAR")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Numserie, e.Numalbaran, e.N, e.Fecha }, "ALBVENTACAB_DOC_FECHA");
+                entity.HasIndex(e => new { e.Numserie, e.Numalbaran, e.N, e.Fecha }, "ALBVENTACAB_DOC_FECHA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Entransito, "ALBVENTACAB_ENTRANSITO");
+                entity.HasIndex(e => e.Entransito, "ALBVENTACAB_ENTRANSITO")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Fecha, "ALBVENTACAB_FECHA");
+                entity.HasIndex(e => e.Fecha, "ALBVENTACAB_FECHA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Tipodoc, e.Fecha, e.Numserie }, "ALBVENTACAB_FECHA_TIPODOC");
+                entity.HasIndex(e => new { e.Tipodoc, e.Fecha, e.Numserie }, "ALBVENTACAB_FECHA_TIPODOC")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Fecha, e.Codvendedor, e.Hora }, "ALBVENTACAB_FECHA_VENDEDOR_HORA");
+                entity.HasIndex(e => new { e.Fecha, e.Codvendedor, e.Hora }, "ALBVENTACAB_FECHA_VENDEDOR_HORA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Idtarjeta, "ALBVENTACAB_IDTARJETA");
+                entity.HasIndex(e => e.Idtarjeta, "ALBVENTACAB_IDTARJETA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.N, e.Fecha }, "ALBVENTACAB_N_FECHA");
+                entity.HasIndex(e => new { e.N, e.Fecha }, "ALBVENTACAB_N_FECHA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Z, e.Caja }, "ALBVENTACAB_PORZCAJA");
+                entity.HasIndex(e => new { e.Z, e.Caja }, "ALBVENTACAB_PORZCAJA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Numseriefac, e.Numfac, e.Nfac }, "PORNUMFAC_ALBVENTA");
+                entity.HasIndex(e => new { e.Numseriefac, e.Numfac, e.Nfac }, "PORNUMFAC_ALBVENTA")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Numserie)
                     .HasMaxLength(4)
@@ -2594,6 +2917,10 @@ namespace API_PEDIDOS.ModelsDB2
                     .HasColumnName("REQUISICION")
                     .IsFixedLength();
 
+                entity.Property(e => e.Tipodocumento)
+                    .HasMaxLength(50)
+                    .HasColumnName("TIPODOCUMENTO");
+
                 entity.HasOne(d => d.NNavigation)
                     .WithOne(p => p.Albventacamposlibre)
                     .HasForeignKey<Albventacamposlibre>(d => new { d.Numserie, d.Numalbaran, d.N })
@@ -2821,9 +3148,7 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
 
-                entity.Property(e => e.Factura)
-                    .HasMaxLength(10)
-                    .HasColumnName("FACTURA");
+                entity.Property(e => e.Factura).HasColumnName("FACTURA");
 
                 entity.Property(e => e.Fo).HasColumnName("FO");
 
@@ -2946,21 +3271,29 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("ALBVENTALIN");
 
-                entity.HasIndex(e => e.Codarticulo, "ALBVENTALINPORCODARTIC");
+                entity.HasIndex(e => e.Codarticulo, "ALBVENTALINPORCODARTIC")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.AbonodeN, e.AbonodeNumalbaran, e.AbonodeNumserie, e.Numserie, e.Numalbaran, e.N }, "ALBVENTALIN_ABONODE");
+                entity.HasIndex(e => new { e.AbonodeN, e.AbonodeNumalbaran, e.AbonodeNumserie, e.Numserie, e.Numalbaran, e.N }, "ALBVENTALIN_ABONODE")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codalmacen, e.Talla }, "ALBVENTALIN_ALMACEN_TALLA");
+                entity.HasIndex(e => new { e.Codalmacen, e.Talla }, "ALBVENTALIN_ALMACEN_TALLA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color, e.Codalmacen }, "ALBVENTALIN_ARTIC_ALMACEN");
+                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color, e.Codalmacen }, "ALBVENTALIN_ARTIC_ALMACEN")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Codalmacen, "ALBVENTALIN_CODALMACEN");
+                entity.HasIndex(e => e.Codalmacen, "ALBVENTALIN_CODALMACEN")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codarticulo, e.Color, e.Talla }, "ALBVENTALIN_COD_COLOR_TALLA");
+                entity.HasIndex(e => new { e.Codarticulo, e.Color, e.Talla }, "ALBVENTALIN_COD_COLOR_TALLA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Numserie, e.Numalbaran, e.N, e.Codarticulo, e.Talla, e.Color }, "ALBVENTALIN_DOC_ARTICULO");
+                entity.HasIndex(e => new { e.Numserie, e.Numalbaran, e.N, e.Codarticulo, e.Talla, e.Color }, "ALBVENTALIN_DOC_ARTICULO")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Supedido, "ALBVENTALIN_SUPEDIDO");
+                entity.HasIndex(e => e.Supedido, "ALBVENTALIN_SUPEDIDO")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Numserie)
                     .HasMaxLength(4)
@@ -4883,9 +5216,11 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("ARQUEOS");
 
-                entity.HasIndex(e => new { e.Arqueo1, e.Caja, e.Numero }, "ARQUEOS_ARQUEO_CAJA_NUMERO");
+                entity.HasIndex(e => new { e.Arqueo1, e.Caja, e.Numero }, "ARQUEOS_ARQUEO_CAJA_NUMERO")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Caja, e.Numero, e.Arqueo1, e.Fecha }, "ARQUEOS_CAJA_NUMERO_ARQUEO_FECHA");
+                entity.HasIndex(e => new { e.Caja, e.Numero, e.Arqueo1, e.Fecha }, "ARQUEOS_CAJA_NUMERO_ARQUEO_FECHA")
+                    .HasFillFactor(90);
 
                 entity.HasIndex(e => new { e.Fecha, e.Caja, e.Numero }, "ARQUEOS_FECHA_CAJA_NUMERO");
 
@@ -5075,40 +5410,34 @@ namespace API_PEDIDOS.ModelsDB2
 
             modelBuilder.Entity<Articulo>(entity =>
             {
-                entity.HasNoKey();
-
-                entity.ToTable("_ARTICULOS");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Ubicacion)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("UBICACION");
-            });
-
-            modelBuilder.Entity<Articulo1>(entity =>
-            {
                 entity.HasKey(e => e.Codarticulo)
                     .HasName("ARTICULOS_PK");
 
                 entity.ToTable("ARTICULOS");
 
-                entity.HasIndex(e => e.Codarticulo, "ARTICULOS_CONTRAPARTIDAS");
+                entity.HasIndex(e => e.Codarticulo, "ARTICULOS_CONTRAPARTIDAS")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Dpto, e.Seccion }, "ARTICULOS_DPTO");
+                entity.HasIndex(e => new { e.Dpto, e.Seccion }, "ARTICULOS_DPTO")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Dpto, e.Seccion, e.Descripcion, e.Refproveedor, e.Codarticulo }, "ARTICULOS_DPTO_SECC_DESC");
+                entity.HasIndex(e => new { e.Dpto, e.Seccion, e.Descripcion, e.Refproveedor, e.Codarticulo }, "ARTICULOS_DPTO_SECC_DESC")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Dpto, e.Seccion, e.Descripcion, e.Codarticulo }, "ARTICULOS_DPTO_SECC_DESC_COD");
+                entity.HasIndex(e => new { e.Dpto, e.Seccion, e.Descripcion, e.Codarticulo }, "ARTICULOS_DPTO_SECC_DESC_COD")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Dpto, e.Seccion, e.Refproveedor, e.Codarticulo }, "ARTICULOS_DPTO_SECC_REF");
+                entity.HasIndex(e => new { e.Dpto, e.Seccion, e.Refproveedor, e.Codarticulo }, "ARTICULOS_DPTO_SECC_REF")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Refproveedor, e.Codarticulo }, "ARTICULOS_REFERENCIA");
+                entity.HasIndex(e => new { e.Refproveedor, e.Codarticulo }, "ARTICULOS_REFERENCIA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Usarnumserie, "ARTICULOS_USARNUMSERIE");
+                entity.HasIndex(e => e.Usarnumserie, "ARTICULOS_USARNUMSERIE")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Version, "IDX_ARTICULOSVERSION");
+                entity.HasIndex(e => e.Version, "IDX_ARTICULOSVERSION")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Codarticulo)
                     .ValueGeneratedNever()
@@ -5513,7 +5842,7 @@ namespace API_PEDIDOS.ModelsDB2
                     .UsingEntity<Dictionary<string, object>>(
                         "Articulosretencionesbase",
                         l => l.HasOne<Regimenret>().WithMany().HasForeignKey("Codregimenret").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("ARTICULOSRETENCIONESBASE_REGIMENRET_PK"),
-                        r => r.HasOne<Articulo1>().WithMany().HasForeignKey("Codarticulo").HasConstraintName("ARTICULOSRETENCIONESBASE_ARTICULOS_PK"),
+                        r => r.HasOne<Articulo>().WithMany().HasForeignKey("Codarticulo").HasConstraintName("ARTICULOSRETENCIONESBASE_ARTICULOS_PK"),
                         j =>
                         {
                             j.HasKey("Codarticulo", "Codregimenret").HasName("ARTICULOSRETENCIONESBASE_PK");
@@ -5530,7 +5859,7 @@ namespace API_PEDIDOS.ModelsDB2
                     .UsingEntity<Dictionary<string, object>>(
                         "Articulosretencionesiva",
                         l => l.HasOne<Regimenret>().WithMany().HasForeignKey("Codregimenret").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("ARTICULOSRETENCIONESIVA_REGIMENRET_PK"),
-                        r => r.HasOne<Articulo1>().WithMany().HasForeignKey("Codarticulo").HasConstraintName("ARTICULOSRETENCIONESIVA_ARTICULOS_PK"),
+                        r => r.HasOne<Articulo>().WithMany().HasForeignKey("Codarticulo").HasConstraintName("ARTICULOSRETENCIONESIVA_ARTICULOS_PK"),
                         j =>
                         {
                             j.HasKey("Codarticulo", "Codregimenret").HasName("ARTICULOSRETENCIONESIVA_PK");
@@ -5547,7 +5876,7 @@ namespace API_PEDIDOS.ModelsDB2
                     .UsingEntity<Dictionary<string, object>>(
                         "Turnosarticulo",
                         l => l.HasOne<Turno>().WithMany().HasForeignKey("Codturno").HasConstraintName("TURNOSARTICULOS_FK2"),
-                        r => r.HasOne<Articulo1>().WithMany().HasForeignKey("Codarticulo").HasConstraintName("TURNOSARTICULOS_FK1"),
+                        r => r.HasOne<Articulo>().WithMany().HasForeignKey("Codarticulo").HasConstraintName("TURNOSARTICULOS_FK1"),
                         j =>
                         {
                             j.HasKey("Codarticulo", "Codturno").HasName("TURNOSARTICULOS_PK");
@@ -5564,7 +5893,7 @@ namespace API_PEDIDOS.ModelsDB2
                     .UsingEntity<Dictionary<string, object>>(
                         "Tipostarjetamenu",
                         l => l.HasOne<Tipostarjetum>().WithMany().HasForeignKey("Idtipotarjeta").HasConstraintName("TIPOSTARJETAMENUS_TIPOTARJETA"),
-                        r => r.HasOne<Articulo1>().WithMany().HasForeignKey("Codarticulo").HasConstraintName("TIPOSTARJETAMENUS_ARTICULOS"),
+                        r => r.HasOne<Articulo>().WithMany().HasForeignKey("Codarticulo").HasConstraintName("TIPOSTARJETAMENUS_ARTICULOS"),
                         j =>
                         {
                             j.HasKey("Codarticulo", "Idtipotarjeta").HasName("TIPOSTARJETAMENUSPK");
@@ -5581,7 +5910,7 @@ namespace API_PEDIDOS.ModelsDB2
                     .UsingEntity<Dictionary<string, object>>(
                         "Tipostarjetaofertum",
                         l => l.HasOne<Tipostarjetum>().WithMany().HasForeignKey("Idtipotarjeta").HasConstraintName("TIPOSTARJETAOFERTA_TIPOTARJETA"),
-                        r => r.HasOne<Articulo1>().WithMany().HasForeignKey("Codarticulo").HasConstraintName("TIPOSTARJETAOFERTA_ARTICULOS"),
+                        r => r.HasOne<Articulo>().WithMany().HasForeignKey("Codarticulo").HasConstraintName("TIPOSTARJETAOFERTA_ARTICULOS"),
                         j =>
                         {
                             j.HasKey("Codarticulo", "Idtipotarjeta").HasName("TIPOSTARJETAOFERTAPK");
@@ -5618,13 +5947,28 @@ namespace API_PEDIDOS.ModelsDB2
                     .HasMaxLength(50)
                     .HasColumnName("CLASIFICACION");
 
+                entity.Property(e => e.ClasificacionAyc)
+                    .HasMaxLength(50)
+                    .HasColumnName("CLASIFICACION_AYC");
+
                 entity.Property(e => e.Clasificacionv)
                     .HasMaxLength(50)
                     .HasColumnName("CLASIFICACIONV");
 
+                entity.Property(e => e.CostoAyc).HasColumnName("COSTO_AYC");
+
+                entity.Property(e => e.Destilado)
+                    .HasMaxLength(1)
+                    .HasColumnName("DESTILADO")
+                    .IsFixedLength();
+
                 entity.Property(e => e.Entrega)
                     .HasMaxLength(50)
                     .HasColumnName("ENTREGA");
+
+                entity.Property(e => e.FamiliaCorporativo)
+                    .HasMaxLength(50)
+                    .HasColumnName("FAMILIA_CORPORATIVO");
 
                 entity.Property(e => e.FamiliaRw)
                     .HasMaxLength(50)
@@ -5637,6 +5981,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Inducida)
                     .HasMaxLength(1)
                     .HasColumnName("INDUCIDA")
+                    .IsFixedLength();
+
+                entity.Property(e => e.InvMensual)
+                    .HasMaxLength(1)
+                    .HasColumnName("INV_MENSUAL")
                     .IsFixedLength();
 
                 entity.Property(e => e.Inventariable)
@@ -5665,6 +6014,11 @@ namespace API_PEDIDOS.ModelsDB2
                     .HasColumnName("RASURADO")
                     .IsFixedLength();
 
+                entity.Property(e => e.RebeLitros)
+                    .HasMaxLength(1)
+                    .HasColumnName("REBE_LITROS")
+                    .IsFixedLength();
+
                 entity.Property(e => e.Regulariza)
                     .HasMaxLength(1)
                     .HasColumnName("REGULARIZA")
@@ -5673,6 +6027,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.RegularizaSemanal)
                     .HasMaxLength(1)
                     .HasColumnName("REGULARIZA_SEMANAL")
+                    .IsFixedLength();
+
+                entity.Property(e => e.SimplexBarra)
+                    .HasMaxLength(1)
+                    .HasColumnName("SIMPLEX_BARRA")
                     .IsFixedLength();
 
                 entity.Property(e => e.Tipo)
@@ -5692,6 +6051,8 @@ namespace API_PEDIDOS.ModelsDB2
                     .HasColumnName("UNIDADMEDIDA_REG");
 
                 entity.Property(e => e.ValorAyc).HasColumnName("VALOR_AYC");
+
+                entity.Property(e => e.ValorBebida).HasColumnName("VALOR_BEBIDA");
 
                 entity.Property(e => e.VentaHeineken)
                     .HasMaxLength(1)
@@ -6116,7 +6477,8 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("ARTICULOSIMAGEN");
 
-                entity.HasIndex(e => e.Version, "IDX_ARTICULOSIMAGENVERSION");
+                entity.HasIndex(e => e.Version, "IDX_ARTICULOSIMAGENVERSION")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Codarticulo)
                     .ValueGeneratedNever()
@@ -6191,21 +6553,29 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("ARTICULOSLIN");
 
-                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color }, "ARTICULOSLIN_CODARTICULO_TALLA_COLOR");
+                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color }, "ARTICULOSLIN_CODARTICULO_TALLA_COLOR")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Codbarras, "ARTICULOSLIN_CODBARRAS");
+                entity.HasIndex(e => e.Codbarras, "ARTICULOSLIN_CODBARRAS")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Codbarras2, "ARTICULOSLIN_CODBARRAS2");
+                entity.HasIndex(e => e.Codbarras2, "ARTICULOSLIN_CODBARRAS2")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Codbarras3, "ARTICULOSLIN_CODBARRAS3");
+                entity.HasIndex(e => e.Codbarras3, "ARTICULOSLIN_CODBARRAS3")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codarticulo, e.Color, e.Talla }, "ARTICULOSLIN_COD_COLOR_TALLA");
+                entity.HasIndex(e => new { e.Codarticulo, e.Color, e.Talla }, "ARTICULOSLIN_COD_COLOR_TALLA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color, e.Fechaultventa }, "ARTICULOSLIN_FECHAVENTA");
+                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color, e.Fechaultventa }, "ARTICULOSLIN_FECHAVENTA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Orden, e.Codarticulo, e.Color, e.Talla }, "ARTICULOSLIN_ORDEN");
+                entity.HasIndex(e => new { e.Orden, e.Codarticulo, e.Color, e.Talla }, "ARTICULOSLIN_ORDEN")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Version, "IDX_ARTICULOSLINVERSION");
+                entity.HasIndex(e => e.Version, "IDX_ARTICULOSLINVERSION")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -7079,6 +7449,15 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Numeroasunto).HasColumnName("NUMEROASUNTO");
             });
 
+            modelBuilder.Entity<Atemparticslin708814>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ATEMPARTICSLIN_70_8814");
+
+                entity.Property(e => e.Noestruc).HasColumnName("NOESTRUC");
+            });
+
             modelBuilder.Entity<Atemparticslin8466357>(entity =>
             {
                 entity.HasNoKey();
@@ -7163,26 +7542,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Codigo).HasColumnName("CODIGO");
             });
 
-            modelBuilder.Entity<B6b2a59df30c435e9a241a6360f5f17fvwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<B4f4b60d5e934e47ba790a3848018a95vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("B6B2A59DF30C435E9A241A6360F5F17FVWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
-            });
-
-            modelBuilder.Entity<B7a00c96b0f944c4b1fff3b8c639730fvwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("B7A00C96B0F944C4B1FFF3B8C639730FVWARTICULOSFACTPORFRANJA");
+                entity.ToView("B4F4B60D5E934E47BA790A3848018A95VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -7542,239 +7906,6 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Puerto).HasColumnName("PUERTO");
 
                 entity.Property(e => e.Tipoautentificacion).HasColumnName("TIPOAUTENTIFICACION");
-            });
-
-            modelBuilder.Entity<C3bca2022e2f4f359214F5c77a8b3077>(entity =>
-            {
-                entity.ToTable("{C3BCA202-2E2F-4F35-9214-F5C77A8B3077}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<C88d22d2229b4847B74d6bab21e5b82c>(entity =>
-            {
-                entity.ToTable("{C88D22D2-229B-4847-B74D-6BAB21E5B82C}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<Ca5c74edd6cc4309ae50af64e06cb2e8vwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("CA5C74EDD6CC4309AE50AF64E06CB2E8VWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
             modelBuilder.Entity<Cajasasignada>(entity =>
@@ -8619,15 +8750,20 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("CLIENTES");
 
-                entity.HasIndex(e => e.Codclisuyo, "CLIENTES_CODCLISUYO");
+                entity.HasIndex(e => e.Codclisuyo, "CLIENTES_CODCLISUYO")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codcliente, e.Descatalogado }, "CLIENTES_EFCLIENTES");
+                entity.HasIndex(e => new { e.Codcliente, e.Descatalogado }, "CLIENTES_EFCLIENTES")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Telefono1, "CLIENTES_TELEFONO1");
+                entity.HasIndex(e => e.Telefono1, "CLIENTES_TELEFONO1")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Telefono2, "CLIENTES_TELEFONO2");
+                entity.HasIndex(e => e.Telefono2, "CLIENTES_TELEFONO2")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Version, "IDX_CLIENTESVERSION");
+                entity.HasIndex(e => e.Version, "IDX_CLIENTESVERSION")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Codcliente)
                     .ValueGeneratedNever()
@@ -11148,7 +11284,8 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("CONFIGBOTONES");
 
-                entity.HasIndex(e => e.Version, "IDX_CONFIGBOTONESVERSION");
+                entity.HasIndex(e => e.Version, "IDX_CONFIGBOTONESVERSION")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Tipo).HasColumnName("TIPO");
 
@@ -11830,11 +11967,11 @@ namespace API_PEDIDOS.ModelsDB2
                     .UseCollation("Latin1_General_CS_AI");
             });
 
-            modelBuilder.Entity<D41456a4cc5c480393b37f886f7be2d3vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<D3f9f5f755e34ed98e4a00d8301aea2bvwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("D41456A4CC5C480393B37F886F7BE2D3VWARTICULOSFACTPORFRANJA");
+                entity.ToView("D3F9F5F755E34ED98E4A00D8301AEA2BVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -11845,120 +11982,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<D4578086530f40e798c880b127ac47ef>(entity =>
-            {
-                entity.ToTable("{D4578086-530F-40E7-98C8-80B127AC47EF}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<D6a8452c497e48f49ae0edddd325a93avwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<D55a5627a77d4c619fae03754758515cvwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("D6A8452C497E48F49AE0EDDDD325A93AVWARTICULOSFACTPORFRANJA");
+                entity.ToView("D55A5627A77D4C619FAE03754758515CVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -11969,120 +11997,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<D7548accEcfb4f10B3239457d74478bd>(entity =>
-            {
-                entity.ToTable("{D7548ACC-ECFB-4F10-B323-9457D74478BD}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<D7fd2a06651f4bc7a5752e0f50b58060vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<D72a7109e5ad4b6284e0a9499843e8ffvwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("D7FD2A06651F4BC7A5752E0F50B58060VWARTICULOSFACTPORFRANJA");
+                entity.ToView("D72A7109E5AD4B6284E0A9499843E8FFVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -12093,11 +12012,41 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<Dadaa9f30ff9425bbdd600d1be2a1fcavwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<D82b36c69d9d413bbf2086afd01b41d6vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("DADAA9F30FF9425BBDD600D1BE2A1FCAVWARTICULOSFACTPORFRANJA");
+                entity.ToView("D82B36C69D9D413BBF2086AFD01B41D6VWARTICULOSFACTPORFRANJA");
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
+
+                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
+
+                entity.Property(e => e.Minini).HasColumnName("MININI");
+            });
+
+            modelBuilder.Entity<Da74c9b2e8014237aa2bae9b2b51f680vwarticulosfactporfranja>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("DA74C9B2E8014237AA2BAE9B2B51F680VWARTICULOSFACTPORFRANJA");
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
+
+                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
+
+                entity.Property(e => e.Minini).HasColumnName("MININI");
+            });
+
+            modelBuilder.Entity<Da90ecd3f9214876b6ebba35ea992c56vwarticulosfactporfranja>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("DA90ECD3F9214876B6EBBA35EA992C56VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -12181,145 +12130,6 @@ namespace API_PEDIDOS.ModelsDB2
                     .WithMany(p => p.Datosclientelibres)
                     .HasForeignKey(d => d.Codrespuesta)
                     .HasConstraintName("DATOSCLIENTELIBRES_FK");
-            });
-
-            modelBuilder.Entity<Db6cf521dae140a5b4eb484305b92da5vwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("DB6CF521DAE140A5B4EB484305B92DA5VWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
-            });
-
-            modelBuilder.Entity<Db8d364095c147bb8a73324a4595b5e4>(entity =>
-            {
-                entity.ToTable("{DB8D3640-95C1-47BB-8A73-324A4595B5E4}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<Dc24613202e244bab4a6f1bb4e27bd49vwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("DC24613202E244BAB4A6F1BB4E27BD49VWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
             modelBuilder.Entity<Declaradoz>(entity =>
@@ -13076,11 +12886,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Dto).HasColumnName("DTO");
             });
 
-            modelBuilder.Entity<E09d747311da410a8c7bd35dfb5d8392vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<E08261011f3b4c54b6c6865d925778f0vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("E09D747311DA410A8C7BD35DFB5D8392VWARTICULOSFACTPORFRANJA");
+                entity.ToView("E08261011F3B4C54B6C6865D925778F0VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -13091,11 +12901,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<E3c0b5d1d71b47b3988631e7de36139avwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<E353cb8ed2864c47b6f05697956f22b1vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("E3C0B5D1D71B47B3988631E7DE36139AVWARTICULOSFACTPORFRANJA");
+                entity.ToView("E353CB8ED2864C47B6F05697956F22B1VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -13106,113 +12916,19 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<E637deb0F58a4b279d1aD08034f43ce1>(entity =>
+            modelBuilder.Entity<E5aedb8ae0b445b987523f38af154744vwarticulosfactporfranja>(entity =>
             {
-                entity.ToTable("{E637DEB0-F58A-4B27-9D1A-D08034F43CE1}");
+                entity.HasNoKey();
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.ToView("E5AEDB8AE0B445B987523F38AF154744VWARTICULOSFACTPORFRANJA");
 
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
+                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
 
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
+                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
 
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
+                entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
             modelBuilder.Entity<EcuaTipoidentificacioncomprador>(entity =>
@@ -13928,11 +13644,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Tipo).HasColumnName("TIPO");
             });
 
-            modelBuilder.Entity<F2b74ecde7d2461cbbb84ae0a2690f14vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<F3bd98d14dc14bfd847df01e4c71c079vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("F2B74ECDE7D2461CBBB84AE0A2690F14VWARTICULOSFACTPORFRANJA");
+                entity.ToView("F3BD98D14DC14BFD847DF01E4C71C079VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -13943,11 +13659,41 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<F5eb72128856459a814f8b47c478e95fvwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<F4d7c0d98ed8480a8ee33e28a7fa0957vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("F5EB72128856459A814F8B47C478E95FVWARTICULOSFACTPORFRANJA");
+                entity.ToView("F4D7C0D98ED8480A8EE33E28A7FA0957VWARTICULOSFACTPORFRANJA");
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
+
+                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
+
+                entity.Property(e => e.Minini).HasColumnName("MININI");
+            });
+
+            modelBuilder.Entity<F74b5b05530a4a89b89e1f7a4d89a663vwarticulosfactporfranja>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("F74B5B05530A4A89B89E1F7A4D89A663VWARTICULOSFACTPORFRANJA");
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
+
+                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
+
+                entity.Property(e => e.Minini).HasColumnName("MININI");
+            });
+
+            modelBuilder.Entity<F80a32e93576438f855daab26dae2f82vwarticulosfactporfranja>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("F80A32E93576438F855DAAB26DAE2F82VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -14294,11 +14040,14 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("FACTURASCOMPRA");
 
-                entity.HasIndex(e => new { e.Numserie, e.Numfactura, e.N }, "FACCOMPRA_DESC");
+                entity.HasIndex(e => new { e.Numserie, e.Numfactura, e.N }, "FACCOMPRA_DESC")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Fecha, "FACTURASCOMPRA_FECHA");
+                entity.HasIndex(e => e.Fecha, "FACTURASCOMPRA_FECHA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Codproveedor, "FACTURASCOMPRA_PROVEEDOR");
+                entity.HasIndex(e => e.Codproveedor, "FACTURASCOMPRA_PROVEEDOR")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Numserie)
                     .HasMaxLength(4)
@@ -15283,7 +15032,8 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("FACTURASVENTATOT");
 
-                entity.HasIndex(e => new { e.Serie, e.Numero, e.N, e.Iva, e.Req }, "FACTURASVENTATOT_IVA_REQ");
+                entity.HasIndex(e => new { e.Serie, e.Numero, e.N, e.Iva, e.Req }, "FACTURASVENTATOT_IVA_REQ")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Serie)
                     .HasMaxLength(4)
@@ -15345,17 +15095,23 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("FACTURASVENTA");
 
-                entity.HasIndex(e => e.Codcliente, "FACTURASVENTA_CODCLIENTE");
+                entity.HasIndex(e => e.Codcliente, "FACTURASVENTA_CODCLIENTE")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Traspasada, e.EnlaceEjercicio, e.EnlaceEmpresa, e.EnlaceUsuario, e.EnlaceAsiento }, "FACTURASVENTA_ENLACECONTABLE");
+                entity.HasIndex(e => new { e.Traspasada, e.EnlaceEjercicio, e.EnlaceEmpresa, e.EnlaceUsuario, e.EnlaceAsiento }, "FACTURASVENTA_ENLACECONTABLE")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Fecha, "FACTURASVENTA_FECHA");
+                entity.HasIndex(e => e.Fecha, "FACTURASVENTA_FECHA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Tipodoc, e.Fecha, e.Numserie }, "FACTURASVENTA_FECHA_TIPODOC");
+                entity.HasIndex(e => new { e.Tipodoc, e.Fecha, e.Numserie }, "FACTURASVENTA_FECHA_TIPODOC")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Z, e.Caja }, "FACTURASVENTA_PORZCAJA");
+                entity.HasIndex(e => new { e.Z, e.Caja }, "FACTURASVENTA_PORZCAJA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Numserie, e.Numfactura, e.N }, "FACVENTA_DESC");
+                entity.HasIndex(e => new { e.Numserie, e.Numfactura, e.N }, "FACVENTA_DESC")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Numserie)
                     .HasMaxLength(4)
@@ -15731,26 +15487,11 @@ namespace API_PEDIDOS.ModelsDB2
                     .HasConstraintName("FAVORITOSTURNO_TURNOS");
             });
 
-            modelBuilder.Entity<Fb0af66955394d2d877838657b8d5257vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<Fcdc14841ec44095aee948a7600120fdvwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("FB0AF66955394D2D877838657B8D5257VWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
-            });
-
-            modelBuilder.Entity<Fe06c8881e294072b69bdcc986fe862avwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("FE06C8881E294072B69BDCC986FE862AVWARTICULOSFACTPORFRANJA");
+                entity.ToView("FCDC14841EC44095AEE948A7600120FDVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -15784,21 +15525,6 @@ namespace API_PEDIDOS.ModelsDB2
                     .WithMany(p => p.Festivoshotels)
                     .HasForeignKey(d => d.Idhotel)
                     .HasConstraintName("FESTIVOSHOTEL_FK");
-            });
-
-            modelBuilder.Entity<Ff949d36fc1346249cdfdb3efa3be09fvwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("FF949D36FC1346249CDFDB3EFA3BE09FVWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
             modelBuilder.Entity<Fianza>(entity =>
@@ -22853,11 +22579,191 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
 
+            modelBuilder.Entity<IcgmailCalculos260>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS260");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos261>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS261");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos262>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS262");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos263>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS263");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos264>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS264");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos265>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS265");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos266>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS266");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos267>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS267");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos268>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS268");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos269>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS269");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
             modelBuilder.Entity<IcgmailCalculos27>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToTable("ICGMAIL_CALCULOS27");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos270>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS270");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos271>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS271");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos272>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS272");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos273>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS273");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos274>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS274");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos275>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS275");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos276>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS276");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos277>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS277");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos278>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS278");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos279>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS279");
 
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
@@ -22871,11 +22777,191 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
 
+            modelBuilder.Entity<IcgmailCalculos280>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS280");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos281>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS281");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos282>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS282");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos283>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS283");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos284>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS284");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos285>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS285");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos286>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS286");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos287>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS287");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos288>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS288");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos289>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS289");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
             modelBuilder.Entity<IcgmailCalculos29>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToTable("ICGMAIL_CALCULOS29");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos290>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS290");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos291>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS291");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos292>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS292");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos293>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS293");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos294>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS294");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos295>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS295");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos296>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS296");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos297>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS297");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos298>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS298");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos299>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS299");
 
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
@@ -22898,11 +22984,191 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
 
+            modelBuilder.Entity<IcgmailCalculos300>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS300");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos301>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS301");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos302>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS302");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos303>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS303");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos304>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS304");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos305>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS305");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos306>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS306");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos307>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS307");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos308>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS308");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos309>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS309");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
             modelBuilder.Entity<IcgmailCalculos31>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToTable("ICGMAIL_CALCULOS31");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos310>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS310");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos311>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS311");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos312>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS312");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos313>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS313");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos314>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS314");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos315>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS315");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos316>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS316");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos317>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS317");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos318>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS318");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos319>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS319");
 
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
@@ -22916,11 +23182,191 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
 
+            modelBuilder.Entity<IcgmailCalculos320>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS320");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos321>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS321");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos322>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS322");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos323>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS323");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos324>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS324");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos325>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS325");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos326>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS326");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos327>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS327");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos328>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS328");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos329>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS329");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
             modelBuilder.Entity<IcgmailCalculos33>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToTable("ICGMAIL_CALCULOS33");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos330>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS330");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos331>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS331");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos332>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS332");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos333>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS333");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos334>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS334");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos335>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS335");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos336>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS336");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos337>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS337");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos338>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS338");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos339>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS339");
 
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
@@ -22934,11 +23380,191 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
 
+            modelBuilder.Entity<IcgmailCalculos340>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS340");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos341>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS341");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos342>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS342");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos343>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS343");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos344>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS344");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos345>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS345");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos346>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS346");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos347>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS347");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos348>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS348");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos349>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS349");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
             modelBuilder.Entity<IcgmailCalculos35>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToTable("ICGMAIL_CALCULOS35");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos350>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS350");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos351>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS351");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos352>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS352");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos353>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS353");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos354>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS354");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos355>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS355");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos356>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS356");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos357>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS357");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos358>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS358");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos359>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS359");
 
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
@@ -22952,11 +23578,191 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
 
+            modelBuilder.Entity<IcgmailCalculos360>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS360");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos361>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS361");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos362>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS362");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos363>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS363");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos364>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS364");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos365>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS365");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos366>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS366");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos367>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS367");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos368>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS368");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos369>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS369");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
             modelBuilder.Entity<IcgmailCalculos37>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToTable("ICGMAIL_CALCULOS37");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos370>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS370");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos371>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS371");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos372>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS372");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos373>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS373");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos374>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS374");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos375>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS375");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos376>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS376");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos377>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS377");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos378>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS378");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos379>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS379");
 
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
@@ -22970,11 +23776,191 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
 
+            modelBuilder.Entity<IcgmailCalculos380>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS380");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos381>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS381");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos382>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS382");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos383>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS383");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos384>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS384");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos385>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS385");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos386>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS386");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos387>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS387");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos388>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS388");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos389>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS389");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
             modelBuilder.Entity<IcgmailCalculos39>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToTable("ICGMAIL_CALCULOS39");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos390>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS390");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos391>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS391");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos392>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS392");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos393>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS393");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos394>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS394");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos395>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS395");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos396>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS396");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos397>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS397");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos398>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS398");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos399>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS399");
 
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
@@ -22997,11 +23983,191 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
 
+            modelBuilder.Entity<IcgmailCalculos400>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS400");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos401>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS401");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos402>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS402");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos403>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS403");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos404>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS404");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos405>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS405");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos406>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS406");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos407>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS407");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos408>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS408");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos409>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS409");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
             modelBuilder.Entity<IcgmailCalculos41>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToTable("ICGMAIL_CALCULOS41");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos410>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS410");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos411>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS411");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos412>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS412");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos413>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS413");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos414>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS414");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos415>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS415");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos416>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS416");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos417>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS417");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos418>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS418");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos419>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS419");
 
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
@@ -23015,11 +24181,191 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
 
+            modelBuilder.Entity<IcgmailCalculos420>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS420");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos421>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS421");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos422>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS422");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos423>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS423");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos424>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS424");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos425>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS425");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos426>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS426");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos427>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS427");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos428>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS428");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos429>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS429");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
             modelBuilder.Entity<IcgmailCalculos43>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToTable("ICGMAIL_CALCULOS43");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos430>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS430");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos431>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS431");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos432>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS432");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos433>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS433");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos434>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS434");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos435>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS435");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos436>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS436");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos437>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS437");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos438>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS438");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos439>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS439");
 
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
@@ -23033,11 +24379,191 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
 
+            modelBuilder.Entity<IcgmailCalculos440>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS440");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos441>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS441");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos442>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS442");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos443>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS443");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos444>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS444");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos445>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS445");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos446>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS446");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos447>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS447");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos448>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS448");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos449>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS449");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
             modelBuilder.Entity<IcgmailCalculos45>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToTable("ICGMAIL_CALCULOS45");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos450>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS450");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos451>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS451");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos452>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS452");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos453>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS453");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos454>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS454");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos455>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS455");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos456>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS456");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos457>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS457");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos458>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS458");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos459>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS459");
 
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
@@ -23051,11 +24577,191 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
 
+            modelBuilder.Entity<IcgmailCalculos460>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS460");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos461>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS461");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos462>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS462");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos463>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS463");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos464>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS464");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos465>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS465");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos466>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS466");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos467>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS467");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos468>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS468");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos469>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS469");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
             modelBuilder.Entity<IcgmailCalculos47>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToTable("ICGMAIL_CALCULOS47");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos470>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS470");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos471>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS471");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos472>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS472");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos473>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS473");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos474>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS474");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos475>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS475");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos476>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS476");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos477>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS477");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos478>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS478");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos479>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS479");
 
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
@@ -23069,11 +24775,191 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
 
+            modelBuilder.Entity<IcgmailCalculos480>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS480");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos481>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS481");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos482>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS482");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos483>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS483");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos484>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS484");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos485>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS485");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos486>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS486");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos487>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS487");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos488>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS488");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos489>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS489");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
             modelBuilder.Entity<IcgmailCalculos49>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToTable("ICGMAIL_CALCULOS49");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos490>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS490");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos491>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS491");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos492>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS492");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos493>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS493");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos494>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS494");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos495>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS495");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos496>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS496");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos497>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS497");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos498>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS498");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos499>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS499");
 
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
@@ -23096,6 +24982,96 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
 
+            modelBuilder.Entity<IcgmailCalculos500>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS500");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos501>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS501");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos502>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS502");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos503>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS503");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos504>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS504");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos505>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS505");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos506>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS506");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos507>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS507");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos508>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS508");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos509>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS509");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
             modelBuilder.Entity<IcgmailCalculos51>(entity =>
             {
                 entity.HasNoKey();
@@ -23105,11 +25081,155 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
 
+            modelBuilder.Entity<IcgmailCalculos510>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS510");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos511>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS511");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos512>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS512");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos513>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS513");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos514>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS514");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos515>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS515");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos516>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS516");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos517>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS517");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos518>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS518");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos519>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS519");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
             modelBuilder.Entity<IcgmailCalculos52>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToTable("ICGMAIL_CALCULOS52");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos520>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS520");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos521>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS521");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos522>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS522");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos523>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS523");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos524>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS524");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+            });
+
+            modelBuilder.Entity<IcgmailCalculos526>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ICGMAIL_CALCULOS526");
 
                 entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
             });
@@ -25036,6 +27156,41 @@ namespace API_PEDIDOS.ModelsDB2
                     .HasConstraintName("INCIDENCIASNOAUTOVALIDABLES_FK");
             });
 
+            modelBuilder.Entity<Indicadore>(entity =>
+            {
+                entity.ToTable("INDICADORES");
+
+                entity.Property(e => e.Codalmacen).HasColumnName("CODALMACEN");
+
+                entity.Property(e => e.Condicion1).HasColumnName("CONDICION_1");
+
+                entity.Property(e => e.Condicion2).HasColumnName("CONDICION_2");
+
+                entity.Property(e => e.FechaFin)
+                    .HasColumnType("date")
+                    .HasColumnName("FECHA_FIN");
+
+                entity.Property(e => e.FechaInicio)
+                    .HasColumnType("date")
+                    .HasColumnName("FECHA_INICIO");
+
+                entity.Property(e => e.Idsql).HasColumnName("IDSQL");
+
+                entity.Property(e => e.Operacion).HasColumnName("operacion");
+
+                entity.Property(e => e.Parametro).HasColumnName("PARAMETRO");
+
+                entity.Property(e => e.Periodo).HasColumnName("PERIODO");
+
+                entity.Property(e => e.PorcentajeGlobal).HasColumnName("PORCENTAJE_GLOBAL");
+
+                entity.Property(e => e.Tipo).HasColumnName("TIPO");
+
+                entity.Property(e => e.Version)
+                    .HasMaxLength(50)
+                    .HasColumnName("VERSION");
+            });
+
             modelBuilder.Entity<Informe>(entity =>
             {
                 entity.HasKey(e => e.Idinforme)
@@ -25687,6 +27842,20 @@ namespace API_PEDIDOS.ModelsDB2
                     .HasColumnName("VIENEDEFO");
             });
 
+            modelBuilder.Entity<ItActivarHoy>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("IT_ACTIVAR_HOY");
+
+                entity.Property(e => e.Activa)
+                    .HasMaxLength(1)
+                    .HasColumnName("ACTIVA")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+            });
+
             modelBuilder.Entity<ItAl>(entity =>
             {
                 entity.HasKey(e => new { e.Numserie, e.Numalbaran, e.N, e.Numlin })
@@ -25873,6 +28042,25 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Unidadespagadas).HasColumnName("UNIDADESPAGADAS");
 
                 entity.Property(e => e.Unidadestotal).HasColumnName("UNIDADESTOTAL");
+            });
+
+            modelBuilder.Entity<ItAlmacen>(entity =>
+            {
+                entity.HasKey(e => new { e.Idaccount, e.Codalmacen });
+
+                entity.ToTable("IT_ALMACEN");
+
+                entity.Property(e => e.Idaccount).HasColumnName("IDACCOUNT");
+
+                entity.Property(e => e.Codalmacen)
+                    .HasMaxLength(3)
+                    .HasColumnName("CODALMACEN");
+
+                entity.HasOne(d => d.IdaccountNavigation)
+                    .WithMany(p => p.ItAlmacens)
+                    .HasPrincipalKey(p => p.Id)
+                    .HasForeignKey(d => d.Idaccount)
+                    .HasConstraintName("FK_IT_ALMACEN_IDACCOUNT");
             });
 
             modelBuilder.Entity<ItAq>(entity =>
@@ -26182,6 +28370,47 @@ namespace API_PEDIDOS.ModelsDB2
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("VAL3");
+            });
+
+            modelBuilder.Entity<ItDifFecha>(entity =>
+            {
+                entity.ToTable("IT_DIF_FECHAS");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Articulo).HasColumnName("ARTICULO");
+
+                entity.Property(e => e.Captura)
+                    .HasColumnType("datetime")
+                    .HasColumnName("CAPTURA");
+
+                entity.Property(e => e.Cod)
+                    .HasMaxLength(4)
+                    .HasColumnName("COD");
+
+                entity.Property(e => e.Consumoayer).HasColumnName("CONSUMOAYER");
+
+                entity.Property(e => e.Diferencia).HasColumnName("DIFERENCIA");
+
+                entity.Property(e => e.Fecha)
+                    .HasColumnType("date")
+                    .HasColumnName("FECHA");
+
+                entity.Property(e => e.Invayer).HasColumnName("INVAYER");
+
+                entity.Property(e => e.Invformula).HasColumnName("INVFORMULA");
+
+                entity.Property(e => e.Invhoy).HasColumnName("INVHOY");
+
+                entity.Property(e => e.Mermasayer).HasColumnName("MERMASAYER");
+
+                entity.Property(e => e.Region).HasColumnName("REGION");
+
+                entity.Property(e => e.Seccion).HasColumnName("SECCION");
+
+                entity.Property(e => e.Sucursal).HasColumnName("SUCURSAL");
+
+                entity.Property(e => e.Traspasoayer).HasColumnName("TRASPASOAYER");
             });
 
             modelBuilder.Entity<ItDocumentosca>(entity =>
@@ -26591,6 +28820,143 @@ namespace API_PEDIDOS.ModelsDB2
                     .HasColumnName("VAL");
             });
 
+            modelBuilder.Entity<ItModConsultarPedido>(entity =>
+            {
+                entity.ToTable("IT_MOD_CONSULTAR_PEDIDOS");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
+            });
+
+            modelBuilder.Entity<ItModCuentasUsuario>(entity =>
+            {
+                entity.ToTable("IT_MOD_CUENTAS_USUARIO");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
+            });
+
+            modelBuilder.Entity<ItModIncidencia>(entity =>
+            {
+                entity.ToTable("IT_MOD_INCIDENCIAS");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
+            });
+
+            modelBuilder.Entity<ItModPedido>(entity =>
+            {
+                entity.ToTable("IT_MOD_PEDIDOS");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
+            });
+
+            modelBuilder.Entity<ItModPerfile>(entity =>
+            {
+                entity.ToTable("IT_MOD_PERFILES");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
+            });
+
+            modelBuilder.Entity<ItModRecibirPedido>(entity =>
+            {
+                entity.ToTable("IT_MOD_RECIBIR_PEDIDOS");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
+            });
+
+            modelBuilder.Entity<ItModReportePedido>(entity =>
+            {
+                entity.ToTable("IT_MOD_REPORTE_PEDIDOS");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
+            });
+
+            modelBuilder.Entity<ItPerfile>(entity =>
+            {
+                entity.HasKey(e => new { e.Id, e.Perfil })
+                    .HasName("PK_IT_PERFILES_ID");
+
+                entity.ToTable("IT_PERFILES");
+
+                entity.HasIndex(e => e.Perfil, "KEY_IT_PERFILES_PERFIL")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Perfil)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("PERFIL");
+
+                entity.Property(e => e.IdConsultarPedidos).HasColumnName("ID_CONSULTAR_PEDIDOS");
+
+                entity.Property(e => e.IdCuentasUsuario).HasColumnName("ID_CUENTAS_USUARIO");
+
+                entity.Property(e => e.IdIncidencias).HasColumnName("ID_INCIDENCIAS");
+
+                entity.Property(e => e.IdPedidos).HasColumnName("ID_PEDIDOS");
+
+                entity.Property(e => e.IdPerfiles).HasColumnName("ID_PERFILES");
+
+                entity.Property(e => e.IdRecibirPedidos).HasColumnName("ID_RECIBIR_PEDIDOS");
+
+                entity.Property(e => e.IdReportePedidos).HasColumnName("ID_REPORTE_PEDIDOS");
+
+                entity.HasOne(d => d.IdConsultarPedidosNavigation)
+                    .WithMany(p => p.ItPerfiles)
+                    .HasForeignKey(d => d.IdConsultarPedidos)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("FK_IT_PERFILES_ID_CONSULTAR_PEDIDOS");
+
+                entity.HasOne(d => d.IdCuentasUsuarioNavigation)
+                    .WithMany(p => p.ItPerfiles)
+                    .HasForeignKey(d => d.IdCuentasUsuario)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("FK_IT_PERFILES_ID_CUENTAS_USUARIO");
+
+                entity.HasOne(d => d.IdIncidenciasNavigation)
+                    .WithMany(p => p.ItPerfiles)
+                    .HasForeignKey(d => d.IdIncidencias)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("FK_IT_PERFILES_ID_INCIDENCIAS");
+
+                entity.HasOne(d => d.IdPedidosNavigation)
+                    .WithMany(p => p.ItPerfiles)
+                    .HasForeignKey(d => d.IdPedidos)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("FK_IT_PERFILES_ID_PEDIDOS");
+
+                entity.HasOne(d => d.IdPerfilesNavigation)
+                    .WithMany(p => p.ItPerfiles)
+                    .HasForeignKey(d => d.IdPerfiles)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("FK_IT_PERFILES_ID_PERFILES");
+
+                entity.HasOne(d => d.IdRecibirPedidosNavigation)
+                    .WithMany(p => p.ItPerfiles)
+                    .HasForeignKey(d => d.IdRecibirPedidos)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("FK_IT_PERFILES_ID_RECIBIR_PEDIDOS");
+
+                entity.HasOne(d => d.IdReportePedidosNavigation)
+                    .WithMany(p => p.ItPerfiles)
+                    .HasForeignKey(d => d.IdReportePedidos)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("FK_IT_PERFILES_ID_REPORTE_PEDIDOS");
+            });
+
             modelBuilder.Entity<ItProducto>(entity =>
             {
                 entity.HasKey(e => new { e.Rfc, e.NoIdentificacion });
@@ -26603,6 +28969,11 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.Property(e => e.Codarticulo).HasColumnName("codarticulo");
 
+                entity.Property(e => e.Grupo)
+                    .HasMaxLength(50)
+                    .HasColumnName("GRUPO")
+                    .HasDefaultValueSql("(N'OPERA')");
+
                 entity.Property(e => e.Uds)
                     .HasColumnType("decimal(18, 2)")
                     .HasColumnName("UDS");
@@ -26610,6 +28981,382 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Umedida)
                     .HasMaxLength(50)
                     .HasColumnName("UMEDIDA");
+            });
+
+            modelBuilder.Entity<ItRcalLin>(entity =>
+            {
+                entity.HasKey(e => new { e.Numserie, e.Numpedido, e.N, e.Numlinea, e.Usuario });
+
+                entity.ToTable("IT_RCAL_LIN");
+
+                entity.Property(e => e.Numserie)
+                    .HasMaxLength(4)
+                    .HasColumnName("NUMSERIE")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Numpedido).HasColumnName("NUMPEDIDO");
+
+                entity.Property(e => e.N)
+                    .HasMaxLength(1)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Numlinea).HasColumnName("NUMLINEA");
+
+                entity.Property(e => e.Usuario)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("USUARIO");
+
+                entity.Property(e => e.Almacen)
+                    .HasMaxLength(30)
+                    .HasColumnName("ALMACEN");
+
+                entity.Property(e => e.Codalmacen)
+                    .HasMaxLength(3)
+                    .HasColumnName("CODALMACEN");
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
+
+                entity.Property(e => e.Color)
+                    .HasMaxLength(10)
+                    .HasColumnName("COLOR");
+
+                entity.Property(e => e.Descripcion)
+                    .HasMaxLength(40)
+                    .HasColumnName("DESCRIPCION");
+
+                entity.Property(e => e.Dto).HasColumnName("DTO");
+
+                entity.Property(e => e.Iva).HasColumnName("IVA");
+
+                entity.Property(e => e.Precio).HasColumnName("PRECIO");
+
+                entity.Property(e => e.Referencia)
+                    .HasMaxLength(15)
+                    .HasColumnName("REFERENCIA")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Req).HasColumnName("REQ");
+
+                entity.Property(e => e.Talla)
+                    .HasMaxLength(10)
+                    .HasColumnName("TALLA");
+
+                entity.Property(e => e.Tipoimpuesto).HasColumnName("TIPOIMPUESTO");
+
+                entity.Property(e => e.Unid1).HasColumnName("UNID1");
+
+                entity.Property(e => e.Unid2).HasColumnName("UNID2");
+
+                entity.Property(e => e.Unidadespen).HasColumnName("UNIDADESPEN");
+
+                entity.Property(e => e.Unidadesrec).HasColumnName("UNIDADESREC");
+
+                entity.Property(e => e.Unidadestotal).HasColumnName("UNIDADESTOTAL");
+            });
+
+            modelBuilder.Entity<ItRcedi>(entity =>
+            {
+                entity.HasKey(e => new { e.Serie, e.Numpedido, e.Supedido, e.Seriealbaran, e.Numeroalbaran });
+
+                entity.ToTable("IT_RCEDIS");
+
+                entity.Property(e => e.Serie)
+                    .HasMaxLength(4)
+                    .HasColumnName("SERIE")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Numpedido).HasColumnName("NUMPEDIDO");
+
+                entity.Property(e => e.Supedido)
+                    .HasMaxLength(15)
+                    .HasColumnName("SUPEDIDO")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Seriealbaran)
+                    .HasMaxLength(4)
+                    .HasColumnName("SERIEALBARAN")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Numeroalbaran).HasColumnName("NUMEROALBARAN");
+
+                entity.Property(e => e.Fechapedido)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHAPEDIDO");
+
+                entity.Property(e => e.Numserie)
+                    .HasMaxLength(4)
+                    .HasColumnName("NUMSERIE");
+            });
+
+            modelBuilder.Entity<ItRebelAccount>(entity =>
+            {
+                entity.HasKey(e => e.Usuario)
+                    .HasName("PK_IT_REBEL_ACCOUNT_USUARIO");
+
+                entity.ToTable("IT_REBEL_ACCOUNT");
+
+                entity.HasIndex(e => e.Id, "KEY_IT_REBEL_ACCOUNT_ID")
+                    .IsUnique();
+
+                entity.Property(e => e.Usuario)
+                    .HasMaxLength(70)
+                    .IsUnicode(false)
+                    .HasColumnName("USUARIO");
+
+                entity.Property(e => e.Codalmacen)
+                    .HasMaxLength(3)
+                    .HasColumnName("CODALMACEN")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
+
+                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
+
+                entity.Property(e => e.Contraseña)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("CONTRASEÑA");
+
+                entity.Property(e => e.Correo)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("CORREO");
+
+                entity.Property(e => e.Descatalogado)
+                    .HasMaxLength(3)
+                    .HasColumnName("DESCATALOGADO")
+                    .HasDefaultValueSql("('NO')");
+
+                entity.Property(e => e.EntregarIncompleto)
+                    .HasMaxLength(3)
+                    .IsUnicode(false)
+                    .HasColumnName("ENTREGAR_INCOMPLETO")
+                    .HasDefaultValueSql("('NO')");
+
+                entity.Property(e => e.Fiscal)
+                    .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .HasColumnName("FISCAL")
+                    .HasDefaultValueSql("('SI')");
+
+                entity.Property(e => e.Id)
+                    .IsRequired()
+                    .HasColumnName("ID");
+
+                entity.Property(e => e.IdPerfil).HasColumnName("ID_PERFIL");
+
+                entity.Property(e => e.MargenPu).HasColumnName("MARGEN_PU");
+
+                entity.Property(e => e.MargenUds).HasColumnName("MARGEN_UDS");
+
+                entity.Property(e => e.RecibirIncidencias)
+                    .HasMaxLength(3)
+                    .HasColumnName("RECIBIR_INCIDENCIAS")
+                    .HasDefaultValueSql("('NO')");
+
+                entity.HasOne(d => d.CodproveedorNavigation)
+                    .WithMany(p => p.ItRebelAccounts)
+                    .HasForeignKey(d => d.Codproveedor)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("FK_IT_REBEL_ACCOUNT_CODPROVEEDOR");
+
+                entity.HasOne(d => d.CodvendedorNavigation)
+                    .WithMany(p => p.ItRebelAccounts)
+                    .HasForeignKey(d => d.Codvendedor)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("FK_IT_REBEL_ACCOUNT_CODVENDEDOR");
+            });
+
+            modelBuilder.Entity<ItRpedido>(entity =>
+            {
+                entity.HasKey(e => new { e.Numserie, e.Numpedido, e.N });
+
+                entity.ToTable("IT_RPEDIDOS");
+
+                entity.HasIndex(e => new { e.Numserie, e.Numpedido, e.N }, "KEY_IT_RPEDIDOS")
+                    .IsUnique()
+                    .HasFillFactor(90);
+
+                entity.Property(e => e.Numserie)
+                    .HasMaxLength(4)
+                    .HasColumnName("NUMSERIE")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Numpedido).HasColumnName("NUMPEDIDO");
+
+                entity.Property(e => e.N)
+                    .HasMaxLength(1)
+                    .IsFixedLength();
+
+                entity.Property(e => e.ArchivoExcel).HasColumnName("ARCHIVO_EXCEL");
+
+                entity.Property(e => e.Autorizacion).HasColumnName("AUTORIZACION");
+
+                entity.Property(e => e.CodvendedorRecibe).HasColumnName("CODVENDEDOR_RECIBE");
+
+                entity.Property(e => e.EditoPedido).HasColumnName("EDITO_PEDIDO");
+
+                entity.Property(e => e.Estatus).HasColumnName("ESTATUS");
+
+                entity.Property(e => e.Excel).HasColumnName("EXCEL");
+
+                entity.Property(e => e.ExcelFileName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("EXCEL_FILE_NAME");
+
+                entity.Property(e => e.Factura).HasColumnName("FACTURA");
+
+                entity.Property(e => e.Factura3).HasColumnName("FACTURA3");
+
+                entity.Property(e => e.Fechapedido)
+                    .HasColumnType("date")
+                    .HasColumnName("FECHAPEDIDO");
+
+                entity.Property(e => e.Incidencia).HasColumnName("INCIDENCIA");
+
+                entity.Property(e => e.Motivo)
+                    .HasMaxLength(301)
+                    .HasColumnName("MOTIVO");
+
+                entity.Property(e => e.Notificacion).HasColumnName("NOTIFICACION");
+
+                entity.Property(e => e.NumpedidoReasignado).HasColumnName("NUMPEDIDO_REASIGNADO");
+
+                entity.Property(e => e.NumpedidoReasignadoXml).HasColumnName("NUMPEDIDO_REASIGNADO_XML");
+
+                entity.Property(e => e.Pdf).HasColumnName("PDF");
+
+                entity.Property(e => e.Pdf2).HasColumnName("PDF2");
+
+                entity.Property(e => e.Pdf3).HasColumnName("PDF3");
+
+                entity.Property(e => e.PdfFileName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("PDF_FILE_NAME");
+
+                entity.Property(e => e.PdfFileName2)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("PDF_FILE_NAME2");
+
+                entity.Property(e => e.PdfFileName3)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("PDF_FILE_NAME3");
+
+                entity.Property(e => e.Xml)
+                    .HasColumnType("text")
+                    .HasColumnName("XML");
+
+                entity.Property(e => e.Xml2)
+                    .HasColumnType("text")
+                    .HasColumnName("XML2");
+
+                entity.Property(e => e.Xml3)
+                    .HasColumnType("text")
+                    .HasColumnName("XML3");
+
+                entity.Property(e => e.XmlFileName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("XML_FILE_NAME");
+
+                entity.Property(e => e.XmlFileName2)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("XML_FILE_NAME2");
+
+                entity.Property(e => e.XmlFileName3)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("XML_FILE_NAME3");
+
+                entity.Property(e => e.XmlUuid)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("XML_UUID");
+
+                entity.Property(e => e.XmlUuid2)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("XML_UUID2");
+
+                entity.Property(e => e.XmlUuid3)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("XML_UUID3");
+            });
+
+            modelBuilder.Entity<ItRpedidosLin>(entity =>
+            {
+                entity.HasKey(e => new { e.Numserie, e.Numpedido, e.N, e.Codarticulo, e.Referencia });
+
+                entity.ToTable("IT_RPEDIDOS_LIN");
+
+                entity.Property(e => e.Numserie)
+                    .HasMaxLength(4)
+                    .HasColumnName("NUMSERIE")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Numpedido).HasColumnName("NUMPEDIDO");
+
+                entity.Property(e => e.N)
+                    .HasMaxLength(1)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.Referencia)
+                    .HasMaxLength(15)
+                    .HasColumnName("REFERENCIA")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Autorizacion).HasColumnName("AUTORIZACION");
+
+                entity.Property(e => e.CbMotivo).HasColumnName("CB_MOTIVO");
+
+                entity.Property(e => e.Descuento).HasColumnName("DESCUENTO");
+
+                entity.Property(e => e.Excluir).HasColumnName("EXCLUIR");
+
+                entity.Property(e => e.Incompleto).HasColumnName("INCOMPLETO");
+
+                entity.Property(e => e.MsgMotivo)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("MSG_MOTIVO");
+
+                entity.Property(e => e.NumpedidoReasignado).HasColumnName("NUMPEDIDO_REASIGNADO");
+
+                entity.Property(e => e.PrecioEx).HasColumnName("PRECIO_EX");
+
+                entity.Property(e => e.PrecioProveedor).HasColumnName("PRECIO_PROVEEDOR");
+
+                entity.Property(e => e.Unid1).HasColumnName("UNID1");
+
+                entity.Property(e => e.Unid2).HasColumnName("UNID2");
+
+                entity.Property(e => e.UnidadesAReasignar).HasColumnName("UNIDADES_A_REASIGNAR");
+
+                entity.Property(e => e.UnidadesProveedor).HasColumnName("UNIDADES_PROVEEDOR");
+
+                entity.Property(e => e.Unidadespen).HasColumnName("UNIDADESPEN");
+
+                entity.Property(e => e.Unidadesrec).HasColumnName("UNIDADESREC");
+
+                entity.Property(e => e.Unidadestotal).HasColumnName("UNIDADESTOTAL");
+
+                entity.Property(e => e.UnidadestotalEx).HasColumnName("UNIDADESTOTAL_EX");
+
+                entity.HasOne(d => d.NNavigation)
+                    .WithMany(p => p.ItRpedidosLins)
+                    .HasForeignKey(d => new { d.Numserie, d.Numpedido, d.N })
+                    .HasConstraintName("FK_IT_RPEDIDOS_LIN");
             });
 
             modelBuilder.Entity<ItTe>(entity =>
@@ -26833,6 +29580,49 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Zsaldado).HasColumnName("ZSALDADO");
             });
 
+            modelBuilder.Entity<ItTurno>(entity =>
+            {
+                entity.ToTable("IT_TURNOS");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Activo)
+                    .HasMaxLength(1)
+                    .HasColumnName("ACTIVO")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.D)
+                    .HasMaxLength(1)
+                    .IsFixedLength();
+
+                entity.Property(e => e.J)
+                    .HasMaxLength(1)
+                    .IsFixedLength();
+
+                entity.Property(e => e.L)
+                    .HasMaxLength(1)
+                    .IsFixedLength();
+
+                entity.Property(e => e.M)
+                    .HasMaxLength(1)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Mi)
+                    .HasMaxLength(1)
+                    .HasColumnName("MI")
+                    .IsFixedLength();
+
+                entity.Property(e => e.S)
+                    .HasMaxLength(1)
+                    .IsFixedLength();
+
+                entity.Property(e => e.V)
+                    .HasMaxLength(1)
+                    .IsFixedLength();
+            });
+
             modelBuilder.Entity<ItUsuario>(entity =>
             {
                 entity.HasKey(e => e.Codusuario)
@@ -26857,6 +29647,80 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Password)
                     .IsUnicode(false)
                     .HasColumnName("PASSWORD");
+            });
+
+            modelBuilder.Entity<ItrDetalleb>(entity =>
+            {
+                entity.HasKey(e => new { e.Numserie, e.Numfactura, e.Lin });
+
+                entity.ToTable("ITR_DETALLEB");
+
+                entity.Property(e => e.Numserie)
+                    .HasMaxLength(4)
+                    .HasColumnName("NUMSERIE");
+
+                entity.Property(e => e.Numfactura).HasColumnName("NUMFACTURA");
+
+                entity.Property(e => e.Lin).HasColumnName("LIN");
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.Coste)
+                    .HasColumnType("decimal(18, 6)")
+                    .HasColumnName("COSTE");
+
+                entity.Property(e => e.Descripcion)
+                    .HasMaxLength(250)
+                    .HasColumnName("DESCRIPCION");
+
+                entity.Property(e => e.Fecha)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA");
+
+                entity.Property(e => e.Importe)
+                    .HasColumnType("decimal(18, 6)")
+                    .HasColumnName("IMPORTE");
+
+                entity.Property(e => e.Tipo)
+                    .HasMaxLength(1)
+                    .HasColumnName("TIPO");
+
+                entity.Property(e => e.Uds)
+                    .HasColumnType("decimal(18, 6)")
+                    .HasColumnName("UDS");
+            });
+
+            modelBuilder.Entity<ItrDetaller>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ITR_DETALLER");
+
+                entity.Property(e => e.Coste)
+                    .HasColumnType("decimal(18, 6)")
+                    .HasColumnName("COSTE");
+
+                entity.Property(e => e.Descripcion)
+                    .HasMaxLength(250)
+                    .HasColumnName("DESCRIPCION");
+
+                entity.Property(e => e.Importe)
+                    .HasColumnType("decimal(18, 6)")
+                    .HasColumnName("IMPORTE");
+
+                entity.Property(e => e.Numfactura).HasColumnName("NUMFACTURA");
+
+                entity.Property(e => e.Numserie)
+                    .HasMaxLength(4)
+                    .HasColumnName("NUMSERIE");
+
+                entity.Property(e => e.Tipo)
+                    .HasMaxLength(2)
+                    .HasColumnName("TIPO");
+
+                entity.Property(e => e.Uds)
+                    .HasColumnType("decimal(18, 6)")
+                    .HasColumnName("UDS");
             });
 
             modelBuilder.Entity<Kit>(entity =>
@@ -28577,7 +31441,8 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("MODIFICADORESCAB");
 
-                entity.HasIndex(e => e.Version, "IDX_MODIFICADORESCABVERSION");
+                entity.HasIndex(e => e.Version, "IDX_MODIFICADORESCABVERSION")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Codmodificador)
                     .ValueGeneratedNever()
@@ -29143,21 +32008,29 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("MOVIMENTS");
 
-                entity.HasIndex(e => new { e.Seriedoc, e.Numdoc }, "MOVIMENST_SERIEDOCNUMDOC");
+                entity.HasIndex(e => new { e.Seriedoc, e.Numdoc }, "MOVIMENST_SERIEDOCNUMDOC")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color, e.Codalmacendestino }, "MOVIMENTS_ARTIC_ALM_DEST");
+                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color, e.Codalmacendestino }, "MOVIMENTS_ARTIC_ALM_DEST")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color, e.Codalmacenorigen }, "MOVIMENTS_ARTIC_ALM_ORIG");
+                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color, e.Codalmacenorigen }, "MOVIMENTS_ARTIC_ALM_ORIG")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Fecha, e.Codalmacenorigen, e.Tipo }, "MOVIMENTS_FECHAALM");
+                entity.HasIndex(e => new { e.Fecha, e.Codalmacenorigen, e.Tipo }, "MOVIMENTS_FECHAALM")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Numdoc, "MOVIMENTS_NUMDOC");
+                entity.HasIndex(e => e.Numdoc, "MOVIMENTS_NUMDOC")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Tipo, e.Codalmacendestino, e.Codarticulo, e.Talla, e.Color, e.Fecha }, "MOVIMENTS_STOCK_DESTINO");
+                entity.HasIndex(e => new { e.Tipo, e.Codalmacendestino, e.Codarticulo, e.Talla, e.Color, e.Fecha }, "MOVIMENTS_STOCK_DESTINO")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Tipo, e.Codalmacenorigen, e.Codarticulo, e.Talla, e.Color, e.Fecha }, "MOVIMENTS_STOCK_ORIGEN");
+                entity.HasIndex(e => new { e.Tipo, e.Codalmacenorigen, e.Codarticulo, e.Talla, e.Color, e.Fecha }, "MOVIMENTS_STOCK_ORIGEN")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Tipo, e.Seriedoc, e.Numdoc }, "MOVIMENTS_TIPO");
+                entity.HasIndex(e => new { e.Tipo, e.Seriedoc, e.Numdoc }, "MOVIMENTS_TIPO")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
@@ -30452,13 +33325,17 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("PEDCOMPRACAB");
 
-                entity.HasIndex(e => new { e.Numserie, e.Numpedido, e.N }, "PEDCOMPRACAB_DESC");
+                entity.HasIndex(e => new { e.Numserie, e.Numpedido, e.N }, "PEDCOMPRACAB_DESC")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Fechapedido, "PEDCOMPRACAB_FECHA");
+                entity.HasIndex(e => e.Fechapedido, "PEDCOMPRACAB_FECHA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Codproveedor, "PEDCOMPRACAB_PROVEEDOR");
+                entity.HasIndex(e => e.Codproveedor, "PEDCOMPRACAB_PROVEEDOR")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Supedido, "PEDCOMPRACAB_SUPEDIDO");
+                entity.HasIndex(e => e.Supedido, "PEDCOMPRACAB_SUPEDIDO")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Numserie)
                     .HasMaxLength(4)
@@ -30852,11 +33729,14 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("PEDCOMPRALIN");
 
-                entity.HasIndex(e => e.Codarticulo, "PEDCOMPRALINPORCODARTIC");
+                entity.HasIndex(e => e.Codarticulo, "PEDCOMPRALINPORCODARTIC")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codarticulo, e.Color, e.Talla }, "PEDCOMPRALIN_CODCOLORTALLA");
+                entity.HasIndex(e => new { e.Codarticulo, e.Color, e.Talla }, "PEDCOMPRALIN_CODCOLORTALLA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Supedido, "PEDCOMPRALIN_SUPEDIDO");
+                entity.HasIndex(e => e.Supedido, "PEDCOMPRALIN_SUPEDIDO")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Numserie)
                     .HasMaxLength(4)
@@ -31202,13 +34082,17 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("PEDVENTACAB");
 
-                entity.HasIndex(e => e.Codcliente, "PEDVENTACAB_CODCLIENTE");
+                entity.HasIndex(e => e.Codcliente, "PEDVENTACAB_CODCLIENTE")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Numserie, e.Numpedido, e.N }, "PEDVENTACAB_DESC");
+                entity.HasIndex(e => new { e.Numserie, e.Numpedido, e.N }, "PEDVENTACAB_DESC")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Fechapedido, "PEDVENTACAB_FECHA");
+                entity.HasIndex(e => e.Fechapedido, "PEDVENTACAB_FECHA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Supedido, "PEDVENTACAB_SUPEDIDO");
+                entity.HasIndex(e => e.Supedido, "PEDVENTACAB_SUPEDIDO")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Numserie)
                     .HasMaxLength(4)
@@ -31777,11 +34661,14 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("PEDVENTALIN");
 
-                entity.HasIndex(e => e.Codarticulo, "PEDVENTALINPORCODARTICULO");
+                entity.HasIndex(e => e.Codarticulo, "PEDVENTALINPORCODARTICULO")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Codalmacen, "PEDVENTALIN_CODALMACEN");
+                entity.HasIndex(e => e.Codalmacen, "PEDVENTALIN_CODALMACEN")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codarticulo, e.Color, e.Talla }, "PEDVENTALIN_CODCOLORTALLA");
+                entity.HasIndex(e => new { e.Codarticulo, e.Color, e.Talla }, "PEDVENTALIN_CODCOLORTALLA")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Numserie)
                     .HasMaxLength(4)
@@ -32512,22 +35399,6 @@ namespace API_PEDIDOS.ModelsDB2
                     .HasColumnName("TIPODOCIMPRESO");
             });
 
-            modelBuilder.Entity<Preciosc>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("_PRECIOSC");
-
-                entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
-
-                entity.Property(e => e.Costo).HasColumnName("COSTO");
-
-                entity.Property(e => e.Referencia)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("REFERENCIA");
-            });
-
             modelBuilder.Entity<Precioscompra>(entity =>
             {
                 entity.HasKey(e => new { e.Codproveedor, e.Idtarifac, e.N, e.Codarticulo, e.Talla, e.Color, e.X, e.Codformato })
@@ -32537,9 +35408,11 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.HasIndex(e => e.Version, "IDX_PRECIOSCOMPRAVERSION");
 
-                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color }, "PRECIOSCOMPRA_CODART_TALLA_COLOR");
+                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color }, "PRECIOSCOMPRA_CODART_TALLA_COLOR")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codproveedor, e.Idtarifac, e.Codarticulo, e.Talla, e.Color }, "PRECIOSCOMPRA_FECHAMODIFICADO");
+                entity.HasIndex(e => new { e.Codproveedor, e.Idtarifac, e.Codarticulo, e.Talla, e.Color }, "PRECIOSCOMPRA_FECHAMODIFICADO")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
 
@@ -32841,15 +35714,20 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("PRECIOSVENTA");
 
-                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color }, "CODARTTALLACOLOR");
+                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color }, "CODARTTALLACOLOR")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Version, "IDX_PRECIOSVENTAVERSION");
+                entity.HasIndex(e => e.Version, "IDX_PRECIOSVENTAVERSION")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codarticulo, e.Color, e.Talla }, "PRECIOSVENTA_COD_COLOR_TALLA");
+                entity.HasIndex(e => new { e.Codarticulo, e.Color, e.Talla }, "PRECIOSVENTA_COD_COLOR_TALLA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Idtarifav, e.Codarticulo, e.Color, e.Talla }, "PRECIOSVENTA_TV_COD_COLOR_TALLA");
+                entity.HasIndex(e => new { e.Idtarifav, e.Codarticulo, e.Color, e.Talla }, "PRECIOSVENTA_TV_COD_COLOR_TALLA")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Codarticulo, "PVPORCODARTIC");
+                entity.HasIndex(e => e.Codarticulo, "PVPORCODARTIC")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Idtarifav).HasColumnName("IDTARIFAV");
 
@@ -35132,20 +38010,6 @@ namespace API_PEDIDOS.ModelsDB2
                         });
             });
 
-            modelBuilder.Entity<Referencia>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("_REFERENCIAS");
-
-                entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
-
-                entity.Property(e => e.Refproveedor)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("REFPROVEEDOR");
-            });
-
             modelBuilder.Entity<Referenciasprov>(entity =>
             {
                 entity.HasKey(e => new { e.Codarticulo, e.Refproveedor, e.Codproveedor })
@@ -35153,7 +38017,8 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("REFERENCIASPROV");
 
-                entity.HasIndex(e => new { e.Refproveedor, e.Codproveedor }, "PORREFERENCIA");
+                entity.HasIndex(e => new { e.Refproveedor, e.Codproveedor }, "PORREFERENCIA")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -38481,7 +41346,8 @@ namespace API_PEDIDOS.ModelsDB2
             {
                 entity.ToTable("REPARTOS");
 
-                entity.HasIndex(e => e.Codalmacen, "REPARTOS_ALMACEN");
+                entity.HasIndex(e => e.Codalmacen, "REPARTOS_ALMACEN")
+                    .HasFillFactor(90);
 
                 entity.HasIndex(e => new { e.Dpto, e.Seccion, e.Familia, e.Subfamilia }, "REPARTOS_DPTOSECFAMSUBFAM");
 
@@ -41025,7 +43891,8 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("SITUACIONESARTICULO");
 
-                entity.HasIndex(e => e.Version, "IDX_SITUACIONESARTICULOVERSION");
+                entity.HasIndex(e => e.Version, "IDX_SITUACIONESARTICULOVERSION")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -41369,19 +44236,26 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("STOCKS");
 
-                entity.HasIndex(e => e.Codalmacen, "STOCKS_ALMACEN");
+                entity.HasIndex(e => e.Codalmacen, "STOCKS_ALMACEN")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codalmacen, e.Codarticulo }, "STOCKS_ALMACEN_CODART");
+                entity.HasIndex(e => new { e.Codalmacen, e.Codarticulo }, "STOCKS_ALMACEN_CODART")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codalmacen, e.Ubicacion, e.Codarticulo, e.Color, e.Talla }, "STOCKS_AL_UBICACION");
+                entity.HasIndex(e => new { e.Codalmacen, e.Ubicacion, e.Codarticulo, e.Color, e.Talla }, "STOCKS_AL_UBICACION")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codalmacen, e.Codarticulo, e.Talla, e.Color }, "STOCKS_CODALMACEN_ARTICULO");
+                entity.HasIndex(e => new { e.Codalmacen, e.Codarticulo, e.Talla, e.Color }, "STOCKS_CODALMACEN_ARTICULO")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Codarticulo, "STOCKS_CODARTICULO");
+                entity.HasIndex(e => e.Codarticulo, "STOCKS_CODARTICULO")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Codalmacen, e.Codarticulo, e.Talla, e.Color, e.Stock1 }, "STOCKS_STOCK");
+                entity.HasIndex(e => new { e.Codalmacen, e.Codarticulo, e.Talla, e.Color, e.Stock1 }, "STOCKS_STOCK")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Ubicacion, e.Codarticulo, e.Color, e.Talla }, "STOCKS_UBICACION");
+                entity.HasIndex(e => new { e.Ubicacion, e.Codarticulo, e.Color, e.Talla }, "STOCKS_UBICACION")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -41568,7 +44442,8 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("STOCKSPORZ");
 
-                entity.HasIndex(e => e.Codarticulo, "STOCKSPORZ_CODARTICULO");
+                entity.HasIndex(e => e.Codarticulo, "STOCKSPORZ_CODARTICULO")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Fo).HasColumnName("FO");
 
@@ -43052,6 +45927,55 @@ namespace API_PEDIDOS.ModelsDB2
                     .HasConstraintName("TEFTRANSACCIONES_FK");
             });
 
+            modelBuilder.Entity<TelecomandaVersion>(entity =>
+            {
+                entity.HasKey(e => new { e.DbName, e.Pc })
+                    .HasName("PK_TELECOMANDA_VERSION_DB_NAME_PC");
+
+                entity.ToTable("TELECOMANDA_VERSION");
+
+                entity.Property(e => e.DbName)
+                    .HasMaxLength(128)
+                    .IsUnicode(false)
+                    .HasColumnName("DB_NAME");
+
+                entity.Property(e => e.Pc)
+                    .HasMaxLength(128)
+                    .IsUnicode(false)
+                    .HasColumnName("PC");
+
+                entity.Property(e => e.Codalmacen)
+                    .HasMaxLength(3)
+                    .HasColumnName("CODALMACEN");
+
+                entity.Property(e => e.FechaActualizacion)
+                    .HasColumnType("date")
+                    .HasColumnName("FECHA_ACTUALIZACION");
+
+                entity.Property(e => e.HoraActualizacion).HasColumnName("HORA_ACTUALIZACION");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.LocalIp)
+                    .HasMaxLength(45)
+                    .IsUnicode(false)
+                    .HasColumnName("LOCAL_IP");
+
+                entity.Property(e => e.Nombrealmacen)
+                    .HasMaxLength(30)
+                    .HasColumnName("NOMBREALMACEN");
+
+                entity.Property(e => e.VersionServidor)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("VERSION_SERVIDOR");
+
+                entity.Property(e => e.VersionSucursal)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("VERSION_SUCURSAL");
+            });
+
             modelBuilder.Entity<Televentum>(entity =>
             {
                 entity.HasKey(e => new { e.Idterminal, e.Clave, e.Subclave })
@@ -43083,6 +46007,95 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.ToTable("TEMP_INVENTARIO_12996_941598");
 
                 entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color }, "TEMP_INVENTARIO_12996_941598_PK")
+                    .IsClustered();
+
+                entity.Property(e => e.Codalmacen0)
+                    .HasMaxLength(2)
+                    .HasColumnName("CODALMACEN0");
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.Codbarras)
+                    .HasMaxLength(50)
+                    .HasColumnName("CODBARRAS")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Color)
+                    .HasMaxLength(10)
+                    .HasColumnName("COLOR")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Compras0).HasColumnName("COMPRAS0");
+
+                entity.Property(e => e.Compras20).HasColumnName("COMPRAS_2_0");
+
+                entity.Property(e => e.Consumidos0).HasColumnName("CONSUMIDOS0");
+
+                entity.Property(e => e.Consumidos20).HasColumnName("CONSUMIDOS_2_0");
+
+                entity.Property(e => e.Consumosinternos0).HasColumnName("CONSUMOSINTERNOS0");
+
+                entity.Property(e => e.Consumosinternos20).HasColumnName("CONSUMOSINTERNOS_2_0");
+
+                entity.Property(e => e.Descripcion)
+                    .HasMaxLength(40)
+                    .HasColumnName("DESCRIPCION")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Entradas0).HasColumnName("ENTRADAS0");
+
+                entity.Property(e => e.Entradas20).HasColumnName("ENTRADAS_2_0");
+
+                entity.Property(e => e.Fabricados0).HasColumnName("FABRICADOS0");
+
+                entity.Property(e => e.Fabricados20).HasColumnName("FABRICADOS_2_0");
+
+                entity.Property(e => e.Fecharegul0)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHAREGUL0");
+
+                entity.Property(e => e.Id)
+                    .HasMaxLength(35)
+                    .HasColumnName("ID")
+                    .UseCollation("Modern_Spanish_BIN");
+
+                entity.Property(e => e.Reparaciones0).HasColumnName("REPARACIONES0");
+
+                entity.Property(e => e.Salidas0).HasColumnName("SALIDAS0");
+
+                entity.Property(e => e.Salidas20).HasColumnName("SALIDAS_2_0");
+
+                entity.Property(e => e.Stock0).HasColumnName("STOCK0");
+
+                entity.Property(e => e.Stock20).HasColumnName("STOCK_2_0");
+
+                entity.Property(e => e.Talla)
+                    .HasMaxLength(10)
+                    .HasColumnName("TALLA")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Transitos0).HasColumnName("TRANSITOS0");
+
+                entity.Property(e => e.Transitos20).HasColumnName("TRANSITOS_2_0");
+
+                entity.Property(e => e.Udsregul0).HasColumnName("UDSREGUL0");
+
+                entity.Property(e => e.Udsregul20).HasColumnName("UDSREGUL_2_0");
+
+                entity.Property(e => e.Valoracion0).HasColumnName("VALORACION0");
+
+                entity.Property(e => e.Ventas0).HasColumnName("VENTAS0");
+
+                entity.Property(e => e.Ventas20).HasColumnName("VENTAS_2_0");
+            });
+
+            modelBuilder.Entity<TempInventario708707228826>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("TEMP_INVENTARIO_708707_228826");
+
+                entity.HasIndex(e => new { e.Codarticulo, e.Talla, e.Color }, "TEMP_INVENTARIO_708707_228826_PK")
                     .IsClustered();
 
                 entity.Property(e => e.Codalmacen0)
@@ -43415,11 +46428,13 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("TESORERIA");
 
-                entity.HasIndex(e => e.Codigointerno, "TESORERIA_CLIENTEPROV");
+                entity.HasIndex(e => e.Codigointerno, "TESORERIA_CLIENTEPROV")
+                    .HasFillFactor(90);
 
                 entity.HasIndex(e => e.Compensacion, "TESORERIA_COMPENSACION");
 
-                entity.HasIndex(e => e.Cuenta, "TESORERIA_CUENTA");
+                entity.HasIndex(e => e.Cuenta, "TESORERIA_CUENTA")
+                    .HasFillFactor(90);
 
                 entity.HasIndex(e => new { e.Traspasado, e.EnlaceEjercicio, e.EnlaceEmpresa, e.EnlaceUsuario, e.EnlaceAsiento }, "TESORERIA_ENLACECONTABLE");
 
@@ -43440,11 +46455,14 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.HasIndex(e => new { e.Origen, e.Tipodocumento, e.Estado, e.N, e.Numefecto, e.EnlaceEjercicio }, "TESORERIA_ORIGENTIPODOCESTADO");
 
-                entity.HasIndex(e => new { e.Origen, e.Tipodocumento, e.N, e.Codigointerno, e.Sudocumento, e.Estado }, "TESORERIA_ORIGENTIPODOCSUDOCUMENTO");
+                entity.HasIndex(e => new { e.Origen, e.Tipodocumento, e.N, e.Codigointerno, e.Sudocumento, e.Estado }, "TESORERIA_ORIGENTIPODOCSUDOCUMENTO")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Origen, e.Tipodocumento, e.Serie, e.Numero, e.N, e.Estado, e.Codtipopago, e.Genapunte, e.Cajasaldado, e.Zsaldado }, "TESORERIA_ORIGEN_TIPODOC_SERIE_NUMERO_N_ESTADO_TIPOPAGO_GENAPU_CAJAS_Z");
+                entity.HasIndex(e => new { e.Origen, e.Tipodocumento, e.Serie, e.Numero, e.N, e.Estado, e.Codtipopago, e.Genapunte, e.Cajasaldado, e.Zsaldado }, "TESORERIA_ORIGEN_TIPODOC_SERIE_NUMERO_N_ESTADO_TIPOPAGO_GENAPU_CAJAS_Z")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => new { e.Zsaldado, e.Cajasaldado }, "TESORERIA_PORZCAJA");
+                entity.HasIndex(e => new { e.Zsaldado, e.Cajasaldado }, "TESORERIA_PORZCAJA")
+                    .HasFillFactor(90);
 
                 entity.HasIndex(e => e.Numeroremesa, "TESORERIA_REMESA");
 
@@ -45803,7 +48821,8 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("TRASPASOSCAB");
 
-                entity.HasIndex(e => new { e.Codalmacendestino, e.Recibido, e.Fecharecibido }, "TRASPASOSCAB_ALMDESTFECHAREC");
+                entity.HasIndex(e => new { e.Codalmacendestino, e.Recibido, e.Fecharecibido }, "TRASPASOSCAB_ALMDESTFECHAREC")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Serie)
                     .HasMaxLength(4)
@@ -46373,7 +49392,7 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.ToView("VCARGOSFACTURABLESHOTEL");
 
                 entity.Property(e => e.Captionhabitacion)
-                    .HasMaxLength(4000)
+                    .HasMaxLength(12)
                     .HasColumnName("CAPTIONHABITACION")
                     .UseCollation("Latin1_General_CS_AI");
 
@@ -48243,9 +51262,11 @@ namespace API_PEDIDOS.ModelsDB2
 
                 entity.ToTable("VENTASACUMULADAS");
 
-                entity.HasIndex(e => e.Anyomes, "VENTASACUMULADAS_ANYOMES");
+                entity.HasIndex(e => e.Anyomes, "VENTASACUMULADAS_ANYOMES")
+                    .HasFillFactor(90);
 
-                entity.HasIndex(e => e.Codcliente, "VENTASACUMULADAS_CLIENTE");
+                entity.HasIndex(e => e.Codcliente, "VENTASACUMULADAS_CLIENTE")
+                    .HasFillFactor(90);
 
                 entity.Property(e => e.Anyo).HasColumnName("ANYO");
 
@@ -48666,6 +51687,759 @@ namespace API_PEDIDOS.ModelsDB2
                     .UseCollation("Latin1_General_CS_AI");
             });
 
+            modelBuilder.Entity<VwPedcompracab>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("VW_PEDCOMPRACAB");
+
+                entity.Property(e => e.Almacen)
+                    .HasMaxLength(30)
+                    .HasColumnName("ALMACEN")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Autorizacion).HasColumnName("AUTORIZACION");
+
+                entity.Property(e => e.Codalmacen)
+                    .HasMaxLength(3)
+                    .HasColumnName("CODALMACEN")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Codempleado).HasColumnName("CODEMPLEADO");
+
+                entity.Property(e => e.Codmoneda).HasColumnName("CODMONEDA");
+
+                entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
+
+                entity.Property(e => e.CodproveedorReasignado).HasColumnName("CODPROVEEDOR_REASIGNADO");
+
+                entity.Property(e => e.CodvendedorRecibe).HasColumnName("CODVENDEDOR_RECIBE");
+
+                entity.Property(e => e.Contacto).HasColumnName("CONTACTO");
+
+                entity.Property(e => e.Dtocomercial).HasColumnName("DTOCOMERCIAL");
+
+                entity.Property(e => e.Dtopp).HasColumnName("DTOPP");
+
+                entity.Property(e => e.EditoPedido).HasColumnName("EDITO_PEDIDO");
+
+                entity.Property(e => e.Enviopor)
+                    .HasMaxLength(20)
+                    .HasColumnName("ENVIOPOR")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Estatus).HasColumnName("ESTATUS");
+
+                entity.Property(e => e.EstatusStr)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("ESTATUS_STR");
+
+                entity.Property(e => e.Excel).HasColumnName("EXCEL");
+
+                entity.Property(e => e.Factormoneda).HasColumnName("FACTORMONEDA");
+
+                entity.Property(e => e.Factura).HasColumnName("FACTURA");
+
+                entity.Property(e => e.Factura3).HasColumnName("FACTURA3");
+
+                entity.Property(e => e.Fechacreacion)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHACREACION");
+
+                entity.Property(e => e.Fechaentrega)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHAENTREGA");
+
+                entity.Property(e => e.Fechamodificado)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHAMODIFICADO");
+
+                entity.Property(e => e.Fechapedido)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHAPEDIDO");
+
+                entity.Property(e => e.Fiscal)
+                    .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .HasColumnName("FISCAL");
+
+                entity.Property(e => e.Frompedventacentral)
+                    .HasMaxLength(1)
+                    .HasColumnName("FROMPEDVENTACENTRAL")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Hora)
+                    .HasColumnType("datetime")
+                    .HasColumnName("HORA");
+
+                entity.Property(e => e.Idestado).HasColumnName("IDESTADO");
+
+                entity.Property(e => e.Incidencia).HasColumnName("INCIDENCIA");
+
+                entity.Property(e => e.IncidenciaStr)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("INCIDENCIA_STR");
+
+                entity.Property(e => e.Ivaincluido)
+                    .HasMaxLength(1)
+                    .HasColumnName("IVAINCLUIDO")
+                    .IsFixedLength();
+
+                entity.Property(e => e.MargenPu).HasColumnName("MARGEN_PU");
+
+                entity.Property(e => e.MargenUds).HasColumnName("MARGEN_UDS");
+
+                entity.Property(e => e.Motivo)
+                    .HasMaxLength(301)
+                    .HasColumnName("MOTIVO");
+
+                entity.Property(e => e.N)
+                    .HasMaxLength(1)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Nalbaran)
+                    .HasMaxLength(1)
+                    .HasColumnName("NALBARAN")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Nbultos).HasColumnName("NBULTOS");
+
+                entity.Property(e => e.Nif20)
+                    .HasMaxLength(20)
+                    .HasColumnName("NIF20")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Nomproveedor)
+                    .HasMaxLength(255)
+                    .HasColumnName("NOMPROVEEDOR")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Norecibido)
+                    .HasMaxLength(1)
+                    .HasColumnName("NORECIBIDO")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Numeroalbaran).HasColumnName("NUMEROALBARAN");
+
+                entity.Property(e => e.Numimpresiones).HasColumnName("NUMIMPRESIONES");
+
+                entity.Property(e => e.Numpedido).HasColumnName("NUMPEDIDO");
+
+                entity.Property(e => e.NumpedidoReasignado).HasColumnName("NUMPEDIDO_REASIGNADO");
+
+                entity.Property(e => e.Numserie)
+                    .HasMaxLength(4)
+                    .HasColumnName("NUMSERIE")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.PdfFileName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("PDF_FILE_NAME");
+
+                entity.Property(e => e.PdfFileName2)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("PDF_FILE_NAME2");
+
+                entity.Property(e => e.PdfFileName3)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("PDF_FILE_NAME3");
+
+                entity.Property(e => e.Portespag)
+                    .HasMaxLength(1)
+                    .HasColumnName("PORTESPAG")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Seriealbaran)
+                    .HasMaxLength(4)
+                    .HasColumnName("SERIEALBARAN");
+
+                entity.Property(e => e.SubioDocStr)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("SUBIO_DOC_STR");
+
+                entity.Property(e => e.Supedido)
+                    .HasMaxLength(15)
+                    .HasColumnName("SUPEDIDO")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Tipodoc).HasColumnName("TIPODOC");
+
+                entity.Property(e => e.Todorecibido)
+                    .HasMaxLength(1)
+                    .HasColumnName("TODORECIBIDO")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Totalcargosdtos).HasColumnName("TOTALCARGOSDTOS");
+
+                entity.Property(e => e.Totbruto).HasColumnName("TOTBRUTO");
+
+                entity.Property(e => e.Totdtocomercial).HasColumnName("TOTDTOCOMERCIAL");
+
+                entity.Property(e => e.Totdtopp).HasColumnName("TOTDTOPP");
+
+                entity.Property(e => e.Totimpuestos).HasColumnName("TOTIMPUESTOS");
+
+                entity.Property(e => e.Totiva).HasColumnName("TOTIVA");
+
+                entity.Property(e => e.Totneto).HasColumnName("TOTNETO");
+
+                entity.Property(e => e.Totreq).HasColumnName("TOTREQ");
+
+                entity.Property(e => e.Transporte).HasColumnName("TRANSPORTE");
+
+                entity.Property(e => e.XmlUuid)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("XML_UUID");
+
+                entity.Property(e => e.XmlUuid2)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("XML_UUID2");
+
+                entity.Property(e => e.XmlUuid3)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("XML_UUID3");
+            });
+
+            modelBuilder.Entity<VwPedcompracabAjust>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("VW_PEDCOMPRACAB_AJUST");
+
+                entity.Property(e => e.Codempleado).HasColumnName("CODEMPLEADO");
+
+                entity.Property(e => e.Codmoneda).HasColumnName("CODMONEDA");
+
+                entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
+
+                entity.Property(e => e.Contacto).HasColumnName("CONTACTO");
+
+                entity.Property(e => e.Dtocomercial).HasColumnName("DTOCOMERCIAL");
+
+                entity.Property(e => e.Dtopp).HasColumnName("DTOPP");
+
+                entity.Property(e => e.Enviopor)
+                    .HasMaxLength(20)
+                    .HasColumnName("ENVIOPOR")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Ex).HasColumnName("EX");
+
+                entity.Property(e => e.Factormoneda).HasColumnName("FACTORMONEDA");
+
+                entity.Property(e => e.Fechacreacion)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHACREACION");
+
+                entity.Property(e => e.Fechaentrega)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHAENTREGA");
+
+                entity.Property(e => e.Fechamodificado)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHAMODIFICADO");
+
+                entity.Property(e => e.Fechapedido)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHAPEDIDO");
+
+                entity.Property(e => e.Frompedventacentral)
+                    .HasMaxLength(1)
+                    .HasColumnName("FROMPEDVENTACENTRAL")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Hora)
+                    .HasColumnType("datetime")
+                    .HasColumnName("HORA");
+
+                entity.Property(e => e.Idestado).HasColumnName("IDESTADO");
+
+                entity.Property(e => e.Ivaincluido)
+                    .HasMaxLength(1)
+                    .HasColumnName("IVAINCLUIDO")
+                    .IsFixedLength();
+
+                entity.Property(e => e.N)
+                    .HasMaxLength(1)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Nalbaran)
+                    .HasMaxLength(1)
+                    .HasColumnName("NALBARAN")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Nbultos).HasColumnName("NBULTOS");
+
+                entity.Property(e => e.Norecibido)
+                    .HasMaxLength(1)
+                    .HasColumnName("NORECIBIDO")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Numeroalbaran).HasColumnName("NUMEROALBARAN");
+
+                entity.Property(e => e.Numimpresiones).HasColumnName("NUMIMPRESIONES");
+
+                entity.Property(e => e.Numpedido).HasColumnName("NUMPEDIDO");
+
+                entity.Property(e => e.Numserie)
+                    .HasMaxLength(4)
+                    .HasColumnName("NUMSERIE")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Portespag)
+                    .HasMaxLength(1)
+                    .HasColumnName("PORTESPAG")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Rnumeroalbaran).HasColumnName("RNUMEROALBARAN");
+
+                entity.Property(e => e.Rseriealbaran)
+                    .HasMaxLength(4)
+                    .HasColumnName("RSERIEALBARAN")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Seriealbaran)
+                    .HasMaxLength(4)
+                    .HasColumnName("SERIEALBARAN");
+
+                entity.Property(e => e.Supedido)
+                    .HasMaxLength(15)
+                    .HasColumnName("SUPEDIDO")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Tipodoc).HasColumnName("TIPODOC");
+
+                entity.Property(e => e.Todorecibido)
+                    .HasMaxLength(1)
+                    .HasColumnName("TODORECIBIDO")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Totalcargosdtos).HasColumnName("TOTALCARGOSDTOS");
+
+                entity.Property(e => e.Totbruto).HasColumnName("TOTBRUTO");
+
+                entity.Property(e => e.Totdtocomercial).HasColumnName("TOTDTOCOMERCIAL");
+
+                entity.Property(e => e.Totdtopp).HasColumnName("TOTDTOPP");
+
+                entity.Property(e => e.Totimpuestos).HasColumnName("TOTIMPUESTOS");
+
+                entity.Property(e => e.Totneto).HasColumnName("TOTNETO");
+
+                entity.Property(e => e.Transporte).HasColumnName("TRANSPORTE");
+            });
+
+            modelBuilder.Entity<VwPedcompralin>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("VW_PEDCOMPRALIN");
+
+                entity.Property(e => e.Autorizacion).HasColumnName("AUTORIZACION");
+
+                entity.Property(e => e.AutorizacionStr)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("AUTORIZACION_STR");
+
+                entity.Property(e => e.Cargo1).HasColumnName("CARGO1");
+
+                entity.Property(e => e.Cargo2).HasColumnName("CARGO2");
+
+                entity.Property(e => e.CbMotivo).HasColumnName("CB_MOTIVO");
+
+                entity.Property(e => e.Codalmacen)
+                    .HasMaxLength(3)
+                    .HasColumnName("CODALMACEN")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+
+                entity.Property(e => e.Codenvio).HasColumnName("CODENVIO");
+
+                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
+
+                entity.Property(e => e.CodproveedorR).HasColumnName("CODPROVEEDOR_R");
+
+                entity.Property(e => e.Color)
+                    .HasMaxLength(10)
+                    .HasColumnName("COLOR")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Deposito)
+                    .HasMaxLength(1)
+                    .HasColumnName("DEPOSITO")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Descripcion)
+                    .HasMaxLength(40)
+                    .HasColumnName("DESCRIPCION")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.DescripcionXml)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("DESCRIPCION_XML");
+
+                entity.Property(e => e.Descuento).HasColumnName("DESCUENTO");
+
+                entity.Property(e => e.Dto).HasColumnName("DTO");
+
+                entity.Property(e => e.Dtotexto)
+                    .HasMaxLength(60)
+                    .HasColumnName("DTOTEXTO");
+
+                entity.Property(e => e.ErrorMsg)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("ERROR_MSG");
+
+                entity.Property(e => e.Esoferta)
+                    .HasMaxLength(1)
+                    .HasColumnName("ESOFERTA")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Excluir).HasColumnName("EXCLUIR");
+
+                entity.Property(e => e.Fechaentrega)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHAENTREGA");
+
+                entity.Property(e => e.Fechapedido)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHAPEDIDO");
+
+                entity.Property(e => e.ImporteXml).HasColumnName("IMPORTE_XML");
+
+                entity.Property(e => e.Incompleto).HasColumnName("INCOMPLETO");
+
+                entity.Property(e => e.Iva).HasColumnName("IVA");
+
+                entity.Property(e => e.Lineaoculta)
+                    .HasMaxLength(1)
+                    .HasColumnName("LINEAOCULTA")
+                    .IsFixedLength();
+
+                entity.Property(e => e.MsgMotivo)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("MSG_MOTIVO");
+
+                entity.Property(e => e.N)
+                    .HasMaxLength(1)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Nif20)
+                    .HasMaxLength(20)
+                    .HasColumnName("NIF20")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Nif20R)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("NIF20_R");
+
+                entity.Property(e => e.NoIdentificacion).HasMaxLength(200);
+
+                entity.Property(e => e.Numkg).HasColumnName("NUMKG");
+
+                entity.Property(e => e.Numlinea).HasColumnName("NUMLINEA");
+
+                entity.Property(e => e.Numpedido).HasColumnName("NUMPEDIDO");
+
+                entity.Property(e => e.Numserie)
+                    .HasMaxLength(4)
+                    .HasColumnName("NUMSERIE")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.PColor).HasColumnName("P_COLOR");
+
+                entity.Property(e => e.PEditar).HasColumnName("P_EDITAR");
+
+                entity.Property(e => e.Precio).HasColumnName("PRECIO");
+
+                entity.Property(e => e.PrecioCaja).HasColumnName("PRECIO_CAJA");
+
+                entity.Property(e => e.PrecioEx).HasColumnName("PRECIO_EX");
+
+                entity.Property(e => e.PrecioProveedor).HasColumnName("PRECIO_PROVEEDOR");
+
+                entity.Property(e => e.Precioventa).HasColumnName("PRECIOVENTA");
+
+                entity.Property(e => e.Proveedor)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("PROVEEDOR");
+
+                entity.Property(e => e.ProveedorR)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("PROVEEDOR_R");
+
+                entity.Property(e => e.Referencia)
+                    .HasMaxLength(15)
+                    .HasColumnName("REFERENCIA")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Req).HasColumnName("REQ");
+
+                entity.Property(e => e.Supedido)
+                    .HasMaxLength(15)
+                    .HasColumnName("SUPEDIDO");
+
+                entity.Property(e => e.Talla)
+                    .HasMaxLength(10)
+                    .HasColumnName("TALLA")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Tipoimpuesto).HasColumnName("TIPOIMPUESTO");
+
+                entity.Property(e => e.Totallinea).HasColumnName("TOTALLINEA");
+
+                entity.Property(e => e.Totiva).HasColumnName("TOTIVA");
+
+                entity.Property(e => e.Totreq).HasColumnName("TOTREQ");
+
+                entity.Property(e => e.Udmedida2).HasColumnName("UDMEDIDA2");
+
+                entity.Property(e => e.UdsR).HasColumnName("UDS_R");
+
+                entity.Property(e => e.Umedida)
+                    .HasMaxLength(50)
+                    .HasColumnName("UMEDIDA");
+
+                entity.Property(e => e.Unid1).HasColumnName("UNID1");
+
+                entity.Property(e => e.Unid2).HasColumnName("UNID2");
+
+                entity.Property(e => e.Unid3).HasColumnName("UNID3");
+
+                entity.Property(e => e.Unid4).HasColumnName("UNID4");
+
+                entity.Property(e => e.UnidadesAReasignar).HasColumnName("UNIDADES_A_REASIGNAR");
+
+                entity.Property(e => e.UnidadesProveedor).HasColumnName("UNIDADES_PROVEEDOR");
+
+                entity.Property(e => e.UnidadesXml).HasColumnName("UNIDADES_XML");
+
+                entity.Property(e => e.Unidadespen).HasColumnName("UNIDADESPEN");
+
+                entity.Property(e => e.Unidadespen2).HasColumnName("UNIDADESPEN2");
+
+                entity.Property(e => e.Unidadesrec).HasColumnName("UNIDADESREC");
+
+                entity.Property(e => e.Unidadesrec2).HasColumnName("UNIDADESREC2");
+
+                entity.Property(e => e.Unidadestotal).HasColumnName("UNIDADESTOTAL");
+
+                entity.Property(e => e.Unidadestotal2).HasColumnName("UNIDADESTOTAL2");
+
+                entity.Property(e => e.UnidadestotalEx).HasColumnName("UNIDADESTOTAL_EX");
+
+                entity.Property(e => e.UnidadestotalNg1).HasColumnName("UNIDADESTOTAL_NG1");
+            });
+
+            modelBuilder.Entity<VwPedcompralinAjust>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("VW_PEDCOMPRALIN_AJUST");
+
+                entity.Property(e => e.Cargo1).HasColumnName("CARGO1");
+
+                entity.Property(e => e.Cargo2).HasColumnName("CARGO2");
+
+                entity.Property(e => e.Codalmacen)
+                    .HasMaxLength(3)
+                    .HasColumnName("CODALMACEN")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.Codcliente).HasColumnName("CODCLIENTE");
+
+                entity.Property(e => e.Codenvio).HasColumnName("CODENVIO");
+
+                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
+
+                entity.Property(e => e.Color)
+                    .HasMaxLength(10)
+                    .HasColumnName("COLOR")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Deposito)
+                    .HasMaxLength(1)
+                    .HasColumnName("DEPOSITO")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Descripcion)
+                    .HasMaxLength(40)
+                    .HasColumnName("DESCRIPCION")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Dto).HasColumnName("DTO");
+
+                entity.Property(e => e.Dtotexto)
+                    .HasMaxLength(60)
+                    .HasColumnName("DTOTEXTO");
+
+                entity.Property(e => e.Esoferta)
+                    .HasMaxLength(1)
+                    .HasColumnName("ESOFERTA")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Fechaentrega)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHAENTREGA");
+
+                entity.Property(e => e.Iva).HasColumnName("IVA");
+
+                entity.Property(e => e.Lineaoculta)
+                    .HasMaxLength(1)
+                    .HasColumnName("LINEAOCULTA")
+                    .IsFixedLength();
+
+                entity.Property(e => e.N)
+                    .HasMaxLength(1)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Numkg).HasColumnName("NUMKG");
+
+                entity.Property(e => e.Numlinea).HasColumnName("NUMLINEA");
+
+                entity.Property(e => e.Numpedido).HasColumnName("NUMPEDIDO");
+
+                entity.Property(e => e.Numserie)
+                    .HasMaxLength(4)
+                    .HasColumnName("NUMSERIE")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Precio).HasColumnName("PRECIO");
+
+                entity.Property(e => e.Precioventa).HasColumnName("PRECIOVENTA");
+
+                entity.Property(e => e.Referencia)
+                    .HasMaxLength(15)
+                    .HasColumnName("REFERENCIA")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Req).HasColumnName("REQ");
+
+                entity.Property(e => e.Supedido)
+                    .HasMaxLength(15)
+                    .HasColumnName("SUPEDIDO");
+
+                entity.Property(e => e.Talla)
+                    .HasMaxLength(10)
+                    .HasColumnName("TALLA")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Tipoimpuesto).HasColumnName("TIPOIMPUESTO");
+
+                entity.Property(e => e.Totallinea).HasColumnName("TOTALLINEA");
+
+                entity.Property(e => e.Udmedida2).HasColumnName("UDMEDIDA2");
+
+                entity.Property(e => e.Unid1).HasColumnName("UNID1");
+
+                entity.Property(e => e.Unid2).HasColumnName("UNID2");
+
+                entity.Property(e => e.Unid3).HasColumnName("UNID3");
+
+                entity.Property(e => e.Unid4).HasColumnName("UNID4");
+
+                entity.Property(e => e.Unidadespen).HasColumnName("UNIDADESPEN");
+
+                entity.Property(e => e.Unidadesrec).HasColumnName("UNIDADESREC");
+
+                entity.Property(e => e.Unidadestotal).HasColumnName("UNIDADESTOTAL");
+            });
+
+            modelBuilder.Entity<VwProveedore>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("VW_PROVEEDORES");
+
+                entity.Property(e => e.Codarticulo).HasColumnName("codarticulo");
+
+                entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
+
+                entity.Property(e => e.Nomproveedor)
+                    .HasMaxLength(255)
+                    .HasColumnName("NOMPROVEEDOR")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Rfc).HasMaxLength(13);
+
+                entity.Property(e => e.Uds)
+                    .HasColumnType("decimal(18, 2)")
+                    .HasColumnName("uds");
+            });
+
+            modelBuilder.Entity<VwRnotificacione>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("VW_RNOTIFICACIONES");
+
+                entity.Property(e => e.Almacen)
+                    .HasMaxLength(30)
+                    .HasColumnName("ALMACEN")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Codalmacen)
+                    .HasMaxLength(3)
+                    .HasColumnName("CODALMACEN")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
+
+                entity.Property(e => e.Correo)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("CORREO");
+
+                entity.Property(e => e.Fechaentrega)
+                    .HasColumnType("date")
+                    .HasColumnName("FECHAENTREGA");
+
+                entity.Property(e => e.Fechapedido)
+                    .HasColumnType("date")
+                    .HasColumnName("FECHAPEDIDO");
+
+                entity.Property(e => e.N)
+                    .HasMaxLength(1)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Nomproveedor)
+                    .HasMaxLength(255)
+                    .HasColumnName("NOMPROVEEDOR")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Notificacion).HasColumnName("NOTIFICACION");
+
+                entity.Property(e => e.Numpedido).HasColumnName("NUMPEDIDO");
+
+                entity.Property(e => e.Numserie)
+                    .HasMaxLength(4)
+                    .HasColumnName("NUMSERIE")
+                    .UseCollation("Latin1_General_CS_AI");
+
+                entity.Property(e => e.Totneto).HasColumnName("TOTNETO");
+            });
+
             modelBuilder.Entity<VwTesorerium>(entity =>
             {
                 entity.HasNoKey();
@@ -48912,338 +52686,11 @@ namespace API_PEDIDOS.ModelsDB2
                     .HasColumnName("REGISTRO");
             });
 
-            modelBuilder.Entity<_03b8e179Fb2546dfB84aA67e61553598>(entity =>
-            {
-                entity.ToTable("{03B8E179-FB25-46DF-B84A-A67E61553598}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_0551e2bf40ab4fd2Ad4eEe5426d20324>(entity =>
-            {
-                entity.ToTable("{0551E2BF-40AB-4FD2-AD4E-EE5426D20324}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_09e2a246D3c8487cBc7a91b2ae83ec11>(entity =>
-            {
-                entity.ToTable("{09E2A246-D3C8-487C-BC7A-91B2AE83EC11}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_12497a72a9514b67affa34b9374748e8vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_04443a11ef174215a6761609a2a41515vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("12497A72A9514B67AFFA34B9374748E8VWARTICULOSFACTPORFRANJA");
+                entity.ToView("04443A11EF174215A6761609A2A41515VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -49254,11 +52701,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_127d247a0be44f428b78c25a5885ab9avwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_04d3c6b2706349f29f59840821a0e74cvwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("127D247A0BE44F428B78C25A5885AB9AVWARTICULOSFACTPORFRANJA");
+                entity.ToView("04D3C6B2706349F29F59840821A0E74CVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -49269,11 +52716,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_13151466f2364ff099cddb142ac8233fvwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_080b973440bf4d95ad52ea6992d373f4vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("13151466F2364FF099CDDB142AC8233FVWARTICULOSFACTPORFRANJA");
+                entity.ToView("080B973440BF4D95AD52EA6992D373F4VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -49284,11 +52731,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_160cd6d1baf24f5a84d048302c9d7743vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_12b52d7e12634c17929d384c4d4ef0dfvwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("160CD6D1BAF24F5A84D048302C9D7743VWARTICULOSFACTPORFRANJA");
+                entity.ToView("12B52D7E12634C17929D384C4D4EF0DFVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -49299,11 +52746,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_1904e57f02f64c4fbb9618132f52e157vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_12ec8732760c43d0acd9a3fcdd8081b3vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("1904E57F02F64C4FBB9618132F52E157VWARTICULOSFACTPORFRANJA");
+                entity.ToView("12EC8732760C43D0ACD9A3FCDD8081B3VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -49314,120 +52761,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_192696bbB9ba464f872bD13c07ceb840>(entity =>
-            {
-                entity.ToTable("{192696BB-B9BA-464F-872B-D13C07CEB840}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_19a0bbfd6aab40ea9d1f8766d57a0838vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_1b04911971b84af68d5e904ed7295c90vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("19A0BBFD6AAB40EA9D1F8766D57A0838VWARTICULOSFACTPORFRANJA");
+                entity.ToView("1B04911971B84AF68D5E904ED7295C90VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -49438,120 +52776,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_1a70b218Cb88441aBb258db47975eea3>(entity =>
-            {
-                entity.ToTable("{1A70B218-CB88-441A-BB25-8DB47975EEA3}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_1a7dedbdff554869a34dbec049916019vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_1b92fa397494451dad526a87ba85dbdcvwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("1A7DEDBDFF554869A34DBEC049916019VWARTICULOSFACTPORFRANJA");
+                entity.ToView("1B92FA397494451DAD526A87BA85DBDCVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -49562,11 +52791,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_1dc2bed58f574e82ba391358d8e87964vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_1e925de4469c427a9a7147023b4e72c1vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("1DC2BED58F574E82BA391358D8E87964VWARTICULOSFACTPORFRANJA");
+                entity.ToView("1E925DE4469C427A9A7147023B4E72C1VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -49577,11 +52806,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_21c912518029471da2e7ec1cd2a5a7d8vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_1f3d8de170d34feab56265be31e517e7vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("21C912518029471DA2E7EC1CD2A5A7D8VWARTICULOSFACTPORFRANJA");
+                entity.ToView("1F3D8DE170D34FEAB56265BE31E517E7VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -49592,120 +52821,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_247f23f6137c4b99B6a0008d7da298cd>(entity =>
-            {
-                entity.ToTable("{247F23F6-137C-4B99-B6A0-008D7DA298CD}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_250f5efe5b7f48c48a118712d3194883vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_276a59c3b0ae436abc5a85627caa3a90vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("250F5EFE5B7F48C48A118712D3194883VWARTICULOSFACTPORFRANJA");
+                entity.ToView("276A59C3B0AE436ABC5A85627CAA3A90VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -49716,229 +52836,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_2df861897877421e81024dfca62a0349>(entity =>
-            {
-                entity.ToTable("{2DF86189-7877-421E-8102-4DFCA62A0349}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_2e009aa1C86743e196c8B81fcd819b3f>(entity =>
-            {
-                entity.ToTable("{2E009AA1-C867-43E1-96C8-B81FCD819B3F}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_314ecc74ea2544b5a80cf35324ae35davwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_305b7db61eae401a9044a49e3019c60fvwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("314ECC74EA2544B5A80CF35324AE35DAVWARTICULOSFACTPORFRANJA");
+                entity.ToView("305B7DB61EAE401A9044A49E3019C60FVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -49949,11 +52851,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_330bdbb61d2143f29e865c6b3566b4a9vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_3fc49536e742439abbd952fdebf604d2vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("330BDBB61D2143F29E865C6B3566B4A9VWARTICULOSFACTPORFRANJA");
+                entity.ToView("3FC49536E742439ABBD952FDEBF604D2VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -49964,11 +52866,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_330f11ec551146e6a8f65a041b4947e6vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_4126600648e34f89aef3a75afbcf569fvwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("330F11EC551146E6A8F65A041B4947E6VWARTICULOSFACTPORFRANJA");
+                entity.ToView("4126600648E34F89AEF3A75AFBCF569FVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -49979,11 +52881,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_34223f1764af4bf68e30f93ac4b265b9vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_43e44478df1247059487b5bafefbb114vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("34223F1764AF4BF68E30F93AC4B265B9VWARTICULOSFACTPORFRANJA");
+                entity.ToView("43E44478DF1247059487B5BAFEFBB114VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -49994,11 +52896,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_3977e7dd90774476b74d179fa6627687vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_4538b5a6a0c14082bc6859ec3d30c4cbvwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("3977E7DD90774476B74D179FA6627687VWARTICULOSFACTPORFRANJA");
+                entity.ToView("4538B5A6A0C14082BC6859EC3D30C4CBVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -50009,11 +52911,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_3a6e02e02ef14d02b25a67f101f408c3vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_4cdadfa5ae894881b6f8cbe54cc6f821vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("3A6E02E02EF14D02B25A67F101F408C3VWARTICULOSFACTPORFRANJA");
+                entity.ToView("4CDADFA5AE894881B6F8CBE54CC6F821VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -50024,11 +52926,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_3b506c6c4420453e8b53fe6cb841dca3vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_4d1e712212d84afabb6f77b49761c9advwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("3B506C6C4420453E8B53FE6CB841DCA3VWARTICULOSFACTPORFRANJA");
+                entity.ToView("4D1E712212D84AFABB6F77B49761C9ADVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -50039,11 +52941,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_3b6e9381ced84cb89377ef724b3a2527vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_5090b7f757704a0c98af597322ad84c2vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("3B6E9381CED84CB89377EF724B3A2527VWARTICULOSFACTPORFRANJA");
+                entity.ToView("5090B7F757704A0C98AF597322AD84C2VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -50054,229 +52956,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_3faf31c774294fd2A36e9dc5c3091643>(entity =>
-            {
-                entity.ToTable("{3FAF31C7-7429-4FD2-A36E-9DC5C3091643}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_3fb3617bD0394ef38dae6059ea707fd6>(entity =>
-            {
-                entity.ToTable("{3FB3617B-D039-4EF3-8DAE-6059EA707FD6}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_42a3b05d1be74827a437579b5a61da68vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_6389a53e322a4cc08397d975167f439dvwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("42A3B05D1BE74827A437579B5A61DA68VWARTICULOSFACTPORFRANJA");
+                entity.ToView("6389A53E322A4CC08397D975167F439DVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -50287,11 +52971,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_4612114dd8da4a78b4fb47887c0fff5cvwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_65477018692d45a28756a0578f0f1b31vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("4612114DD8DA4A78B4FB47887C0FFF5CVWARTICULOSFACTPORFRANJA");
+                entity.ToView("65477018692D45A28756A0578F0F1B31VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -50302,11 +52986,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_4741ac3418924419a9362f0ae88c42a3vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_717fd7d2e8044183a0323c0b24dd522bvwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("4741AC3418924419A9362F0AE88C42A3VWARTICULOSFACTPORFRANJA");
+                entity.ToView("717FD7D2E8044183A0323C0B24DD522BVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -50317,11 +53001,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_4815bc27b20e4958b3e75086e29b3ca3vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_7b76a926eeeb49888c0c971cc19d1288vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("4815BC27B20E4958B3E75086E29B3CA3VWARTICULOSFACTPORFRANJA");
+                entity.ToView("7B76A926EEEB49888C0C971CC19D1288VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -50332,11 +53016,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_4a2befd3f8a04a59856f2f22f0cff013vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_807b5cfb2ff744308c3bf3ebf81e73f3vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("4A2BEFD3F8A04A59856F2F22F0CFF013VWARTICULOSFACTPORFRANJA");
+                entity.ToView("807B5CFB2FF744308C3BF3EBF81E73F3VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -50347,120 +53031,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_4b6ac3d0C6de4220A8c4F36d8ece7023>(entity =>
-            {
-                entity.ToTable("{4B6AC3D0-C6DE-4220-A8C4-F36D8ECE7023}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_4bd7a6a97b524cb39f54783699f44e06vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_88d24e8ea18449d0ba3eb8a7d7fa1831vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("4BD7A6A97B524CB39F54783699F44E06VWARTICULOSFACTPORFRANJA");
+                entity.ToView("88D24E8EA18449D0BA3EB8A7D7FA1831VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -50471,120 +53046,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_4c87c25a20894eb086d07ed9544640d2>(entity =>
-            {
-                entity.ToTable("{4C87C25A-2089-4EB0-86D0-7ED9544640D2}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_4e38e52f973d4150a0870f2a7428341bvwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_89fc8cc4e83745e3a9455e15532b07c3vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("4E38E52F973D4150A0870F2A7428341BVWARTICULOSFACTPORFRANJA");
+                entity.ToView("89FC8CC4E83745E3A9455E15532B07C3VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -50595,11 +53061,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_527874b9a2a24de2922389cb0be82cfcvwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_8cb327f716b14694acf81c6c4abc3195vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("527874B9A2A24DE2922389CB0BE82CFCVWARTICULOSFACTPORFRANJA");
+                entity.ToView("8CB327F716B14694ACF81C6C4ABC3195VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -50610,11 +53076,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_5303b1b5d3be4d67855398bfa042535dvwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_8d1f89fd5c1145f381c856c25e4fa04cvwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("5303B1B5D3BE4D67855398BFA042535DVWARTICULOSFACTPORFRANJA");
+                entity.ToView("8D1F89FD5C1145F381C856C25E4FA04CVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -50625,11 +53091,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_541819b0a03342468b47bdfa5c3f60d1vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_90ea488555e4412bb52b56d2c2a3330cvwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("541819B0A03342468B47BDFA5C3F60D1VWARTICULOSFACTPORFRANJA");
+                entity.ToView("90EA488555E4412BB52B56D2C2A3330CVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -50640,11 +53106,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_5784cfdf429444f691b3751ed05d08f8vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_91697b24617140d3818371bfd596bd97vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("5784CFDF429444F691B3751ED05D08F8VWARTICULOSFACTPORFRANJA");
+                entity.ToView("91697B24617140D3818371BFD596BD97VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -50655,11 +53121,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_58916714ae5a4c75b3c8b3149b1bdf78vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_95616577704049d2b432fc2df9ec8a10vwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("58916714AE5A4C75B3C8B3149B1BDF78VWARTICULOSFACTPORFRANJA");
+                entity.ToView("95616577704049D2B432FC2DF9EC8A10VWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -50670,338 +53136,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_62c72319Eb6c4f33B415A6cb2b387d64>(entity =>
-            {
-                entity.ToTable("{62C72319-EB6C-4F33-B415-A6CB2B387D64}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_64b9d3a644494bde9664Fabeb4631e28>(entity =>
-            {
-                entity.ToTable("{64B9D3A6-4449-4BDE-9664-FABEB4631E28}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_6a3873ae69474a7f92c60aaaaf6e3fb2>(entity =>
-            {
-                entity.ToTable("{6A3873AE-6947-4A7F-92C6-0AAAAF6E3FB2}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_6af4e95e29cd47b78dc0e1ee053d1061vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_967897f133094baea98bd587a882aa4evwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("6AF4E95E29CD47B78DC0E1EE053D1061VWARTICULOSFACTPORFRANJA");
+                entity.ToView("967897F133094BAEA98BD587A882AA4EVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -51012,120 +53151,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_6af8693b9a074ca890c9Cc6eb1e11e20>(entity =>
-            {
-                entity.ToTable("{6AF8693B-9A07-4CA8-90C9-CC6EB1E11E20}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_6b00c74fd34648129f653baa5388258avwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_9a8b42ce1f444720963103990d31517cvwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("6B00C74FD34648129F653BAA5388258AVWARTICULOSFACTPORFRANJA");
+                entity.ToView("9A8B42CE1F444720963103990D31517CVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -51136,120 +53166,11 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minini).HasColumnName("MININI");
             });
 
-            modelBuilder.Entity<_6b0f92f3C2d341bfBc72Bc0773af6e6a>(entity =>
-            {
-                entity.ToTable("{6B0F92F3-C2D3-41BF-BC72-BC0773AF6E6A}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_6c54613410b7479e850b80f1cca48ab2vwarticulosfactporfranja>(entity =>
+            modelBuilder.Entity<_9ec532cbe7944a31bdf39a4c279b893dvwarticulosfactporfranja>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("6C54613410B7479E850B80F1CCA48AB2VWARTICULOSFACTPORFRANJA");
+                entity.ToView("9EC532CBE7944A31BDF39A4C279B893DVWARTICULOSFACTPORFRANJA");
 
                 entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
 
@@ -51258,934 +53179,6 @@ namespace API_PEDIDOS.ModelsDB2
                 entity.Property(e => e.Minfin).HasColumnName("MINFIN");
 
                 entity.Property(e => e.Minini).HasColumnName("MININI");
-            });
-
-            modelBuilder.Entity<_6dab89bf3771408697fc187662598a54vwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("6DAB89BF3771408697FC187662598A54VWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
-            });
-
-            modelBuilder.Entity<_6ddd884576dd4a6fAb5514af5ca140d0>(entity =>
-            {
-                entity.ToTable("{6DDD8845-76DD-4A6F-AB55-14AF5CA140D0}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_6fe3e3d4b1e84d86884caf6993d404fevwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("6FE3E3D4B1E84D86884CAF6993D404FEVWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
-            });
-
-            modelBuilder.Entity<_713ca5e0ccd648268aa09a8c54b7f4b7vwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("713CA5E0CCD648268AA09A8C54B7F4B7VWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
-            });
-
-            modelBuilder.Entity<_73099b2cF0d846e8A9e19ff54714d478>(entity =>
-            {
-                entity.ToTable("{73099B2C-F0D8-46E8-A9E1-9FF54714D478}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_75b8a23c8d654a9e805578b62ac0a08a>(entity =>
-            {
-                entity.ToTable("{75B8A23C-8D65-4A9E-8055-78B62AC0A08A}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_7e09db9ddb574cc59e03c75b3b07b90avwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("7E09DB9DDB574CC59E03C75B3B07B90AVWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
-            });
-
-            modelBuilder.Entity<_7ecb8e8e4f6a4e2aa304872fc82b66aavwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("7ECB8E8E4F6A4E2AA304872FC82B66AAVWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
-            });
-
-            modelBuilder.Entity<_8163678f551f4cd78c3507f752c3b2f4vwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("8163678F551F4CD78C3507F752C3B2F4VWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
-            });
-
-            modelBuilder.Entity<_83096a53b4a14d6d9f8ea4b2d53684c0vwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("83096A53B4A14D6D9F8EA4B2D53684C0VWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
-            });
-
-            modelBuilder.Entity<_8829650fbd1e4970af52d6125a0ac23evwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("8829650FBD1E4970AF52D6125A0AC23EVWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
-            });
-
-            modelBuilder.Entity<_897fbcf1Db6b4b7f97ba904d4d552d34>(entity =>
-            {
-                entity.ToTable("{897FBCF1-DB6B-4B7F-97BA-904D4D552D34}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_8b1b49b4Fd6e40ba95d4Fca3a047fe0d>(entity =>
-            {
-                entity.ToTable("{8B1B49B4-FD6E-40BA-95D4-FCA3A047FE0D}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_8e04af1bb43843c083613870e6327f70vwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("8E04AF1BB43843C083613870E6327F70VWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
-            });
-
-            modelBuilder.Entity<_9415703762af4902b8944056294c9c4dvwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("9415703762AF4902B8944056294C9C4DVWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
-            });
-
-            modelBuilder.Entity<_946315b2531f4aacAb64F894069b2e1b>(entity =>
-            {
-                entity.ToTable("{946315B2-531F-4AAC-AB64-F894069B2E1B}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<_978e5ec0356540af8033e1708afc77aevwarticulosfactporfranja>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("978E5EC0356540AF8033E1708AFC77AEVWARTICULOSFACTPORFRANJA");
-
-                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
-
-                entity.Property(e => e.Codformato).HasColumnName("CODFORMATO");
-
-                entity.Property(e => e.Minfin).HasColumnName("MINFIN");
-
-                entity.Property(e => e.Minini).HasColumnName("MININI");
-            });
-
-            modelBuilder.Entity<_9d21019f98614e98B79403d7de2acb70>(entity =>
-            {
-                entity.ToTable("{9D21019F-9861-4E98-B794-03D7DE2ACB70}");
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.ArtFaltan)
-                    .HasColumnName("_ART_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtOk)
-                    .HasColumnName("_ART_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcfaltan)
-                    .HasColumnName("_ART_PORCFALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcok)
-                    .HasColumnName("_ART_PORCOK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsincontar)
-                    .HasColumnName("_ART_PORCSINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtPorcsobran)
-                    .HasColumnName("_ART_PORCSOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSincontar)
-                    .HasColumnName("_ART_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSinstock)
-                    .HasColumnName("_ART_SINSTOCK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtSobran)
-                    .HasColumnName("_ART_SOBRAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtTotal)
-                    .HasColumnName("_ART_TOTAL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ArtUtil)
-                    .HasColumnName("_ART_UTIL")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Checked).HasColumnName("CHECKED");
-
-                entity.Property(e => e.Codalmacenorigen)
-                    .HasMaxLength(3)
-                    .HasColumnName("CODALMACENORIGEN")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Codvendedor).HasColumnName("CODVENDEDOR");
-
-                entity.Property(e => e.Estado)
-                    .HasColumnName("ESTADO")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("FECHA");
-
-                entity.Property(e => e.Idincidencia)
-                    .HasColumnName("IDINCIDENCIA")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Nombrealmacen)
-                    .HasMaxLength(255)
-                    .HasColumnName("NOMBREALMACEN");
-
-                entity.Property(e => e.Numero).HasColumnName("NUMERO");
-
-                entity.Property(e => e.Serie)
-                    .HasMaxLength(4)
-                    .HasColumnName("SERIE")
-                    .UseCollation("Latin1_General_CS_AI");
-
-                entity.Property(e => e.Tipovaloracion)
-                    .HasColumnName("TIPOVALORACION")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tipovaloraciondmn)
-                    .HasColumnName("TIPOVALORACIONDMN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndFaltan)
-                    .HasColumnName("_UND_FALTAN")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndOk)
-                    .HasColumnName("_UND_OK")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSincontar)
-                    .HasColumnName("_UND_SINCONTAR")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UndSobran)
-                    .HasColumnName("_UND_SOBRAN")
-                    .HasDefaultValueSql("((0))");
             });
 
             OnModelCreatingPartial(modelBuilder);

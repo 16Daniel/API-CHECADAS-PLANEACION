@@ -9,7 +9,7 @@ namespace API_PEDIDOS.ModelsDB2
         {
             Favoritosturnos = new HashSet<Favoritosturno>();
             Turnosarticulosdefectos = new HashSet<Turnosarticulosdefecto>();
-            Codarticulos = new HashSet<Articulo1>();
+            Codarticulos = new HashSet<Articulo>();
         }
 
         public int Codturno { get; set; }
@@ -27,6 +27,6 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual ICollection<Favoritosturno> Favoritosturnos { get; set; }
         public virtual ICollection<Turnosarticulosdefecto> Turnosarticulosdefectos { get; set; }
 
-        public virtual ICollection<Articulo1> Codarticulos { get; set; }
+        public virtual ICollection<Articulo> Codarticulos { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace API_PEDIDOS.ModelsDB2
             Cargosdtosproveedors = new HashSet<Cargosdtosproveedor>();
             Facturacionprovcabs = new HashSet<Facturacionprovcab>();
             Fpagoproveedors = new HashSet<Fpagoproveedor>();
+            ItRebelAccounts = new HashSet<ItRebelAccount>();
             Rappelsproveedores = new HashSet<Rappelsproveedore>();
             Secuenciacargosprovs = new HashSet<Secuenciacargosprov>();
             TPedidosEntregas = new HashSet<TPedidosEntrega>();
@@ -111,6 +112,7 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual ICollection<Cargosdtosproveedor> Cargosdtosproveedors { get; set; }
         public virtual ICollection<Facturacionprovcab> Facturacionprovcabs { get; set; }
         public virtual ICollection<Fpagoproveedor> Fpagoproveedors { get; set; }
+        public virtual ICollection<ItRebelAccount> ItRebelAccounts { get; set; }
         public virtual ICollection<Rappelsproveedore> Rappelsproveedores { get; set; }
         public virtual ICollection<Secuenciacargosprov> Secuenciacargosprovs { get; set; }
         public virtual ICollection<TPedidosEntrega> TPedidosEntregas { get; set; }

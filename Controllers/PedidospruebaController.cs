@@ -221,7 +221,7 @@ namespace API_PEDIDOS.Controllers
             var articulosdb = _dbpContext.ArticulosProveedors.Where(x => x.Idcalendario == item.Id).ToList();
             foreach (var artdb in articulosdb)
             {
-              var tempq = from art in _contextdb2.Articulos1
+              var tempq = from art in _contextdb2.Articulos
                           join artcl in _contextdb2.Articuloscamposlibres on art.Codarticulo equals artcl.Codarticulo
                           into gj
                           from subartcl in gj.DefaultIfEmpty()
@@ -250,7 +250,7 @@ namespace API_PEDIDOS.Controllers
             }
 
 
-            var query = from art in _contextdb2.Articulos1
+            var query = from art in _contextdb2.Articulos
                         join artcl in _contextdb2.Articuloscamposlibres on art.Codarticulo equals artcl.Codarticulo
                         into gj
                         from subartcl in gj.DefaultIfEmpty()
@@ -889,7 +889,7 @@ namespace API_PEDIDOS.Controllers
                         foreach (var art in pedido.articulos)
                         {
                             numlinea++;
-                            var articulodb = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
+                            var articulodb = _contextdb2.Articulos.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
                             string referencia = articulodb.Refproveedor;
                             command = new SqlCommand("SP_INSERT_PEDIDOLIN2", connection, transaccion);
                             command.CommandType = CommandType.StoredProcedure;

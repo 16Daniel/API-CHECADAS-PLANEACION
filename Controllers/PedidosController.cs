@@ -253,7 +253,7 @@ namespace API_PEDIDOS.Controllers
                         var articulosdb = _dbpContext.ArticulosProveedors.Where(x => x.Idcalendario == item.Id).ToList();
                         foreach (var artdb in articulosdb)
                         {
-                            var tempq = from art in _contextdb2.Articulos1
+                            var tempq = from art in _contextdb2.Articulos
                                         join artcl in _contextdb2.Articuloscamposlibres on art.Codarticulo equals artcl.Codarticulo
                                         into gj
                                         from subartcl in gj.DefaultIfEmpty()
@@ -282,7 +282,7 @@ namespace API_PEDIDOS.Controllers
                         }
                         
 
-                        var query = from art in _contextdb2.Articulos1
+                        var query = from art in _contextdb2.Articulos
                                     join artcl in _contextdb2.Articuloscamposlibres on art.Codarticulo equals artcl.Codarticulo
                                     into gj
                                     from subartcl in gj.DefaultIfEmpty()
@@ -785,7 +785,7 @@ namespace API_PEDIDOS.Controllers
 
                 foreach (var prov in proveedores)
                 {
-                    var queryart = from art in _contextdb2.Articulos1
+                    var queryart = from art in _contextdb2.Articulos
                                    join artcl in _contextdb2.Articuloscamposlibres on art.Codarticulo equals artcl.Codarticulo
                                    into gj
                                    from subartcl in gj.DefaultIfEmpty()
@@ -862,7 +862,7 @@ namespace API_PEDIDOS.Controllers
 
                     foreach (var articulo in articulos)
           {
-            var artdb = _contextdb2.Articulos1.Where(x => x.Codarticulo == articulo).FirstOrDefault();  
+            var artdb = _contextdb2.Articulos.Where(x => x.Codarticulo == articulo).FirstOrDefault();  
             var umedidaart = _contextdb2.ItProductos.Where(x => x.Rfc == provdb.Nif20 && x.Codarticulo == articulo).FirstOrDefault();
 
             if (umedidaart != null)
@@ -1377,7 +1377,7 @@ namespace API_PEDIDOS.Controllers
                             foreach (var art in pedido.articulos)
                             {
                                 numlinea++;
-                                var articulodb = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
+                                var articulodb = _contextdb2.Articulos.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
                                 string referencia = articulodb.Refproveedor;
                                 command = new SqlCommand("SP_INSERT_PEDIDOLIN", connection, transaccion);
                                 command.CommandType = CommandType.StoredProcedure;
@@ -1498,7 +1498,7 @@ namespace API_PEDIDOS.Controllers
                             foreach (var art in pedido.articulos)
                             {
                                 numlinea++;
-                                var articulodb = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
+                                var articulodb = _contextdb2.Articulos.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
                                 command = new SqlCommand("SP_INSERT_INCIDENCIA_LIN", connection, transaccion);
 
                                 command.CommandType = CommandType.StoredProcedure;
@@ -2138,7 +2138,7 @@ namespace API_PEDIDOS.Controllers
                                 foreach (var art in pedido.articulos)
                                 {
                                     numlinea++;
-                                    var articulodb = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
+                                    var articulodb = _contextdb2.Articulos.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
                                     string referencia = articulodb.Refproveedor;
                                     command = new SqlCommand("SP_INSERT_PEDIDOLIN", connection, transaction);
                                     command.CommandType = CommandType.StoredProcedure;
@@ -2256,7 +2256,7 @@ namespace API_PEDIDOS.Controllers
                                 foreach (var art in pedido.articulos)
                                 {
                                     numlinea++;
-                                    var articulodb = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
+                                    var articulodb = _contextdb2.Articulos.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
                                     command = new SqlCommand("SP_INSERT_INCIDENCIA_LIN", connection, transaction);
 
                                     command.CommandType = CommandType.StoredProcedure;
@@ -2776,7 +2776,7 @@ namespace API_PEDIDOS.Controllers
                         var articulosdb = _dbpContext.ArticulosProveedors.Where(x => x.Idcalendario == item.Id).ToList();
                         foreach (var artdb in articulosdb)
                         {
-                            var tempq = from art in _contextdb2.Articulos1
+                            var tempq = from art in _contextdb2.Articulos
                                         join artcl in _contextdb2.Articuloscamposlibres on art.Codarticulo equals artcl.Codarticulo
                                         into gj
                                         from subartcl in gj.DefaultIfEmpty()
@@ -2805,7 +2805,7 @@ namespace API_PEDIDOS.Controllers
                         }
 
 
-                        var query = from art in _contextdb2.Articulos1
+                        var query = from art in _contextdb2.Articulos
                                     join artcl in _contextdb2.Articuloscamposlibres on art.Codarticulo equals artcl.Codarticulo
                                     into gj
                                     from subartcl in gj.DefaultIfEmpty()

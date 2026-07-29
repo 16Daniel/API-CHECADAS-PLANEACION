@@ -10,6 +10,7 @@ namespace API_PEDIDOS.ModelsDB2
         public string N { get; set; } = null!;
         public string? Requisicion { get; set; }
         public int? Proveedor { get; set; }
+        public string? Tipodocumento { get; set; }
 
         public virtual Albventacab NNavigation { get; set; } = null!;
     }

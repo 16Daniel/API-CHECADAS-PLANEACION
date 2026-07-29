@@ -10,6 +10,7 @@ namespace API_PEDIDOS.ModelsDB2
             Comisioneshechas = new HashSet<Comisioneshecha>();
             Comisionesvendedors = new HashSet<Comisionesvendedor>();
             IdVendedores = new HashSet<IdVendedore>();
+            ItRebelAccounts = new HashSet<ItRebelAccount>();
             Nominas = new HashSet<Nomina>();
             Vendedoreshotels = new HashSet<Vendedoreshotel>();
             Vendedoresterminals = new HashSet<Vendedoresterminal>();
@@ -83,6 +84,7 @@ namespace API_PEDIDOS.ModelsDB2
         public virtual ICollection<Comisioneshecha> Comisioneshechas { get; set; }
         public virtual ICollection<Comisionesvendedor> Comisionesvendedors { get; set; }
         public virtual ICollection<IdVendedore> IdVendedores { get; set; }
+        public virtual ICollection<ItRebelAccount> ItRebelAccounts { get; set; }
         public virtual ICollection<Nomina> Nominas { get; set; }
         public virtual ICollection<Vendedoreshotel> Vendedoreshotels { get; set; }
         public virtual ICollection<Vendedoresterminal> Vendedoresterminals { get; set; }

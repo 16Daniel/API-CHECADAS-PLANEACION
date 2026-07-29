@@ -9,6 +9,7 @@ namespace API_PEDIDOS.ModelsDB2
         public int Numalbaran { get; set; }
         public string N { get; set; } = null!;
         public string? Sucursal { get; set; }
+        public string? Uuid { get; set; }
 
         public virtual Albcompracab NNavigation { get; set; } = null!;
     }

@@ -34,7 +34,7 @@ namespace API_PEDIDOS.Controllers
 
                 foreach (var d in datadb) 
                 {
-                    var articulo = _contextdb2.Articulos1.Where(x=> x.Codarticulo == d.Codart).FirstOrDefault();
+                    var articulo = _contextdb2.Articulos.Where(x=> x.Codarticulo == d.Codart).FirstOrDefault();
                     var proveedor = _contextdb2.Proveedores.Where(x => x.Codproveedor == d.Codprov).FirstOrDefault();
                     data.Add(new RetornableModel
                     {

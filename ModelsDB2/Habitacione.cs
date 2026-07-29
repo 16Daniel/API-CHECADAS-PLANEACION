@@ -11,6 +11,6 @@ namespace API_PEDIDOS.ModelsDB2
         public int? Pax { get; set; }
 
         public virtual Series SerieNavigation { get; set; } = null!;
-        public virtual Articulo1 TipohabitacionNavigation { get; set; } = null!;
+        public virtual Articulo TipohabitacionNavigation { get; set; } = null!;
     }
 }

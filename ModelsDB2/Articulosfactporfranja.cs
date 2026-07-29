@@ -10,7 +10,7 @@ namespace API_PEDIDOS.ModelsDB2
         public int Minini { get; set; }
         public int Minfin { get; set; }
 
-        public virtual Articulo1 CodarticuloNavigation { get; set; } = null!;
+        public virtual Articulo CodarticuloNavigation { get; set; } = null!;
         public virtual Formato CodformatoNavigation { get; set; } = null!;
     }
 }

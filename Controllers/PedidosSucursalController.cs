@@ -67,7 +67,7 @@ namespace API_PEDIDOS.Controllers
             try
             {
 
-                var query = from art in _contextdb2.Articulos1
+                var query = from art in _contextdb2.Articulos
                             join artcl in _contextdb2.Articuloscamposlibres on art.Codarticulo equals artcl.Codarticulo
                             into gj
                             from subartcl in gj.DefaultIfEmpty()
@@ -221,7 +221,7 @@ namespace API_PEDIDOS.Controllers
 
                     foreach (var art in articulosdb)
                     {
-                        var articulo = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.Codart).Select
+                        var articulo = _contextdb2.Articulos.Where(x => x.Codarticulo == art.Codart).Select
                             (s =>
                                 new
                                 {
@@ -264,7 +264,7 @@ namespace API_PEDIDOS.Controllers
 
                     foreach (int art in articulosdb)
                     {
-                        var articulo = _contextdb2.Articulos1.Where(x => x.Codarticulo == art).Select
+                        var articulo = _contextdb2.Articulos.Where(x => x.Codarticulo == art).Select
                             (s =>
                                 new
                                 {
@@ -520,7 +520,7 @@ namespace API_PEDIDOS.Controllers
                 int numlinea = 1; 
                 foreach (var codart in data) 
                 {
-                    var art = _contextdb2.Articulos1.Where(x => x.Codarticulo == codart).FirstOrDefault();
+                    var art = _contextdb2.Articulos.Where(x => x.Codarticulo == codart).FirstOrDefault();
                     var prov = _contextdb2.Proveedores.Where(x => x.Codproveedor == model.idprov).FirstOrDefault();
                     var preciocompra = _contextdb2.Precioscompras.Where(x => x.Codarticulo == codart && x.Codproveedor == model.idprov).FirstOrDefault(); 
                     int iva = 0;
@@ -970,7 +970,7 @@ namespace API_PEDIDOS.Controllers
               foreach (var art in pedido.articulos)
               {
                 numlinea++;
-                var articulodb = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
+                var articulodb = _contextdb2.Articulos.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
                 string referencia = articulodb.Refproveedor;
                 command = new SqlCommand("SP_INSERT_PEDIDOLIN", connection, transaccion);
                 command.CommandType = CommandType.StoredProcedure;
@@ -1091,7 +1091,7 @@ namespace API_PEDIDOS.Controllers
                 foreach (var art in pedido.articulos)
                 {
                   numlinea++;
-                  var articulodb = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
+                  var articulodb = _contextdb2.Articulos.Where(x => x.Codarticulo == art.codArticulo).FirstOrDefault();
                   command = new SqlCommand("SP_INSERT_INCIDENCIA_LIN", connection, transaccion);
 
                   command.CommandType = CommandType.StoredProcedure;
@@ -1170,7 +1170,7 @@ namespace API_PEDIDOS.Controllers
 
                     foreach (var art in articulosdb)
                     {
-                        var articulo = _contextdb2.Articulos1.Where(x => x.Codarticulo == art.Codart).Select
+                        var articulo = _contextdb2.Articulos.Where(x => x.Codarticulo == art.Codart).Select
                             (s =>
                                 new
                                 {
@@ -1207,7 +1207,7 @@ namespace API_PEDIDOS.Controllers
                     int numlinea = 1;
                     foreach (var item in itemsdisponibles)
                     {
-                        var art = _contextdb2.Articulos1.Where(x => x.Codarticulo == item.cod).FirstOrDefault();
+                        var art = _contextdb2.Articulos.Where(x => x.Codarticulo == item.cod).FirstOrDefault();
                         var preciocompra = _contextdb2.Precioscompras.Where(x => x.Codarticulo == item.cod && x.Codproveedor == pedido.codProveedor).FirstOrDefault();
                         int iva = 0;
                         var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == prov.Nif20 && p.Codarticulo == item.cod).FirstOrDefault();
