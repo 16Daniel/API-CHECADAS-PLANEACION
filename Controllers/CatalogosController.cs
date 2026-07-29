@@ -173,7 +173,7 @@ WHERE (ALM.NOTAS LIKE N'RW') AND (RCF.CAJAFRONT = 1)";
             try
             {
             
-                var query = from art in _contextdb2.Articulos1
+                var query = from art in _contextdb2.Articulos
                             join artcl in _contextdb2.Articuloscamposlibres
                             on art.Codarticulo equals artcl.Codarticulo into gj
                             from subartcl in gj.DefaultIfEmpty()
@@ -207,7 +207,7 @@ WHERE (ALM.NOTAS LIKE N'RW') AND (RCF.CAJAFRONT = 1)";
             try
             {
 
-                var query = from art in _contextdb2.Articulos1
+                var query = from art in _contextdb2.Articulos
                             join artcl in _contextdb2.Articuloscamposlibres on art.Codarticulo equals artcl.Codarticulo
                             into gj
                             from subartcl in gj.DefaultIfEmpty()
@@ -246,7 +246,7 @@ WHERE (ALM.NOTAS LIKE N'RW') AND (RCF.CAJAFRONT = 1)";
                 List<Object> articulos = new List<Object>();  
                 foreach (var item in articulosdb) 
                 {
-                    var art = _contextdb2.Articulos1.Where(x => x.Codarticulo == item.Codarticulo).FirstOrDefault();
+                    var art = _contextdb2.Articulos.Where(x => x.Codarticulo == item.Codarticulo).FirstOrDefault();
                     articulos.Add(new 
                     {
                         cod = art.Codarticulo,

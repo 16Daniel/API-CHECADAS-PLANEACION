@@ -60,7 +60,7 @@ namespace API_PEDIDOS.ModelsDB2
         public bool Aplicarahabitacion { get; set; }
         public bool Impuestosincluidos { get; set; }
 
-        public virtual Articulo1 CodarticuloNavigation { get; set; } = null!;
+        public virtual Articulo CodarticuloNavigation { get; set; } = null!;
         public virtual ICollection<Cargodtohotelprecio> Cargodtohotelprecios { get; set; }
 
         public virtual ICollection<Articuloshabitacione> Codhabitacions { get; set; }

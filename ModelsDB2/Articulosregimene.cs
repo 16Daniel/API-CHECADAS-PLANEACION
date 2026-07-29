@@ -28,7 +28,7 @@ namespace API_PEDIDOS.ModelsDB2
         public int Primerservicio { get; set; }
         public int? Tarifaextras { get; set; }
 
-        public virtual Articulo1 CodarticuloNavigation { get; set; } = null!;
+        public virtual Articulo CodarticuloNavigation { get; set; } = null!;
         public virtual ICollection<Hotelesregimene> Hotelesregimenes { get; set; }
         public virtual ICollection<Precioshoteldium> Precioshoteldia { get; set; }
 

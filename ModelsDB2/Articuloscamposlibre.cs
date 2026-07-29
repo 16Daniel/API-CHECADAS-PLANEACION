@@ -29,7 +29,15 @@ namespace API_PEDIDOS.ModelsDB2
         public string? RegularizaSemanal { get; set; }
         public int? OrdenInventarioApp { get; set; }
         public string? Planeacion { get; set; }
+        public string? InvMensual { get; set; }
+        public string? RebeLitros { get; set; }
+        public string? Destilado { get; set; }
+        public string? ClasificacionAyc { get; set; }
+        public double? CostoAyc { get; set; }
+        public string? SimplexBarra { get; set; }
+        public int? ValorBebida { get; set; }
+        public string? FamiliaCorporativo { get; set; }
 
-        public virtual Articulo1 CodarticuloNavigation { get; set; } = null!;
+        public virtual Articulo CodarticuloNavigation { get; set; } = null!;
     }
 }

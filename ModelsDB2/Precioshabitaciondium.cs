@@ -12,7 +12,7 @@ namespace API_PEDIDOS.ModelsDB2
         public double? Precio { get; set; }
         public byte[]? Version { get; set; }
 
-        public virtual Articulo1 CodhabitacionNavigation { get; set; } = null!;
+        public virtual Articulo CodhabitacionNavigation { get; set; } = null!;
         public virtual Tarifashotel CodtarifaNavigation { get; set; } = null!;
     }
 }

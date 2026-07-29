@@ -29,7 +29,7 @@ namespace API_PEDIDOS.ModelsDB2
         public byte[]? Version { get; set; }
         public int Codarticulotot { get; set; }
 
-        public virtual Articulo1 CodarticuloNavigation { get; set; } = null!;
+        public virtual Articulo CodarticuloNavigation { get; set; } = null!;
         public virtual ICollection<Articuloshabitacionespaxweb> Articuloshabitacionespaxwebs { get; set; }
         public virtual ICollection<Hoteleshabitacione> Hoteleshabitaciones { get; set; }
         public virtual ICollection<Hoteleshabitacionesweb> Hoteleshabitacioneswebs { get; set; }

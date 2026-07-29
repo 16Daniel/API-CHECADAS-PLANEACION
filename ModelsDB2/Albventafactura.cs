@@ -14,7 +14,7 @@ namespace API_PEDIDOS.ModelsDB2
         public double? Ivainc { get; set; }
         public string Serie { get; set; } = null!;
         public int? Codcliente { get; set; }
-        public string? Factura { get; set; }
+        public int? Factura { get; set; }
         public int? Fo { get; set; }
     }
 }

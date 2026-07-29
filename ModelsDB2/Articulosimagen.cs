@@ -8,6 +8,6 @@ namespace API_PEDIDOS.ModelsDB2
         public int Codarticulo { get; set; }
         public byte[]? Version { get; set; }
 
-        public virtual Articulo1 CodarticuloNavigation { get; set; } = null!;
+        public virtual Articulo CodarticuloNavigation { get; set; } = null!;
     }
 }

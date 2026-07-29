@@ -11,6 +11,6 @@ namespace API_PEDIDOS.ModelsDB2
         public double? Udsdefecto { get; set; }
         public string? Principal { get; set; }
 
-        public virtual Articulo1 CodarticuloNavigation { get; set; } = null!;
+        public virtual Articulo CodarticuloNavigation { get; set; } = null!;
     }
 }

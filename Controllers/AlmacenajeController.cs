@@ -34,7 +34,7 @@ namespace API_PEDIDOS.Controllers
                 foreach (var item in datadb) 
                 {
                     var sucursal = _contextdb2.RemFronts.Where(x => x.Idfront == item.Idsucursal).FirstOrDefault(); 
-                    var articulo = _contextdb2.Articulos1.Where(x=>x.Codarticulo == item.Codarticulo).FirstOrDefault();
+                    var articulo = _contextdb2.Articulos.Where(x=>x.Codarticulo == item.Codarticulo).FirstOrDefault();
 
                     data.Add(new 
                     {

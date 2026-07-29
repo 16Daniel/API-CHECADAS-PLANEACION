@@ -9,6 +9,6 @@ namespace API_PEDIDOS.ModelsDB2
         public int Sustituto1 { get; set; }
         public int? Lastsustituto { get; set; }
 
-        public virtual Articulo1 CodarticuloNavigation { get; set; } = null!;
+        public virtual Articulo CodarticuloNavigation { get; set; } = null!;
     }
 }

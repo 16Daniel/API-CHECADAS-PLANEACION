@@ -30,6 +30,6 @@ namespace API_PEDIDOS.ModelsDB2
         public bool? Validoprimeruso { get; set; }
         public bool? Completarplatosmenu { get; set; }
 
-        public virtual Articulo1 CodarticuloNavigation { get; set; } = null!;
+        public virtual Articulo CodarticuloNavigation { get; set; } = null!;
     }
 }
