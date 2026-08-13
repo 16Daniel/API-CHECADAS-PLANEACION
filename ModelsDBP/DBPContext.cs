@@ -26,6 +26,7 @@ namespace API_PEDIDOS.ModelsDBP
         public virtual DbSet<CatRuta> CatRutas { get; set; } = null!;
         public virtual DbSet<CatStatusChecada> CatStatusChecadas { get; set; } = null!;
         public virtual DbSet<CheckInvSemanal> CheckInvSemanals { get; set; } = null!;
+        public virtual DbSet<CheckPlaneacionMensual> CheckPlaneacionMensuals { get; set; } = null!;
         public virtual DbSet<Descuento> Descuentos { get; set; } = null!;
         public virtual DbSet<DiasEspeciale> DiasEspeciales { get; set; } = null!;
         public virtual DbSet<DiasEspecialesSucursal> DiasEspecialesSucursals { get; set; } = null!;
@@ -36,14 +37,18 @@ namespace API_PEDIDOS.ModelsDBP
         public virtual DbSet<ModificacionesPedSuc> ModificacionesPedSucs { get; set; } = null!;
         public virtual DbSet<Notificacione> Notificaciones { get; set; } = null!;
         public virtual DbSet<Parametro> Parametros { get; set; } = null!;
+        public virtual DbSet<ParametrosPedidosMensuale> ParametrosPedidosMensuales { get; set; } = null!;
         public virtual DbSet<PedSucArticulo> PedSucArticulos { get; set; } = null!;
         public virtual DbSet<PedSucAsignacione> PedSucAsignaciones { get; set; } = null!;
         public virtual DbSet<PedSucPerfilesConfig> PedSucPerfilesConfigs { get; set; } = null!;
         public virtual DbSet<PedSucProveedore> PedSucProveedores { get; set; } = null!;
         public virtual DbSet<PedSucUsuariosPerfilConfig> PedSucUsuariosPerfilConfigs { get; set; } = null!;
         public virtual DbSet<Pedido> Pedidos { get; set; } = null!;
+        public virtual DbSet<PedidosMensualCab> PedidosMensualCabs { get; set; } = null!;
+        public virtual DbSet<PedidosMensualLin> PedidosMensualLins { get; set; } = null!;
         public virtual DbSet<PedidosPrueba> PedidosPruebas { get; set; } = null!;
         public virtual DbSet<PedidosSucursale> PedidosSucursales { get; set; } = null!;
+        public virtual DbSet<ReporteInvSemanal> ReporteInvSemanals { get; set; } = null!;
         public virtual DbSet<Retornable> Retornables { get; set; } = null!;
         public virtual DbSet<Sesione> Sesiones { get; set; } = null!;
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
@@ -55,7 +60,7 @@ namespace API_PEDIDOS.ModelsDBP
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=10.128.0.2;Initial Catalog=DBP;Integrated Security=False;User Id=App2;Password=eVPUh82pWdSP9fPD;MultipleActiveResultSets=True;Connection Timeout=120000");
+                optionsBuilder.UseSqlServer("Data Source=172.16.1.1;Initial Catalog=DBP;Integrated Security=False;User Id=App2;Password=8Z2bpwvZ2pzpXV7Q;MultipleActiveResultSets=True;Connection Timeout=120000");
             }
         }
 
@@ -189,6 +194,17 @@ namespace API_PEDIDOS.ModelsDBP
                     .HasColumnName("CODARTICULO");
 
                 entity.Property(e => e.Prioridad).HasColumnName("PRIORIDAD");
+            });
+
+            modelBuilder.Entity<CheckPlaneacionMensual>(entity =>
+            {
+                entity.ToTable("CHECK_PLANEACION_MENSUAL");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Codarticulo).HasColumnName("CODARTICULO");
+
+                entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
             });
 
             modelBuilder.Entity<Descuento>(entity =>
@@ -393,6 +409,23 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Jdata).HasColumnName("JDATA");
             });
 
+            modelBuilder.Entity<ParametrosPedidosMensuale>(entity =>
+            {
+                entity.ToTable("PARAMETROS_PEDIDOS_MENSUALES");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.DataDivisionPedidos).HasColumnName("DATA_DIVISION_PEDIDOS");
+
+                entity.Property(e => e.MesesConDatos).HasColumnName("MESES_CON_DATOS");
+
+                entity.Property(e => e.NivelDeServicio).HasColumnName("NIVEL_DE_SERVICIO");
+
+                entity.Property(e => e.PeriodoDeRevision).HasColumnName("PERIODO_DE_REVISION");
+
+                entity.Property(e => e.TiempoDeEntrega).HasColumnName("TIEMPO_DE_ENTREGA");
+            });
+
             modelBuilder.Entity<PedSucArticulo>(entity =>
             {
                 entity.ToTable("PED_SUC_ARTICULOS");
@@ -485,6 +518,74 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Temporal).HasColumnName("TEMPORAL");
             });
 
+            modelBuilder.Entity<PedidosMensualCab>(entity =>
+            {
+                entity.ToTable("PEDIDOS_MENSUAL_CAB");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
+
+                entity.Property(e => e.DivisionPedidos).HasColumnName("DIVISION_PEDIDOS");
+
+                entity.Property(e => e.Estatus)
+                    .HasMaxLength(50)
+                    .HasColumnName("ESTATUS");
+
+                entity.Property(e => e.Fecha)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA");
+
+                entity.Property(e => e.Idsucursal).HasColumnName("IDSUCURSAL");
+            });
+
+            modelBuilder.Entity<PedidosMensualLin>(entity =>
+            {
+                entity.ToTable("PEDIDOS_MENSUAL_LIN");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.CodProveedor).HasColumnName("codProveedor");
+
+                entity.Property(e => e.Descripcion).HasMaxLength(250);
+
+                entity.Property(e => e.Estatus).HasMaxLength(50);
+
+                entity.Property(e => e.Fecha).HasColumnType("datetime");
+
+                entity.Property(e => e.FechaEntrega)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA_ENTREGA");
+
+                entity.Property(e => e.HoraCargaIcg)
+                    .HasColumnType("datetime")
+                    .HasColumnName("HoraCargaICG");
+
+                entity.Property(e => e.IdSucursal).HasColumnName("idSucursal");
+
+                entity.Property(e => e.Idcab).HasColumnName("IDCAB");
+
+                entity.Property(e => e.Iva).HasColumnName("iva");
+
+                entity.Property(e => e.Nombreprov)
+                    .HasMaxLength(250)
+                    .HasColumnName("nombreprov");
+
+                entity.Property(e => e.Numpedido).HasMaxLength(50);
+
+                entity.Property(e => e.NumpedidoLin).HasColumnName("NUMPEDIDO_LIN");
+
+                entity.Property(e => e.Precio).HasColumnName("precio");
+
+                entity.Property(e => e.Referencia).HasMaxLength(50);
+
+                entity.Property(e => e.Tipoimpuesto).HasColumnName("tipoimpuesto");
+
+                entity.Property(e => e.Ubicacion).HasMaxLength(250);
+
+                entity.Property(e => e.Udscaja).HasColumnName("udscaja");
+            });
+
             modelBuilder.Entity<PedidosPrueba>(entity =>
             {
                 entity.ToTable("PEDIDOS_PRUEBAS");
@@ -537,6 +638,60 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Proveedor).HasColumnName("PROVEEDOR");
 
                 entity.Property(e => e.Sucursal).HasColumnName("SUCURSAL");
+            });
+
+            modelBuilder.Entity<ReporteInvSemanal>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("REPORTE_INV_SEMANAL");
+
+                entity.Property(e => e.Articulo)
+                    .IsUnicode(false)
+                    .HasColumnName("ARTICULO");
+
+                entity.Property(e => e.Captura)
+                    .HasColumnType("datetime")
+                    .HasColumnName("CAPTURA");
+
+                entity.Property(e => e.Cod)
+                    .HasMaxLength(4)
+                    .IsUnicode(false)
+                    .HasColumnName("COD");
+
+                entity.Property(e => e.Consumoayer).HasColumnName("CONSUMOAYER");
+
+                entity.Property(e => e.Diferencia).HasColumnName("DIFERENCIA");
+
+                entity.Property(e => e.Fechaconsulta)
+                    .HasColumnType("date")
+                    .HasColumnName("FECHACONSULTA");
+
+                entity.Property(e => e.Invayer)
+                    .IsUnicode(false)
+                    .HasColumnName("INVAYER");
+
+                entity.Property(e => e.Invformula).HasColumnName("INVFORMULA");
+
+                entity.Property(e => e.Invhoy)
+                    .IsUnicode(false)
+                    .HasColumnName("INVHOY");
+
+                entity.Property(e => e.Mermasayer).HasColumnName("MERMASAYER");
+
+                entity.Property(e => e.Region)
+                    .IsUnicode(false)
+                    .HasColumnName("REGION");
+
+                entity.Property(e => e.Seccion)
+                    .IsUnicode(false)
+                    .HasColumnName("SECCION");
+
+                entity.Property(e => e.Sucursal)
+                    .IsUnicode(false)
+                    .HasColumnName("SUCURSAL");
+
+                entity.Property(e => e.Traspasoayer).HasColumnName("TRASPASOAYER");
             });
 
             modelBuilder.Entity<Retornable>(entity =>
