@@ -3,6 +3,7 @@ using API_PEDIDOS.ModelsDBP;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Collections;
 using System.Data;
 using System.Globalization;
@@ -29,6 +30,33 @@ namespace API_PEDIDOS.Controllers
             _configuration = configuration;
             connectionStringBD2 = _configuration.GetConnectionString("DB2Connection");
 
+        }
+
+        [HttpGet]
+        [Route("getProveedoresActivos")]
+        public async Task<ActionResult> GetProveedoresActivos()
+        {
+            try
+            {
+                var query = _contextdb2.Proveedores.Where(p => p.Descatalogado == "F").Select(s => new
+                {
+                    codproveedor = s.Codproveedor,
+                    nombre = s.Nomproveedor,
+                    rfc = s.Nif20
+                }).ToList();
+
+                return StatusCode(200, query.ToList());
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
         }
 
         [HttpGet]
@@ -315,6 +343,104 @@ WHERE (ALM.NOTAS LIKE N'RW') AND (RCF.CAJAFRONT = 1)";
                 }
 
                 return StatusCode(200,consumos);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
+
+
+        [HttpGet]
+        [Route("getProveedoresTicketCompra/{modulo}")]
+        public async Task<ActionResult> GetProveedoresTicketCompra(string modulo)
+        {
+            try
+            {
+               var registros = _dbpContext.CatProveedoresCompras.Where(x=>x.Modulo == modulo).ToList();
+                var data = new List<Object>();
+                foreach (var registro in registros) 
+                {
+                    var prov = _contextdb2.Proveedores.Where(x => x.Codproveedor == registro.Codproveedor).FirstOrDefault(); 
+                    if (prov != null) 
+                    {
+                        data.Add(new
+                        {
+                            codproveedor = prov.Codproveedor,
+                            nombre = prov.Nomproveedor,
+                            rfc = prov.Nif20
+                        });
+                    }
+                }
+                return StatusCode(200,data);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
+
+        [HttpPost]
+        [Route("agregarProveedoresTicketCompra")]
+        public async Task<ActionResult> agregarProveedoresTicketCompra([FromForm]string jdata, [FromForm] string modulo)
+        {
+            try
+            {
+                List<int> proveedores = JsonConvert.DeserializeObject<List<int>>(jdata);  
+                foreach (var prov in proveedores)
+                {
+                    var reg = _dbpContext.CatProveedoresCompras.Where(x=>x.Codproveedor == prov && x.Modulo == modulo).FirstOrDefault();
+                    if (reg == null) 
+                    {
+                        _dbpContext.CatProveedoresCompras.Add(new CatProveedoresCompra() { Codproveedor = prov, Modulo = modulo});
+                        await _dbpContext.SaveChangesAsync();
+                    }                    
+                }
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
+
+
+
+        [HttpPost]
+        [Route("borrarProveedoresTicketCompra")]
+        public async Task<ActionResult> borrarProveedoresTicketCompra([FromForm] string jdata, [FromForm] string modulo)
+        {
+            try
+            {
+                List<int> proveedores = JsonConvert.DeserializeObject<List<int>>(jdata);
+                foreach (var prov in proveedores)
+                {
+                    var reg = _dbpContext.CatProveedoresCompras.Where(x => x.Codproveedor == prov && x.Modulo == modulo).FirstOrDefault();
+                    if (reg != null)
+                    {
+                        _dbpContext.CatProveedoresCompras.Remove(reg);
+                        await _dbpContext.SaveChangesAsync();
+                    }
+                }
+                return StatusCode(200);
             }
             catch (Exception ex)
             {
