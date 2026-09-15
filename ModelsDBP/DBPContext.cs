@@ -22,6 +22,7 @@ namespace API_PEDIDOS.ModelsDBP
         public virtual DbSet<AsignacionProv> AsignacionProvs { get; set; } = null!;
         public virtual DbSet<Calendario> Calendarios { get; set; } = null!;
         public virtual DbSet<CalendariosChecada> CalendariosChecadas { get; set; } = null!;
+        public virtual DbSet<CatProveedoresCompra> CatProveedoresCompras { get; set; } = null!;
         public virtual DbSet<CatRole> CatRoles { get; set; } = null!;
         public virtual DbSet<CatRuta> CatRutas { get; set; } = null!;
         public virtual DbSet<CatStatusChecada> CatStatusChecadas { get; set; } = null!;
@@ -146,6 +147,19 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.IdPuesto).HasColumnName("ID_PUESTO");
 
                 entity.Property(e => e.Jdata).HasColumnName("JDATA");
+            });
+
+            modelBuilder.Entity<CatProveedoresCompra>(entity =>
+            {
+                entity.ToTable("CAT_PROVEEDORES_COMPRAS");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Codproveedor).HasColumnName("CODPROVEEDOR");
+
+                entity.Property(e => e.Modulo)
+                    .HasMaxLength(50)
+                    .HasColumnName("MODULO");
             });
 
             modelBuilder.Entity<CatRole>(entity =>

@@ -370,6 +370,36 @@ namespace API_PEDIDOS.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("eliminarLineasRojas")]
+        public async Task<ActionResult> eliminarLineasRojas([FromForm] int idp, [FromForm] int nump)
+        {
+            try
+            {
+                var pedidoslin = _dbpContext.PedidosMensualLins.Where(x => x.Idcab == idp && x.NumpedidoLin == nump).ToList(); 
+                foreach (var pl in pedidoslin)
+                {
+                    if (pl.PedidoSugerido <= 0) 
+                    {
+                        _dbpContext.PedidosMensualLins.Remove(pl);
+                       await _dbpContext.SaveChangesAsync();
+                    }
+                }
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
+
         [HttpPost("calcularResumen")]
         public async Task<ActionResult> CalcularResumen()
         {
