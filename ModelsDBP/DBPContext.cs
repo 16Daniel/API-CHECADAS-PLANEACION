@@ -38,6 +38,7 @@ namespace API_PEDIDOS.ModelsDBP
         public virtual DbSet<ModificacionesPedSuc> ModificacionesPedSucs { get; set; } = null!;
         public virtual DbSet<Notificacione> Notificaciones { get; set; } = null!;
         public virtual DbSet<Parametro> Parametros { get; set; } = null!;
+        public virtual DbSet<ParametrosConfiguracionDiarioAsem> ParametrosConfiguracionDiarioAsems { get; set; } = null!;
         public virtual DbSet<ParametrosPedidosMensuale> ParametrosPedidosMensuales { get; set; } = null!;
         public virtual DbSet<PedSucArticulo> PedSucArticulos { get; set; } = null!;
         public virtual DbSet<PedSucAsignacione> PedSucAsignaciones { get; set; } = null!;
@@ -421,6 +422,20 @@ namespace API_PEDIDOS.ModelsDBP
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Jdata).HasColumnName("JDATA");
+            });
+
+            modelBuilder.Entity<ParametrosConfiguracionDiarioAsem>(entity =>
+            {
+                entity.ToTable("ParametrosConfiguracionDiarioASem");
+
+                entity.HasIndex(e => e.NombreClave, "UQ__Parametr__D5D765E108200DAB")
+                    .IsUnique();
+
+                entity.Property(e => e.FechaModificacion).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.NombreClave)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<ParametrosPedidosMensuale>(entity =>
