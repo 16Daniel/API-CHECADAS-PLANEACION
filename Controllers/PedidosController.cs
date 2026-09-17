@@ -112,6 +112,10 @@ namespace API_PEDIDOS.Controllers
         {
             try
             {
+
+                var configdb = _dbpContext.ParametrosConfiguracionDiarioAsems.FirstOrDefault();
+                var configInvdiarioAsem = JsonConvert.DeserializeObject<ParametrosConfigDto>(configdb.ConfiguracionJson);
+
                 _dbpContext.ValidacionPedidos.Add(new ValidacionPedido() { Status = true, Idu =idu });
                 await _dbpContext.SaveChangesAsync();
                 var asignaciones = _dbpContext.AsignacionProvs.Where(x => x.Idu == idu).ToList();
@@ -509,7 +513,7 @@ namespace API_PEDIDOS.Controllers
                             double inventario = 0;
                             Boolean hayinventario = false;
 
-                            if (artinvsem == null)
+                            if (artinvsem == null && !configInvdiarioAsem.SucursalIds.Contains(item.Codsucursal) && !configInvdiarioAsem.ArticuloIds.Contains(art.cod))
                             {
                                 if (inventarioteorico)
                                 {
