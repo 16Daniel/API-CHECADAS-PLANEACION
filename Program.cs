@@ -15,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddHttpClient();
 
 var DBPConnection = builder.Configuration.GetConnectionString("DBPConnection");
 var DB2Connection = builder.Configuration.GetConnectionString("DB2Connection");

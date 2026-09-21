@@ -191,10 +191,57 @@ namespace API_PEDIDOS.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("getArticulosProv/{cod}")]
+        public async Task<ActionResult> GetartsProv(int cod)
+        {
+            try
+            {
+                List<Object> data = new List<object>();
+                var precios = _contextdb2.Precioscompras.Where(x => x.Codproveedor == cod).ToList();
+                foreach (var precio in precios)
+                {
+                    var art = _contextdb2.Articulos.Where(x => x.Codarticulo == precio.Codarticulo).FirstOrDefault(); 
+                    if (art != null)
+                    {
+                        var artcl = _contextdb2.Articuloscamposlibres.Where(x => x.Codarticulo == art.Codarticulo).FirstOrDefault();
+                        if (art.Descatalogado == "F")
+                        {
+                            if (artcl != null)
+                            {
+                                if (artcl.RegularizaSemanal != "T")
+                                {
+                                    data.Add(new { cod = art.Codarticulo, descripcion = art.Descripcion, marca = "" });
+                                }
+
+                            }
+                        }
+                        //if (art.Descatalogado == "F" && !art.Descripcion.StartsWith("*")) 
+                        //{
+                        //    data.Add(new { cod = art.Codarticulo, descripcion = art.Descripcion, marca = "" });
+                        //}
+
+                    }
+                }
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
+
+
         [HttpPost]
         [Route("guardarParametros")]
         public async Task<ActionResult> GuardarParametros([FromForm] int tiempoentrega, [FromForm] int periodorev,
-            [FromForm] double nivelRev, [FromForm] int meses, [FromForm] string datadivision )
+            [FromForm] double nivelRev, [FromForm] int meses, [FromForm] string datadivision, [FromForm] string arrprovsuc)
         {
             try
             {
@@ -205,7 +252,8 @@ namespace API_PEDIDOS.Controllers
                     parametros.PeriodoDeRevision = periodorev;
                     parametros.NivelDeServicio = nivelRev;
                     parametros.MesesConDatos = meses;
-                    parametros.DataDivisionPedidos = datadivision; 
+                    parametros.DataDivisionPedidos = datadivision;
+                    parametros.DataProvSuc = arrprovsuc;
 
                     _dbpContext.ParametrosPedidosMensuales.Update(parametros);
                     await _dbpContext.SaveChangesAsync();
@@ -418,66 +466,74 @@ namespace API_PEDIDOS.Controllers
 
             List<ConsumoMensualInput> datosinput = new List<ConsumoMensualInput>();
 
-            var sucursales = await _calculadora.GetSucursales();
-            //sucursales = sucursales.GetRange(0, 2); 
-            var articulosbd = _dbpContext.CheckPlaneacionMensuals.ToList();
-            foreach (var suc in sucursales)
+            var proveedoresbd = _dbpContext.CheckPlaneacionMensuals.Select(x => x.Codproveedor).Distinct().ToList();
+
+            foreach (var codprov in proveedoresbd)
             {
-                foreach (var artbd in articulosbd)
+                var articulosbd = _dbpContext.CheckPlaneacionMensuals.Where(x => x.Codproveedor == codprov).ToList();
+                var sucursales = JsonConvert.DeserializeObject<List<modelConfigProvSuc>>(parametrosbd.DataProvSuc);
+                sucursales = sucursales.Where(x => x.codprov == codprov).ToList(); 
+                foreach (var itemsuc in sucursales)
                 {
-                    var art = _contextdb2.Articulos.Where(x => x.Codarticulo == artbd.Codarticulo).FirstOrDefault();
-                    string codalmacen = suc.cod > 9 ? suc.cod.ToString() : "0" + suc.cod;
-                    List<double> comprasart = new List<double>();
-
-                    for (int i = 1; i <= 12 ; i++)
+                    var suc = _contextdb2.RemFronts.Where(x => x.Idfront == itemsuc.idsuc).FirstOrDefault(); 
+                    foreach (var artbd in articulosbd)
                     {
-                        DateTime fecha = DateTime.Now.AddMonths((i * -1));
-                        int mes = fecha.Month;
-                        int año = fecha.Year;
-                        DateTime fi = new DateTime(año, mes, 1);
-                        int diasEnMes = DateTime.DaysInMonth(año, mes);
-                        DateTime ff = new DateTime(año, mes, diasEnMes);
+                        var art = _contextdb2.Articulos.Where(x => x.Codarticulo == artbd.Codarticulo).FirstOrDefault();
+                        string codalmacen = suc.Idfront > 9 ? suc.Idfront.ToString() : "0" + suc.Idfront;
+                        List<double> comprasart = new List<double>();
 
-                        double temp = await _calculadora.getComprasDelPeriodo(fi, ff, art.Codarticulo, codalmacen);
-                        comprasart.Add(temp);
+                        for (int i = 1; i <= 12; i++)
+                        {
+                            DateTime fecha = DateTime.Now.AddMonths((i * -1));
+                            int mes = fecha.Month;
+                            int año = fecha.Year;
+                            DateTime fi = new DateTime(año, mes, 1);
+                            int diasEnMes = DateTime.DaysInMonth(año, mes);
+                            DateTime ff = new DateTime(año, mes, diasEnMes);
 
+                            double temp = await _calculadora.getComprasDelPeriodo(fi, ff, art.Codarticulo, codalmacen);
+                            comprasart.Add(temp);
+
+                        }
+                        DateTime hoy = DateTime.Today;
+                        DateTime primerDia = new DateTime(hoy.Year, hoy.Month, 1);
+                        var preciocompra = _contextdb2.Precioscompras.Where(x => x.Codarticulo == art.Codarticulo && x.Codproveedor == artbd.Codproveedor).FirstOrDefault();
+                        var proveedor = _contextdb2.Proveedores.Where(x => x.Codproveedor == artbd.Codproveedor).FirstOrDefault();
+                        var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == proveedor.Nif20 && p.Codarticulo == art.Codarticulo).FirstOrDefault();
+                        int multiplocompra = 1;
+                        if (itprod != null) { multiplocompra = (int)itprod.Uds; }
+                        var stock = _contextdb2.Moviments.Where(x => x.Codalmacenorigen == codalmacen && x.Codalmacendestino == "" && x.Tipo == "REG"
+                        && x.Codarticulo == art.Codarticulo && x.Fecha.Value.Date == primerDia).FirstOrDefault();
+                        double valorinventario = 0;
+                        double precio = 0;
+
+                        var itemimpuesto = _contextdb2.Impuestos.Where(p => p.Tipoiva == art.Impuestocompra).FirstOrDefault();
+                        double ivaArt = (double)(itemimpuesto.Iva == null ? 16 : itemimpuesto.Iva);
+
+                        if (preciocompra != null) { precio = (double)preciocompra.Pbruto; }
+                        if (stock != null) { valorinventario = (double)stock.Unidades; }
+                        ConsumoMensualInput itemInput = new ConsumoMensualInput();
+                        itemInput.CodArticulo = art.Codarticulo;
+                        itemInput.nombreprov = proveedor.Nomproveedor;
+                        itemInput.codProveedor = proveedor.Codproveedor;
+                        itemInput.idSucursal = suc.Idfront;
+                        itemInput.Ubicacion = suc.Titulo;
+                        itemInput.Referencia = art.Refproveedor;
+                        itemInput.Descripcion = art.Descripcion;
+                        itemInput.Medida = art.Unidadmedida;
+                        itemInput.MultiploCompra = multiplocompra;
+                        itemInput.Consumos = comprasart;
+                        itemInput.StockFisico = valorinventario;
+                        itemInput.precio = precio;
+                        itemInput.tipoimpuesto = (int)art.Impuestocompra;
+                        itemInput.iva = ivaArt;
+                        datosinput.Add(itemInput);
                     }
-                    DateTime hoy = DateTime.Today;
-                    DateTime primerDia = new DateTime(hoy.Year, hoy.Month, 1);
-                    var preciocompra = _contextdb2.Precioscompras.Where(x => x.Codarticulo == art.Codarticulo && x.Codproveedor == artbd.Codproveedor).FirstOrDefault();
-                    var proveedor = _contextdb2.Proveedores.Where(x => x.Codproveedor == artbd.Codproveedor).FirstOrDefault();
-                    var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == proveedor.Nif20 && p.Codarticulo == art.Codarticulo).FirstOrDefault();
-                    int multiplocompra = 1;
-                    if (itprod != null) { multiplocompra = (int)itprod.Uds; }
-                    var stock = _contextdb2.Moviments.Where(x => x.Codalmacenorigen == codalmacen && x.Codalmacendestino == "" && x.Tipo == "REG"
-                    && x.Codarticulo == art.Codarticulo && x.Fecha.Value.Date == primerDia).FirstOrDefault();
-                    double valorinventario = 0;
-                    double precio = 0;
-
-                    var itemimpuesto = _contextdb2.Impuestos.Where(p => p.Tipoiva == art.Impuestocompra).FirstOrDefault();
-                    double ivaArt = (double)(itemimpuesto.Iva == null ? 16 : itemimpuesto.Iva);
-
-                    if (preciocompra != null) { precio = (double)preciocompra.Pbruto; }
-                    if (stock != null) { valorinventario = (double)stock.Unidades; }
-                    ConsumoMensualInput itemInput = new ConsumoMensualInput();
-                    itemInput.CodArticulo = art.Codarticulo;
-                    itemInput.nombreprov = proveedor.Nomproveedor; 
-                    itemInput.codProveedor = proveedor.Codproveedor;
-                    itemInput.idSucursal = suc.cod;
-                    itemInput.Ubicacion = suc.name;
-                    itemInput.Referencia = art.Refproveedor;
-                    itemInput.Descripcion = art.Descripcion;
-                    itemInput.Medida = art.Unidadmedida;
-                    itemInput.MultiploCompra = multiplocompra;
-                    itemInput.Consumos = comprasart;
-                    itemInput.StockFisico = valorinventario;
-                    itemInput.precio = precio;
-                    itemInput.tipoimpuesto = (int)art.Impuestocompra;
-                    itemInput.iva = ivaArt; 
-                    datosinput.Add(itemInput);
                 }
+
             }
 
+           
             request.Datos = datosinput;
             if (request == null || request.Parametros == null || request.Datos == null)
                 return BadRequest("Faltan datos de entrada.");
@@ -839,6 +895,12 @@ namespace API_PEDIDOS.Controllers
         public string name { get; set; }
     }
 
+    public class modelConfigProvSuc 
+    {
+        public int codprov { get; set; }
+        public int idsuc { get; set; }
+        public string nomprov { get; set; }
+    }
     public class DivisionPedidos
     {
         public int codprov { get; set; }
