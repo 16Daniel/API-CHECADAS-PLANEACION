@@ -446,6 +446,8 @@ namespace API_PEDIDOS.ModelsDBP
 
                 entity.Property(e => e.DataDivisionPedidos).HasColumnName("DATA_DIVISION_PEDIDOS");
 
+                entity.Property(e => e.DataProvSuc).HasColumnName("DATA_PROV_SUC");
+
                 entity.Property(e => e.MesesConDatos).HasColumnName("MESES_CON_DATOS");
 
                 entity.Property(e => e.NivelDeServicio).HasColumnName("NIVEL_DE_SERVICIO");

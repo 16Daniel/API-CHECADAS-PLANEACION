@@ -11,5 +11,6 @@ namespace API_PEDIDOS.ModelsDBP
         public double NivelDeServicio { get; set; }
         public int MesesConDatos { get; set; }
         public string? DataDivisionPedidos { get; set; }
+        public string? DataProvSuc { get; set; }
     }
 }
