@@ -43,41 +43,41 @@ builder.Services.AddQuartz(q =>
         .WithCronSchedule("0 0 8 ? * MON *")
     );
 
-    //// Job 2: SendEmailMesJob
-    //var jobKey2 = new JobKey("SendEmailMesJob");
-    //q.AddJob<JobEmailMes>(opts => opts.WithIdentity(jobKey2));
-    //q.AddTrigger(opts => opts
-    //    .ForJob(jobKey2)
-    //    .WithIdentity("SendEmailMesJob-trigger")
-    //    .WithCronSchedule("0 10 8 1 * ?")
-    //);
+    // Job 2: SendEmailMesJob
+    var jobKey2 = new JobKey("SendEmailMesJob");
+    q.AddJob<JobEmailMes>(opts => opts.WithIdentity(jobKey2));
+    q.AddTrigger(opts => opts
+        .ForJob(jobKey2)
+        .WithIdentity("SendEmailMesJob-trigger")
+        .WithCronSchedule("0 10 8 1 * ?")
+    );
 
-    //// Job 3: SendEmailJobMermas
-    //var jobKey3 = new JobKey("SendEmailJobMermas");
-    //q.AddJob<JobEmailMermasAla>(opts => opts.WithIdentity(jobKey3));
-    //q.AddTrigger(opts => opts
-    //    .ForJob(jobKey3)
-    //    .WithIdentity("SendEmailJobMermas-trigger")
-    //    .WithCronSchedule("0 50 8 * * ?")
-    //);
+    // Job 3: SendEmailJobMermas
+    var jobKey3 = new JobKey("SendEmailJobMermas");
+    q.AddJob<JobEmailMermasAla>(opts => opts.WithIdentity(jobKey3));
+    q.AddTrigger(opts => opts
+        .ForJob(jobKey3)
+        .WithIdentity("SendEmailJobMermas-trigger")
+        .WithCronSchedule("0 50 8 * * ?")
+    );
 
-    //// Job 4: SendEmailJobMermasB
-    //var jobKey4 = new JobKey("SendEmailJobMermasB");
-    //q.AddJob<JobEmailMermasBoneless>(opts => opts.WithIdentity(jobKey4));
-    //q.AddTrigger(opts => opts
-    //    .ForJob(jobKey4)
-    //    .WithIdentity("SendEmailJobMermasB-trigger")
-    //    .WithCronSchedule("0 55 8 * * ?")
-    //);
+    // Job 4: SendEmailJobMermasB
+    var jobKey4 = new JobKey("SendEmailJobMermasB");
+    q.AddJob<JobEmailMermasBoneless>(opts => opts.WithIdentity(jobKey4));
+    q.AddTrigger(opts => opts
+        .ForJob(jobKey4)
+        .WithIdentity("SendEmailJobMermasB-trigger")
+        .WithCronSchedule("0 55 8 * * ?")
+    );
 
-    //// Job 5: SendEmail25pts
-    //var jobKey5 = new JobKey("SendEmail25pts");
-    //q.AddJob<JobEmail25pts>(opts => opts.WithIdentity(jobKey5));
-    //q.AddTrigger(opts => opts
-    //    .ForJob(jobKey5)
-    //    .WithIdentity("SendEmail25pts-trigger")
-    //    .WithCronSchedule("0 0 9 * * ?")
-    //);
+    // Job 5: SendEmail25pts
+    var jobKey5 = new JobKey("SendEmail25pts");
+    q.AddJob<JobEmail25pts>(opts => opts.WithIdentity(jobKey5));
+    q.AddTrigger(opts => opts
+        .ForJob(jobKey5)
+        .WithIdentity("SendEmail25pts-trigger")
+        .WithCronSchedule("0 0 9 * * ?")
+    );
 });
 
 builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
