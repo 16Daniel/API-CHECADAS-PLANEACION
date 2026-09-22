@@ -61,8 +61,8 @@ namespace API_PEDIDOS.Controllers
         }
 
         [HttpGet]
-        [Route("getItemsprov/{idprov}")]
-        public async Task<ActionResult> GetItemsprovP(int idprov)
+        [Route("getItemsprov/{idprov}/{idperfil}")]
+        public async Task<ActionResult> GetItemsprovP(int idprov,int idperfil)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace API_PEDIDOS.Controllers
 
         foreach (var item in articulos)
         {
-          var artdb = _dbpContext.PedSucArticulos.Where(x => x.Codart == item.cod && x.Codproveedor == idprov).FirstOrDefault();
+          var artdb = _dbpContext.PedSucArticulos.Where(x => x.Codart == item.cod && x.Codproveedor == idprov && x.Idperfil == idperfil).FirstOrDefault();
           data.Add(
             new
             {
