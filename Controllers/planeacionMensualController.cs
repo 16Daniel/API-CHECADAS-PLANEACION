@@ -78,7 +78,7 @@ namespace API_PEDIDOS.Controllers
 
                 foreach (int art in articulos)
                 {
-                    var artbd = _dbpContext.CheckPlaneacionMensuals.Where(x => x.Codarticulo == art).FirstOrDefault();
+                    var artbd = _dbpContext.CheckPlaneacionMensuals.Where(x => x.Codarticulo == art && x.Codproveedor == codprov).FirstOrDefault();
                     if (artbd == null)
                     {
                         _dbpContext.CheckPlaneacionMensuals.Add(new CheckPlaneacionMensual() { Codarticulo = art, Codproveedor = codprov });
