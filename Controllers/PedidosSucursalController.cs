@@ -233,7 +233,7 @@ namespace API_PEDIDOS.Controllers
                         if (articulo != null)
                         {
                             var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == prov.Nif20 && p.Codarticulo == art.Codart).FirstOrDefault();
-                            var artdb = _dbpContext.PedSucArticulos.Where(x => x.Codart == articulo.cod && x.Codproveedor == idprov).FirstOrDefault();
+                            var artdb = _dbpContext.PedSucArticulos.Where(x => x.Codart == articulo.cod && x.Codproveedor == idprov && x.Idperfil == idperfil).FirstOrDefault();
                             var preciocompra = _contextdb2.Precioscompras.Where(x => x.Codarticulo == articulo.cod && x.Codproveedor == idprov).FirstOrDefault();
                             Boolean tienemultiplo = itprod == null ? false : true;
                             Boolean tienetarifa = preciocompra == null ? false : true;    
