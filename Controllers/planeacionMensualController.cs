@@ -451,176 +451,183 @@ namespace API_PEDIDOS.Controllers
         [HttpPost("calcularResumen")]
         public async Task<ActionResult> CalcularResumen()
         {
-            var pedidosbd = _dbpContext.PedidosMensualCabs.Where(x => x.Fecha.Month == DateTime.Now.Month && x.Estatus == "POR ACEPTAR").ToList(); 
-            _dbpContext.PedidosMensualCabs.RemoveRange(pedidosbd);
-            await _dbpContext.SaveChangesAsync(); 
-            var request = new SolicitudCalculo();
-            var parametrosbd = _dbpContext.ParametrosPedidosMensuales.FirstOrDefault();
-            ParametrosCalculo parametros = new ParametrosCalculo();
-            parametros.PeriodoRevisionDias = parametrosbd.PeriodoDeRevision;
-            parametros.N = parametrosbd.MesesConDatos;
-            parametros.Z = parametrosbd.NivelDeServicio;
-            parametros.LeadTimeDias = parametrosbd.TiempoDeEntrega;
-            parametros.segmentacionpedidos = JsonConvert.DeserializeObject<List<DivisionPedidos>>(parametrosbd.DataDivisionPedidos);
-            request.Parametros = parametros;
-
-            List<ConsumoMensualInput> datosinput = new List<ConsumoMensualInput>();
-
-            var proveedoresbd = _dbpContext.CheckPlaneacionMensuals.Select(x => x.Codproveedor).Distinct().ToList();
-
-            foreach (var codprov in proveedoresbd)
+            try 
             {
-                var articulosbd = _dbpContext.CheckPlaneacionMensuals.Where(x => x.Codproveedor == codprov).ToList();
-                var sucursales = JsonConvert.DeserializeObject<List<modelConfigProvSuc>>(parametrosbd.DataProvSuc);
-                sucursales = sucursales.Where(x => x.codprov == codprov).ToList(); 
-                foreach (var itemsuc in sucursales)
-                {
-                    var suc = _contextdb2.RemFronts.Where(x => x.Idfront == itemsuc.idsuc).FirstOrDefault(); 
-                    foreach (var artbd in articulosbd)
-                    {
-                        var art = _contextdb2.Articulos.Where(x => x.Codarticulo == artbd.Codarticulo).FirstOrDefault();
-                        string codalmacen = suc.Idfront > 9 ? suc.Idfront.ToString() : "0" + suc.Idfront;
-                        List<double> comprasart = new List<double>();
-
-                        for (int i = 1; i <= 12; i++)
-                        {
-                            DateTime fecha = DateTime.Now.AddMonths((i * -1));
-                            int mes = fecha.Month;
-                            int año = fecha.Year;
-                            DateTime fi = new DateTime(año, mes, 1);
-                            int diasEnMes = DateTime.DaysInMonth(año, mes);
-                            DateTime ff = new DateTime(año, mes, diasEnMes);
-
-                            double temp = await _calculadora.getComprasDelPeriodo(fi, ff, art.Codarticulo, codalmacen);
-                            comprasart.Add(temp);
-
-                        }
-                        DateTime hoy = DateTime.Today;
-                        DateTime primerDia = new DateTime(hoy.Year, hoy.Month, 1);
-                        var preciocompra = _contextdb2.Precioscompras.Where(x => x.Codarticulo == art.Codarticulo && x.Codproveedor == artbd.Codproveedor).FirstOrDefault();
-                        var proveedor = _contextdb2.Proveedores.Where(x => x.Codproveedor == artbd.Codproveedor).FirstOrDefault();
-                        var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == proveedor.Nif20 && p.Codarticulo == art.Codarticulo).FirstOrDefault();
-                        int multiplocompra = 1;
-                        if (itprod != null) { multiplocompra = (int)itprod.Uds; }
-                        var stock = _contextdb2.Moviments.Where(x => x.Codalmacenorigen == codalmacen && x.Codalmacendestino == "" && x.Tipo == "REG"
-                        && x.Codarticulo == art.Codarticulo && x.Fecha.Value.Date == primerDia).FirstOrDefault();
-                        double valorinventario = 0;
-                        double precio = 0;
-
-                        var itemimpuesto = _contextdb2.Impuestos.Where(p => p.Tipoiva == art.Impuestocompra).FirstOrDefault();
-                        double ivaArt = (double)(itemimpuesto.Iva == null ? 16 : itemimpuesto.Iva);
-
-                        if (preciocompra != null) { precio = (double)preciocompra.Pbruto; }
-                        if (stock != null) { valorinventario = (double)stock.Unidades; }
-                        ConsumoMensualInput itemInput = new ConsumoMensualInput();
-                        itemInput.CodArticulo = art.Codarticulo;
-                        itemInput.nombreprov = proveedor.Nomproveedor;
-                        itemInput.codProveedor = proveedor.Codproveedor;
-                        itemInput.idSucursal = suc.Idfront;
-                        itemInput.Ubicacion = suc.Titulo;
-                        itemInput.Referencia = art.Refproveedor;
-                        itemInput.Descripcion = art.Descripcion;
-                        itemInput.Medida = art.Unidadmedida;
-                        itemInput.MultiploCompra = multiplocompra;
-                        itemInput.Consumos = comprasart;
-                        itemInput.StockFisico = valorinventario;
-                        itemInput.precio = precio;
-                        itemInput.tipoimpuesto = (int)art.Impuestocompra;
-                        itemInput.iva = ivaArt;
-                        datosinput.Add(itemInput);
-                    }
-                }
-
-            }
-
-           
-            request.Datos = datosinput;
-            if (request == null || request.Parametros == null || request.Datos == null)
-                return BadRequest("Faltan datos de entrada.");
-
-            List<ResultadoPedido> resultados = new List<ResultadoPedido>();
-
-            foreach (var item in request.Datos)
-            {
-                var resultado = _calculadora.Calcular(item, request.Parametros);
-                resultados.Add(resultado);
-            }
-
-            List<ConsumoMensualGrupo> data = resultados
-            .GroupBy(x => new { x.idSucursal, x.codProveedor })
-            .Select(g => new ConsumoMensualGrupo
-            {
-                idSucursal = g.Key.idSucursal,
-                codProveedor = g.Key.codProveedor
-            })
-            .ToList();
-
-            foreach(var itemg in data)
-            {
-                int numerodepedidos = 1; 
-                var segmentacion = parametros.segmentacionpedidos.Where(x=>x.codprov == itemg.codProveedor).FirstOrDefault();
-                if (segmentacion != null) 
-                {
-                    numerodepedidos = segmentacion.division; 
-                }
-
-                var pedidocab = new PedidosMensualCab();
-                pedidocab.DivisionPedidos = numerodepedidos; 
-                pedidocab.Codproveedor = itemg.codProveedor; 
-                pedidocab.Idsucursal = itemg.idSucursal;
-                pedidocab.Fecha = DateTime.Now;
-                pedidocab.Estatus = "POR ACEPTAR";
-
-                var itembdaut = _dbpContext.PedidosMensualCabs.Where(x => x.Idsucursal == pedidocab.Idsucursal && x.Codproveedor == pedidocab.Codproveedor && x.Estatus == "AUTORIZADO").FirstOrDefault(); 
-                if(itembdaut != null) { continue; }
-
-                await _dbpContext.PedidosMensualCabs.AddAsync(pedidocab);
+                var pedidosbd = _dbpContext.PedidosMensualCabs.Where(x => x.Fecha.Month == DateTime.Now.Month && x.Estatus == "POR ACEPTAR").ToList();
+                _dbpContext.PedidosMensualCabs.RemoveRange(pedidosbd);
                 await _dbpContext.SaveChangesAsync();
+                var request = new SolicitudCalculo();
+                var parametrosbd = _dbpContext.ParametrosPedidosMensuales.FirstOrDefault();
+                ParametrosCalculo parametros = new ParametrosCalculo();
+                parametros.PeriodoRevisionDias = parametrosbd.PeriodoDeRevision;
+                parametros.N = parametrosbd.MesesConDatos;
+                parametros.Z = parametrosbd.NivelDeServicio;
+                parametros.LeadTimeDias = parametrosbd.TiempoDeEntrega;
+                parametros.segmentacionpedidos = JsonConvert.DeserializeObject<List<DivisionPedidos>>(parametrosbd.DataDivisionPedidos);
+                request.Parametros = parametros;
 
-                var items_originales = resultados.Where(x => x.idSucursal == itemg.idSucursal && x.codProveedor == itemg.codProveedor).ToList();
-                
-                for (int i = 0; i <=  numerodepedidos; i++) 
+                List<ConsumoMensualInput> datosinput = new List<ConsumoMensualInput>();
+
+                var proveedoresbd = _dbpContext.CheckPlaneacionMensuals.Select(x => x.Codproveedor).Distinct().ToList();
+
+                foreach (var codprov in proveedoresbd)
                 {
-                    foreach (var input in items_originales)
+                    var articulosbd = _dbpContext.CheckPlaneacionMensuals.Where(x => x.Codproveedor == codprov).ToList();
+                    var sucursales = JsonConvert.DeserializeObject<List<modelConfigProvSuc>>(parametrosbd.DataProvSuc);
+                    sucursales = sucursales.Where(x => x.codprov == codprov).ToList();
+                    foreach (var itemsuc in sucursales)
                     {
-                        var itembd = _dbpContext.PedidosMensualLins.Where(x => x.IdSucursal == input.idSucursal && x.CodProveedor == input.codProveedor && x.Codarticulo == input.codarticulo && x.Idcab == pedidocab.Id && x.NumpedidoLin == i && x.Estatus != "AUTORIZADO").FirstOrDefault();
-
-                        if (itembd != null)
+                        var suc = _contextdb2.RemFronts.Where(x => x.Idfront == itemsuc.idsuc).FirstOrDefault();
+                        foreach (var artbd in articulosbd)
                         {
-                            _dbpContext.PedidosMensualLins.Remove(itembd);
+                            var art = _contextdb2.Articulos.Where(x => x.Codarticulo == artbd.Codarticulo).FirstOrDefault();
+                            string codalmacen = suc.Idfront > 9 ? suc.Idfront.ToString() : "0" + suc.Idfront;
+                            List<double> comprasart = new List<double>();
+
+                            for (int i = 1; i <= 12; i++)
+                            {
+                                DateTime fecha = DateTime.Now.AddMonths((i * -1));
+                                int mes = fecha.Month;
+                                int año = fecha.Year;
+                                DateTime fi = new DateTime(año, mes, 1);
+                                int diasEnMes = DateTime.DaysInMonth(año, mes);
+                                DateTime ff = new DateTime(año, mes, diasEnMes);
+
+                                double temp = await _calculadora.getComprasDelPeriodo(fi, ff, art.Codarticulo, codalmacen);
+                                comprasart.Add(temp);
+
+                            }
+                            DateTime hoy = DateTime.Today;
+                            DateTime primerDia = new DateTime(hoy.Year, hoy.Month, 1);
+                            var preciocompra = _contextdb2.Precioscompras.Where(x => x.Codarticulo == art.Codarticulo && x.Codproveedor == artbd.Codproveedor).FirstOrDefault();
+                            var proveedor = _contextdb2.Proveedores.Where(x => x.Codproveedor == artbd.Codproveedor).FirstOrDefault();
+                            var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == proveedor.Nif20 && p.Codarticulo == art.Codarticulo).FirstOrDefault();
+                            int multiplocompra = 1;
+                            if (itprod != null) { multiplocompra = (int)itprod.Uds; }
+                            var stock = _contextdb2.Moviments.Where(x => x.Codalmacenorigen == codalmacen && x.Codalmacendestino == "" && x.Tipo == "REG"
+                            && x.Codarticulo == art.Codarticulo && x.Fecha.Value.Date == primerDia).FirstOrDefault();
+                            double valorinventario = 0;
+                            double precio = 0;
+
+                            var itemimpuesto = _contextdb2.Impuestos.Where(p => p.Tipoiva == art.Impuestocompra).FirstOrDefault();
+                            double ivaArt = (double)(itemimpuesto.Iva == null ? 16 : itemimpuesto.Iva);
+
+                            if (preciocompra != null) { precio = (double)preciocompra.Pbruto; }
+                            if (stock != null) { valorinventario = (double)stock.Unidades; }
+                            ConsumoMensualInput itemInput = new ConsumoMensualInput();
+                            itemInput.CodArticulo = art.Codarticulo;
+                            itemInput.nombreprov = proveedor.Nomproveedor;
+                            itemInput.codProveedor = proveedor.Codproveedor;
+                            itemInput.idSucursal = suc.Idfront;
+                            itemInput.Ubicacion = suc.Titulo;
+                            itemInput.Referencia = art.Refproveedor;
+                            itemInput.Descripcion = art.Descripcion;
+                            itemInput.Medida = art.Unidadmedida;
+                            itemInput.MultiploCompra = multiplocompra;
+                            itemInput.Consumos = comprasart;
+                            itemInput.StockFisico = valorinventario;
+                            itemInput.precio = precio;
+                            itemInput.tipoimpuesto = (int)art.Impuestocompra;
+                            itemInput.iva = ivaArt;
+                            datosinput.Add(itemInput);
+                        }
+                    }
+
+                }
+
+
+                request.Datos = datosinput;
+                if (request == null || request.Parametros == null || request.Datos == null)
+                    return BadRequest("Faltan datos de entrada.");
+
+                List<ResultadoPedido> resultados = new List<ResultadoPedido>();
+
+                foreach (var item in request.Datos)
+                {
+                    var resultado = _calculadora.Calcular(item, request.Parametros);
+                    resultados.Add(resultado);
+                }
+
+                List<ConsumoMensualGrupo> data = resultados
+                .GroupBy(x => new { x.idSucursal, x.codProveedor })
+                .Select(g => new ConsumoMensualGrupo
+                {
+                    idSucursal = g.Key.idSucursal,
+                    codProveedor = g.Key.codProveedor
+                })
+                .ToList();
+
+                foreach (var itemg in data)
+                {
+                    int numerodepedidos = 1;
+                    var segmentacion = parametros.segmentacionpedidos.Where(x => x.codprov == itemg.codProveedor).FirstOrDefault();
+                    if (segmentacion != null)
+                    {
+                        numerodepedidos = segmentacion.division;
+                    }
+
+                    var pedidocab = new PedidosMensualCab();
+                    pedidocab.DivisionPedidos = numerodepedidos;
+                    pedidocab.Codproveedor = itemg.codProveedor;
+                    pedidocab.Idsucursal = itemg.idSucursal;
+                    pedidocab.Fecha = DateTime.Now;
+                    pedidocab.Estatus = "POR ACEPTAR";
+
+                    var itembdaut = _dbpContext.PedidosMensualCabs.Where(x => x.Idsucursal == pedidocab.Idsucursal && x.Codproveedor == pedidocab.Codproveedor && x.Estatus == "AUTORIZADO" && x.Fecha.Month == pedidocab.Fecha.Month && x.Fecha.Year == pedidocab.Fecha.Year).FirstOrDefault();
+                    if (itembdaut != null) { continue; }
+
+                    await _dbpContext.PedidosMensualCabs.AddAsync(pedidocab);
+                    await _dbpContext.SaveChangesAsync();
+
+                    var items_originales = resultados.Where(x => x.idSucursal == itemg.idSucursal && x.codProveedor == itemg.codProveedor).ToList();
+
+                    for (int i = 0; i <= numerodepedidos; i++)
+                    {
+                        foreach (var input in items_originales)
+                        {
+                            var itembd = _dbpContext.PedidosMensualLins.Where(x => x.IdSucursal == input.idSucursal && x.CodProveedor == input.codProveedor && x.Codarticulo == input.codarticulo && x.Idcab == pedidocab.Id && x.NumpedidoLin == i && x.Estatus != "AUTORIZADO").FirstOrDefault();
+
+                            if (itembd != null)
+                            {
+                                _dbpContext.PedidosMensualLins.Remove(itembd);
+                                await _dbpContext.SaveChangesAsync();
+                            }
+                            int cajasdivididas = i > 0 ? (int)Math.Ceiling((double)input.PedidoSugerido / numerodepedidos) : input.PedidoSugerido;
+                            var item = new PedidosMensualLin()
+                            {
+                                Codarticulo = input.codarticulo,
+                                Ubicacion = input.Ubicacion,
+                                Referencia = input.Referencia,
+                                Descripcion = input.Descripcion,
+                                ConsumoPromedio = input.ConsumoPromedio,
+                                DesviacionEstandar = input.DesviacionEstandar,
+                                NivelObjetivo = input.NivelObjetivo,
+                                StockFisico = input.StockFisico,
+                                PedidoSugerido = cajasdivididas,
+                                CodProveedor = input.codProveedor,
+                                IdSucursal = input.idSucursal,
+                                Nombreprov = input.nombreprov,
+                                Udscaja = input.udscaja,
+                                Precio = input.precio,
+                                Tipoimpuesto = input.tipoimpuesto,
+                                Iva = input.iva,
+                                Estatus = "POR ACEPTAR",
+                                Fecha = DateTime.Now,
+                                Idcab = pedidocab.Id,
+                                NumpedidoLin = i
+                            };
+                            _dbpContext.PedidosMensualLins.Add(item);
                             await _dbpContext.SaveChangesAsync();
                         }
-                        int cajasdivididas = i > 0 ? (int)Math.Ceiling((double)input.PedidoSugerido / numerodepedidos) : input.PedidoSugerido;
-                        var item = new PedidosMensualLin()
-                        {
-                            Codarticulo = input.codarticulo,
-                            Ubicacion = input.Ubicacion,
-                            Referencia = input.Referencia,
-                            Descripcion = input.Descripcion,
-                            ConsumoPromedio = input.ConsumoPromedio,
-                            DesviacionEstandar = input.DesviacionEstandar,
-                            NivelObjetivo = input.NivelObjetivo,
-                            StockFisico = input.StockFisico,
-                            PedidoSugerido = cajasdivididas,
-                            CodProveedor = input.codProveedor,
-                            IdSucursal = input.idSucursal,
-                            Nombreprov = input.nombreprov,
-                            Udscaja = input.udscaja,
-                            Precio = input.precio,
-                            Tipoimpuesto = input.tipoimpuesto,
-                            Iva = input.iva,
-                            Estatus = "POR ACEPTAR",
-                            Fecha = DateTime.Now,
-                            Idcab = pedidocab.Id,
-                            NumpedidoLin = i
-                        };
-                        _dbpContext.PedidosMensualLins.Add(item);
-                        await _dbpContext.SaveChangesAsync();
                     }
                 }
-            }
 
-          return Ok();
+                return Ok();
+            }
+            catch (Exception ex) 
+            {
+                return StatusCode(500, new { message = ex.Message }); 
+            }
         }
 
 

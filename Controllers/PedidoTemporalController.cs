@@ -449,8 +449,16 @@ namespace API_PEDIDOS.Controllers
                             }
                             else
                             {
-                                inventario = await _fp.obtenerInvnetarioArtSemanal(item.Codsucursal, art.cod);
-                                if (inventario != -999999) { hayinventario = true; } else { hayinventario = false; status = 2; }
+                                if (inventarioteorico == false)
+                                {
+                                    inventarios = await _fp.getInventario(item.Codsucursal, art.cod);
+                                    if (inventarios.Count > 0) { inventario = inventarios[0].unidades; hayinventario = true; } else { status = 2; }
+                                }
+                                else
+                                {
+                                    inventario = await _fp.obtenerInvnetarioArtSemanal(item.Codsucursal, art.cod);
+                                    if (inventario != -999999) { hayinventario = true; } else { hayinventario = false; status = 2; }
+                                }
                             }
 
                             double proyeccion = 0;
@@ -1153,8 +1161,16 @@ namespace API_PEDIDOS.Controllers
                             }
                             else
                             {
-                                inventario = await _fp.obtenerInvnetarioArtSemanal(item.Codsucursal, art.cod);
-                                if (inventario != -999999) { hayinventario = true; } else { hayinventario = false; status = 2; }
+                                if (inventarioteorico == false)
+                                {
+                                    inventarios = await _fp.getInventario(item.Codsucursal, art.cod);
+                                    if (inventarios.Count > 0) { inventario = inventarios[0].unidades; hayinventario = true; } else { status = 2; }
+                                }
+                                else
+                                {
+                                    inventario = await _fp.obtenerInvnetarioArtSemanal(item.Codsucursal, art.cod);
+                                    if (inventario != -999999) { hayinventario = true; } else { hayinventario = false; status = 2; }
+                                }
                             }
 
                             double proyeccion = 0;
