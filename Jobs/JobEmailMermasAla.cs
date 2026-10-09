@@ -119,7 +119,7 @@ namespace API_PEDIDOS.Jobs
         {
             //// Configurar la información de la cuenta de Gmail
             string correoRemitente = "gilberto.r@operamx.com";
-            string contraseña = "yfwv wiqd feby bwtj";
+            string contraseña = "pbbh okpj kduv okxl";
 
             //// Configurar la información de la cuenta de Gmail
             //string correoRemitente = "it_token@operamx.com";
