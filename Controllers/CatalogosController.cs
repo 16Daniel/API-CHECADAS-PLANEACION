@@ -60,6 +60,33 @@ namespace API_PEDIDOS.Controllers
         }
 
         [HttpGet]
+        [Route("getProveedoresActivosTickets")]
+        public async Task<ActionResult> GetProveedoresActivosTickets()
+        {
+            try
+            {
+                var query = _contextdb2.Proveedores.Where(p => p.Descatalogado == "F").Select(s => new
+                {
+                    codproveedor = s.Codproveedor,
+                    nombreprov = s.Nomproveedor,
+                    rfc = s.Nif20
+                }).ToList();
+
+                return StatusCode(200, query.ToList());
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return StatusCode(500, new
+                {
+                    Success = false,
+                    Message = ex.ToString(),
+                });
+            }
+        }
+
+        [HttpGet]
         [Route("getProveedores")]
         public async Task<ActionResult> GetProveedores()
         {
