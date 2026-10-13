@@ -68,7 +68,7 @@ namespace API_PEDIDOS.Controllers
                 var query = _contextdb2.Proveedores.Where(p => p.Descatalogado == "F").Select(s => new
                 {
                     codproveedor = s.Codproveedor,
-                    nombreprov = s.Nomproveedor,
+                    nombre = s.Nomproveedor,
                     rfc = s.Nif20
                 }).ToList();
 
