@@ -680,53 +680,57 @@ namespace API_PEDIDOS.Controllers
                         var suc = _contextdb2.RemFronts.Where(x => x.Idfront == itemsuc.idsuc).FirstOrDefault();
                         foreach (var artbd in articulosbd)
                         {
-                            var art = _contextdb2.Articulos.Where(x => x.Codarticulo == artbd.Codarticulo).FirstOrDefault();
-                            string codalmacen = suc.Idfront > 9 ? suc.Idfront.ToString() : "0" + suc.Idfront;
-                            List<double> comprasart = new List<double>();
+                            try 
+                            {
+                                var art = _contextdb2.Articulos.Where(x => x.Codarticulo == artbd.Codarticulo).FirstOrDefault();
+                                string codalmacen = suc.Idfront > 9 ? suc.Idfront.ToString() : "0" + suc.Idfront;
+                                List<double> comprasart = new List<double>();
 
-                            DateTime fecha = DateTime.Now.AddMonths((-12));
-                            int mes = fecha.Month;
-                            int año = fecha.Year;
-                            DateTime fi = new DateTime(año, mes, 1);
-                            DateTime fechafin = DateTime.Now.AddMonths(-1);
-                            int diasEnMes = DateTime.DaysInMonth(fechafin.Year, fechafin.Month);
-                            DateTime ff = new DateTime(fechafin.Year, fechafin.Month, diasEnMes);
+                                DateTime fecha = DateTime.Now.AddMonths((-12));
+                                int mes = fecha.Month;
+                                int año = fecha.Year;
+                                DateTime fi = new DateTime(año, mes, 1);
+                                DateTime fechafin = DateTime.Now.AddMonths(-1);
+                                int diasEnMes = DateTime.DaysInMonth(fechafin.Year, fechafin.Month);
+                                DateTime ff = new DateTime(fechafin.Year, fechafin.Month, diasEnMes);
 
-                            comprasart = await _calculadora.getComprasDelPeriodo(fi, ff, art.Codarticulo, codalmacen);
+                                comprasart = await _calculadora.getComprasDelPeriodo(fi, ff, art.Codarticulo, codalmacen);
 
-                            DateTime hoy = DateTime.Today;
-                            DateTime primerDia = new DateTime(hoy.Year, hoy.Month, 1);
-                            var preciocompra = _contextdb2.Precioscompras.Where(x => x.Codarticulo == art.Codarticulo && x.Codproveedor == artbd.Codproveedor).FirstOrDefault();
-                            var proveedor = _contextdb2.Proveedores.Where(x => x.Codproveedor == artbd.Codproveedor).FirstOrDefault();
-                            var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == proveedor.Nif20 && p.Codarticulo == art.Codarticulo).FirstOrDefault();
-                            int multiplocompra = 1;
-                            if (itprod != null) { multiplocompra = (int)itprod.Uds; }
-                            var stock = _contextdb2.Moviments.Where(x => x.Codalmacenorigen == codalmacen && x.Codalmacendestino == "" && x.Tipo == "REG"
-                            && x.Codarticulo == art.Codarticulo && x.Fecha.Value.Date == primerDia).FirstOrDefault();
-                            double valorinventario = 0;
-                            double precio = 0;
+                                DateTime hoy = DateTime.Today;
+                                DateTime primerDia = new DateTime(hoy.Year, hoy.Month, 1);
+                                var preciocompra = _contextdb2.Precioscompras.Where(x => x.Codarticulo == art.Codarticulo && x.Codproveedor == artbd.Codproveedor).FirstOrDefault();
+                                var proveedor = _contextdb2.Proveedores.Where(x => x.Codproveedor == artbd.Codproveedor).FirstOrDefault();
+                                var itprod = _contextdb2.ItProductos.Where(p => p.Rfc == proveedor.Nif20 && p.Codarticulo == art.Codarticulo).FirstOrDefault();
+                                int multiplocompra = 1;
+                                if (itprod != null) { multiplocompra = (int)itprod.Uds; }
+                                var stock = _contextdb2.Moviments.Where(x => x.Codalmacenorigen == codalmacen && x.Codalmacendestino == "" && x.Tipo == "REG"
+                                && x.Codarticulo == art.Codarticulo && x.Fecha.Value.Date == primerDia).FirstOrDefault();
+                                double valorinventario = 0;
+                                double precio = 0;
 
-                            var itemimpuesto = _contextdb2.Impuestos.Where(p => p.Tipoiva == art.Impuestocompra).FirstOrDefault();
-                            double ivaArt = (double)(itemimpuesto.Iva == null ? 16 : itemimpuesto.Iva);
+                                var itemimpuesto = _contextdb2.Impuestos.Where(p => p.Tipoiva == art.Impuestocompra).FirstOrDefault();
+                                double ivaArt = (double)(itemimpuesto.Iva == null ? 16 : itemimpuesto.Iva);
 
-                            if (preciocompra != null) { precio = (double)preciocompra.Pbruto; }
-                            if (stock != null) { valorinventario = (double)stock.Unidades; }
-                            ConsumoMensualInput itemInput = new ConsumoMensualInput();
-                            itemInput.CodArticulo = art.Codarticulo;
-                            itemInput.nombreprov = proveedor.Nomproveedor;
-                            itemInput.codProveedor = proveedor.Codproveedor;
-                            itemInput.idSucursal = suc.Idfront;
-                            itemInput.Ubicacion = suc.Titulo;
-                            itemInput.Referencia = art.Refproveedor;
-                            itemInput.Descripcion = art.Descripcion;
-                            itemInput.Medida = art.Unidadmedida;
-                            itemInput.MultiploCompra = multiplocompra;
-                            itemInput.Consumos = comprasart;
-                            itemInput.StockFisico = valorinventario;
-                            itemInput.precio = precio;
-                            itemInput.tipoimpuesto = (int)art.Impuestocompra;
-                            itemInput.iva = ivaArt;
-                            datosinput.Add(itemInput);
+                                if (preciocompra != null) { precio = (double)preciocompra.Pbruto; }
+                                if (stock != null) { valorinventario = (double)stock.Unidades; }
+                                ConsumoMensualInput itemInput = new ConsumoMensualInput();
+                                itemInput.CodArticulo = art.Codarticulo;
+                                itemInput.nombreprov = proveedor.Nomproveedor;
+                                itemInput.codProveedor = proveedor.Codproveedor;
+                                itemInput.idSucursal = suc.Idfront;
+                                itemInput.Ubicacion = suc.Titulo;
+                                itemInput.Referencia = art.Refproveedor;
+                                itemInput.Descripcion = art.Descripcion;
+                                itemInput.Medida = art.Unidadmedida;
+                                itemInput.MultiploCompra = multiplocompra;
+                                itemInput.Consumos = comprasart;
+                                itemInput.StockFisico = valorinventario;
+                                itemInput.precio = precio;
+                                itemInput.tipoimpuesto = (int)art.Impuestocompra;
+                                itemInput.iva = ivaArt;
+                                datosinput.Add(itemInput);
+                            }
+                            catch(Exception ex) { }
                         }
                     }
 
@@ -1198,38 +1202,50 @@ namespace API_PEDIDOS.Controllers
 
         public ResultadoPedido Calcular(ConsumoMensualInput input, ParametrosCalculo parametros)
         {
-            var consumos = input.Consumos.Take(parametros.N).ToList();
-            double promedio = consumos.Average();
-            double desvEst = Math.Sqrt(consumos.Select(x => Math.Pow(x - promedio, 2)).Sum() / parametros.N);
+            try 
+            { 
+                if(input.Consumos.Count < parametros.N) 
+                {
+                    int numconsumos = input.Consumos.Count;
+                   for(int i = 0; i < (parametros.N-numconsumos); i++) 
+                    {
+                        input.Consumos.Add(0);  
+                    }
+                }
+                var consumos = input.Consumos.Take(parametros.N).ToList();
+                double promedio = consumos.Average();
+                double desvEst = Math.Sqrt(consumos.Select(x => Math.Pow(x - promedio, 2)).Sum() / parametros.N);
 
-            double ajuste = parametros.AjustesEstacionales?.GetValueOrDefault(input.Referencia) ?? 1.0;
+                double ajuste = parametros.AjustesEstacionales?.GetValueOrDefault(input.Referencia) ?? 1.0;
 
-            double leadReview = parametros.LeadTimeDias + parametros.PeriodoRevisionDias;
-            double nivelObjetivo = (promedio * ajuste / 30.0) * leadReview
-                                   + parametros.Z * desvEst * Math.Sqrt(leadReview / 30.0);
+                double leadReview = parametros.LeadTimeDias + parametros.PeriodoRevisionDias;
+                double nivelObjetivo = (promedio * ajuste / 30.0) * leadReview
+                                       + parametros.Z * desvEst * Math.Sqrt(leadReview / 30.0);
 
-            double pedido = Math.Max(0, nivelObjetivo - input.StockFisico);
-            int pedidoSugerido = (int)Math.Ceiling(pedido / input.MultiploCompra) * input.MultiploCompra;
+                double pedido = Math.Max(0, nivelObjetivo - input.StockFisico);
+                int pedidoSugerido = (int)Math.Ceiling(pedido / input.MultiploCompra) * input.MultiploCompra;
 
-            return new ResultadoPedido
-            {
-                Ubicacion = input.Ubicacion,
-                Referencia = input.Referencia,
-                Descripcion = input.Descripcion,
-                ConsumoPromedio = promedio,
-                DesviacionEstandar = desvEst,
-                NivelObjetivo = nivelObjetivo,
-                StockFisico = input.StockFisico,
-                PedidoSugerido = pedidoSugerido,
-                codProveedor = input.codProveedor,
-                idSucursal = input.idSucursal,
-                nombreprov = input.nombreprov,
-                udscaja = input.MultiploCompra,
-                precio = input.precio,
-                tipoimpuesto = input.tipoimpuesto,
-                iva = input.iva,
-                codarticulo = input.CodArticulo
-            };
+                return new ResultadoPedido
+                {
+                    Ubicacion = input.Ubicacion,
+                    Referencia = input.Referencia,
+                    Descripcion = input.Descripcion,
+                    ConsumoPromedio = promedio,
+                    DesviacionEstandar = desvEst,
+                    NivelObjetivo = nivelObjetivo,
+                    StockFisico = input.StockFisico,
+                    PedidoSugerido = pedidoSugerido,
+                    codProveedor = input.codProveedor,
+                    idSucursal = input.idSucursal,
+                    nombreprov = input.nombreprov,
+                    udscaja = input.MultiploCompra,
+                    precio = input.precio,
+                    tipoimpuesto = input.tipoimpuesto,
+                    iva = input.iva,
+                    codarticulo = input.CodArticulo
+                };
+            }
+            catch (Exception ex) { return new ResultadoPedido(); }
         }
 
         public async Task<List<double>> getComprasDelPeriodo(DateTime fi, DateTime ff, int codarticulo, string codalmacen) 
