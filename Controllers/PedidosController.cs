@@ -982,6 +982,7 @@ namespace API_PEDIDOS.Controllers
                     {
                         Pedidos p = JsonConvert.DeserializeObject<Pedidos>(item.Jdata);
                         p.id = item.Id;
+                        p.fechapedido = (DateTime)item.Fecha;
                         pedidos.Add(p);
                     }
 
@@ -1018,6 +1019,7 @@ namespace API_PEDIDOS.Controllers
                     {
                         Pedidos p = JsonConvert.DeserializeObject<Pedidos>(item.Jdata);
                         p.id = item.Id;
+                        p.fechapedido = (DateTime)item.Fecha;
                         pedidos.Add(p);
                     }
                 }
@@ -1067,6 +1069,7 @@ namespace API_PEDIDOS.Controllers
                     p.id = item.Id;
                     p.fechapedido = item.Fecha.Value;
                     p.numpedido = item.Numpedido;
+                    p.fechapedido = (DateTime)item.Fecha; 
 
                     if (item.Datam == null)
                     {
@@ -1074,6 +1077,7 @@ namespace API_PEDIDOS.Controllers
                     }
                     else
                     {
+                        p.cargadoicg = DateTime.Parse(item.Datam);
                         DateTime fechaautorizacion = DateTime.ParseExact(item.Datam, "o", null, DateTimeStyles.RoundtripKind);
                         if (notificacionhoy && fechaautorizacion < datanot.Fecha)
                         {
@@ -1134,13 +1138,14 @@ namespace API_PEDIDOS.Controllers
                     p.id = item.Id;
                     p.fechapedido = item.Fecha.Value;
                     p.numpedido = item.Numpedido;
-
+                    
                     if (item.Datam == null)
                     {
                         p.notificado = false;
                     }
                     else
                     {
+                        p.cargadoicg = DateTime.Parse(item.Datam);
                         DateTime fechaautorizacion = DateTime.ParseExact(item.Datam, "o", null, DateTimeStyles.RoundtripKind);
                         if (notificacionhoy && fechaautorizacion < datanot.Fecha)
                         {
@@ -3716,6 +3721,7 @@ namespace API_PEDIDOS.Controllers
         public Boolean capturacartones { get; set; }
         public double cantidaddescuento { get; set; }
         public double totiva { get; set;}
+        public DateTime? fechapedido { get; set; }
     }
 
 
@@ -3737,7 +3743,8 @@ namespace API_PEDIDOS.Controllers
 
         public string? numpedido {  get; set; }
 
-        public bool notificado { get; set; }    
+        public bool notificado { get; set; }   
+        public DateTime? cargadoicg { get; set;  } 
 
     }
 
