@@ -738,6 +738,10 @@ namespace API_PEDIDOS.Controllers
                     PedidoSuc p = JsonConvert.DeserializeObject<PedidoSuc>(item.Jdata);
                     p.id = item.Id;
                     p.numpedido = item.Numpedido;
+                    if (item.Datam != null) 
+                    {
+                        p.cargadoicg = DateTime.Parse(item.Datam);
+                    }
                     pedidos.Add(p);
                 }
 
@@ -1528,6 +1532,7 @@ WHERE (ALM.NOTAS LIKE N'RW') AND (RCF.CAJAFRONT = 1)";
         public double cantidaddescuento { get; set; }
 
         public string? numpedido { get; set; }
+        public DateTime? cargadoicg{ get; set; }
 
     }
 }
